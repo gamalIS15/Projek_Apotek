@@ -1,2 +1,2 @@
-# Projek_Apotek
-Pembuatan Sistem Informasi Apotek
+# Projek Sistem Informasi Apotek
+
