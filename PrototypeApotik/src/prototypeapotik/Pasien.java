@@ -3,14 +3,14 @@ package prototypeapotik;
 import java.sql.Date;
 
 public class Pasien {
-    private Date tanggal;
+    private String tanggal;
     private String nama;
-    private int umur;
+    private String umur;
     private String alamat;
     private String obat;
-    private int jumlah;
+    private String jumlah;
 
-    public Pasien(Date tanggal, String nama, int umur, String alamat, String obat, int jumlah) {
+    public Pasien(String tanggal, String nama, String umur, String alamat, String obat, String jumlah) {
         this.tanggal = tanggal;
         this.nama = nama;
         this.umur = umur;
@@ -19,89 +19,53 @@ public class Pasien {
         this.jumlah = jumlah;
     }
 
-    /**
-     * @return the tanggal
-     */
-    public Date getTanggal() {
+    public String getTanggal() {
         return tanggal;
     }
 
-    /**
-     * @param tanggal the tanggal to set
-     */
-    public void setTanggal(Date tanggal) {
+    public void setTanggal(String tanggal) {
         this.tanggal = tanggal;
     }
 
-    /**
-     * @return the nama
-     */
     public String getNama() {
         return nama;
     }
 
-    /**
-     * @param nama the nama to set
-     */
     public void setNama(String nama) {
         this.nama = nama;
     }
 
-    /**
-     * @return the umur
-     */
-    public int getUmur() {
+    public String getUmur() {
         return umur;
     }
 
-    /**
-     * @param umur the umur to set
-     */
-    public void setUmur(int umur) {
+    public void setUmur(String umur) {
         this.umur = umur;
     }
 
-    /**
-     * @return the alamat
-     */
     public String getAlamat() {
         return alamat;
     }
 
-    /**
-     * @param alamat the alamat to set
-     */
     public void setAlamat(String alamat) {
         this.alamat = alamat;
     }
 
-    /**
-     * @return the obat
-     */
     public String getObat() {
         return obat;
     }
 
-    /**
-     * @param obat the obat to set
-     */
     public void setObat(String obat) {
         this.obat = obat;
     }
 
-    /**
-     * @return the jumlah
-     */
-    public int getJumlah() {
+    public String getJumlah() {
         return jumlah;
     }
 
-    /**
-     * @param jumlah the jumlah to set
-     */
-    public void setJumlah(int jumlah) {
+    public void setJumlah(String jumlah) {
         this.jumlah = jumlah;
     }
-    
+       
     
 }

@@ -22,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
 public class APFormPasien extends javax.swing.JFrame {
 
     ArrayList<Pasien> list = new ArrayList<Pasien>();
-    String[] title = {"Tanggal", "Nama Pasien", "Umur Pasien", "ALamat Pasien", "Nama Obat", "Jumlah Obat"};
+    String[] title = {"Tanggal", "Nama Pasien", "Umur Pasien", "Alamat Pasien", "Nama Obat", "Jumlah Obat"};
     int index = 0;
     
     Connection connection;
@@ -34,22 +34,21 @@ public class APFormPasien extends javax.swing.JFrame {
      */
     public APFormPasien() {
         try {
-            connection = DriverManager.getConnection("jdbc:ucanaccess://"
-                    + "G:/ApotikTaman.accdb;", "", "");
+            connection = DriverManager.getConnection("jdbc:"
+                    + "mysql://sql6.freemysqlhosting.net:3306/sql6152717","sql6152717","S5ISjzaFKC");
             System.out.println("Berhasil Konek");
             
             stmt = connection.createStatement();
             rsPasien = stmt.executeQuery("SELECT * FROM Pasien");
 
             while(rsPasien.next() == true) {
-                list.add(new Pasien(rsPasien.getDate("Tanggal"), 
-                        rsPasien.getString("Nama_Pasien"), 
-                        rsPasien.getInt("Umur"), 
-                        rsPasien.getString("Alamat"),
-                        rsPasien.getString("Nama_Obat"),
-                        rsPasien.getInt("Jumlah")));
-            }
-            
+                list.add(new Pasien(rsPasien.getString("tanggal"), 
+                        rsPasien.getString("namapasien"), 
+                        rsPasien.getString("umur"), 
+                        rsPasien.getString("alamat"),
+                        rsPasien.getString("namaobat"),
+                        rsPasien.getString("jumlah")));
+            }   
         } catch (SQLException errMsg) {
             System.out.println("Ada Kesalahan: " + errMsg.getMessage());
         }
@@ -201,6 +200,7 @@ public class APFormPasien extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblPasien.setEnabled(false);
         jScrollPane1.setViewportView(tblPasien);
 
         jLabel4.setText("Data Obat Pasien");
