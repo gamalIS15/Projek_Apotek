@@ -40,13 +40,11 @@ public class setApoteker {
                 if(Login.txtID.getText().equals(id) && Login.txtPass.getText().equals(pass)) {
                     tmpID = Login.txtID.getText();
                     tmpPass = Login.txtPass.getText();
-                    JOptionPane.showMessageDialog(new Login(), "Login Berhasil", 
-                        "Selamat", JOptionPane.INFORMATION_MESSAGE);
-//                    Form_Withdrawal fw = new Form_Withdrawal(tmpNoRek, tmpPIN);
-//                    fw.setVisible(true);
+                    MainMenu menu = new MainMenu(tmpID, tmpPass);
+                    menu.setVisible(true);
                 }
             }
-             if(!(Login.txtID.getText().equals(id) && Login.txtPass.getText().equals(pass))) {
+             if(!(Login.txtID.getText().equals(tmpID) && Login.txtPass.getText().equals(tmpPass))) {
                 JOptionPane.showMessageDialog(new Login(), "Login Gagal! \n"
                     + "Mohon periksa kembali ID dan Password Anda.", 
                     "Error", JOptionPane.ERROR_MESSAGE);
