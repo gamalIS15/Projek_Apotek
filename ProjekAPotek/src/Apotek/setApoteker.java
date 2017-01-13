@@ -20,8 +20,8 @@ public class setApoteker {
     private String id;
     private String pass;
     private String nama;
-    private String tmpID = null;
-    private String tmpPass = null;
+    public static String tmpID = null;
+    public static String tmpPass = null;
     
     public setApoteker() {
     }

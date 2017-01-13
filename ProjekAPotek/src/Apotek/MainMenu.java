@@ -126,7 +126,7 @@ public class MainMenu extends javax.swing.JFrame {
         txtTanggal.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         btnKeluar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnKeluar.setText("Keluar");
+        btnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/logout1.png"))); // NOI18N
         btnKeluar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnKeluar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -144,19 +144,18 @@ public class MainMenu extends javax.swing.JFrame {
                 .addGap(445, 445, 445)
                 .addComponent(txtTanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 571, Short.MAX_VALUE)
-                .addComponent(btnKeluar)
+                .addComponent(btnKeluar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(59, 59, 59))
         );
         clPanelTransparan1Layout.setVerticalGroup(
             clPanelTransparan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, clPanelTransparan1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(clPanelTransparan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnKeluar)
-                    .addGroup(clPanelTransparan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txtTanggal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtWelcome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(clPanelTransparan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtTanggal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtWelcome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
+            .addComponent(btnKeluar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jPanel1.add(clPanelTransparan1);
@@ -367,6 +366,8 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void btnObatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnObatMouseClicked
         // TODO add your handling code here:
+        new DataObat().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnObatMouseClicked
 
     private void btnGudangMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGudangMouseEntered
@@ -447,7 +448,6 @@ public class MainMenu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-               new MainMenu("a", "a").setVisible(true);
             }
         });
     }
@@ -493,6 +493,6 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblEx;
     private javax.swing.JLabel txtTanggal;
-    private javax.swing.JLabel txtWelcome;
+    public static javax.swing.JLabel txtWelcome;
     // End of variables declaration//GEN-END:variables
 }
