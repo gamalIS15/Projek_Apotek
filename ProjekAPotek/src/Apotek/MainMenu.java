@@ -7,19 +7,27 @@ package Apotek;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.SimpleDateFormat;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Locale;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.Timer;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author user
  */
 public class MainMenu extends javax.swing.JFrame {
+    Statement stmt1, stmt2;
+    ResultSet rsLogin, rsObat;
+    String nama, id;
+    String[] title = {"Tanggal Kadaluarsa", "Nama Obat", "Golongan", "Satuan", "Sisa Persediaan Gudang", "Sisa Persediaan Apotek"};
+    ArrayList<setObat> list = new ArrayList<setObat>();
     /**
      * Creates new form MainMenu
      */
@@ -27,6 +35,47 @@ public class MainMenu extends javax.swing.JFrame {
         this.setWaktu();
         initComponents();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        
+        try {
+            setConnection koneksi = new setConnection();
+            stmt1 = koneksi.connection.createStatement();
+            rsLogin = stmt1.executeQuery("SELECT * FROM LoginApoteker WHERE id='"+ id +"'");
+            while(rsLogin.next() == true) {
+                this.id = id;
+                nama = rsLogin.getString("nama");
+            }
+            
+            stmt2 = koneksi.connection.createStatement();
+            rsObat = stmt2.executeQuery("SELECT * FROM DataObat WHERE datediff(exdate, current_date()) BETWEEN 0 AND 30 ORDER BY exdate");
+            while(rsObat.next() == true) {
+                list.add(new setObat(rsObat.getDate("exdate"), 
+                        rsObat.getString("namaObat"), 
+                        rsObat.getString("golObat"), 
+                        rsObat.getString("sat"), 
+                        rsObat.getInt("sisaGudang"), 
+                        rsObat.getInt("sisaApotek")));
+            }
+            
+        } catch (SQLException ex) {
+            System.out.println("Kesalahan: " + ex);;
+        }
+        txtWelcome.setText("Selamat datang, " + nama);
+        updateTable();
+    }
+    
+    private void updateTable() {
+        Object[][] data = new Object[this.list.size()][6];
+        int x = 0;
+        for(setObat o: this.list) {
+            data[x][0] = o.getTanggal();
+            data[x][1] = o.getNamaObat();
+            data[x][2] = o.getGolObat();
+            data[x][3] = o.getSat();
+            data[x][4] = o.getSisaGudang();
+            data[x][5] = o.getSisaApotek();
+            ++x;
+        }
+        tblEx.setModel(new DefaultTableModel(data, title));
     }
 
     /**
@@ -50,6 +99,10 @@ public class MainMenu extends javax.swing.JFrame {
         btnGudang = new javax.swing.JLabel();
         btnLaporan = new javax.swing.JLabel();
         btnBantuan = new javax.swing.JLabel();
+        clPanelTransparan3 = new PanelTransparan.ClPanelTransparan();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblEx = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistem Informasi Apotek Taman");
@@ -86,23 +139,24 @@ public class MainMenu extends javax.swing.JFrame {
         clPanelTransparan1Layout.setHorizontalGroup(
             clPanelTransparan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(clPanelTransparan1Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addGap(44, 44, 44)
                 .addComponent(txtWelcome)
-                .addGap(573, 573, 573)
-                .addComponent(txtTanggal)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 675, Short.MAX_VALUE)
+                .addGap(445, 445, 445)
+                .addComponent(txtTanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 571, Short.MAX_VALUE)
                 .addComponent(btnKeluar)
-                .addContainerGap())
+                .addGap(59, 59, 59))
         );
         clPanelTransparan1Layout.setVerticalGroup(
             clPanelTransparan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(clPanelTransparan1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(clPanelTransparan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtWelcome)
-                    .addComponent(txtTanggal)
-                    .addComponent(btnKeluar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, clPanelTransparan1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(clPanelTransparan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnKeluar)
+                    .addGroup(clPanelTransparan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(txtTanggal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtWelcome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         jPanel1.add(clPanelTransparan1);
@@ -219,6 +273,59 @@ public class MainMenu extends javax.swing.JFrame {
         });
         jPanel1.add(btnBantuan);
         btnBantuan.setBounds(910, 580, 70, 85);
+
+        clPanelTransparan3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        tblEx.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Tanggal Kadaluarsa", "Nama Obat", "Golongan Obat", "Satuan", "Sisa Persediaan Gudang", "Sisa Persediaan Apotek"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblEx.setEnabled(false);
+        jScrollPane1.setViewportView(tblEx);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setText("Expired Reminder");
+
+        javax.swing.GroupLayout clPanelTransparan3Layout = new javax.swing.GroupLayout(clPanelTransparan3);
+        clPanelTransparan3.setLayout(clPanelTransparan3Layout);
+        clPanelTransparan3Layout.setHorizontalGroup(
+            clPanelTransparan3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(clPanelTransparan3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
+            .addGroup(clPanelTransparan3Layout.createSequentialGroup()
+                .addGap(414, 414, 414)
+                .addComponent(jLabel1)
+                .addContainerGap(421, Short.MAX_VALUE))
+        );
+        clPanelTransparan3Layout.setVerticalGroup(
+            clPanelTransparan3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, clPanelTransparan3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jPanel1.add(clPanelTransparan3);
+        clPanelTransparan3.setBounds(180, 120, 1000, 390);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -340,34 +447,33 @@ public class MainMenu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainMenu("a", "a").setVisible(true);
-                new MainMenu("a", "a").setExtendedState(JFrame.MAXIMIZED_BOTH);
+               new MainMenu("a", "a").setVisible(true);
             }
         });
     }
     
     public final void setWaktu() {
         ActionListener taskPerformer = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String nol_jam = "", nol_menit = "", nol_detik = "";
-                
-                java.util.Date dateTime = new java.util.Date();
-                int nilai_jam = dateTime.getHours();
-                int nilai_menit = dateTime.getMinutes();
-                int nilai_detik = dateTime.getSeconds();
-                
-                if(nilai_jam <= 9) nol_jam="0";
-                if(nilai_menit <= 9) nol_menit="0";
-                if(nilai_detik <= 9) nol_detik="0";
-                
-                String waktu = nol_jam + Integer.toString(nilai_jam);
-                String menit = nol_menit + Integer.toString(nilai_menit);
-                String detik = nol_detik + Integer.toString(nilai_detik);
-                
-                txtTanggal.setText(String.valueOf(LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"))) + " " + 
-                        waktu + ":" + menit + ":" + detik);
-            }
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String nol_jam = "", nol_menit = "", nol_detik = "";
+
+            java.util.Date dateTime = new java.util.Date();
+            int nilai_jam = dateTime.getHours();
+            int nilai_menit = dateTime.getMinutes();
+            int nilai_detik = dateTime.getSeconds();
+
+            if(nilai_jam <= 9) nol_jam="0";
+            if(nilai_menit <= 9) nol_menit="0";
+            if(nilai_detik <= 9) nol_detik="0";
+
+            String waktu = nol_jam + Integer.toString(nilai_jam);
+            String menit = nol_menit + Integer.toString(nilai_menit);
+            String detik = nol_detik + Integer.toString(nilai_detik);
+
+            txtTanggal.setText(String.valueOf(LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"))) + " " + 
+                    waktu + ":" + menit + ":" + detik);
+        }
         };
         new Timer(1000, taskPerformer).start();
     }
@@ -381,7 +487,11 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JLabel btnResep;
     private PanelTransparan.ClPanelTransparan clPanelTransparan1;
     private PanelTransparan.ClPanelTransparan clPanelTransparan2;
+    private PanelTransparan.ClPanelTransparan clPanelTransparan3;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tblEx;
     private javax.swing.JLabel txtTanggal;
     private javax.swing.JLabel txtWelcome;
     // End of variables declaration//GEN-END:variables

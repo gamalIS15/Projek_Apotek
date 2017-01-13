@@ -8,14 +8,16 @@ public class Login extends javax.swing.JFrame {
     
     public Login() {
         initComponents();
-        try {
-            setConnection koneksi = new setConnection();
-            txtEror.setText("");
-        } catch (SQLException ex) {
-            System.out.println("Kesalahan: " + ex);
-            txtEror.setText("Tidak dapat terhubung dengan internet.");
-        }
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        try {
+                setConnection koneksi = new setConnection();
+                txtEror.setText("");
+                btnLogin.setEnabled(true);
+        } catch (SQLException ex) {
+                System.out.println("Kesalahan: " + ex);
+                txtEror.setText("Tidak dapat terhubung dengan internet.");
+                btnLogin.setEnabled(false);
+        }
     }
 
     /**
