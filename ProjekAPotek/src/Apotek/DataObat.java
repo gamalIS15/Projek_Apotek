@@ -36,29 +36,29 @@ public class DataObat extends javax.swing.JFrame {
         initComponents();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         
-//        try {
-//            setConnection koneksi = new setConnection();
-//            stmt1 = koneksi.connection.createStatement();
-//            rsLogin = stmt1.executeQuery("SELECT * FROM LoginApoteker WHERE id='"+ id +"'");
-//            while(rsLogin.next() == true) {
-//                this.id = id;
-//                nama = rsLogin.getString("nama");
-//            }
-//            
-//            stmt2 = koneksi.connection.createStatement();
-//            rsObat = stmt2.executeQuery("SELECT * FROM DataObat WHERE datediff(exdate, current_date()) BETWEEN 0 AND 30 ORDER BY exdate");
-//            while(rsObat.next() == true) {
-//                list.add(new setObat(rsObat.getDate("exdate"), 
-//                        rsObat.getString("namaObat"), 
-//                        rsObat.getString("golObat"), 
-//                        rsObat.getString("sat"), 
-//                        rsObat.getInt("sisaGudang"), 
-//                        rsObat.getInt("sisaApotek")));
-//            }
-//            
-//        } catch (SQLException ex) {
-//            System.out.println("Kesalahan: " + ex);;
-//        }
+        try {
+            setConnection koneksi = new setConnection();
+            stmt1 = koneksi.connection.createStatement();
+            rsLogin = stmt1.executeQuery("SELECT * FROM LoginApoteker WHERE id='"+ id +"'");
+            while(rsLogin.next() == true) {
+                this.id = id;
+                nama = rsLogin.getString("nama");
+            }
+            
+            stmt2 = koneksi.connection.createStatement();
+            rsObat = stmt2.executeQuery("SELECT * FROM DataObat WHERE datediff(exdate, current_date()) BETWEEN 0 AND 30 ORDER BY exdate");
+            while(rsObat.next() == true) {
+                list.add(new setObat(rsObat.getDate("exdate"), 
+                        rsObat.getString("namaObat"), 
+                        rsObat.getString("golObat"), 
+                        rsObat.getString("sat"), 
+                        rsObat.getInt("sisaGudang"), 
+                        rsObat.getInt("sisaApotek")));
+            }
+            
+        } catch (SQLException ex) {
+            System.out.println("Kesalahan: " + ex);;
+        }
         txtWelcome.setText(MainMenu.txtWelcome.getText());
         updateTable();
     }

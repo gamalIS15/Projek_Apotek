@@ -29,7 +29,7 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new SetImage("/image/wall.png");
+        jPanel1 = new Apotek.SetImage("/image/wall.png");
         clPanelTransparan1 = new PanelTransparan.ClPanelTransparan();
         picLogin = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();

@@ -88,7 +88,7 @@ public class MainMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new SetImage("/image/wall.png");
+        jPanel1 = new Apotek.SetImage("/image/wall.png");
         clPanelTransparan2 = new PanelTransparan.ClPanelTransparan();
         clPanelTransparan1 = new PanelTransparan.ClPanelTransparan();
         txtWelcome = new javax.swing.JLabel();
@@ -352,6 +352,8 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void btnResepMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnResepMouseClicked
         // TODO add your handling code here:
+        new Resep().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnResepMouseClicked
 
     private void btnObatMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnObatMouseEntered
@@ -398,6 +400,8 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void btnLaporanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLaporanMouseClicked
         // TODO add your handling code here:
+        new Laporan().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnLaporanMouseClicked
 
     private void btnBantuanMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBantuanMouseEntered
