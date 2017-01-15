@@ -44,7 +44,7 @@
         </Property>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new SetImage(&quot;/image/wall.png&quot;)"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new setImage(&quot;/image/wall.png&quot;)"/>
       </AuxValues>
 
       <Layout>
