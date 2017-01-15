@@ -88,7 +88,7 @@ public class DataObat extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new setImage("/image/wall.png");
+        jPanel1 = new SetImage("/image/wall.png");
         clPanelTransparan1 = new PanelTransparan.ClPanelTransparan();
         txtWelcome = new javax.swing.JLabel();
         txtTanggal = new javax.swing.JLabel();
