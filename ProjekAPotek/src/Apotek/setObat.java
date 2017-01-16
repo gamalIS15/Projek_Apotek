@@ -10,12 +10,12 @@ public class setObat {
     private int sisaApotek;
     private int sisaGudang;
 
-    public setObat(Date tanggal, String namaObat, String golObat, String sat, int sisaGudang, int sisaApotek) {
+    public setObat(Date tanggal, String namaObat, String golObat, String sat, int sisaApotek) {
         this.tanggal = tanggal;
         this.namaObat = namaObat;
         this.golObat = golObat;
         this.sat = sat;
-        this.sisaGudang = sisaGudang;
+        //this.sisaGudang = sisaGudang;
         this.sisaApotek = sisaApotek;
     }
 

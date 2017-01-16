@@ -26,7 +26,7 @@ public class MainMenu extends javax.swing.JFrame {
     Statement stmt1, stmt2;
     ResultSet rsLogin, rsObat;
     String nama, id;
-    String[] title = {"Tanggal Kadaluarsa", "Nama Obat", "Golongan", "Satuan", "Sisa Persediaan Gudang", "Sisa Persediaan Apotek"};
+    String[] title = {"Tanggal Kadaluarsa", "Nama Obat", "Golongan", "Satuan", "Sisa Persediaan Apotek"};
     ArrayList<setObat> list = new ArrayList<setObat>();
     /**
      * Creates new form MainMenu
@@ -51,9 +51,8 @@ public class MainMenu extends javax.swing.JFrame {
                 list.add(new setObat(rsObat.getDate("exdate"), 
                         rsObat.getString("namaObat"), 
                         rsObat.getString("golObat"), 
-                        rsObat.getString("sat"), 
-                        rsObat.getInt("sisaGudang"), 
-                        rsObat.getInt("sisaApotek")));
+                        rsObat.getString("sat"),
+                        rsObat.getInt("jumlahSedia")));
             }
             
         } catch (SQLException ex) {
@@ -277,17 +276,17 @@ public class MainMenu extends javax.swing.JFrame {
 
         tblEx.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Tanggal Kadaluarsa", "Nama Obat", "Golongan Obat", "Satuan", "Sisa Persediaan Gudang", "Sisa Persediaan Apotek"
+                "Tanggal Kadaluarsa", "Nama Obat", "Golongan Obat", "Satuan", "Sisa Persediaan Apotek"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

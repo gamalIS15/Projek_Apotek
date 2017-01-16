@@ -366,12 +366,11 @@
                 <Component class="javax.swing.JTable" name="tblEx">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="6" rowCount="4">
+                      <Table columnCount="5" rowCount="4">
                         <Column editable="false" title="Tanggal Kadaluarsa" type="java.lang.Object"/>
                         <Column editable="false" title="Nama Obat" type="java.lang.Object"/>
                         <Column editable="false" title="Golongan Obat" type="java.lang.Object"/>
                         <Column editable="false" title="Satuan" type="java.lang.Object"/>
-                        <Column editable="false" title="Sisa Persediaan Gudang" type="java.lang.Object"/>
                         <Column editable="false" title="Sisa Persediaan Apotek" type="java.lang.Object"/>
                       </Table>
                     </Property>
