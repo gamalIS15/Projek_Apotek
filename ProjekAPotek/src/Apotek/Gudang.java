@@ -7,16 +7,29 @@ package Apotek;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author user
  */
 public class Gudang extends javax.swing.JFrame {
+    Statement stmt1, stmt2;
+    ResultSet rsGudang;
+    String[] title = {"Tanggal Masuk", "Nama Obat", "Golongan Obat", "Satuan", "Jumlah Obat Masuk", "Tanggal Kadaluarsa"};
+    ArrayList<setGudang> list = new ArrayList<setGudang>();
 
     /**
      * Creates new form Gudang
@@ -26,10 +39,42 @@ public class Gudang extends javax.swing.JFrame {
         initComponents();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         
+        try {
+            setConnection koneksi = new setConnection();
+            stmt1 = koneksi.connection.createStatement();
+            rsGudang = stmt1.executeQuery("SELECT * FROM DataGudang");
+            while(rsGudang.next() == true) {
+                list.add(new setGudang(rsGudang.getDate("tglMasuk"), 
+                        rsGudang.getString("namaObat"), 
+                        rsGudang.getString("golObat"), 
+                        rsGudang.getString("sat"),
+                        rsGudang.getInt("jumlahSedia"),
+                        rsGudang.getDate("exdate")));    
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        
+        
         txtWelcome.setText(MainMenu.txtWelcome.getText());
         this.tambah();
+        updateTable();
     }
 
+    private void updateTable() {
+        Object[][] data = new Object[this.list.size()][6];
+        int x = 0;
+        for(setGudang o: this.list) {
+            data[x][0] = o.getTanggal();
+            data[x][1] = o.getNamaObat();
+            data[x][2] = o.getGolObat();
+            data[x][3] = o.getSat();
+            data[x][4] = o.getSisaGudang();
+            data[x][5] = o.getExdate();
+            ++x;
+        }
+        tblEx.setModel(new DefaultTableModel(data, title));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -142,17 +187,17 @@ public class Gudang extends javax.swing.JFrame {
 
         tblEx.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Tanggal Masuk", "Nama Obat", "Golongan Obat", "Satuan", "Persediaan Awal", "Persediaan Masuk", "Total Persediaan", "Tgl Kadaluarsa"
+                "Tanggal Masuk", "Nama Obat", "Golongan Obat", "Jumlah Obat Masuk", "Satuan", "Tanggal Kadaluarsa"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -272,6 +317,8 @@ public class Gudang extends javax.swing.JFrame {
         cbSatuan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tablet", "Botol", "Kapsul" }));
 
         jLabel10.setText("Jumlah");
+
+        spJumlah.setModel(new javax.swing.SpinnerNumberModel());
 
         jLabel19.setText("Tanggal");
 
@@ -587,6 +634,58 @@ public class Gudang extends javax.swing.JFrame {
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         // TODO add your handling code here:
+        String sqlSimpan, sqlUpdate, obat = null;
+        int jumlahSkr;
+        Date exp = null;
+        
+        try {
+            setConnection koneksi = new setConnection();
+            stmt1 = koneksi.connection.createStatement();
+            rsGudang = stmt1.executeQuery("SELECT * FROM DataGudang WHERE namaObat='" + txtNamaObat.getText() +
+                    "' AND exdate='" + txtEx.getDate() + "'");
+            while(rsGudang.next() == true) {
+                obat = rsGudang.getString("namaObat");
+                jumlahSkr = rsGudang.getInt("jumlahSedia");
+                exp = rsGudang.getDate("exdate");
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        
+        sqlSimpan = "INSERT INTO DataGudang (tglMasuk,namaObat,golObat,sat,jumlahSedia,exdate) "
+                + "VALUES ('" + txttglMasuk.getDate() + "',"
+                + "'" + txtNamaObat.getText() + "',"
+                + "'" + cbGolObat.getSelectedItem().toString() + "',"
+                + "'" + cbSatuan.getSelectedItem().toString() + "',"
+                + "'" + spJumlah.getValue() + "',"
+                + "'" + txtEx.getDateFormatString() + "');";
+        
+        sqlUpdate ="UPDATE DataGudang SET "
+                + "jumlahSedia ='" + (int) spJumlah.getValue() + "', "
+                + "WHERE namaObat='" + obat + "' AND exdate='" + exp + "';";
+        
+        if(txtNamaObat.getText().equals(obat) && txtEx.getDate().equals(exp)) {
+            try {
+                int berhasil = stmt2.executeUpdate(sqlUpdate);
+            } catch (SQLException errMsg) {
+                System.out.println(errMsg);
+            }
+//            setGudang gd = new setGudang();
+//            gd.setTanggal((Date) txttglMasuk.getDate());
+//            gd.setNamaObat(txtNamaObat.getText());
+//            gd.setGolObat(cbGolObat.getSelectedItem().toString());
+//            gd.setSat(cbSatuan.getSelectedItem().toString());
+//            gd.setSisaGudang((int) spJumlah.getValue());
+//            gd.setExdate((Date) txtEx.getDate());
+//            this.list.set;
+        } else {
+            try {
+               int berhasil = stmt2.executeUpdate(sqlSimpan);
+            } catch (SQLException errMsg) {
+                System.out.println(errMsg);
+        }
+        }
+        updateTable();
     }//GEN-LAST:event_btnSimpanActionPerformed
 
     private void btnSimpanAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanAActionPerformed
