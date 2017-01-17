@@ -28,7 +28,6 @@ import javax.swing.table.DefaultTableModel;
 public class Gudang extends javax.swing.JFrame {
     Statement stmt1, stmt2;
     ResultSet rsGudang;
-    int index = 1;
     String[] title = {"Tanggal Masuk", "Nama Obat", "Golongan Obat", "Satuan", "Jumlah Obat Masuk", "Tanggal Kadaluarsa"};
     ArrayList<setGudang> list = new ArrayList<setGudang>();
 
@@ -699,7 +698,7 @@ public class Gudang extends javax.swing.JFrame {
         } catch (SQLException errMsg) {
             System.out.println(errMsg.getMessage());
         }
-        this.list.remove(new setGudang(tgl, obat, g, s, jumlahSkr, exp));
+        this.list.remove(new setGudang(tgl, txtNamaObat.getText(), g, s, jumlahSkr, exp));
         updateTable();
     }//GEN-LAST:event_btnSimpanActionPerformed
 
