@@ -28,6 +28,7 @@ import javax.swing.table.DefaultTableModel;
 public class Gudang extends javax.swing.JFrame {
     Statement stmt1, stmt2;
     ResultSet rsGudang;
+    int index = 0;
     String[] title = {"Tanggal Masuk", "Nama Obat", "Golongan Obat", "Satuan", "Jumlah Obat Masuk", "Tanggal Kadaluarsa"};
     ArrayList<setGudang> list = new ArrayList<setGudang>();
 
@@ -56,7 +57,7 @@ public class Gudang extends javax.swing.JFrame {
         }
         
         
-        txtWelcome.setText(MainMenu.txtWelcome.getText());
+//        txtWelcome.setText(MainMenu.txtWelcome.getText());
         this.tambah();
         updateTable();
     }
@@ -322,9 +323,10 @@ public class Gudang extends javax.swing.JFrame {
 
         jLabel19.setText("Tanggal");
 
-        txttglMasuk.setDateFormatString("dd-MM-yyyy");
+        txttglMasuk.setDateFormatString("yyyy-MM-dd");
 
-        txtEx.setDateFormatString("dd-MM-yyyy");
+        txtEx.setToolTipText("");
+        txtEx.setDateFormatString("yyyy-MM-dd");
 
         jLabel20.setText("Tanggal Kadaluarsa");
 
@@ -394,7 +396,7 @@ public class Gudang extends javax.swing.JFrame {
                     .addComponent(txtEx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel20))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(clPanelTransparan4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(clPanelTransparan4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnSimpan)
                     .addComponent(btnHapus))
                 .addGap(33, 33, 33))
@@ -553,7 +555,7 @@ public class Gudang extends javax.swing.JFrame {
                 .addGroup(clPanelTransparan2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSimpanA)
                     .addComponent(btnHapusA))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -570,10 +572,10 @@ public class Gudang extends javax.swing.JFrame {
                         .addComponent(btnPindahObat))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(clPanelTransparan2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(clPanelTransparan4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(clPanelTransparan4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(clPanelTransparan2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(clPanelTransparan3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -635,7 +637,13 @@ public class Gudang extends javax.swing.JFrame {
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         // TODO add your handling code here:
         String sqlSimpan, sqlUpdate, obat = null;
-        int jumlahSkr;
+        int jumlahSkr = 0;
+        String simMas = (txttglMasuk.getDate().getYear()+1900) + "-" + 
+                (txttglMasuk.getDate().getMonth()+1) + "-" + 
+                txttglMasuk.getDate().getDate();
+        String simEx = (txtEx.getDate().getYear()+1900) + "-" + 
+                (txtEx.getDate().getMonth()+1) + "-" + 
+                txtEx.getDate().getDate();
         Date exp = null;
         
         try {
@@ -653,37 +661,51 @@ public class Gudang extends javax.swing.JFrame {
         }
         
         sqlSimpan = "INSERT INTO DataGudang (tglMasuk,namaObat,golObat,sat,jumlahSedia,exdate) "
-                + "VALUES ('" + txttglMasuk.getDate() + "',"
+                + "VALUES ('" + simMas + "',"
                 + "'" + txtNamaObat.getText() + "',"
                 + "'" + cbGolObat.getSelectedItem().toString() + "',"
                 + "'" + cbSatuan.getSelectedItem().toString() + "',"
                 + "'" + spJumlah.getValue() + "',"
-                + "'" + txtEx.getDateFormatString() + "');";
+                + "'" + simEx + "');";
+        
+        int total = jumlahSkr + (int) spJumlah.getValue();
         
         sqlUpdate ="UPDATE DataGudang SET "
-                + "jumlahSedia ='" + (int) spJumlah.getValue() + "', "
+                + "jumlahSedia ='" + total + "', "
                 + "WHERE namaObat='" + obat + "' AND exdate='" + exp + "';";
         
         if(txtNamaObat.getText().equals(obat) && txtEx.getDate().equals(exp)) {
             try {
+                setConnection koneksi = new setConnection();
+                stmt2 = koneksi.connection.createStatement();
                 int berhasil = stmt2.executeUpdate(sqlUpdate);
             } catch (SQLException errMsg) {
                 System.out.println(errMsg);
             }
-//            setGudang gd = new setGudang();
-//            gd.setTanggal((Date) txttglMasuk.getDate());
-//            gd.setNamaObat(txtNamaObat.getText());
-//            gd.setGolObat(cbGolObat.getSelectedItem().toString());
-//            gd.setSat(cbSatuan.getSelectedItem().toString());
-//            gd.setSisaGudang((int) spJumlah.getValue());
-//            gd.setExdate((Date) txtEx.getDate());
-//            this.list.set;
+            setGudang gd = new setGudang();
+            gd.setTanggal(Date.valueOf(simMas));
+            gd.setNamaObat(txtNamaObat.getText());
+            gd.setGolObat(cbGolObat.getSelectedItem().toString());
+            gd.setSat(cbSatuan.getSelectedItem().toString());
+            gd.setSisaGudang((int) spJumlah.getValue());
+            gd.setExdate(Date.valueOf(simEx));
+            this.list.set(this.index, gd);
         } else {
             try {
+               setConnection koneksi = new setConnection();
+               stmt2 = koneksi.connection.createStatement();
                int berhasil = stmt2.executeUpdate(sqlSimpan);
             } catch (SQLException errMsg) {
                 System.out.println(errMsg);
-        }
+            }
+            setGudang gd = new setGudang();
+            gd.setTanggal(Date.valueOf(simMas));
+            gd.setNamaObat(txtNamaObat.getText());
+            gd.setGolObat(cbGolObat.getSelectedItem().toString());
+            gd.setSat(cbSatuan.getSelectedItem().toString());
+            gd.setSisaGudang((int) spJumlah.getValue());
+            gd.setExdate(Date.valueOf(simEx));
+            this.list.add(gd);
         }
         updateTable();
     }//GEN-LAST:event_btnSimpanActionPerformed
@@ -786,7 +808,7 @@ public class Gudang extends javax.swing.JFrame {
             btnSimpanA.setEnabled(false);
             btnHapusA.setEnabled(false);
             cbDariA.setEnabled(false);
-            
+            cbKeA.setEnabled(false);
         }
         
         public final void pindah() {
@@ -805,8 +827,10 @@ public class Gudang extends javax.swing.JFrame {
             cbSatA.setEnabled(true);
             btnSimpanA.setEnabled(true);
             btnHapusA.setEnabled(true);
+            cbDariA.setEnabled(true);
+            cbKeA.setEnabled(true);
         }
-
+       
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHapus;
     private javax.swing.JButton btnHapusA;
