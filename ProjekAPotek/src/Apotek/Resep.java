@@ -7,6 +7,7 @@ package Apotek;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -17,6 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.Timer;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -56,6 +58,8 @@ public class Resep extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Resep.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        updateTable();
     }
     
     
@@ -68,8 +72,11 @@ public class Resep extends javax.swing.JFrame {
             data[x][0] = sr.getUsia();
             data[x][0] = sr.getAlamat();
             data[x][0] = sr.getBpjs_nonBpjs();
+            data[x][0] = sr.getNamaObat();
             data[x][0] = sr.getJumlahObat();
+            ++x;
         }
+        tblEx.setModel(new DefaultTableModel(data,title));
     }
     
     
@@ -818,6 +825,13 @@ public class Resep extends javax.swing.JFrame {
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         // TODO add your handling code here:
+        String usia = spnBln.getValue().toString() + spnThn.getValue().toString();
+        setResep rs = new setResep();
+        rs.setTanggal(txtTanggalResep.getDate());
+        rs.setNamaPasien(txtNamaPasien.getText());
+        rs.setUsia(usia);
+        rs.setAlamat(txtAlamat.getText());
+        
     }//GEN-LAST:event_btnSimpanActionPerformed
 
     private void txtNamaObatApotekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNamaObatApotekActionPerformed
