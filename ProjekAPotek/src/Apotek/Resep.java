@@ -57,7 +57,21 @@ public class Resep extends javax.swing.JFrame {
             Logger.getLogger(Resep.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
+    
+    private void updateTable(){
+        Object[][] data = new Object[this.list.size()][8];
+        int x = 0;
+        for (setResep sr : this.list){
+            data[x][0] = sr.getTanggal();
+            data[x][0] = sr.getNamaPasien();
+            data[x][0] = sr.getUsia();
+            data[x][0] = sr.getAlamat();
+            data[x][0] = sr.getBpjs_nonBpjs();
+            data[x][0] = sr.getJumlahObat();
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
