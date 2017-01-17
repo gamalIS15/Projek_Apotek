@@ -4,13 +4,11 @@ import java.sql.Date;
 
 public class setGudang {
     private Date tanggal;
-    private String namaPasien;
-    private String usia;
-    private String alamat;
-    private String jenisLayanan;
-    private String bpjs_nonBpjs;
     private String namaObat;
-    private String jumlahObat;
+    private String golObat;
+    private String sat;
+    private int sisaGudang;
+    private Date exdate;
 
     public setGudang(Date tanggal, String namaObat, String golObat, String sat, int sisaGudang, Date exdate) {
         this.tanggal = tanggal;

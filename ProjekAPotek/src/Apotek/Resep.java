@@ -64,10 +64,11 @@ public class Resep extends javax.swing.JFrame {
     
     
     private void updateTable(){
-        Object[][] data = new Object[this.list.size()][8];
+        Object[][] data = new Object[this.list.size()][6];
         int x = 0;
         for (setResep sr : this.list){
             data[x][0] = sr.getTanggal();
+
             data[x][0] = sr.getNamaPasien();
             data[x][0] = sr.getUsia();
             data[x][0] = sr.getAlamat();
