@@ -28,7 +28,7 @@ import javax.swing.table.DefaultTableModel;
 public class Gudang extends javax.swing.JFrame {
     Statement stmt1, stmt2;
     ResultSet rsGudang;
-    int index = 0;
+    int index = 1;
     String[] title = {"Tanggal Masuk", "Nama Obat", "Golongan Obat", "Satuan", "Jumlah Obat Masuk", "Tanggal Kadaluarsa"};
     ArrayList<setGudang> list = new ArrayList<setGudang>();
 
@@ -319,7 +319,7 @@ public class Gudang extends javax.swing.JFrame {
 
         jLabel10.setText("Jumlah");
 
-        spJumlah.setModel(new javax.swing.SpinnerNumberModel());
+        spJumlah.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
 
         jLabel19.setText("Tanggal");
 
@@ -636,23 +636,25 @@ public class Gudang extends javax.swing.JFrame {
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         // TODO add your handling code here:
-        String sqlSimpan, sqlUpdate, obat = null;
+        String sqlSimpan, sqlDelete, obat = null, g = null, s = null;
         int jumlahSkr = 0;
         String simMas = (txttglMasuk.getDate().getYear()+1900) + "-" + 
                 (txttglMasuk.getDate().getMonth()+1) + "-" + 
                 txttglMasuk.getDate().getDate();
         String simEx = (txtEx.getDate().getYear()+1900) + "-" + 
-                (txtEx.getDate().getMonth()+1) + "-" + 
-                txtEx.getDate().getDate();
-        Date exp = null;
+                (txtEx.getDate().getMonth()+1) + "-" + txtEx.getDate().getDate();
+        Date exp = null, tgl = null;
         
         try {
             setConnection koneksi = new setConnection();
             stmt1 = koneksi.connection.createStatement();
             rsGudang = stmt1.executeQuery("SELECT * FROM DataGudang WHERE namaObat='" + txtNamaObat.getText() +
-                    "' AND exdate='" + txtEx.getDate() + "'");
+                    "' AND exdate='" + simEx + "'");
             while(rsGudang.next() == true) {
+                tgl = rsGudang.getDate("tglMasuk");
                 obat = rsGudang.getString("namaObat");
+                g = rsGudang.getString("golObat");
+                s = rsGudang.getString("sat");
                 jumlahSkr = rsGudang.getInt("jumlahSedia");
                 exp = rsGudang.getDate("exdate");
             }
@@ -660,53 +662,44 @@ public class Gudang extends javax.swing.JFrame {
             System.out.println(ex);
         }
         
+        int total = jumlahSkr + (int) spJumlah.getValue();
+        
         sqlSimpan = "INSERT INTO DataGudang (tglMasuk,namaObat,golObat,sat,jumlahSedia,exdate) "
                 + "VALUES ('" + simMas + "',"
                 + "'" + txtNamaObat.getText() + "',"
                 + "'" + cbGolObat.getSelectedItem().toString() + "',"
                 + "'" + cbSatuan.getSelectedItem().toString() + "',"
-                + "'" + spJumlah.getValue() + "',"
+                + "'" + total + "',"
                 + "'" + simEx + "');";
-        
-        int total = jumlahSkr + (int) spJumlah.getValue();
-        
-        sqlUpdate ="UPDATE DataGudang SET "
-                + "jumlahSedia ='" + total + "', "
-                + "WHERE namaObat='" + obat + "' AND exdate='" + exp + "';";
-        
-        if(txtNamaObat.getText().equals(obat) && txtEx.getDate().equals(exp)) {
-            try {
-                setConnection koneksi = new setConnection();
-                stmt2 = koneksi.connection.createStatement();
-                int berhasil = stmt2.executeUpdate(sqlUpdate);
-            } catch (SQLException errMsg) {
-                System.out.println(errMsg);
-            }
-            setGudang gd = new setGudang();
-            gd.setTanggal(Date.valueOf(simMas));
-            gd.setNamaObat(txtNamaObat.getText());
-            gd.setGolObat(cbGolObat.getSelectedItem().toString());
-            gd.setSat(cbSatuan.getSelectedItem().toString());
-            gd.setSisaGudang((int) spJumlah.getValue());
-            gd.setExdate(Date.valueOf(simEx));
-            this.list.set(this.index, gd);
-        } else {
-            try {
-               setConnection koneksi = new setConnection();
-               stmt2 = koneksi.connection.createStatement();
-               int berhasil = stmt2.executeUpdate(sqlSimpan);
-            } catch (SQLException errMsg) {
-                System.out.println(errMsg);
-            }
-            setGudang gd = new setGudang();
-            gd.setTanggal(Date.valueOf(simMas));
-            gd.setNamaObat(txtNamaObat.getText());
-            gd.setGolObat(cbGolObat.getSelectedItem().toString());
-            gd.setSat(cbSatuan.getSelectedItem().toString());
-            gd.setSisaGudang((int) spJumlah.getValue());
-            gd.setExdate(Date.valueOf(simEx));
-            this.list.add(gd);
+                
+        try {
+           setConnection koneksi = new setConnection();
+           stmt2 = koneksi.connection.createStatement();
+           int berhasil = stmt2.executeUpdate(sqlSimpan);
+        } catch (SQLException errMsg) {
+            System.out.println(errMsg);
         }
+        setGudang gd = new setGudang();
+        gd.setTanggal(Date.valueOf(simMas));
+        gd.setNamaObat(txtNamaObat.getText());
+        gd.setGolObat(cbGolObat.getSelectedItem().toString());
+        gd.setSat(cbSatuan.getSelectedItem().toString());
+        gd.setSisaGudang(total);
+        gd.setExdate(Date.valueOf(simEx));
+        this.list.add(gd);
+        updateTable();
+        
+        sqlDelete = "DELETE FROM DataGudang "
+                    + "WHERE namaObat='" + txtNamaObat.getText() + "' AND exdate='" + simEx + "' AND jumlahSedia=" + jumlahSkr + "";
+            
+        try {
+            setConnection koneksi = new setConnection();
+            stmt2 = koneksi.connection.createStatement();
+            int berhasil = stmt2.executeUpdate(sqlDelete);
+        } catch (SQLException errMsg) {
+            System.out.println(errMsg.getMessage());
+        }
+        this.list.remove(new setGudang(tgl, obat, g, s, jumlahSkr, exp));
         updateTable();
     }//GEN-LAST:event_btnSimpanActionPerformed
 
