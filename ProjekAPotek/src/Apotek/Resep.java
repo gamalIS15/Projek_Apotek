@@ -832,6 +832,7 @@ public class Resep extends javax.swing.JFrame {
         rs.setNamaPasien(txtNamaPasien.getText());
         rs.setUsia(usia);
         rs.setAlamat(txtAlamat.getText());
+        rs.setJenisLayanan(cbJenisLayanan.getSelectedItem());
         
     }//GEN-LAST:event_btnSimpanActionPerformed
 
