@@ -51,10 +51,10 @@ public class Resep extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox1 = new javax.swing.JComboBox<String>();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        jComboBox2 = new javax.swing.JComboBox<String>();
         clPanelTransparan4 = new PanelTransparan.ClPanelTransparan();
         btnSimpan = new javax.swing.JButton();
         btnHapus = new javax.swing.JButton();
@@ -68,7 +68,7 @@ public class Resep extends javax.swing.JFrame {
         txtNamaPasien = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
         txtAlamat = new javax.swing.JTextArea();
-        cbJenisLayanan = new javax.swing.JComboBox<>();
+        cbJenisLayanan = new javax.swing.JComboBox<String>();
         spnThn = new javax.swing.JSpinner();
         jLabel8 = new javax.swing.JLabel();
         spnBln = new javax.swing.JSpinner();
@@ -117,15 +117,15 @@ public class Resep extends javax.swing.JFrame {
         spnJumlah10 = new javax.swing.JSpinner();
         clPanelTransparan5 = new PanelTransparan.ClPanelTransparan();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tblEx1 = new javax.swing.JTable();
+        tblObatApotek = new javax.swing.JTable();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtNamaObatApotek = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
-        jComboBox9 = new javax.swing.JComboBox<>();
+        cbGolObatApotek = new javax.swing.JComboBox<String>();
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
-        jComboBox10 = new javax.swing.JComboBox<>();
+        cbUrutkanObatApotek = new javax.swing.JComboBox<String>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gudang");
@@ -212,7 +212,7 @@ public class Resep extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel3.setText("Golongan :");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Rawat Jalan", "Rawat Inap", "BPJS", "Non BPJS" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Rawat Jalan", "Rawat Inap", "BPJS", "Non BPJS" }));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/cari.png"))); // NOI18N
         jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -220,7 +220,7 @@ public class Resep extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel5.setText("Urutkan Berdasar :");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tanggal", "Nama Pasien", "Jenis Layanan", "BPJS / Non BPJS", "Nama Obat" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tanggal", "Nama Pasien", "Jenis Layanan", "BPJS / Non BPJS", "Nama Obat" }));
 
         javax.swing.GroupLayout clPanelTransparan3Layout = new javax.swing.GroupLayout(clPanelTransparan3);
         clPanelTransparan3.setLayout(clPanelTransparan3Layout);
@@ -307,7 +307,7 @@ public class Resep extends javax.swing.JFrame {
         txtAlamat.setRows(5);
         jScrollPane3.setViewportView(txtAlamat);
 
-        cbJenisLayanan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Rawat Jalan", "Rawat Inap" }));
+        cbJenisLayanan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Rawat Jalan", "Rawat Inap" }));
 
         spnThn.setModel(new javax.swing.SpinnerNumberModel());
 
@@ -616,7 +616,7 @@ public class Resep extends javax.swing.JFrame {
 
         clPanelTransparan5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        tblEx1.setModel(new javax.swing.table.DefaultTableModel(
+        tblObatApotek.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
@@ -635,8 +635,8 @@ public class Resep extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tblEx1.setEnabled(false);
-        jScrollPane2.setViewportView(tblEx1);
+        tblObatApotek.setEnabled(false);
+        jScrollPane2.setViewportView(tblObatApotek);
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel19.setText("Obat Apotek");
@@ -644,16 +644,16 @@ public class Resep extends javax.swing.JFrame {
         jLabel20.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel20.setText("Nama : ");
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        txtNamaObatApotek.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                txtNamaObatApotekActionPerformed(evt);
             }
         });
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel21.setText("Golongan :");
 
-        jComboBox9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Umum", "Narkotika", "Psikotropika" }));
+        cbGolObatApotek.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Umum", "Narkotika", "Psikotropika" }));
 
         jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/cari.png"))); // NOI18N
         jLabel22.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -661,7 +661,7 @@ public class Resep extends javax.swing.JFrame {
         jLabel23.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel23.setText("Urutkan Berdasar :");
 
-        jComboBox10.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tanggal Masuk", "Nama Obat", "Golongan Obat", "Satuan", "Persediaan Awal", "Persediaan Masuk", "Total Persediaan", "Tanggal Kadaluarsa" }));
+        cbUrutkanObatApotek.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tanggal Masuk", "Nama Obat", "Golongan Obat", "Satuan", "Persediaan Awal", "Persediaan Masuk", "Total Persediaan", "Tanggal Kadaluarsa" }));
 
         javax.swing.GroupLayout clPanelTransparan5Layout = new javax.swing.GroupLayout(clPanelTransparan5);
         clPanelTransparan5.setLayout(clPanelTransparan5Layout);
@@ -674,15 +674,15 @@ public class Resep extends javax.swing.JFrame {
                     .addGroup(clPanelTransparan5Layout.createSequentialGroup()
                         .addComponent(jLabel20)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtNamaObatApotek, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel21)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox9, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbGolObatApotek, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel23)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox10, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbUrutkanObatApotek, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel22)))
                 .addContainerGap())
@@ -700,11 +700,11 @@ public class Resep extends javax.swing.JFrame {
                 .addGroup(clPanelTransparan5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(clPanelTransparan5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel20)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtNamaObatApotek, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel21)
-                        .addComponent(jComboBox9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbGolObatApotek, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel23)
-                        .addComponent(jComboBox10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cbUrutkanObatApotek, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel22))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
@@ -715,7 +715,7 @@ public class Resep extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(clPanelTransparan1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(clPanelTransparan1, javax.swing.GroupLayout.DEFAULT_SIZE, 1397, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(clPanelTransparan4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -774,9 +774,9 @@ public class Resep extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSimpanActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void txtNamaObatApotekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNamaObatApotekActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_txtNamaObatApotekActionPerformed
 
     private void rbNBPJSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbNBPJSActionPerformed
         // TODO add your handling code here:
@@ -866,15 +866,15 @@ public class Resep extends javax.swing.JFrame {
     private javax.swing.JButton btnHapus;
     private javax.swing.JLabel btnKeluar;
     private javax.swing.JButton btnSimpan;
+    private javax.swing.JComboBox<String> cbGolObatApotek;
     private javax.swing.JComboBox<String> cbJenisLayanan;
+    private javax.swing.JComboBox<String> cbUrutkanObatApotek;
     private PanelTransparan.ClPanelTransparan clPanelTransparan1;
     private PanelTransparan.ClPanelTransparan clPanelTransparan3;
     private PanelTransparan.ClPanelTransparan clPanelTransparan4;
     private PanelTransparan.ClPanelTransparan clPanelTransparan5;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox10;
     private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -918,7 +918,6 @@ public class Resep extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JRadioButton rbBPJS;
     private javax.swing.JRadioButton rbNBPJS;
     private javax.swing.JSpinner spnBln;
@@ -934,7 +933,7 @@ public class Resep extends javax.swing.JFrame {
     private javax.swing.JSpinner spnJumlah9;
     private javax.swing.JSpinner spnThn;
     private javax.swing.JTable tblEx;
-    private javax.swing.JTable tblEx1;
+    private javax.swing.JTable tblObatApotek;
     private javax.swing.JTextArea txtAlamat;
     private javax.swing.JTextField txtNamaObat1;
     private javax.swing.JTextField txtNamaObat10;
@@ -946,6 +945,7 @@ public class Resep extends javax.swing.JFrame {
     private javax.swing.JTextField txtNamaObat7;
     private javax.swing.JTextField txtNamaObat8;
     private javax.swing.JTextField txtNamaObat9;
+    private javax.swing.JTextField txtNamaObatApotek;
     private javax.swing.JTextField txtNamaPasien;
     private javax.swing.JLabel txtTanggal;
     private com.toedter.calendar.JDateChooser txtTanggalResep;
