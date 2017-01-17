@@ -51,10 +51,10 @@ public class Resep extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox1 = new javax.swing.JComboBox<String>();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        jComboBox2 = new javax.swing.JComboBox<String>();
         clPanelTransparan4 = new PanelTransparan.ClPanelTransparan();
         btnSimpan = new javax.swing.JButton();
         btnHapus = new javax.swing.JButton();
@@ -64,11 +64,11 @@ public class Resep extends javax.swing.JFrame {
         jLabel26 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jTextField3 = new javax.swing.JTextField();
+        txtTanggalResep = new com.toedter.calendar.JDateChooser();
+        txtNamaPasien = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        jComboBox3 = new javax.swing.JComboBox<String>();
         jSpinner1 = new javax.swing.JSpinner();
         jLabel8 = new javax.swing.JLabel();
         jSpinner2 = new javax.swing.JSpinner();
@@ -122,10 +122,10 @@ public class Resep extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
-        jComboBox9 = new javax.swing.JComboBox<>();
+        jComboBox9 = new javax.swing.JComboBox<String>();
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
-        jComboBox10 = new javax.swing.JComboBox<>();
+        jComboBox10 = new javax.swing.JComboBox<String>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gudang");
@@ -212,7 +212,7 @@ public class Resep extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel3.setText("Golongan :");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Rawat Jalan", "Rawat Inap", "BPJS", "Non BPJS" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Rawat Jalan", "Rawat Inap", "BPJS", "Non BPJS" }));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/cari.png"))); // NOI18N
         jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -220,7 +220,7 @@ public class Resep extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel5.setText("Urutkan Berdasar :");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tanggal", "Nama Pasien", "Jenis Layanan", "BPJS / Non BPJS", "Nama Obat" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tanggal", "Nama Pasien", "Jenis Layanan", "BPJS / Non BPJS", "Nama Obat" }));
 
         javax.swing.GroupLayout clPanelTransparan3Layout = new javax.swing.GroupLayout(clPanelTransparan3);
         clPanelTransparan3.setLayout(clPanelTransparan3Layout);
@@ -301,13 +301,13 @@ public class Resep extends javax.swing.JFrame {
 
         jLabel7.setText("Jenis Layanan");
 
-        jDateChooser1.setDateFormatString("dd-MM-yyyy");
+        txtTanggalResep.setDateFormatString("dd-MM-yyyy");
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane3.setViewportView(jTextArea1);
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Rawat Jalan", "Rawat Inap" }));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Rawat Jalan", "Rawat Inap" }));
 
         jSpinner1.setModel(new javax.swing.SpinnerNumberModel());
 
@@ -393,8 +393,8 @@ public class Resep extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(clPanelTransparan4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
-                                    .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jTextField3)
+                                    .addComponent(txtTanggalResep, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtNamaPasien)
                                     .addComponent(jComboBox3, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(clPanelTransparan4Layout.createSequentialGroup()
                                 .addComponent(jLabel10)
@@ -520,12 +520,12 @@ public class Resep extends javax.swing.JFrame {
                     .addGroup(clPanelTransparan4Layout.createSequentialGroup()
                         .addGap(3, 3, 3)
                         .addComponent(jLabel24))
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTanggalResep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(9, 9, 9)
                 .addGroup(clPanelTransparan4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel25)
                     .addComponent(jLabel27)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNamaPasien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
                     .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -653,7 +653,7 @@ public class Resep extends javax.swing.JFrame {
         jLabel21.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel21.setText("Golongan :");
 
-        jComboBox9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Umum", "Narkotika", "Psikotropika" }));
+        jComboBox9.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Umum", "Narkotika", "Psikotropika" }));
 
         jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/cari.png"))); // NOI18N
         jLabel22.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -661,7 +661,7 @@ public class Resep extends javax.swing.JFrame {
         jLabel23.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel23.setText("Urutkan Berdasar :");
 
-        jComboBox10.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tanggal Masuk", "Nama Obat", "Golongan Obat", "Satuan", "Persediaan Awal", "Persediaan Masuk", "Total Persediaan", "Tanggal Kadaluarsa" }));
+        jComboBox10.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tanggal Masuk", "Nama Obat", "Golongan Obat", "Satuan", "Persediaan Awal", "Persediaan Masuk", "Total Persediaan", "Tanggal Kadaluarsa" }));
 
         javax.swing.GroupLayout clPanelTransparan5Layout = new javax.swing.GroupLayout(clPanelTransparan5);
         clPanelTransparan5.setLayout(clPanelTransparan5Layout);
@@ -715,7 +715,7 @@ public class Resep extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(clPanelTransparan1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(clPanelTransparan1, javax.swing.GroupLayout.DEFAULT_SIZE, 1397, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(clPanelTransparan4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -875,7 +875,6 @@ public class Resep extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox9;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -939,7 +938,6 @@ public class Resep extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField13;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
@@ -948,7 +946,9 @@ public class Resep extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField9;
     private javax.swing.JTable tblEx;
     private javax.swing.JTable tblEx1;
+    private javax.swing.JTextField txtNamaPasien;
     private javax.swing.JLabel txtTanggal;
+    private com.toedter.calendar.JDateChooser txtTanggalResep;
     private javax.swing.JLabel txtWelcome;
     // End of variables declaration//GEN-END:variables
 }
