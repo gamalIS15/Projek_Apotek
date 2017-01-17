@@ -7,8 +7,14 @@ package Apotek;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 
@@ -21,12 +27,35 @@ public class Resep extends javax.swing.JFrame {
     /**
      * Creates new form Resep
      */
+    Statement stmt;
+    ResultSet rsResep;
+    int index = 0;
+    String title [] = {"Tanggal", "Nama Pasien", "Usia", "Alamat", "Jenis Layanan", "BPJS/Non BPJS", "Nama Obat", "Jumlah Pengambilan"};
+    ArrayList<setResep> list = new ArrayList<setResep>();
     public Resep() {
-        this.setWaktu();
-        initComponents();
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        
-        txtWelcome.setText(MainMenu.txtWelcome.getText());
+        try {
+            this.setWaktu();
+            initComponents();
+            this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+            
+            txtWelcome.setText(MainMenu.txtWelcome.getText());
+            
+            setConnection koneksi = new setConnection();
+            stmt = koneksi.connection.createStatement();
+            rsResep = stmt.executeQuery("SELECT * FROM DataResep");
+            while(rsResep.next() == true){
+                list.add(new setResep(rsResep.getDate("Tanggal"),
+                        rsResep.getString("NamaPasien"),
+                        rsResep.getString("Usia"),
+                        rsResep.getString("Alamat"),
+                        rsResep.getString("JenisLayanan"),
+                        rsResep.getString("BpjsNonBpjs"),
+                        rsResep.getString("NamaObat"),
+                        rsResep.getInt("Jumlah")));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Resep.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
