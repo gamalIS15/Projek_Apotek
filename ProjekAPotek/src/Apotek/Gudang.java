@@ -5,7 +5,6 @@
  */
 package Apotek;
 
-import com.mxrck.autocompleter.TextAutoCompleter;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
@@ -15,11 +14,7 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 
@@ -646,7 +641,7 @@ public class Gudang extends javax.swing.JFrame {
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         // TODO add your handling code here:
-        String sqlSimpan,sqlUpdate, sqlDelete, obat = null, g = null, s = null;
+String sqlSimpan, sqlDelete, obat = null, g = null, s = null;
         int jumlahSkr = 0;
         String simMas = (txttglMasuk.getDate().getYear()+1900) + "-" + 
                 (txttglMasuk.getDate().getMonth()+1) + "-" + 
@@ -673,7 +668,6 @@ public class Gudang extends javax.swing.JFrame {
         }
         
         int total = jumlahSkr + (int) spJumlah.getValue();
-        int quantity = (int) spJumlah.getValue();
         
         sqlSimpan = "INSERT INTO DataGudang (tglMasuk,namaObat,golObat,sat,jumlahSedia,exdate) "
                 + "VALUES ('" + simMas + "',"
@@ -682,15 +676,6 @@ public class Gudang extends javax.swing.JFrame {
                 + "'" + cbSatuan.getSelectedItem().toString() + "',"
                 + "'" + total + "',"
                 + "'" + simEx + "');";
-        
-        sqlUpdate = "UPDATE  DataGudang "
-                + "SET tglmasuk='" + simMas + "',"
-                + "namaObat='" + txtNamaObat.getText() + "',"
-                + "golObat='" + cbGolObat.getSelectedItem().toString()+ "' "
-                + "sat='" + cbSatuan.getSelectedItem().toString()+ "' "
-                + "jumlahSedia='" + total + quantity + "' "
-                + "exdate='" + simEx+ "' "
-                + "WHERE namaObat='" + txtNamaObat.getText() + "';"; 
                 
         try {
            setConnection koneksi = new setConnection();
