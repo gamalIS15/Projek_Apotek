@@ -641,7 +641,7 @@ public class Gudang extends javax.swing.JFrame {
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         // TODO add your handling code here:
-String sqlSimpan, sqlDelete, obat = null, g = null, s = null;
+        String sqlSimpan, sqlDelete, obat = null, g = null, s = null;
         int jumlahSkr = 0;
         String simMas = (txttglMasuk.getDate().getYear()+1900) + "-" + 
                 (txttglMasuk.getDate().getMonth()+1) + "-" + 
@@ -689,7 +689,7 @@ String sqlSimpan, sqlDelete, obat = null, g = null, s = null;
         gd.setNamaObat(txtNamaObat.getText());
         gd.setGolObat(cbGolObat.getSelectedItem().toString());
         gd.setSat(cbSatuan.getSelectedItem().toString());
-        gd.setSisaGudang(total);
+        gd.setSisaGudang((int) spJumlah.getValue());
         gd.setExdate(Date.valueOf(simEx));
         this.list.add(gd);
         updateTable();
