@@ -748,7 +748,7 @@ System.out.println("dua");
                     int sisaGudang = jumlahSkr - isiJumlah;
                     
                     sqlUpdate = "UPDATE DataGudang SET "
-                        + "jumlahSisa ='" + sisaGudang + "', "
+                        + "jumlahSedia ='" + sisaGudang + "' "
                         + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
                     
                     try {
