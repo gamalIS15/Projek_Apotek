@@ -24,7 +24,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Gudang extends javax.swing.JFrame {
     Statement stmt1, stmt2;
-    ResultSet rsGudang;
+    ResultSet rsGudang, rsApotek;
     String[] title = {"Tanggal Masuk", "Nama Obat", "Golongan Obat", "Satuan", "Jumlah Obat Masuk", "Tanggal Kadaluarsa"};
     ArrayList<setGudang> list = new ArrayList<setGudang>();
 
@@ -96,20 +96,19 @@ public class Gudang extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<String>();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<String>();
+        jComboBox2 = new javax.swing.JComboBox<>();
         clPanelTransparan4 = new PanelTransparan.ClPanelTransparan();
         btnSimpan = new javax.swing.JButton();
-        btnHapus = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        cbGolObat = new javax.swing.JComboBox<String>();
+        cbGolObat = new javax.swing.JComboBox<>();
         txtNamaObat = new javax.swing.JTextField();
-        cbSatuan = new javax.swing.JComboBox<String>();
+        cbSatuan = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
         spJumlah = new javax.swing.JSpinner();
         jLabel19 = new javax.swing.JLabel();
@@ -121,21 +120,20 @@ public class Gudang extends javax.swing.JFrame {
         clPanelTransparan2 = new PanelTransparan.ClPanelTransparan();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        cbDariA = new javax.swing.JComboBox<String>();
+        cbDariA = new javax.swing.JComboBox<>();
         jLabel13 = new javax.swing.JLabel();
-        cbKeA = new javax.swing.JComboBox<String>();
+        cbKeA = new javax.swing.JComboBox<>();
         jLabel14 = new javax.swing.JLabel();
         txtTglMasukA = new com.toedter.calendar.JDateChooser();
         jLabel15 = new javax.swing.JLabel();
         txtNamaObatA = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
-        cbGolObatA = new javax.swing.JComboBox<String>();
+        cbGolObatA = new javax.swing.JComboBox<>();
         jLabel17 = new javax.swing.JLabel();
-        cbSatA = new javax.swing.JComboBox<String>();
+        cbSatA = new javax.swing.JComboBox<>();
         jLabel18 = new javax.swing.JLabel();
         spJumlahA = new javax.swing.JSpinner();
         btnSimpanA = new javax.swing.JButton();
-        btnHapusA = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gudang");
@@ -222,7 +220,7 @@ public class Gudang extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel3.setText("Golongan :");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Umum", "Narkotika", "Psikotropika" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Umum", "Narkotika", "Psikotropika" }));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/cari.png"))); // NOI18N
         jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -230,7 +228,7 @@ public class Gudang extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel5.setText("Urutkan Berdasar :");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tanggal Masuk", "Nama Obat", "Golongan Obat", "Satuan", "Persediaan Awal", "Persediaan Masuk", "Total Persediaan", "Tanggal Kadaluarsa" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tanggal Masuk", "Nama Obat", "Golongan Obat", "Satuan", "Persediaan Awal", "Persediaan Masuk", "Total Persediaan", "Tanggal Kadaluarsa" }));
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox2ActionPerformed(evt);
@@ -249,7 +247,7 @@ public class Gudang extends javax.swing.JFrame {
                     .addGroup(clPanelTransparan3Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(clPanelTransparan3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 808, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 834, Short.MAX_VALUE)
                             .addGroup(clPanelTransparan3Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -298,11 +296,6 @@ public class Gudang extends javax.swing.JFrame {
             }
         });
 
-        btnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Delete.png"))); // NOI18N
-        btnHapus.setText("Hapus");
-        btnHapus.setFocusable(false);
-        btnHapus.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setText("Tambah Obat Baru dari Dinas");
 
@@ -312,7 +305,7 @@ public class Gudang extends javax.swing.JFrame {
 
         jLabel9.setText("Satuan");
 
-        cbGolObat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Umum", "Narkotika", "Psikotropika" }));
+        cbGolObat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Umum", "Narkotika", "Psikotropika" }));
 
         txtNamaObat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -320,11 +313,11 @@ public class Gudang extends javax.swing.JFrame {
             }
         });
 
-        cbSatuan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tablet", "Botol", "Kapsul" }));
+        cbSatuan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tablet", "Botol", "Kapsul" }));
 
         jLabel10.setText("Jumlah");
 
-        spJumlah.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
+        spJumlah.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
 
         jLabel19.setText("Tanggal");
 
@@ -366,9 +359,7 @@ public class Gudang extends javax.swing.JFrame {
                         .addGap(0, 134, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, clPanelTransparan4Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnSimpan)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnHapus)))
+                        .addComponent(btnSimpan)))
                 .addContainerGap())
         );
         clPanelTransparan4Layout.setVerticalGroup(
@@ -400,11 +391,9 @@ public class Gudang extends javax.swing.JFrame {
                 .addGroup(clPanelTransparan4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtEx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel20))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(clPanelTransparan4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnSimpan)
-                    .addComponent(btnHapus))
-                .addGap(33, 33, 33))
+                .addGap(10, 10, 10)
+                .addComponent(btnSimpan)
+                .addGap(34, 34, 34))
         );
 
         btnTambah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Add.png"))); // NOI18N
@@ -440,11 +429,11 @@ public class Gudang extends javax.swing.JFrame {
 
         jLabel12.setText("Dari :");
 
-        cbDariA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Gudang", "Apotek" }));
+        cbDariA.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Gudang", "Apotek" }));
 
         jLabel13.setText("Ke :");
 
-        cbKeA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Apotek", "Gudang", "Dinas" }));
+        cbKeA.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Apotek", "Gudang", "Dinas" }));
 
         jLabel14.setText("Tanggal :");
 
@@ -454,13 +443,15 @@ public class Gudang extends javax.swing.JFrame {
 
         jLabel16.setText("Golongan Obat :");
 
-        cbGolObatA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Umum", "Narkotika", "Psikotropika" }));
+        cbGolObatA.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Umum", "Narkotika", "Psikotropika" }));
 
         jLabel17.setText("Satuan :");
 
-        cbSatA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tablet", "Botol", "Kapsul" }));
+        cbSatA.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tablet", "Botol", "Kapsul" }));
 
         jLabel18.setText("Jumlah :");
+
+        spJumlahA.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
 
         btnSimpanA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Save1.png"))); // NOI18N
         btnSimpanA.setText("Simpan");
@@ -472,19 +463,10 @@ public class Gudang extends javax.swing.JFrame {
             }
         });
 
-        btnHapusA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Delete.png"))); // NOI18N
-        btnHapusA.setText("Hapus");
-        btnHapusA.setFocusable(false);
-        btnHapusA.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-
         javax.swing.GroupLayout clPanelTransparan2Layout = new javax.swing.GroupLayout(clPanelTransparan2);
         clPanelTransparan2.setLayout(clPanelTransparan2Layout);
         clPanelTransparan2Layout.setHorizontalGroup(
             clPanelTransparan2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(clPanelTransparan2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel14)
-                .addContainerGap(441, Short.MAX_VALUE))
             .addGroup(clPanelTransparan2Layout.createSequentialGroup()
                 .addGroup(clPanelTransparan2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(clPanelTransparan2Layout.createSequentialGroup()
@@ -503,8 +485,11 @@ public class Gudang extends javax.swing.JFrame {
                                 .addComponent(cbKeA, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(clPanelTransparan2Layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addGroup(clPanelTransparan2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(txtTglMasukA, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(clPanelTransparan2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(clPanelTransparan2Layout.createSequentialGroup()
+                                        .addComponent(jLabel14)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(txtTglMasukA, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, clPanelTransparan2Layout.createSequentialGroup()
                                         .addGroup(clPanelTransparan2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel16)
@@ -519,10 +504,8 @@ public class Gudang extends javax.swing.JFrame {
                                             .addComponent(spJumlahA, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                         .addGap(0, 93, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, clPanelTransparan2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnSimpanA)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnHapusA)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnSimpanA)))
                 .addContainerGap())
         );
         clPanelTransparan2Layout.setVerticalGroup(
@@ -537,9 +520,9 @@ public class Gudang extends javax.swing.JFrame {
                     .addComponent(jLabel13)
                     .addComponent(cbKeA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(clPanelTransparan2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel14)
-                    .addComponent(txtTglMasukA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(clPanelTransparan2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtTglMasukA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(clPanelTransparan2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNamaObatA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -556,11 +539,9 @@ public class Gudang extends javax.swing.JFrame {
                 .addGroup(clPanelTransparan2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
                     .addComponent(spJumlahA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(clPanelTransparan2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSimpanA)
-                    .addComponent(btnHapusA))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnSimpanA)
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -654,7 +635,8 @@ public class Gudang extends javax.swing.JFrame {
             setConnection koneksi = new setConnection();
             stmt1 = koneksi.connection.createStatement();
             rsGudang = stmt1.executeQuery("SELECT * FROM DataGudang WHERE namaObat='" + txtNamaObat.getText() +
-                    "' AND exdate='" + simEx + "'");
+                    "' AND exdate='" + simEx + "' AND sat='" + cbSatuan.getSelectedItem().toString() + 
+                    "' AND golObat='" + cbGolObat.getSelectedItem().toString() + "'");
             while(rsGudang.next() == true) {
                 tgl = rsGudang.getDate("tglMasuk");
                 obat = rsGudang.getString("namaObat");
@@ -695,7 +677,10 @@ public class Gudang extends javax.swing.JFrame {
         updateTable();
         
         sqlDelete = "DELETE FROM DataGudang "
-                    + "WHERE namaObat='" + txtNamaObat.getText() + "' AND exdate='" + simEx + "' AND jumlahSedia=" + jumlahSkr + "";
+                + "WHERE namaObat='" + txtNamaObat.getText() + 
+                "' AND exdate='" + simEx + "' AND jumlahSedia=" + jumlahSkr + 
+                " AND sat='" + cbSatuan.getSelectedItem().toString() + 
+                "' AND golObat='" + cbGolObat.getSelectedItem().toString() + "'";
             
         try {
             setConnection koneksi = new setConnection();
@@ -710,6 +695,83 @@ public class Gudang extends javax.swing.JFrame {
 
     private void btnSimpanAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanAActionPerformed
         // TODO add your handling code here:
+        String sqlPindah, sqlUpdate, obat = null, gol = null, sat = null;
+        int jumlahSkr = 0;
+        int isiJumlah = (int) spJumlahA.getValue();
+        String simMasA = (txtTglMasukA.getDate().getYear()+1900) + "-" + 
+                (txtTglMasukA.getDate().getMonth()+1) + "-" + 
+                txtTglMasukA.getDate().getDate();
+        Date exp = null, mGd = null;
+        
+        if(cbDariA.getSelectedItem().equals("Gudang") && cbKeA.getSelectedItem().equals("Apotek")) {
+            try {
+                setConnection koneksi = new setConnection();
+                stmt2 = koneksi.connection.createStatement();
+                rsGudang = stmt2.executeQuery("SELECT * FROM DataGudang WHERE namaObat='" + txtNamaObatA.getText() +
+                     "' AND sat='" + cbSatA.getSelectedItem().toString() + 
+                    "' AND golObat='" + cbGolObatA.getSelectedItem().toString() + "'");
+                while(rsGudang.next() == true) {
+                    mGd = rsGudang.getDate("tglMasuk");
+                    obat = rsGudang.getString("namaObat");
+                    gol = rsGudang.getString("golObat");
+                    sat = rsGudang.getString("sat");
+                    jumlahSkr = rsGudang.getInt("jumlahSedia");
+                    exp = rsGudang.getDate("exdate");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+System.out.println("satu");
+System.out.println(obat);
+System.out.println(gol);
+System.out.println(sat);
+
+            if (txtNamaObatA.getText().equalsIgnoreCase(obat) && cbGolObatA.getSelectedItem().toString().equals(gol) &&
+                    cbSatA.getSelectedItem().toString().equals(sat)) {
+                if (isiJumlah <= jumlahSkr) {
+                    sqlPindah = "INSERT INTO DataObat (tglMasuk,namaObat,golObat,sat,jumlahSedia,exdate) "
+                        + "VALUES ('" + simMasA + "',"
+                        + "'" + txtNamaObatA.getText() + "',"
+                        + "'" + cbGolObatA.getSelectedItem().toString() + "',"
+                        + "'" + cbSatA.getSelectedItem().toString() + "',"
+                        + "'" + spJumlahA.getValue() + "',"
+                        + "'" + exp + "');";
+                    
+                    try {
+                       setConnection koneksi = new setConnection();
+                       stmt2 = koneksi.connection.createStatement();
+                       int berhasil = stmt2.executeUpdate(sqlPindah);
+                    } catch (SQLException errMsg) {
+                        System.out.println(errMsg);
+                    }
+System.out.println("dua");                    
+                    int sisaGudang = jumlahSkr - isiJumlah;
+                    
+                    sqlUpdate = "UPDATE DataGudang SET "
+                        + "jumlahSisa ='" + sisaGudang + "', "
+                        + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+                    
+                    try {
+                       setConnection koneksi = new setConnection();
+                       stmt2 = koneksi.connection.createStatement();
+                       int berhasil = stmt2.executeUpdate(sqlUpdate);
+                    } catch (SQLException errMsg) {
+                        System.out.println(errMsg);
+                    }
+System.out.println("tiga");                    
+                    setGudang gd = new setGudang();
+                    gd.setTanggal(mGd);
+                    gd.setNamaObat(obat);
+                    gd.setGolObat(gol);
+                    gd.setSat(sat);
+                    gd.setSisaGudang(sisaGudang);
+                    gd.setExdate(exp);
+                    this.list.add(gd);
+                    updateTable();
+                }
+            }
+        }
+        
     }//GEN-LAST:event_btnSimpanAActionPerformed
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
@@ -809,14 +871,12 @@ public class Gudang extends javax.swing.JFrame {
             cbGolObat.setEnabled(true);
             cbSatuan.setEnabled(true);
             btnSimpan.setEnabled(true);
-            btnHapus.setEnabled(true);
             txtNamaObatA.setEnabled(false);
             txtTglMasukA.setEnabled(false);
             spJumlahA.setEnabled(false);
             cbGolObatA.setEnabled(false);
             cbSatA.setEnabled(false);
             btnSimpanA.setEnabled(false);
-            btnHapusA.setEnabled(false);
             cbDariA.setEnabled(false);
             cbKeA.setEnabled(false);
         }
@@ -829,21 +889,17 @@ public class Gudang extends javax.swing.JFrame {
             cbGolObat.setEnabled(false);
             cbSatuan.setEnabled(false);
             btnSimpan.setEnabled(false);
-            btnHapus.setEnabled(false);
             txtNamaObatA.setEnabled(true);
             txtTglMasukA.setEnabled(true);
             spJumlahA.setEnabled(true);
             cbGolObatA.setEnabled(true);
             cbSatA.setEnabled(true);
             btnSimpanA.setEnabled(true);
-            btnHapusA.setEnabled(true);
             cbDariA.setEnabled(true);
             cbKeA.setEnabled(true);
         }
        
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnHapus;
-    private javax.swing.JButton btnHapusA;
     private javax.swing.JLabel btnKeluar;
     private javax.swing.JButton btnPindahObat;
     private javax.swing.JButton btnSimpan;
