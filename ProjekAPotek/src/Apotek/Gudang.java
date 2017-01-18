@@ -5,6 +5,7 @@
  */
 package Apotek;
 
+import com.mxrck.autocompleter.TextAutoCompleter;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
@@ -18,6 +19,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 
@@ -40,6 +42,7 @@ public class Gudang extends javax.swing.JFrame {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         
         try {
+            
             setConnection koneksi = new setConnection();
             stmt1 = koneksi.connection.createStatement();
             rsGudang = stmt1.executeQuery("SELECT * FROM DataGudang");
@@ -75,6 +78,8 @@ public class Gudang extends javax.swing.JFrame {
         }
         tblEx.setModel(new DefaultTableModel(data, title));
     }
+
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -96,10 +101,10 @@ public class Gudang extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox1 = new javax.swing.JComboBox<String>();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        jComboBox2 = new javax.swing.JComboBox<String>();
         clPanelTransparan4 = new PanelTransparan.ClPanelTransparan();
         btnSimpan = new javax.swing.JButton();
         btnHapus = new javax.swing.JButton();
@@ -107,9 +112,9 @@ public class Gudang extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        cbGolObat = new javax.swing.JComboBox<>();
+        cbGolObat = new javax.swing.JComboBox<String>();
         txtNamaObat = new javax.swing.JTextField();
-        cbSatuan = new javax.swing.JComboBox<>();
+        cbSatuan = new javax.swing.JComboBox<String>();
         jLabel10 = new javax.swing.JLabel();
         spJumlah = new javax.swing.JSpinner();
         jLabel19 = new javax.swing.JLabel();
@@ -121,17 +126,17 @@ public class Gudang extends javax.swing.JFrame {
         clPanelTransparan2 = new PanelTransparan.ClPanelTransparan();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        cbDariA = new javax.swing.JComboBox<>();
+        cbDariA = new javax.swing.JComboBox<String>();
         jLabel13 = new javax.swing.JLabel();
-        cbKeA = new javax.swing.JComboBox<>();
+        cbKeA = new javax.swing.JComboBox<String>();
         jLabel14 = new javax.swing.JLabel();
         txtTglMasukA = new com.toedter.calendar.JDateChooser();
         jLabel15 = new javax.swing.JLabel();
         txtNamaObatA = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
-        cbGolObatA = new javax.swing.JComboBox<>();
+        cbGolObatA = new javax.swing.JComboBox<String>();
         jLabel17 = new javax.swing.JLabel();
-        cbSatA = new javax.swing.JComboBox<>();
+        cbSatA = new javax.swing.JComboBox<String>();
         jLabel18 = new javax.swing.JLabel();
         spJumlahA = new javax.swing.JSpinner();
         btnSimpanA = new javax.swing.JButton();
@@ -222,7 +227,7 @@ public class Gudang extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel3.setText("Golongan :");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Umum", "Narkotika", "Psikotropika" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Umum", "Narkotika", "Psikotropika" }));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/cari.png"))); // NOI18N
         jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -230,7 +235,7 @@ public class Gudang extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel5.setText("Urutkan Berdasar :");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tanggal Masuk", "Nama Obat", "Golongan Obat", "Satuan", "Persediaan Awal", "Persediaan Masuk", "Total Persediaan", "Tanggal Kadaluarsa" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tanggal Masuk", "Nama Obat", "Golongan Obat", "Satuan", "Persediaan Awal", "Persediaan Masuk", "Total Persediaan", "Tanggal Kadaluarsa" }));
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox2ActionPerformed(evt);
@@ -312,13 +317,19 @@ public class Gudang extends javax.swing.JFrame {
 
         jLabel9.setText("Satuan");
 
-        cbGolObat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Umum", "Narkotika", "Psikotropika" }));
+        cbGolObat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Umum", "Narkotika", "Psikotropika" }));
 
-        cbSatuan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tablet", "Botol", "Kapsul" }));
+        txtNamaObat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNamaObatActionPerformed(evt);
+            }
+        });
+
+        cbSatuan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tablet", "Botol", "Kapsul" }));
 
         jLabel10.setText("Jumlah");
 
-        spJumlah.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+        spJumlah.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
 
         jLabel19.setText("Tanggal");
 
@@ -434,11 +445,11 @@ public class Gudang extends javax.swing.JFrame {
 
         jLabel12.setText("Dari :");
 
-        cbDariA.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Gudang", "Apotek" }));
+        cbDariA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Gudang", "Apotek" }));
 
         jLabel13.setText("Ke :");
 
-        cbKeA.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Apotek", "Gudang", "Dinas" }));
+        cbKeA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Apotek", "Gudang", "Dinas" }));
 
         jLabel14.setText("Tanggal :");
 
@@ -448,11 +459,11 @@ public class Gudang extends javax.swing.JFrame {
 
         jLabel16.setText("Golongan Obat :");
 
-        cbGolObatA.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Umum", "Narkotika", "Psikotropika" }));
+        cbGolObatA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Umum", "Narkotika", "Psikotropika" }));
 
         jLabel17.setText("Satuan :");
 
-        cbSatA.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tablet", "Botol", "Kapsul" }));
+        cbSatA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tablet", "Botol", "Kapsul" }));
 
         jLabel18.setText("Jumlah :");
 
@@ -561,7 +572,7 @@ public class Gudang extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(clPanelTransparan1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(clPanelTransparan1, javax.swing.GroupLayout.DEFAULT_SIZE, 1396, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -635,7 +646,7 @@ public class Gudang extends javax.swing.JFrame {
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         // TODO add your handling code here:
-        String sqlSimpan, sqlDelete, obat = null, g = null, s = null;
+        String sqlSimpan,sqlUpdate, sqlDelete, obat = null, g = null, s = null;
         int jumlahSkr = 0;
         String simMas = (txttglMasuk.getDate().getYear()+1900) + "-" + 
                 (txttglMasuk.getDate().getMonth()+1) + "-" + 
@@ -662,6 +673,7 @@ public class Gudang extends javax.swing.JFrame {
         }
         
         int total = jumlahSkr + (int) spJumlah.getValue();
+        int quantity = (int) spJumlah.getValue();
         
         sqlSimpan = "INSERT INTO DataGudang (tglMasuk,namaObat,golObat,sat,jumlahSedia,exdate) "
                 + "VALUES ('" + simMas + "',"
@@ -670,6 +682,15 @@ public class Gudang extends javax.swing.JFrame {
                 + "'" + cbSatuan.getSelectedItem().toString() + "',"
                 + "'" + total + "',"
                 + "'" + simEx + "');";
+        
+        sqlUpdate = "UPDATE  DataGudang "
+                + "SET tglmasuk='" + simMas + "',"
+                + "namaObat='" + txtNamaObat.getText() + "',"
+                + "golObat='" + cbGolObat.getSelectedItem().toString()+ "' "
+                + "sat='" + cbSatuan.getSelectedItem().toString()+ "' "
+                + "jumlahSedia='" + total + quantity + "' "
+                + "exdate='" + simEx+ "' "
+                + "WHERE namaObat='" + txtNamaObat.getText() + "';"; 
                 
         try {
            setConnection koneksi = new setConnection();
@@ -714,6 +735,18 @@ public class Gudang extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.pindah();
     }//GEN-LAST:event_btnPindahObatActionPerformed
+
+    private void txtNamaObatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNamaObatActionPerformed
+        // TODO add your handling code here:
+//         TextAutoCompleter complete=new TextAutoCompleter(txtNamaObat);
+//          Statement stmt;
+//          stmt.connection();
+//          stmt.retrieve();
+//    while(conn.rs.next()){
+//
+//        complete.addItem(conn.rs.getString("number"));
+//    }
+    }//GEN-LAST:event_txtNamaObatActionPerformed
 
     /**
      * @param args the command line arguments

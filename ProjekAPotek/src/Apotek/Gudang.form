@@ -45,7 +45,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="clPanelTransparan1" max="32767" attributes="0"/>
+              <Component id="clPanelTransparan1" pref="1396" max="32767" attributes="0"/>
               <Group type="102" alignment="0" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
@@ -510,6 +510,9 @@
               </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="txtNamaObat">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNamaObatActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JComboBox" name="cbSatuan">
               <Properties>
