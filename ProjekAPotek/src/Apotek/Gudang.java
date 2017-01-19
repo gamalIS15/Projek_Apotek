@@ -14,6 +14,8 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
@@ -37,7 +39,6 @@ public class Gudang extends javax.swing.JFrame {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         
         try {
-            
             setConnection koneksi = new setConnection();
             stmt1 = koneksi.connection.createStatement();
             rsGudang = stmt1.executeQuery("SELECT * FROM DataGudang");
@@ -73,6 +74,15 @@ public class Gudang extends javax.swing.JFrame {
         }
         tblEx.setModel(new DefaultTableModel(data, title));
     }
+    
+    private void removeTable() {
+        DefaultTableModel model = (DefaultTableModel)tblEx.getModel();
+        while (model.getRowCount() > 0){
+            for (int i = 0; i < model.getRowCount(); ++i){
+                model.removeRow(i);
+            }
+        }
+    }
 
     
     /**
@@ -94,12 +104,12 @@ public class Gudang extends javax.swing.JFrame {
         tblEx = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtCariNama = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel4 = new javax.swing.JLabel();
+        cbCariGol = new javax.swing.JComboBox<>();
+        btnCari = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        cbCariSort = new javax.swing.JComboBox<>();
         clPanelTransparan4 = new PanelTransparan.ClPanelTransparan();
         btnSimpan = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
@@ -191,7 +201,7 @@ public class Gudang extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Tanggal Masuk", "Nama Obat", "Golongan Obat", "Jumlah Obat Masuk", "Satuan", "Tanggal Kadaluarsa"
+                "Tanggal Masuk", "Nama Obat", "Golongan Obat", "Jumlah Persediaan", "Satuan", "Tanggal Kadaluarsa"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -211,27 +221,32 @@ public class Gudang extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel2.setText("Nama : ");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtCariNama.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtCariNamaActionPerformed(evt);
             }
         });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel3.setText("Golongan :");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Umum", "Narkotika", "Psikotropika" }));
+        cbCariGol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Tampilkan Semua--", "(1a) ANALG,ANTIP,AN.INFL NON NARKOTIK", "(1b) ANALGETIK NARKOTIK", "(1c) ANTIPIRAI ", "(2) ANASTESI LOKAL", "(3) AN.EPILEPSI, AN.KONV, AN.ASIETAS, SEDATIV, HIPNOTIK, AN.PSIKOTIK", "(4) ANTI PARKINSON ", "(5) ANTI DEPRESI", "(6) ANTI MIGREN", "(7) ANTI ANGINA-ANTI ARITMIA", "(8) ANTI HIPERTENSI-DIURETIKA", "(9) GLUKOSIDA JANTUNG", "(10) OBAT PD SHOK-ANTI ASMA KORTIKOS", "(11) ANTI TUSIF", "(12) EKSPEKTORAN", "(13) ANTI INFLUENZA", "(14) ANTASIDA", "(15) OBAT DIARE-KESEIMBANGAN CAIRAN", "(16) LAKSAN", "(17) ANTI SPASMODIK", "(18) ANTI HISTAMIN", "(19) LARUTAN NUTRISI", "(20) TIROID ANTAGONIS", "(21) ANTI DIABETIK ORAL", "(22) ANTI DIABETIK PARENTERAL", "(23) VITAMIN DAN MINERAL", "(24) ANTI BAKTERI SISTEMIK, ANTISEPTIK", "(25) ANTI VIRUS", "(26) ANTI FUNGSI", "(27) ANTI TUBERKULOSIS", "(28) ANTI SEPTIK, DESINFEKTAN", "(29) ANTELMENTIK", "(30) ANTI AMUBIASIS", "(31) OBAT YG MEMPENGARUHI DARAH, ANTI ANEMIA", "(32) HEMOSTATIK", "(33) PRODUK DAN SUBTITUEN PLASMA", "(34) SERUM", "(35) AKSITOSIK", "(36) RELAKSAN UTERUS", "(37) ANTI INFLAMASI SALEP", "(38) PERANGSANG JARINGAN GRANULASI", "(39) ANTI BAKTERI", "(40) ANTI FUNGSI SALEP", "(41) ANTI SCABIES", "(42) ANTI SEPTIK", "(43) LAIN-LAIN OBAT KULIT", "(44) ANTI SISTEMIK MATA", "(45) ANASTESI LOKAL MATA ", "(46) ANTI INFEKSI MATA", "(47) LAIN-LAIN OBAT MATA", "(48) ANTI INFEKSI THT", "(49) LAIN-LAIN INFEKSI THT ", "(50) ANTI FILARIASIS", "(51) ANTI HEMOROID", "(52) ANTI EMETIK", "(53) ANTI HIPERKOLESTEROLEMIA", "(54) NOOTROPIK", "(55) IMMUNDILATOR", "(56) OBAT GIGI", "(57) OBAT TOPIKAL MULUT ", "(58) ALAT KESEHATAN HABIS PAKAI", "(59) REAGENSIA & LAIN-LAIN" }));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/cari.png"))); // NOI18N
-        jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/cari.png"))); // NOI18N
+        btnCari.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCari.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCariMouseClicked(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel5.setText("Urutkan Berdasar :");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tanggal Masuk", "Nama Obat", "Golongan Obat", "Satuan", "Persediaan Awal", "Persediaan Masuk", "Total Persediaan", "Tanggal Kadaluarsa" }));
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+        cbCariSort.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tanggal Masuk", "Nama Obat", "Golongan Obat", "Satuan", "Jumlah Persediaan", "Tanggal Kadaluarsa" }));
+        cbCariSort.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
+                cbCariSortActionPerformed(evt);
             }
         });
 
@@ -247,21 +262,23 @@ public class Gudang extends javax.swing.JFrame {
                     .addGroup(clPanelTransparan3Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(clPanelTransparan3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 834, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1)
                             .addGroup(clPanelTransparan3Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(clPanelTransparan3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addGroup(clPanelTransparan3Layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(clPanelTransparan3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(cbCariGol, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtCariNama))))
+                                .addGap(18, 18, 18)
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel4)))))
+                                .addComponent(cbCariSort, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(54, 54, 54)
+                                .addComponent(btnCari)
+                                .addGap(0, 63, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         clPanelTransparan3Layout.setVerticalGroup(
@@ -269,18 +286,21 @@ public class Gudang extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, clPanelTransparan3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(25, 25, 25)
-                .addGroup(clPanelTransparan3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(clPanelTransparan3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel2)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel3)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel5)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel4))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
+                .addGap(29, 29, 29)
+                .addGroup(clPanelTransparan3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(clPanelTransparan3Layout.createSequentialGroup()
+                        .addGroup(clPanelTransparan3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(txtCariNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5)
+                            .addComponent(cbCariSort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(clPanelTransparan3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(cbCariGol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(11, 11, 11)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 451, Short.MAX_VALUE))
+                    .addComponent(btnCari))
                 .addContainerGap())
         );
 
@@ -305,7 +325,7 @@ public class Gudang extends javax.swing.JFrame {
 
         jLabel9.setText("Satuan");
 
-        cbGolObat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Umum", "Narkotika", "Psikotropika" }));
+        cbGolObat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "(1a) ANALG,ANTIP,AN.INFL NON NARKOTIK", "(1b) ANALGETIK NARKOTIK", "(1c) ANTIPIRAI ", "(2) ANASTESI LOKAL", "(3) AN.EPILEPSI, AN.KONV, AN.ASIETAS, SEDATIV, HIPNOTIK, AN.PSIKOTIK", "(4) ANTI PARKINSON ", "(5) ANTI DEPRESI", "(6) ANTI MIGREN", "(7) ANTI ANGINA-ANTI ARITMIA", "(8) ANTI HIPERTENSI-DIURETIKA", "(9) GLUKOSIDA JANTUNG", "(10) OBAT PD SHOK-ANTI ASMA KORTIKOS", "(11) ANTI TUSIF", "(12) EKSPEKTORAN", "(13) ANTI INFLUENZA", "(14) ANTASIDA", "(15) OBAT DIARE-KESEIMBANGAN CAIRAN", "(16) LAKSAN", "(17) ANTI SPASMODIK", "(18) ANTI HISTAMIN", "(19) LARUTAN NUTRISI", "(20) TIROID ANTAGONIS", "(21) ANTI DIABETIK ORAL", "(22) ANTI DIABETIK PARENTERAL", "(23) VITAMIN DAN MINERAL", "(24) ANTI BAKTERI SISTEMIK, ANTISEPTIK", "(25) ANTI VIRUS", "(26) ANTI FUNGSI", "(27) ANTI TUBERKULOSIS", "(28) ANTI SEPTIK, DESINFEKTAN", "(29) ANTELMENTIK", "(30) ANTI AMUBIASIS", "(31) OBAT YG MEMPENGARUHI DARAH, ANTI ANEMIA", "(32) HEMOSTATIK", "(33) PRODUK DAN SUBTITUEN PLASMA", "(34) SERUM", "(35) AKSITOSIK", "(36) RELAKSAN UTERUS", "(37) ANTI INFLAMASI SALEP", "(38) PERANGSANG JARINGAN GRANULASI", "(39) ANTI BAKTERI", "(40) ANTI FUNGSI SALEP", "(41) ANTI SCABIES", "(42) ANTI SEPTIK", "(43) LAIN-LAIN OBAT KULIT", "(44) ANTI SISTEMIK MATA", "(45) ANASTESI LOKAL MATA ", "(46) ANTI INFEKSI MATA", "(47) LAIN-LAIN OBAT MATA", "(48) ANTI INFEKSI THT", "(49) LAIN-LAIN INFEKSI THT ", "(50) ANTI FILARIASIS", "(51) ANTI HEMOROID", "(52) ANTI EMETIK", "(53) ANTI HIPERKOLESTEROLEMIA", "(54) NOOTROPIK", "(55) IMMUNDILATOR", "(56) OBAT GIGI", "(57) OBAT TOPIKAL MULUT ", "(58) ALAT KESEHATAN HABIS PAKAI", "(59) REAGENSIA & LAIN-LAIN" }));
 
         txtNamaObat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -313,7 +333,7 @@ public class Gudang extends javax.swing.JFrame {
             }
         });
 
-        cbSatuan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tablet", "Botol", "Kapsul" }));
+        cbSatuan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tablet", "Botol", "Injeksi", "Krim", "Gel", "Kapsul", "Spray", "Infus", "Larutan", "Serbuk", "Buah", "Bungkus", "Tabung" }));
 
         jLabel10.setText("Jumlah");
 
@@ -347,16 +367,16 @@ public class Gudang extends javax.swing.JFrame {
                                     .addComponent(jLabel20))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(clPanelTransparan4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(cbSatuan, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cbGolObat, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtNamaObat)
                                     .addComponent(spJumlah, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txttglMasuk, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                                    .addComponent(txtEx, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(cbSatuan, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txttglMasuk, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtNamaObat, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cbGolObat, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtEx, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(clPanelTransparan4Layout.createSequentialGroup()
                                 .addGap(174, 174, 174)
                                 .addComponent(jLabel6)))
-                        .addGap(0, 134, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, clPanelTransparan4Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnSimpan)))
@@ -433,7 +453,7 @@ public class Gudang extends javax.swing.JFrame {
 
         jLabel13.setText("Ke :");
 
-        cbKeA.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Apotek", "Gudang", "Dinas" }));
+        cbKeA.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Apotek", "Gudang" }));
 
         jLabel14.setText("Tanggal :");
 
@@ -443,11 +463,11 @@ public class Gudang extends javax.swing.JFrame {
 
         jLabel16.setText("Golongan Obat :");
 
-        cbGolObatA.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Umum", "Narkotika", "Psikotropika" }));
+        cbGolObatA.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "(1a) ANALG,ANTIP,AN.INFL NON NARKOTIK", "(1b) ANALGETIK NARKOTIK", "(1c) ANTIPIRAI ", "(2) ANASTESI LOKAL", "(3) AN.EPILEPSI, AN.KONV, AN.ASIETAS, SEDATIV, HIPNOTIK, AN.PSIKOTIK", "(4) ANTI PARKINSON ", "(5) ANTI DEPRESI", "(6) ANTI MIGREN", "(7) ANTI ANGINA-ANTI ARITMIA", "(8) ANTI HIPERTENSI-DIURETIKA", "(9) GLUKOSIDA JANTUNG", "(10) OBAT PD SHOK-ANTI ASMA KORTIKOS", "(11) ANTI TUSIF", "(12) EKSPEKTORAN", "(13) ANTI INFLUENZA", "(14) ANTASIDA", "(15) OBAT DIARE-KESEIMBANGAN CAIRAN", "(16) LAKSAN", "(17) ANTI SPASMODIK", "(18) ANTI HISTAMIN", "(19) LARUTAN NUTRISI", "(20) TIROID ANTAGONIS", "(21) ANTI DIABETIK ORAL", "(22) ANTI DIABETIK PARENTERAL", "(23) VITAMIN DAN MINERAL", "(24) ANTI BAKTERI SISTEMIK, ANTISEPTIK", "(25) ANTI VIRUS", "(26) ANTI FUNGSI", "(27) ANTI TUBERKULOSIS", "(28) ANTI SEPTIK, DESINFEKTAN", "(29) ANTELMENTIK", "(30) ANTI AMUBIASIS", "(31) OBAT YG MEMPENGARUHI DARAH, ANTI ANEMIA", "(32) HEMOSTATIK", "(33) PRODUK DAN SUBTITUEN PLASMA", "(34) SERUM", "(35) AKSITOSIK", "(36) RELAKSAN UTERUS", "(37) ANTI INFLAMASI SALEP", "(38) PERANGSANG JARINGAN GRANULASI", "(39) ANTI BAKTERI", "(40) ANTI FUNGSI SALEP", "(41) ANTI SCABIES", "(42) ANTI SEPTIK", "(43) LAIN-LAIN OBAT KULIT", "(44) ANTI SISTEMIK MATA", "(45) ANASTESI LOKAL MATA ", "(46) ANTI INFEKSI MATA", "(47) LAIN-LAIN OBAT MATA", "(48) ANTI INFEKSI THT", "(49) LAIN-LAIN INFEKSI THT ", "(50) ANTI FILARIASIS", "(51) ANTI HEMOROID", "(52) ANTI EMETIK", "(53) ANTI HIPERKOLESTEROLEMIA", "(54) NOOTROPIK", "(55) IMMUNDILATOR", "(56) OBAT GIGI", "(57) OBAT TOPIKAL MULUT ", "(58) ALAT KESEHATAN HABIS PAKAI", "(59) REAGENSIA & LAIN-LAIN" }));
 
         jLabel17.setText("Satuan :");
 
-        cbSatA.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tablet", "Botol", "Kapsul" }));
+        cbSatA.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tablet", "Botol", "Injeksi", "Krim", "Gel", "Kapsul", "Spray", "Infus", "Larutan", "Serbuk", "Buah", "Bungkus", "Tabung" }));
 
         jLabel18.setText("Jumlah :");
 
@@ -485,24 +505,20 @@ public class Gudang extends javax.swing.JFrame {
                                 .addComponent(cbKeA, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(clPanelTransparan2Layout.createSequentialGroup()
                                 .addContainerGap()
+                                .addGroup(clPanelTransparan2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel16)
+                                    .addComponent(jLabel15)
+                                    .addComponent(jLabel17)
+                                    .addComponent(jLabel18)
+                                    .addComponent(jLabel14))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(clPanelTransparan2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(clPanelTransparan2Layout.createSequentialGroup()
-                                        .addComponent(jLabel14)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(txtTglMasukA, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, clPanelTransparan2Layout.createSequentialGroup()
-                                        .addGroup(clPanelTransparan2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel16)
-                                            .addComponent(jLabel15)
-                                            .addComponent(jLabel17)
-                                            .addComponent(jLabel18))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(clPanelTransparan2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(cbSatA, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(cbGolObatA, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(txtNamaObatA, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(spJumlahA, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                        .addGap(0, 93, Short.MAX_VALUE))
+                                    .addComponent(spJumlahA, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cbGolObatA, javax.swing.GroupLayout.Alignment.LEADING, 0, 340, Short.MAX_VALUE)
+                                    .addComponent(txtNamaObatA, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtTglMasukA, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cbSatA, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(0, 15, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, clPanelTransparan2Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnSimpanA)))
@@ -548,7 +564,7 @@ public class Gudang extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(clPanelTransparan1, javax.swing.GroupLayout.DEFAULT_SIZE, 1396, Short.MAX_VALUE)
+            .addComponent(clPanelTransparan1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -556,15 +572,14 @@ public class Gudang extends javax.swing.JFrame {
                         .addComponent(btnTambah)
                         .addGap(116, 116, 116)
                         .addComponent(btnPindahObat))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(clPanelTransparan4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(clPanelTransparan2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(clPanelTransparan3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(clPanelTransparan2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(clPanelTransparan4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(clPanelTransparan3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -588,7 +603,9 @@ public class Gudang extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -616,9 +633,9 @@ public class Gudang extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnKeluarMouseClicked
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtCariNamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCariNamaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtCariNamaActionPerformed
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         // TODO add your handling code here:
@@ -678,7 +695,8 @@ public class Gudang extends javax.swing.JFrame {
         
         sqlDelete = "DELETE FROM DataGudang "
                 + "WHERE namaObat='" + txtNamaObat.getText() + 
-                "' AND exdate='" + simEx + "' AND jumlahSedia=" + jumlahSkr + 
+                "' AND exdate='" + simEx + 
+                "' AND jumlahSedia=" + jumlahSkr + 
                 " AND sat='" + cbSatuan.getSelectedItem().toString() + 
                 "' AND golObat='" + cbGolObat.getSelectedItem().toString() + "'";
             
@@ -695,18 +713,27 @@ public class Gudang extends javax.swing.JFrame {
 
     private void btnSimpanAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanAActionPerformed
         // TODO add your handling code here:
-        String sqlPindah, sqlUpdate, obat = null, gol = null, sat = null;
-        int jumlahSkr = 0;
+        String sqlPindah, sqlUpdate, sqlDelete;
+        String obat = null, gol = null, sat = null, Ag = null, As = null, Aobat = null;
+        int jumlahSkr = 0, AjumlahSkr = 0;
         int isiJumlah = (int) spJumlahA.getValue();
         String simMasA = (txtTglMasukA.getDate().getYear()+1900) + "-" + 
                 (txtTglMasukA.getDate().getMonth()+1) + "-" + 
                 txtTglMasukA.getDate().getDate();
-        Date exp = null, mGd = null;
+        Date exp = null, mGd = null, Amgd = null, Aexp = null;
+        
+        setConnection koneksi;
+        try {
+            koneksi = new setConnection();
+            stmt1 = koneksi.connection.createStatement();
+            stmt2 = koneksi.connection.createStatement();
+        } catch (SQLException ex) {
+            Logger.getLogger(Gudang.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         
         if(cbDariA.getSelectedItem().equals("Gudang") && cbKeA.getSelectedItem().equals("Apotek")) {
             try {
-                setConnection koneksi = new setConnection();
-                stmt2 = koneksi.connection.createStatement();
                 rsGudang = stmt2.executeQuery("SELECT * FROM DataGudang WHERE namaObat='" + txtNamaObatA.getText() +
                      "' AND sat='" + cbSatA.getSelectedItem().toString() + 
                     "' AND golObat='" + cbGolObatA.getSelectedItem().toString() + "'");
@@ -721,30 +748,55 @@ public class Gudang extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 System.out.println(ex);
             }
-System.out.println("satu");
-System.out.println(obat);
-System.out.println(gol);
-System.out.println(sat);
 
             if (txtNamaObatA.getText().equalsIgnoreCase(obat) && cbGolObatA.getSelectedItem().toString().equals(gol) &&
                     cbSatA.getSelectedItem().toString().equals(sat)) {
+                try {
+                    rsApotek = stmt1.executeQuery("SELECT * FROM DataObat WHERE namaObat='" + txtNamaObatA.getText() +
+                            "' AND exdate='" + exp + "' AND sat='" + cbSatA.getSelectedItem().toString() + 
+                            "' AND golObat='" + cbGolObatA.getSelectedItem().toString() + "'");
+                    while(rsApotek.next() == true) {
+                        Amgd = rsApotek.getDate("tglMasuk");
+                        Aobat = rsApotek.getString("namaObat");
+                        Ag = rsApotek.getString("golObat");
+                        As = rsApotek.getString("sat");
+                        AjumlahSkr = rsApotek.getInt("jumlahSedia");
+                        Aexp = rsApotek.getDate("exdate");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = isiJumlah + AjumlahSkr;
+                
                 if (isiJumlah <= jumlahSkr) {
                     sqlPindah = "INSERT INTO DataObat (tglMasuk,namaObat,golObat,sat,jumlahSedia,exdate) "
                         + "VALUES ('" + simMasA + "',"
                         + "'" + txtNamaObatA.getText() + "',"
                         + "'" + cbGolObatA.getSelectedItem().toString() + "',"
                         + "'" + cbSatA.getSelectedItem().toString() + "',"
-                        + "'" + spJumlahA.getValue() + "',"
+                        + "'" + totalA + "',"
                         + "'" + exp + "');";
                     
                     try {
-                       setConnection koneksi = new setConnection();
-                       stmt2 = koneksi.connection.createStatement();
                        int berhasil = stmt2.executeUpdate(sqlPindah);
                     } catch (SQLException errMsg) {
                         System.out.println(errMsg);
                     }
-System.out.println("dua");                    
+                    
+                    sqlDelete = "DELETE FROM DataObat "
+                            + "WHERE namaObat='" + txtNamaObatA.getText() + 
+                            "' AND exdate='" + Aexp + 
+                            "' AND jumlahSedia=" + AjumlahSkr + 
+                            " AND sat='" + cbSatA.getSelectedItem().toString() + 
+                            "' AND golObat='" + cbGolObatA.getSelectedItem().toString() + "'";
+
+                    try {
+                        int berhasil = stmt2.executeUpdate(sqlDelete);
+                    } catch (SQLException errMsg) {
+                        System.out.println(errMsg.getMessage());
+                    }
+                    
                     int sisaGudang = jumlahSkr - isiJumlah;
                     
                     sqlUpdate = "UPDATE DataGudang SET "
@@ -752,13 +804,10 @@ System.out.println("dua");
                         + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
                     
                     try {
-                       setConnection koneksi = new setConnection();
-                       stmt2 = koneksi.connection.createStatement();
                        int berhasil = stmt2.executeUpdate(sqlUpdate);
                     } catch (SQLException errMsg) {
                         System.out.println(errMsg);
-                    }
-System.out.println("tiga");                    
+                    }                   
                     setGudang gd = new setGudang();
                     gd.setTanggal(mGd);
                     gd.setNamaObat(obat);
@@ -770,13 +819,100 @@ System.out.println("tiga");
                     updateTable();
                 }
             }
+        } else if (cbDariA.getSelectedItem().equals("Apotek") && cbKeA.getSelectedItem().equals("Gudang")) {
+            try {
+                rsApotek = stmt1.executeQuery("SELECT * FROM DataObat WHERE namaObat='" + txtNamaObatA.getText() +
+                     "' AND sat='" + cbSatA.getSelectedItem().toString() + 
+                    "' AND golObat='" + cbGolObatA.getSelectedItem().toString() + "'");
+                while(rsApotek.next() == true) {
+                    mGd = rsApotek.getDate("tglMasuk");
+                    obat = rsApotek.getString("namaObat");
+                    gol = rsApotek.getString("golObat");
+                    sat = rsApotek.getString("sat");
+                    jumlahSkr = rsApotek.getInt("jumlahSedia");
+                    exp = rsApotek.getDate("exdate");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+
+            if (txtNamaObatA.getText().equalsIgnoreCase(obat) && cbGolObatA.getSelectedItem().toString().equals(gol) &&
+                    cbSatA.getSelectedItem().toString().equals(sat)) {
+                try {
+                    rsApotek = stmt1.executeQuery("SELECT * FROM DataGudang WHERE namaObat='" + txtNamaObatA.getText() +
+                            "' AND exdate='" + exp + "' AND sat='" + cbSatA.getSelectedItem().toString() + 
+                            "' AND golObat='" + cbGolObatA.getSelectedItem().toString() + "'");
+                    while(rsApotek.next() == true) {
+                        Amgd = rsApotek.getDate("tglMasuk");
+                        Aobat = rsApotek.getString("namaObat");
+                        Ag = rsApotek.getString("golObat");
+                        As = rsApotek.getString("sat");
+                        AjumlahSkr = rsApotek.getInt("jumlahSedia");
+                        Aexp = rsApotek.getDate("exdate");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+
+                int totalA = isiJumlah + AjumlahSkr;
+
+                if (isiJumlah <= jumlahSkr) {
+                    sqlPindah = "INSERT INTO DataGudang (tglMasuk,namaObat,golObat,sat,jumlahSedia,exdate) "
+                        + "VALUES ('" + simMasA + "',"
+                        + "'" + txtNamaObatA.getText() + "',"
+                        + "'" + cbGolObatA.getSelectedItem().toString() + "',"
+                        + "'" + cbSatA.getSelectedItem().toString() + "',"
+                        + "'" + totalA + "',"
+                        + "'" + exp + "');";
+
+                    try {
+                       int berhasil = stmt2.executeUpdate(sqlPindah);
+                    } catch (SQLException errMsg) {
+                        System.out.println(errMsg);
+                    }
+
+                    sqlDelete = "DELETE FROM DataGudang "
+                            + "WHERE namaObat='" + txtNamaObatA.getText() + 
+                            "' AND exdate='" + Aexp + 
+                            "' AND jumlahSedia=" + AjumlahSkr + 
+                            " AND sat='" + cbSatA.getSelectedItem().toString() + 
+                            "' AND golObat='" + cbGolObatA.getSelectedItem().toString() + "'";
+
+                    try {
+                        int berhasil = stmt2.executeUpdate(sqlDelete);
+                    } catch (SQLException errMsg) {
+                        System.out.println(errMsg.getMessage());
+                    }
+                    
+                    setGudang gd = new setGudang();
+                    gd.setTanggal(Date.valueOf(simMasA));
+                    gd.setNamaObat(obat);
+                    gd.setGolObat(gol);
+                    gd.setSat(sat);
+                    gd.setSisaGudang(totalA);
+                    gd.setExdate(exp);
+                    this.list.add(gd);
+                    updateTable();
+
+                    int sisaGudang = jumlahSkr - isiJumlah;
+
+                    sqlUpdate = "UPDATE DataObat SET "
+                        + "jumlahSedia ='" + sisaGudang + "' "
+                        + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                    try {
+                       int berhasil = stmt2.executeUpdate(sqlUpdate);
+                    } catch (SQLException errMsg) {
+                        System.out.println(errMsg);
+                    }                   
+                }
+            }
         }
-        
     }//GEN-LAST:event_btnSimpanAActionPerformed
 
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+    private void cbCariSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCariSortActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox2ActionPerformed
+    }//GEN-LAST:event_cbCariSortActionPerformed
 
     private void btnPindahObatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPindahObatActionPerformed
         // TODO add your handling code here:
@@ -794,6 +930,98 @@ System.out.println("tiga");
 //        complete.addItem(conn.rs.getString("number"));
 //    }
     }//GEN-LAST:event_txtNamaObatActionPerformed
+
+    private void btnCariMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCariMouseClicked
+        // TODO add your handling code here:
+        removeTable();
+        String urut = null;
+        
+        switch(cbCariSort.getSelectedIndex()) {
+            case 0: urut = "tglMasuk"; break;
+            case 1: urut = "namaObat"; break;
+            case 2: urut = "golObat"; break;
+            case 3: urut = "sat"; break;
+            case 4: urut = "jumlahSedia"; break;
+            case 5: urut = "exdate"; break;
+        }
+        
+        try {
+            setConnection koneksi = new setConnection();
+            stmt1 = koneksi.connection.createStatement();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        if(txtCariNama.getText().equals("") || txtCariNama.getText()==null) {
+            if(cbCariGol.getSelectedItem().equals("--Tampilkan Semua--")) {
+                try {
+                    rsGudang = stmt1.executeQuery("SELECT * FROM DataGudang ORDER BY " + urut + "");
+                    while(rsGudang.next() == true) {
+                        list.add(new setGudang(rsGudang.getDate("tglMasuk"), 
+                                rsGudang.getString("namaObat"), 
+                                rsGudang.getString("golObat"), 
+                                rsGudang.getString("sat"),
+                                rsGudang.getInt("jumlahSedia"),
+                                rsGudang.getDate("exdate")));    
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+            } else {
+                try {
+                    rsGudang = stmt1.executeQuery("SELECT * FROM DataGudang "
+                            + "WHERE golObat='" + cbCariGol.getSelectedItem().toString() 
+                            + "' ORDER BY " + urut + "");
+                    while(rsGudang.next() == true) {
+                        list.add(new setGudang(rsGudang.getDate("tglMasuk"), 
+                                rsGudang.getString("namaObat"), 
+                                rsGudang.getString("golObat"), 
+                                rsGudang.getString("sat"),
+                                rsGudang.getInt("jumlahSedia"),
+                                rsGudang.getDate("exdate")));    
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+            }
+        } else {
+            if(cbCariGol.getSelectedItem().equals("--Tampilkan Semua--")) {
+                try {
+                    rsGudang = stmt1.executeQuery("SELECT * FROM DataGudang "
+                            + "WHERE namaObat='" + txtCariNama.getText() 
+                            + "' ORDER BY " + urut + "");
+                    while(rsGudang.next() == true) {
+                        list.add(new setGudang(rsGudang.getDate("tglMasuk"), 
+                                rsGudang.getString("namaObat"), 
+                                rsGudang.getString("golObat"), 
+                                rsGudang.getString("sat"),
+                                rsGudang.getInt("jumlahSedia"),
+                                rsGudang.getDate("exdate")));    
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+            } else {
+                try {
+                    rsGudang = stmt1.executeQuery("SELECT * FROM DataGudang "
+                            + "WHERE namaObat='" + txtCariNama.getText() 
+                            + "' AND golObat='" + cbCariGol.getSelectedItem().toString() 
+                            + "' ORDER BY " + urut + "");
+                    while(rsGudang.next() == true) {
+                        list.add(new setGudang(rsGudang.getDate("tglMasuk"), 
+                                rsGudang.getString("namaObat"), 
+                                rsGudang.getString("golObat"), 
+                                rsGudang.getString("sat"),
+                                rsGudang.getInt("jumlahSedia"),
+                                rsGudang.getDate("exdate")));    
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+            }
+        }
+        removeTable();
+        updateTable();
+    }//GEN-LAST:event_btnCariMouseClicked
 
     /**
      * @param args the command line arguments
@@ -900,11 +1128,14 @@ System.out.println("tiga");
         }
        
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel btnCari;
     private javax.swing.JLabel btnKeluar;
     private javax.swing.JButton btnPindahObat;
     private javax.swing.JButton btnSimpan;
     private javax.swing.JButton btnSimpanA;
     private javax.swing.JButton btnTambah;
+    private javax.swing.JComboBox<String> cbCariGol;
+    private javax.swing.JComboBox<String> cbCariSort;
     private javax.swing.JComboBox<String> cbDariA;
     private javax.swing.JComboBox<String> cbGolObat;
     private javax.swing.JComboBox<String> cbGolObatA;
@@ -915,8 +1146,6 @@ System.out.println("tiga");
     private PanelTransparan.ClPanelTransparan clPanelTransparan2;
     private PanelTransparan.ClPanelTransparan clPanelTransparan3;
     private PanelTransparan.ClPanelTransparan clPanelTransparan4;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -931,7 +1160,6 @@ System.out.println("tiga");
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -939,10 +1167,10 @@ System.out.println("tiga");
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JSpinner spJumlah;
     private javax.swing.JSpinner spJumlahA;
     private javax.swing.JTable tblEx;
+    private javax.swing.JTextField txtCariNama;
     private com.toedter.calendar.JDateChooser txtEx;
     private javax.swing.JTextField txtNamaObat;
     private javax.swing.JTextField txtNamaObatA;

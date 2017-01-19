@@ -160,17 +160,17 @@ public class DataObat extends javax.swing.JFrame {
 
         tblEx.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Nama Obat", "Golongan Obat", "Satuan", "Stok Awal", "Persediaan", "Pemakaian", "Sisa Stok", "Saldo Awal", "Jumlah Pemasukan", "Jumlah Penggunaan", "Saldo Akhir"
+                "Nama Obat", "Golongan Obat", "Satuan", "Persediaan Gudang", "Tanggal Kadaluarsa Gudang", "Persediaan Apotek", "Tanggal Kadaluarsa Apotek"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
