@@ -43,19 +43,19 @@ public class Gudang extends javax.swing.JFrame {
             stmt1 = koneksi.connection.createStatement();
             rsGudang = stmt1.executeQuery("SELECT * FROM DataGudang");
             while(rsGudang.next() == true) {
-                list.add(new setGudang(rsGudang.getDate("tglMasuk"), 
-                        rsGudang.getString("namaObat"), 
-                        rsGudang.getString("golObat"), 
-                        rsGudang.getString("sat"),
-                        rsGudang.getInt("jumlahSedia"),
-                        rsGudang.getDate("exdate")));    
+                list.add(new setGudang(rsGudang.getDate("tglMasukG"), 
+                        rsGudang.getString("namaObatG"), 
+                        rsGudang.getString("golObatG"), 
+                        rsGudang.getString("satG"),
+                        rsGudang.getInt("jumlahSediaG"),
+                        rsGudang.getDate("exdateG")));    
             }
         } catch (SQLException ex) {
             System.out.println(ex);
         }
         
         
-//        txtWelcome.setText(MainMenu.txtWelcome.getText());
+        txtWelcome.setText(MainMenu.txtWelcome.getText());
         this.tambah();
         updateTable();
     }
@@ -230,7 +230,7 @@ public class Gudang extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel3.setText("Golongan :");
 
-        cbCariGol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Tampilkan Semua--", "(1a) ANALG,ANTIP,AN.INFL NON NARKOTIK", "(1b) ANALGETIK NARKOTIK", "(1c) ANTIPIRAI ", "(2) ANASTESI LOKAL", "(3) AN.EPILEPSI, AN.KONV, AN.ASIETAS, SEDATIV, HIPNOTIK, AN.PSIKOTIK", "(4) ANTI PARKINSON ", "(5) ANTI DEPRESI", "(6) ANTI MIGREN", "(7) ANTI ANGINA-ANTI ARITMIA", "(8) ANTI HIPERTENSI-DIURETIKA", "(9) GLUKOSIDA JANTUNG", "(10) OBAT PD SHOK-ANTI ASMA KORTIKOS", "(11) ANTI TUSIF", "(12) EKSPEKTORAN", "(13) ANTI INFLUENZA", "(14) ANTASIDA", "(15) OBAT DIARE-KESEIMBANGAN CAIRAN", "(16) LAKSAN", "(17) ANTI SPASMODIK", "(18) ANTI HISTAMIN", "(19) LARUTAN NUTRISI", "(20) TIROID ANTAGONIS", "(21) ANTI DIABETIK ORAL", "(22) ANTI DIABETIK PARENTERAL", "(23) VITAMIN DAN MINERAL", "(24) ANTI BAKTERI SISTEMIK, ANTISEPTIK", "(25) ANTI VIRUS", "(26) ANTI FUNGSI", "(27) ANTI TUBERKULOSIS", "(28) ANTI SEPTIK, DESINFEKTAN", "(29) ANTELMENTIK", "(30) ANTI AMUBIASIS", "(31) OBAT YG MEMPENGARUHI DARAH, ANTI ANEMIA", "(32) HEMOSTATIK", "(33) PRODUK DAN SUBTITUEN PLASMA", "(34) SERUM", "(35) AKSITOSIK", "(36) RELAKSAN UTERUS", "(37) ANTI INFLAMASI SALEP", "(38) PERANGSANG JARINGAN GRANULASI", "(39) ANTI BAKTERI", "(40) ANTI FUNGSI SALEP", "(41) ANTI SCABIES", "(42) ANTI SEPTIK", "(43) LAIN-LAIN OBAT KULIT", "(44) ANTI SISTEMIK MATA", "(45) ANASTESI LOKAL MATA ", "(46) ANTI INFEKSI MATA", "(47) LAIN-LAIN OBAT MATA", "(48) ANTI INFEKSI THT", "(49) LAIN-LAIN INFEKSI THT ", "(50) ANTI FILARIASIS", "(51) ANTI HEMOROID", "(52) ANTI EMETIK", "(53) ANTI HIPERKOLESTEROLEMIA", "(54) NOOTROPIK", "(55) IMMUNDILATOR", "(56) OBAT GIGI", "(57) OBAT TOPIKAL MULUT ", "(58) ALAT KESEHATAN HABIS PAKAI", "(59) REAGENSIA & LAIN-LAIN" }));
+        cbCariGol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Tampilkan Semua--", "(1a) ANALG", "ANTIP", "AN.INFL NON NARKOTIK", "(1b) ANALGETIK NARKOTIK", "(1c) ANTIPIRAI", "(2) ANASTESI LOKAL", "(3) AN.EPILEPSI", "AN.KONV", "AN.ASIETAS", "SEDATIV", "HIPNOTIK", "AN.PSIKOTIK", "(4) ANTI PARKINSON", "(5) ANTI DEPRESI", "(6) ANTI MIGREN", "(7) ANTI ANGINA-ANTI ARITMIA", "(8) ANTI HIPERTENSI-DIURETIKA", "(9) GLUKOSIDA JANTUNG", "(10) OBAT PD SHOK-ANTI ASMA KORTIKOS", "(11) ANTI TUSIF", "(12) EKSPEKTORAN", "(13) ANTI INFLUENZA", "(14) ANTASIDA", "(15) OBAT DIARE-KESEIMBANGAN CAIRAN", "(16) LAKSAN", "(17) ANTI SPASMODIK", "(18) ANTI HISTAMIN", "(19) LARUTAN NUTRISI", "(20) TIROID ANTAGONIS", "(21) ANTI DIABETIK ORAL", "(22) ANTI DIABETIK PARENTERAL", "(23) VITAMIN DAN MINERAL", "(24) ANTI BAKTERI SISTEMIK", "ANTISEPTIK", "(25) ANTI VIRUS", "(26) ANTI FUNGSI", "(27) ANTI TUBERKULOSIS", "(28) ANTI SEPTIK", "DESINFEKTAN", "(29) ANTELMENTIK", "(30) ANTI AMUBIASIS", "(31) OBAT YG MEMPENGARUHI DARAH", "ANTI ANEMIA", "(32) HEMOSTATIK", "(33) PRODUK DAN SUBTITUEN PLASMA", "(34) SERUM", "(35) AKSITOSIK", "(36) RELAKSAN UTERUS", "(37) ANTI INFLAMASI SALEP", "(38) PERANGSANG JARINGAN GRANULASI", "(39) ANTI BAKTERI", "(40) ANTI FUNGSI SALEP", "(41) ANTI SCABIES", "(42) ANTI SEPTIK", "(43) LAIN-LAIN OBAT KULIT", "(44) ANTI SISTEMIK MATA", "(45) ANASTESI LOKAL MATA", "(46) ANTI INFEKSI MATA", "(47) LAIN-LAIN OBAT MATA", "(48) ANTI INFEKSI THT", "(49) LAIN-LAIN INFEKSI THT", "(50) ANTI FILARIASIS", "(51) ANTI HEMOROID", "(52) ANTI EMETIK", "(53) ANTI HIPERKOLESTEROLEMIA", "(54) NOOTROPIK", "(55) IMMUNDILATOR", "(56) OBAT GIGI", "(57) OBAT TOPIKAL MULUT", "(58) ALAT KESEHATAN HABIS PAKAI", "(59) REAGENSIA & LAIN-LAIN" }));
 
         btnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/cari.png"))); // NOI18N
         btnCari.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -367,12 +367,12 @@ public class Gudang extends javax.swing.JFrame {
                                     .addComponent(jLabel20))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(clPanelTransparan4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(spJumlah, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(cbSatuan, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(txttglMasuk, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(txtNamaObat, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(cbGolObat, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtEx, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(txtEx, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(spJumlah, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(clPanelTransparan4Layout.createSequentialGroup()
                                 .addGap(174, 174, 174)
                                 .addComponent(jLabel6)))
@@ -513,11 +513,11 @@ public class Gudang extends javax.swing.JFrame {
                                     .addComponent(jLabel14))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(clPanelTransparan2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(spJumlahA, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(cbGolObatA, javax.swing.GroupLayout.Alignment.LEADING, 0, 340, Short.MAX_VALUE)
                                     .addComponent(txtNamaObatA, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtTglMasukA, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cbSatA, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(cbSatA, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(spJumlahA, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 15, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, clPanelTransparan2Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -651,16 +651,16 @@ public class Gudang extends javax.swing.JFrame {
         try {
             setConnection koneksi = new setConnection();
             stmt1 = koneksi.connection.createStatement();
-            rsGudang = stmt1.executeQuery("SELECT * FROM DataGudang WHERE namaObat='" + txtNamaObat.getText() +
-                    "' AND exdate='" + simEx + "' AND sat='" + cbSatuan.getSelectedItem().toString() + 
-                    "' AND golObat='" + cbGolObat.getSelectedItem().toString() + "'");
+            rsGudang = stmt1.executeQuery("SELECT * FROM DataGudang WHERE namaObatG='" + txtNamaObat.getText() +
+                    "' AND exdateG='" + simEx + "' AND satG='" + cbSatuan.getSelectedItem().toString() + 
+                    "' AND golObatG='" + cbGolObat.getSelectedItem().toString() + "'");
             while(rsGudang.next() == true) {
-                tgl = rsGudang.getDate("tglMasuk");
-                obat = rsGudang.getString("namaObat");
-                g = rsGudang.getString("golObat");
-                s = rsGudang.getString("sat");
-                jumlahSkr = rsGudang.getInt("jumlahSedia");
-                exp = rsGudang.getDate("exdate");
+                tgl = rsGudang.getDate("tglMasukG");
+                obat = rsGudang.getString("namaObatG");
+                g = rsGudang.getString("golObatG");
+                s = rsGudang.getString("satG");
+                jumlahSkr = rsGudang.getInt("jumlahSediaG");
+                exp = rsGudang.getDate("exdateG");
             }
         } catch (SQLException ex) {
             System.out.println(ex);
@@ -668,7 +668,7 @@ public class Gudang extends javax.swing.JFrame {
         
         int total = jumlahSkr + (int) spJumlah.getValue();
         
-        sqlSimpan = "INSERT INTO DataGudang (tglMasuk,namaObat,golObat,sat,jumlahSedia,exdate) "
+        sqlSimpan = "INSERT INTO DataGudang (tglMasukG,namaObatG,golObatG,satG,jumlahSediaG,exdateG) "
                 + "VALUES ('" + simMas + "',"
                 + "'" + txtNamaObat.getText() + "',"
                 + "'" + cbGolObat.getSelectedItem().toString() + "',"
@@ -694,11 +694,11 @@ public class Gudang extends javax.swing.JFrame {
         updateTable();
         
         sqlDelete = "DELETE FROM DataGudang "
-                + "WHERE namaObat='" + txtNamaObat.getText() + 
-                "' AND exdate='" + simEx + 
-                "' AND jumlahSedia=" + jumlahSkr + 
-                " AND sat='" + cbSatuan.getSelectedItem().toString() + 
-                "' AND golObat='" + cbGolObat.getSelectedItem().toString() + "'";
+                + "WHERE namaObatG='" + txtNamaObat.getText() + 
+                "' AND exdateG='" + simEx + 
+                "' AND jumlahSediaG=" + jumlahSkr + 
+                " AND satG='" + cbSatuan.getSelectedItem().toString() + 
+                "' AND golObatG='" + cbGolObat.getSelectedItem().toString() + "'";
             
         try {
             setConnection koneksi = new setConnection();
@@ -734,16 +734,16 @@ public class Gudang extends javax.swing.JFrame {
         
         if(cbDariA.getSelectedItem().equals("Gudang") && cbKeA.getSelectedItem().equals("Apotek")) {
             try {
-                rsGudang = stmt2.executeQuery("SELECT * FROM DataGudang WHERE namaObat='" + txtNamaObatA.getText() +
-                     "' AND sat='" + cbSatA.getSelectedItem().toString() + 
-                    "' AND golObat='" + cbGolObatA.getSelectedItem().toString() + "'");
+                rsGudang = stmt2.executeQuery("SELECT * FROM DataGudang WHERE namaObatG='" + txtNamaObatA.getText() +
+                     "' AND satG='" + cbSatA.getSelectedItem().toString() + 
+                    "' AND golObatG='" + cbGolObatA.getSelectedItem().toString() + "'");
                 while(rsGudang.next() == true) {
-                    mGd = rsGudang.getDate("tglMasuk");
-                    obat = rsGudang.getString("namaObat");
-                    gol = rsGudang.getString("golObat");
-                    sat = rsGudang.getString("sat");
-                    jumlahSkr = rsGudang.getInt("jumlahSedia");
-                    exp = rsGudang.getDate("exdate");
+                    mGd = rsGudang.getDate("tglMasukG");
+                    obat = rsGudang.getString("namaObatG");
+                    gol = rsGudang.getString("golObatG");
+                    sat = rsGudang.getString("satG");
+                    jumlahSkr = rsGudang.getInt("jumlahSediaG");
+                    exp = rsGudang.getDate("exdateG");
                 }
             } catch (SQLException ex) {
                 System.out.println(ex);
@@ -800,8 +800,8 @@ public class Gudang extends javax.swing.JFrame {
                     int sisaGudang = jumlahSkr - isiJumlah;
                     
                     sqlUpdate = "UPDATE DataGudang SET "
-                        + "jumlahSedia ='" + sisaGudang + "' "
-                        + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+                        + "jumlahSediaG='" + sisaGudang + "' "
+                        + "WHERE namaObatG='" + obat + "' AND golObatG='" + gol + "' AND satG='" + sat + "'";
                     
                     try {
                        int berhasil = stmt2.executeUpdate(sqlUpdate);
@@ -839,16 +839,16 @@ public class Gudang extends javax.swing.JFrame {
             if (txtNamaObatA.getText().equalsIgnoreCase(obat) && cbGolObatA.getSelectedItem().toString().equals(gol) &&
                     cbSatA.getSelectedItem().toString().equals(sat)) {
                 try {
-                    rsApotek = stmt1.executeQuery("SELECT * FROM DataGudang WHERE namaObat='" + txtNamaObatA.getText() +
-                            "' AND exdate='" + exp + "' AND sat='" + cbSatA.getSelectedItem().toString() + 
-                            "' AND golObat='" + cbGolObatA.getSelectedItem().toString() + "'");
+                    rsApotek = stmt1.executeQuery("SELECT * FROM DataGudang WHERE namaObatG='" + txtNamaObatA.getText() +
+                            "' AND exdateG='" + exp + "' AND satG='" + cbSatA.getSelectedItem().toString() + 
+                            "' AND golObatG='" + cbGolObatA.getSelectedItem().toString() + "'");
                     while(rsApotek.next() == true) {
-                        Amgd = rsApotek.getDate("tglMasuk");
-                        Aobat = rsApotek.getString("namaObat");
-                        Ag = rsApotek.getString("golObat");
-                        As = rsApotek.getString("sat");
-                        AjumlahSkr = rsApotek.getInt("jumlahSedia");
-                        Aexp = rsApotek.getDate("exdate");
+                        Amgd = rsApotek.getDate("tglMasukG");
+                        Aobat = rsApotek.getString("namaObatG");
+                        Ag = rsApotek.getString("golObatG");
+                        As = rsApotek.getString("satG");
+                        AjumlahSkr = rsApotek.getInt("jumlahSediaG");
+                        Aexp = rsApotek.getDate("exdateG");
                     }
                 } catch (SQLException ex) {
                     System.out.println(ex);
@@ -857,7 +857,7 @@ public class Gudang extends javax.swing.JFrame {
                 int totalA = isiJumlah + AjumlahSkr;
 
                 if (isiJumlah <= jumlahSkr) {
-                    sqlPindah = "INSERT INTO DataGudang (tglMasuk,namaObat,golObat,sat,jumlahSedia,exdate) "
+                    sqlPindah = "INSERT INTO DataGudang (tglMasukG,namaObatG,golObatG,satG,jumlahSediaG,exdateG) "
                         + "VALUES ('" + simMasA + "',"
                         + "'" + txtNamaObatA.getText() + "',"
                         + "'" + cbGolObatA.getSelectedItem().toString() + "',"
@@ -872,11 +872,11 @@ public class Gudang extends javax.swing.JFrame {
                     }
 
                     sqlDelete = "DELETE FROM DataGudang "
-                            + "WHERE namaObat='" + txtNamaObatA.getText() + 
-                            "' AND exdate='" + Aexp + 
-                            "' AND jumlahSedia=" + AjumlahSkr + 
-                            " AND sat='" + cbSatA.getSelectedItem().toString() + 
-                            "' AND golObat='" + cbGolObatA.getSelectedItem().toString() + "'";
+                            + "WHERE namaObatG='" + txtNamaObatA.getText() + 
+                            "' AND exdateG='" + Aexp + 
+                            "' AND jumlahSediaG=" + AjumlahSkr + 
+                            " AND satG='" + cbSatA.getSelectedItem().toString() + 
+                            "' AND golObatG='" + cbGolObatA.getSelectedItem().toString() + "'";
 
                     try {
                         int berhasil = stmt2.executeUpdate(sqlDelete);
@@ -956,12 +956,12 @@ public class Gudang extends javax.swing.JFrame {
                 try {
                     rsGudang = stmt1.executeQuery("SELECT * FROM DataGudang ORDER BY " + urut + "");
                     while(rsGudang.next() == true) {
-                        list.add(new setGudang(rsGudang.getDate("tglMasuk"), 
-                                rsGudang.getString("namaObat"), 
-                                rsGudang.getString("golObat"), 
-                                rsGudang.getString("sat"),
-                                rsGudang.getInt("jumlahSedia"),
-                                rsGudang.getDate("exdate")));    
+                        list.add(new setGudang(rsGudang.getDate("tglMasukG"), 
+                                rsGudang.getString("namaObatG"), 
+                                rsGudang.getString("golObatG"), 
+                                rsGudang.getString("satG"),
+                                rsGudang.getInt("jumlahSediaG"),
+                                rsGudang.getDate("exdateG")));    
                     }
                 } catch (SQLException ex) {
                     System.out.println(ex);
@@ -969,15 +969,15 @@ public class Gudang extends javax.swing.JFrame {
             } else {
                 try {
                     rsGudang = stmt1.executeQuery("SELECT * FROM DataGudang "
-                            + "WHERE golObat='" + cbCariGol.getSelectedItem().toString() 
+                            + "WHERE golObatG='" + cbCariGol.getSelectedItem().toString() 
                             + "' ORDER BY " + urut + "");
                     while(rsGudang.next() == true) {
-                        list.add(new setGudang(rsGudang.getDate("tglMasuk"), 
-                                rsGudang.getString("namaObat"), 
-                                rsGudang.getString("golObat"), 
-                                rsGudang.getString("sat"),
-                                rsGudang.getInt("jumlahSedia"),
-                                rsGudang.getDate("exdate")));    
+                        list.add(new setGudang(rsGudang.getDate("tglMasukG"), 
+                                rsGudang.getString("namaObatG"), 
+                                rsGudang.getString("golObatG"), 
+                                rsGudang.getString("satG"),
+                                rsGudang.getInt("jumlahSediaG"),
+                                rsGudang.getDate("exdateG")));    
                     }
                 } catch (SQLException ex) {
                     System.out.println(ex);
@@ -987,15 +987,15 @@ public class Gudang extends javax.swing.JFrame {
             if(cbCariGol.getSelectedItem().equals("--Tampilkan Semua--")) {
                 try {
                     rsGudang = stmt1.executeQuery("SELECT * FROM DataGudang "
-                            + "WHERE namaObat='" + txtCariNama.getText() 
+                            + "WHERE namaObatG='" + txtCariNama.getText() 
                             + "' ORDER BY " + urut + "");
                     while(rsGudang.next() == true) {
-                        list.add(new setGudang(rsGudang.getDate("tglMasuk"), 
-                                rsGudang.getString("namaObat"), 
-                                rsGudang.getString("golObat"), 
-                                rsGudang.getString("sat"),
-                                rsGudang.getInt("jumlahSedia"),
-                                rsGudang.getDate("exdate")));    
+                        list.add(new setGudang(rsGudang.getDate("tglMasukG"), 
+                                rsGudang.getString("namaObatG"), 
+                                rsGudang.getString("golObatG"), 
+                                rsGudang.getString("satG"),
+                                rsGudang.getInt("jumlahSediaG"),
+                                rsGudang.getDate("exdateG")));    
                     }
                 } catch (SQLException ex) {
                     System.out.println(ex);
@@ -1003,16 +1003,16 @@ public class Gudang extends javax.swing.JFrame {
             } else {
                 try {
                     rsGudang = stmt1.executeQuery("SELECT * FROM DataGudang "
-                            + "WHERE namaObat='" + txtCariNama.getText() 
-                            + "' AND golObat='" + cbCariGol.getSelectedItem().toString() 
+                            + "WHERE namaObatG='" + txtCariNama.getText() 
+                            + "' AND golObatG='" + cbCariGol.getSelectedItem().toString() 
                             + "' ORDER BY " + urut + "");
                     while(rsGudang.next() == true) {
-                        list.add(new setGudang(rsGudang.getDate("tglMasuk"), 
-                                rsGudang.getString("namaObat"), 
-                                rsGudang.getString("golObat"), 
-                                rsGudang.getString("sat"),
-                                rsGudang.getInt("jumlahSedia"),
-                                rsGudang.getDate("exdate")));    
+                        list.add(new setGudang(rsGudang.getDate("tglMasukG"), 
+                                rsGudang.getString("namaObatG"), 
+                                rsGudang.getString("golObatG"), 
+                                rsGudang.getString("satG"),
+                                rsGudang.getInt("jumlahSediaG"),
+                                rsGudang.getDate("exdateG")));    
                     }
                 } catch (SQLException ex) {
                     System.out.println(ex);

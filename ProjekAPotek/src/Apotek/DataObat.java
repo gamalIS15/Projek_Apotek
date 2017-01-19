@@ -24,10 +24,17 @@ import javax.swing.table.DefaultTableModel;
  */
 public class DataObat extends javax.swing.JFrame {
     Statement stmt1, stmt2;
-    ResultSet rsLogin, rsObat;
-    String nama, id;
-    String[] title = {"Tanggal Kadaluarsa", "Nama Obat", "Golongan", "Satuan", "Sisa Persediaan Apotek"};
+    ResultSet rsObat;
+    String x;
+    String[] title = {"Nama Obat", "Golongan", "Satuan", 
+        "Persediaan Gudang", "Tanggal Kadaluarsa Gudang", "Persediaan Apotek", "Tanggal Kadaluarsa Apotek"};
     ArrayList<setObat> list = new ArrayList<setObat>();
+    String sql = "SELECT * FROM DataGudang LEFT OUTER JOIN DataObat ON DataGudang.namaObatG=DataObat.namaObat "
+            + "AND DataGudang.golObatG=DataObat.golObat AND DataGudang.satG=DataObat.sat "
+            + "UNION "
+            + "SELECT * FROM DataGudang RIGHT OUTER JOIN DataObat ON DataGudang.namaObatG=DataObat.namaObat "
+            + "AND DataGudang.golObatG=DataObat.golObat AND DataGudang.satG=DataObat.sat "
+            + "WHERE DataGudang.namaObatG IS NULL";
     /**
      * Creates new form MainMenu
      */
@@ -38,21 +45,27 @@ public class DataObat extends javax.swing.JFrame {
         
         try {
             setConnection koneksi = new setConnection();
-            stmt1 = koneksi.connection.createStatement();
-            rsLogin = stmt1.executeQuery("SELECT * FROM LoginApoteker WHERE id='"+ id +"'");
-            while(rsLogin.next() == true) {
-                this.id = id;
-                nama = rsLogin.getString("nama");
-            }
-            
             stmt2 = koneksi.connection.createStatement();
-            rsObat = stmt2.executeQuery("SELECT * FROM DataObat");
+            rsObat = stmt2.executeQuery(sql);
             while(rsObat.next() == true) {
-                list.add(new setObat(rsObat.getDate("exdate"), 
-                        rsObat.getString("namaObat"), 
-                        rsObat.getString("golObat"), 
-                        rsObat.getString("sat"),
-                        rsObat.getInt("jumlahSedia")));
+                x = rsObat.getString("namaObatG");
+                if(!(x == null)) {
+                    list.add(new setObat(rsObat.getString("namaObatG"), 
+                        rsObat.getString("golObatG"), 
+                        rsObat.getString("satG"), 
+                        rsObat.getInt("jumlahSediaG"), 
+                        rsObat.getDate("exdateG"), 
+                        rsObat.getInt("jumlahSedia"), 
+                        rsObat.getDate("exdate")));
+                } else if(x == null) {
+                    list.add(new setObat(rsObat.getString("namaObat"), 
+                        rsObat.getString("golObatG"), 
+                        rsObat.getString("satG"), 
+                        rsObat.getInt("jumlahSediaG"), 
+                        rsObat.getDate("exdateG"), 
+                        rsObat.getInt("jumlahSedia"), 
+                        rsObat.getDate("exdate")));
+                }
             }
             
         } catch (SQLException ex) {
@@ -63,15 +76,16 @@ public class DataObat extends javax.swing.JFrame {
     }
     
     private void updateTable() {
-        Object[][] data = new Object[this.list.size()][6];
+        Object[][] data = new Object[this.list.size()][7];
         int x = 0;
         for(setObat o: this.list) {
-            data[x][0] = o.getTanggal();
-            data[x][1] = o.getNamaObat();
-            data[x][2] = o.getGolObat();
-            data[x][3] = o.getSat();
-            data[x][4] = o.getSisaGudang();
+            data[x][0] = o.getNamaObat();
+            data[x][1] = o.getGolObat();
+            data[x][2] = o.getSat();
+            data[x][3] = o.getSisaGudang();
+            data[x][4] = o.getExGudang();
             data[x][5] = o.getSisaApotek();
+            data[x][6] = o.getExApotek();
             ++x;
         }
         tblEx.setModel(new DefaultTableModel(data, title));
@@ -97,9 +111,9 @@ public class DataObat extends javax.swing.JFrame {
         tblEx = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtCariNama = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbCariGol = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
@@ -136,9 +150,9 @@ public class DataObat extends javax.swing.JFrame {
             .addGroup(clPanelTransparan1Layout.createSequentialGroup()
                 .addGap(44, 44, 44)
                 .addComponent(txtWelcome)
-                .addGap(445, 445, 445)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 524, Short.MAX_VALUE)
                 .addComponent(txtTanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 571, Short.MAX_VALUE)
+                .addGap(492, 492, 492)
                 .addComponent(btnKeluar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(60, 60, 60))
         );
@@ -186,16 +200,16 @@ public class DataObat extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel2.setText("Nama : ");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtCariNama.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtCariNamaActionPerformed(evt);
             }
         });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel3.setText("Golongan :");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Umum", "Narkotika", "Psikotropika" }));
+        cbCariGol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Tampilkan Semua--", "(1a) ANALG", "ANTIP", "AN.INFL NON NARKOTIK", "(1b) ANALGETIK NARKOTIK", "(1c) ANTIPIRAI", "(2) ANASTESI LOKAL", "(3) AN.EPILEPSI", "AN.KONV", "AN.ASIETAS", "SEDATIV", "HIPNOTIK", "AN.PSIKOTIK", "(4) ANTI PARKINSON", "(5) ANTI DEPRESI", "(6) ANTI MIGREN", "(7) ANTI ANGINA-ANTI ARITMIA", "(8) ANTI HIPERTENSI-DIURETIKA", "(9) GLUKOSIDA JANTUNG", "(10) OBAT PD SHOK-ANTI ASMA KORTIKOS", "(11) ANTI TUSIF", "(12) EKSPEKTORAN", "(13) ANTI INFLUENZA", "(14) ANTASIDA", "(15) OBAT DIARE-KESEIMBANGAN CAIRAN", "(16) LAKSAN", "(17) ANTI SPASMODIK", "(18) ANTI HISTAMIN", "(19) LARUTAN NUTRISI", "(20) TIROID ANTAGONIS", "(21) ANTI DIABETIK ORAL", "(22) ANTI DIABETIK PARENTERAL", "(23) VITAMIN DAN MINERAL", "(24) ANTI BAKTERI SISTEMIK", "ANTISEPTIK", "(25) ANTI VIRUS", "(26) ANTI FUNGSI", "(27) ANTI TUBERKULOSIS", "(28) ANTI SEPTIK", "DESINFEKTAN", "(29) ANTELMENTIK", "(30) ANTI AMUBIASIS", "(31) OBAT YG MEMPENGARUHI DARAH", "ANTI ANEMIA", "(32) HEMOSTATIK", "(33) PRODUK DAN SUBTITUEN PLASMA", "(34) SERUM", "(35) AKSITOSIK", "(36) RELAKSAN UTERUS", "(37) ANTI INFLAMASI SALEP", "(38) PERANGSANG JARINGAN GRANULASI", "(39) ANTI BAKTERI", "(40) ANTI FUNGSI SALEP", "(41) ANTI SCABIES", "(42) ANTI SEPTIK", "(43) LAIN-LAIN OBAT KULIT", "(44) ANTI SISTEMIK MATA", "(45) ANASTESI LOKAL MATA", "(46) ANTI INFEKSI MATA", "(47) LAIN-LAIN OBAT MATA", "(48) ANTI INFEKSI THT", "(49) LAIN-LAIN INFEKSI THT", "(50) ANTI FILARIASIS", "(51) ANTI HEMOROID", "(52) ANTI EMETIK", "(53) ANTI HIPERKOLESTEROLEMIA", "(54) NOOTROPIK", "(55) IMMUNDILATOR", "(56) OBAT GIGI", "(57) OBAT TOPIKAL MULUT", "(58) ALAT KESEHATAN HABIS PAKAI", "(59) REAGENSIA & LAIN-LAIN" }));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/cari.png"))); // NOI18N
         jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -203,7 +217,7 @@ public class DataObat extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel5.setText("Urutkan Berdasar :");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nama Obat", "Saldo Akhir", "Jumlah Pemasukan", "Jumlah Penggunaan" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nama Obat", "Golongan Obat", "Satuan", "Jumlah Gudang", "Tanggal Kadaluarsa Gudang", "Jumlah Apotek", "Tanggal Kadaluarsa Apotek" }));
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox2ActionPerformed(evt);
@@ -220,51 +234,51 @@ public class DataObat extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1306, Short.MAX_VALUE))
                     .addGroup(clPanelTransparan3Layout.createSequentialGroup()
-                        .addGap(614, 614, 614)
-                        .addComponent(jLabel1)
+                        .addGroup(clPanelTransparan3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(clPanelTransparan3Layout.createSequentialGroup()
+                                .addGap(614, 614, 614)
+                                .addComponent(jLabel1))
+                            .addGroup(clPanelTransparan3Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtCariNama, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel3)
+                                .addGap(18, 18, 18)
+                                .addComponent(cbCariGol, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel4)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(clPanelTransparan3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         clPanelTransparan3Layout.setVerticalGroup(
             clPanelTransparan3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, clPanelTransparan3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(22, 22, 22)
-                .addGroup(clPanelTransparan3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(clPanelTransparan3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(clPanelTransparan3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addGroup(clPanelTransparan3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(clPanelTransparan3Layout.createSequentialGroup()
                         .addGroup(clPanelTransparan3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCariNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5)
+                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(cbCariGol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE))
                     .addComponent(jLabel4))
-                .addGap(22, 22, 22)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jPanel1.add(clPanelTransparan3);
-        clPanelTransparan3.setBounds(20, 100, 1330, 560);
+        clPanelTransparan3.setBounds(20, 60, 1330, 600);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -286,9 +300,9 @@ public class DataObat extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnKeluarMouseClicked
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtCariNamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCariNamaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtCariNamaActionPerformed
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
         // TODO add your handling code here:
@@ -325,6 +339,7 @@ public class DataObat extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                new DataObat().setVisible(true);
             }
         });
     }
@@ -357,9 +372,9 @@ public class DataObat extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnKeluar;
+    private javax.swing.JComboBox<String> cbCariGol;
     private PanelTransparan.ClPanelTransparan clPanelTransparan1;
     private PanelTransparan.ClPanelTransparan clPanelTransparan3;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -368,8 +383,8 @@ public class DataObat extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTable tblEx;
+    private javax.swing.JTextField txtCariNama;
     private javax.swing.JLabel txtTanggal;
     private javax.swing.JLabel txtWelcome;
     // End of variables declaration//GEN-END:variables

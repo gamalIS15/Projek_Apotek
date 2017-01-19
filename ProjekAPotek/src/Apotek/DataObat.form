@@ -74,9 +74,9 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                       <Component id="txtWelcome" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="445" max="-2" attributes="0"/>
+                      <EmptySpace pref="524" max="32767" attributes="0"/>
                       <Component id="txtTanggal" min="-2" pref="171" max="-2" attributes="0"/>
-                      <EmptySpace pref="571" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="492" max="-2" attributes="0"/>
                       <Component id="btnKeluar" min="-2" pref="37" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
                   </Group>
@@ -141,7 +141,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="20" y="100" width="1330" height="560"/>
+              <AbsoluteConstraints x="20" y="60" width="1330" height="600"/>
             </Constraint>
           </Constraints>
 
@@ -150,34 +150,37 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jScrollPane1" pref="1306" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="614" max="-2" attributes="0"/>
-                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="-2" pref="614" max="-2" attributes="0"/>
+                                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="txtCariNama" min="-2" pref="300" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="cbCariGol" min="-2" pref="400" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="jComboBox2" min="-2" pref="150" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jTextField1" min="-2" pref="300" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jComboBox1" min="-2" pref="200" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jComboBox2" min="-2" pref="150" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -186,24 +189,22 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jComboBox2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtCariNama" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jComboBox2" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cbCariGol" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                              <Component id="jScrollPane1" pref="488" max="32767" attributes="0"/>
                           </Group>
                           <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" pref="444" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -251,9 +252,9 @@
                 <Property name="text" type="java.lang.String" value="Nama : "/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField1">
+            <Component class="javax.swing.JTextField" name="txtCariNama">
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCariNamaActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel3">
@@ -264,13 +265,82 @@
                 <Property name="text" type="java.lang.String" value="Golongan :"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="jComboBox1">
+            <Component class="javax.swing.JComboBox" name="cbCariGol">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="3">
-                    <StringItem index="0" value="Umum"/>
-                    <StringItem index="1" value="Narkotika"/>
-                    <StringItem index="2" value="Psikotropika"/>
+                  <StringArray count="72">
+                    <StringItem index="0" value="--Tampilkan Semua--"/>
+                    <StringItem index="1" value="(1a) ANALG"/>
+                    <StringItem index="2" value="ANTIP"/>
+                    <StringItem index="3" value="AN.INFL NON NARKOTIK"/>
+                    <StringItem index="4" value="(1b) ANALGETIK NARKOTIK"/>
+                    <StringItem index="5" value="(1c) ANTIPIRAI"/>
+                    <StringItem index="6" value="(2) ANASTESI LOKAL"/>
+                    <StringItem index="7" value="(3) AN.EPILEPSI"/>
+                    <StringItem index="8" value="AN.KONV"/>
+                    <StringItem index="9" value="AN.ASIETAS"/>
+                    <StringItem index="10" value="SEDATIV"/>
+                    <StringItem index="11" value="HIPNOTIK"/>
+                    <StringItem index="12" value="AN.PSIKOTIK"/>
+                    <StringItem index="13" value="(4) ANTI PARKINSON"/>
+                    <StringItem index="14" value="(5) ANTI DEPRESI"/>
+                    <StringItem index="15" value="(6) ANTI MIGREN"/>
+                    <StringItem index="16" value="(7) ANTI ANGINA-ANTI ARITMIA"/>
+                    <StringItem index="17" value="(8) ANTI HIPERTENSI-DIURETIKA"/>
+                    <StringItem index="18" value="(9) GLUKOSIDA JANTUNG"/>
+                    <StringItem index="19" value="(10) OBAT PD SHOK-ANTI ASMA KORTIKOS"/>
+                    <StringItem index="20" value="(11) ANTI TUSIF"/>
+                    <StringItem index="21" value="(12) EKSPEKTORAN"/>
+                    <StringItem index="22" value="(13) ANTI INFLUENZA"/>
+                    <StringItem index="23" value="(14) ANTASIDA"/>
+                    <StringItem index="24" value="(15) OBAT DIARE-KESEIMBANGAN CAIRAN"/>
+                    <StringItem index="25" value="(16) LAKSAN"/>
+                    <StringItem index="26" value="(17) ANTI SPASMODIK"/>
+                    <StringItem index="27" value="(18) ANTI HISTAMIN"/>
+                    <StringItem index="28" value="(19) LARUTAN NUTRISI"/>
+                    <StringItem index="29" value="(20) TIROID ANTAGONIS"/>
+                    <StringItem index="30" value="(21) ANTI DIABETIK ORAL"/>
+                    <StringItem index="31" value="(22) ANTI DIABETIK PARENTERAL"/>
+                    <StringItem index="32" value="(23) VITAMIN DAN MINERAL"/>
+                    <StringItem index="33" value="(24) ANTI BAKTERI SISTEMIK"/>
+                    <StringItem index="34" value="ANTISEPTIK"/>
+                    <StringItem index="35" value="(25) ANTI VIRUS"/>
+                    <StringItem index="36" value="(26) ANTI FUNGSI"/>
+                    <StringItem index="37" value="(27) ANTI TUBERKULOSIS"/>
+                    <StringItem index="38" value="(28) ANTI SEPTIK"/>
+                    <StringItem index="39" value="DESINFEKTAN"/>
+                    <StringItem index="40" value="(29) ANTELMENTIK"/>
+                    <StringItem index="41" value="(30) ANTI AMUBIASIS"/>
+                    <StringItem index="42" value="(31) OBAT YG MEMPENGARUHI DARAH"/>
+                    <StringItem index="43" value="ANTI ANEMIA"/>
+                    <StringItem index="44" value="(32) HEMOSTATIK"/>
+                    <StringItem index="45" value="(33) PRODUK DAN SUBTITUEN PLASMA"/>
+                    <StringItem index="46" value="(34) SERUM"/>
+                    <StringItem index="47" value="(35) AKSITOSIK"/>
+                    <StringItem index="48" value="(36) RELAKSAN UTERUS"/>
+                    <StringItem index="49" value="(37) ANTI INFLAMASI SALEP"/>
+                    <StringItem index="50" value="(38) PERANGSANG JARINGAN GRANULASI"/>
+                    <StringItem index="51" value="(39) ANTI BAKTERI"/>
+                    <StringItem index="52" value="(40) ANTI FUNGSI SALEP"/>
+                    <StringItem index="53" value="(41) ANTI SCABIES"/>
+                    <StringItem index="54" value="(42) ANTI SEPTIK"/>
+                    <StringItem index="55" value="(43) LAIN-LAIN OBAT KULIT"/>
+                    <StringItem index="56" value="(44) ANTI SISTEMIK MATA"/>
+                    <StringItem index="57" value="(45) ANASTESI LOKAL MATA"/>
+                    <StringItem index="58" value="(46) ANTI INFEKSI MATA"/>
+                    <StringItem index="59" value="(47) LAIN-LAIN OBAT MATA"/>
+                    <StringItem index="60" value="(48) ANTI INFEKSI THT"/>
+                    <StringItem index="61" value="(49) LAIN-LAIN INFEKSI THT"/>
+                    <StringItem index="62" value="(50) ANTI FILARIASIS"/>
+                    <StringItem index="63" value="(51) ANTI HEMOROID"/>
+                    <StringItem index="64" value="(52) ANTI EMETIK"/>
+                    <StringItem index="65" value="(53) ANTI HIPERKOLESTEROLEMIA"/>
+                    <StringItem index="66" value="(54) NOOTROPIK"/>
+                    <StringItem index="67" value="(55) IMMUNDILATOR"/>
+                    <StringItem index="68" value="(56) OBAT GIGI"/>
+                    <StringItem index="69" value="(57) OBAT TOPIKAL MULUT"/>
+                    <StringItem index="70" value="(58) ALAT KESEHATAN HABIS PAKAI"/>
+                    <StringItem index="71" value="(59) REAGENSIA &amp; LAIN-LAIN"/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -299,11 +369,14 @@
             <Component class="javax.swing.JComboBox" name="jComboBox2">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="4">
+                  <StringArray count="7">
                     <StringItem index="0" value="Nama Obat"/>
-                    <StringItem index="1" value="Saldo Akhir"/>
-                    <StringItem index="2" value="Jumlah Pemasukan"/>
-                    <StringItem index="3" value="Jumlah Penggunaan"/>
+                    <StringItem index="1" value="Golongan Obat"/>
+                    <StringItem index="2" value="Satuan"/>
+                    <StringItem index="3" value="Jumlah Gudang"/>
+                    <StringItem index="4" value="Tanggal Kadaluarsa Gudang"/>
+                    <StringItem index="5" value="Jumlah Apotek"/>
+                    <StringItem index="6" value="Tanggal Kadaluarsa Apotek"/>
                   </StringArray>
                 </Property>
               </Properties>

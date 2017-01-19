@@ -26,12 +26,20 @@ public class MainMenu extends javax.swing.JFrame {
     Statement stmt1, stmt2;
     ResultSet rsLogin, rsObat;
     String nama, id;
-    String[] title = {"Tanggal Kadaluarsa", "Nama Obat", "Golongan", "Satuan", "Sisa Persediaan Apotek"};
+    String[] title = {"Tanggal Kadaluarsa", "Nama Obat", "Golongan", "Satuan", "Sisa Persediaan Gudang", "Sisa Persediaan Apotek"};
     ArrayList<setObat> list = new ArrayList<setObat>();
     /**
      * Creates new form MainMenu
      */
     public MainMenu(String id, String pass) {
+        String sql = "SELECT * FROM DataGudang LEFT OUTER JOIN DataObat ON DataGudang.namaObatG=DataObat.namaObat "
+                + "AND DataGudang.golObatG=DataObat.golObat AND DataGudang.satG=DataObat.sat "
+                + "WHERE datediff(exdateG, current_date()) BETWEEN 0 AND 30 "
+                + "UNION SELECT * FROM DataGudang RIGHT OUTER JOIN DataObat ON DataGudang.namaObatG=DataObat.namaObat "
+                + "AND DataGudang.golObatG=DataObat.golObat AND DataGudang.satG=DataObat.sat "
+                + "WHERE DataGudang.namaObatG IS NULL "
+                + "AND datediff(exdateG, current_date()) BETWEEN 0 AND 30 ORDER BY exdateG";
+        
         this.setWaktu();
         initComponents();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -46,12 +54,13 @@ public class MainMenu extends javax.swing.JFrame {
             }
             
             stmt2 = koneksi.connection.createStatement();
-            rsObat = stmt2.executeQuery("SELECT * FROM DataObat WHERE datediff(exdate, current_date()) BETWEEN 0 AND 30 ORDER BY exdate");
+            rsObat = stmt2.executeQuery(sql);
             while(rsObat.next() == true) {
-                list.add(new setObat(rsObat.getDate("exdate"), 
-                        rsObat.getString("namaObat"), 
-                        rsObat.getString("golObat"), 
-                        rsObat.getString("sat"),
+                list.add(new setObat(rsObat.getDate("exdateG"), 
+                        rsObat.getString("namaObatG"), 
+                        rsObat.getString("golObatG"), 
+                        rsObat.getString("satG"),
+                        rsObat.getInt("jumlahSediaG"),
                         rsObat.getInt("jumlahSedia")));
             }
             
@@ -66,7 +75,7 @@ public class MainMenu extends javax.swing.JFrame {
         Object[][] data = new Object[this.list.size()][6];
         int x = 0;
         for(setObat o: this.list) {
-            data[x][0] = o.getTanggal();
+            data[x][0] = o.getExGudang();
             data[x][1] = o.getNamaObat();
             data[x][2] = o.getGolObat();
             data[x][3] = o.getSat();
@@ -276,17 +285,17 @@ public class MainMenu extends javax.swing.JFrame {
 
         tblEx.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Tanggal Kadaluarsa", "Nama Obat", "Golongan Obat", "Satuan", "Sisa Persediaan Apotek"
+                "Tanggal Kadaluarsa", "Nama Obat", "Golongan Obat", "Satuan", "Sisa Persediaan Gudang", "Sisa Persediaan Apotek"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
