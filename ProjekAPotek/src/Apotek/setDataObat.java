@@ -31,7 +31,7 @@ public class setDataObat {
     }
 
     /**
-     * @return the namaObat
+     * @return the namaObat asas
      */
     public String getNamaObat() {
         return namaObat;
