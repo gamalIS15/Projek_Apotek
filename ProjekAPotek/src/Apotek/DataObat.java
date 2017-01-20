@@ -24,7 +24,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class DataObat extends javax.swing.JFrame {
     Statement stmt1, stmt2;
-    ResultSet rsObat;
+    ResultSet rsGudang, rsObat;
     String x;
     String[] title = {"Nama Obat", "Golongan", "Satuan", 
         "Persediaan Gudang", "Tanggal Kadaluarsa Gudang", "Persediaan Apotek", "Tanggal Kadaluarsa Apotek"};
@@ -71,7 +71,7 @@ public class DataObat extends javax.swing.JFrame {
         } catch (SQLException ex) {
             System.out.println("Kesalahan: " + ex);;
         }
-        txtWelcome.setText(MainMenu.txtWelcome.getText());
+//        txtWelcome.setText(MainMenu.txtWelcome.getText());
         updateTable();
     }
     
@@ -89,6 +89,15 @@ public class DataObat extends javax.swing.JFrame {
             ++x;
         }
         tblEx.setModel(new DefaultTableModel(data, title));
+    }
+    
+    private void removeTable() {
+        DefaultTableModel model = (DefaultTableModel)tblEx.getModel();
+        while (model.getRowCount() > 0){
+            for (int i = 0; i < model.getRowCount(); ++i){
+                model.removeRow(i);
+            }
+        }
     }
 
     /**
@@ -114,9 +123,9 @@ public class DataObat extends javax.swing.JFrame {
         txtCariNama = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         cbCariGol = new javax.swing.JComboBox<>();
-        jLabel4 = new javax.swing.JLabel();
+        btnCari = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        cbCariSort = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistem Informasi Apotek Taman");
@@ -209,18 +218,23 @@ public class DataObat extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel3.setText("Golongan :");
 
-        cbCariGol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Tampilkan Semua--", "(1a) ANALG", "ANTIP", "AN.INFL NON NARKOTIK", "(1b) ANALGETIK NARKOTIK", "(1c) ANTIPIRAI", "(2) ANASTESI LOKAL", "(3) AN.EPILEPSI", "AN.KONV", "AN.ASIETAS", "SEDATIV", "HIPNOTIK", "AN.PSIKOTIK", "(4) ANTI PARKINSON", "(5) ANTI DEPRESI", "(6) ANTI MIGREN", "(7) ANTI ANGINA-ANTI ARITMIA", "(8) ANTI HIPERTENSI-DIURETIKA", "(9) GLUKOSIDA JANTUNG", "(10) OBAT PD SHOK-ANTI ASMA KORTIKOS", "(11) ANTI TUSIF", "(12) EKSPEKTORAN", "(13) ANTI INFLUENZA", "(14) ANTASIDA", "(15) OBAT DIARE-KESEIMBANGAN CAIRAN", "(16) LAKSAN", "(17) ANTI SPASMODIK", "(18) ANTI HISTAMIN", "(19) LARUTAN NUTRISI", "(20) TIROID ANTAGONIS", "(21) ANTI DIABETIK ORAL", "(22) ANTI DIABETIK PARENTERAL", "(23) VITAMIN DAN MINERAL", "(24) ANTI BAKTERI SISTEMIK", "ANTISEPTIK", "(25) ANTI VIRUS", "(26) ANTI FUNGSI", "(27) ANTI TUBERKULOSIS", "(28) ANTI SEPTIK", "DESINFEKTAN", "(29) ANTELMENTIK", "(30) ANTI AMUBIASIS", "(31) OBAT YG MEMPENGARUHI DARAH", "ANTI ANEMIA", "(32) HEMOSTATIK", "(33) PRODUK DAN SUBTITUEN PLASMA", "(34) SERUM", "(35) AKSITOSIK", "(36) RELAKSAN UTERUS", "(37) ANTI INFLAMASI SALEP", "(38) PERANGSANG JARINGAN GRANULASI", "(39) ANTI BAKTERI", "(40) ANTI FUNGSI SALEP", "(41) ANTI SCABIES", "(42) ANTI SEPTIK", "(43) LAIN-LAIN OBAT KULIT", "(44) ANTI SISTEMIK MATA", "(45) ANASTESI LOKAL MATA", "(46) ANTI INFEKSI MATA", "(47) LAIN-LAIN OBAT MATA", "(48) ANTI INFEKSI THT", "(49) LAIN-LAIN INFEKSI THT", "(50) ANTI FILARIASIS", "(51) ANTI HEMOROID", "(52) ANTI EMETIK", "(53) ANTI HIPERKOLESTEROLEMIA", "(54) NOOTROPIK", "(55) IMMUNDILATOR", "(56) OBAT GIGI", "(57) OBAT TOPIKAL MULUT", "(58) ALAT KESEHATAN HABIS PAKAI", "(59) REAGENSIA & LAIN-LAIN" }));
+        cbCariGol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Tampilkan Semua--", "Umum", "(1a) ANALG,ANTIP,AN.INFL NON NARKOTIK", "(1b) ANALGETIK NARKOTIK", "(1c) ANTIPIRAI ", "(2) ANASTESI LOKAL", "(3) AN.EPILEPSI, AN.KONV, AN.ASIETAS, SEDATIV, HIPNOTIK, AN.PSIKOTIK", "(4) ANTI PARKINSON ", "(5) ANTI DEPRESI", "(6) ANTI MIGREN", "(7) ANTI ANGINA-ANTI ARITMIA", "(8) ANTI HIPERTENSI-DIURETIKA", "(9) GLUKOSIDA JANTUNG", "(10) OBAT PD SHOK-ANTI ASMA KORTIKOS", "(11) ANTI TUSIF", "(12) EKSPEKTORAN", "(13) ANTI INFLUENZA", "(14) ANTASIDA", "(15) OBAT DIARE-KESEIMBANGAN CAIRAN", "(16) LAKSAN", "(17) ANTI SPASMODIK", "(18) ANTI HISTAMIN", "(19) LARUTAN NUTRISI", "(20) TIROID ANTAGONIS", "(21) ANTI DIABETIK ORAL", "(22) ANTI DIABETIK PARENTERAL", "(23) VITAMIN DAN MINERAL", "(24) ANTI BAKTERI SISTEMIK, ANTISEPTIK", "(25) ANTI VIRUS", "(26) ANTI FUNGSI", "(27) ANTI TUBERKULOSIS", "(28) ANTI SEPTIK, DESINFEKTAN", "(29) ANTELMENTIK", "(30) ANTI AMUBIASIS", "(31) OBAT YG MEMPENGARUHI DARAH, ANTI ANEMIA", "(32) HEMOSTATIK", "(33) PRODUK DAN SUBTITUEN PLASMA", "(34) SERUM", "(35) AKSITOSIK", "(36) RELAKSAN UTERUS", "(37) ANTI INFLAMASI SALEP", "(38) PERANGSANG JARINGAN GRANULASI", "(39) ANTI BAKTERI", "(40) ANTI FUNGSI SALEP", "(41) ANTI SCABIES", "(42) ANTI SEPTIK", "(43) LAIN-LAIN OBAT KULIT", "(44) ANTI SISTEMIK MATA", "(45) ANASTESI LOKAL MATA ", "(46) ANTI INFEKSI MATA", "(47) LAIN-LAIN OBAT MATA", "(48) ANTI INFEKSI THT", "(49) LAIN-LAIN INFEKSI THT ", "(50) ANTI FILARIASIS", "(51) ANTI HEMOROID", "(52) ANTI EMETIK", "(53) ANTI HIPERKOLESTEROLEMIA", "(54) NOOTROPIK", "(55) IMMUNDILATOR", "(56) OBAT GIGI", "(57) OBAT TOPIKAL MULUT ", "(58) ALAT KESEHATAN HABIS PAKAI", "(59) REAGENSIA & LAIN-LAIN" }));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/cari.png"))); // NOI18N
-        jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/cari.png"))); // NOI18N
+        btnCari.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCari.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCariMouseClicked(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel5.setText("Urutkan Berdasar :");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nama Obat", "Golongan Obat", "Satuan", "Jumlah Gudang", "Tanggal Kadaluarsa Gudang", "Jumlah Apotek", "Tanggal Kadaluarsa Apotek" }));
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+        cbCariSort.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nama Obat", "Golongan Obat", "Satuan", "Jumlah Gudang", "Tanggal Kadaluarsa Gudang", "Jumlah Apotek", "Tanggal Kadaluarsa Apotek" }));
+        cbCariSort.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
+                cbCariSortActionPerformed(evt);
             }
         });
 
@@ -250,9 +264,9 @@ public class DataObat extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cbCariSort, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel4)))
+                                .addComponent(btnCari)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -268,12 +282,12 @@ public class DataObat extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addComponent(txtCariNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbCariSort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3)
                             .addComponent(cbCariGol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE))
-                    .addComponent(jLabel4))
+                    .addComponent(btnCari))
                 .addContainerGap())
         );
 
@@ -304,9 +318,131 @@ public class DataObat extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCariNamaActionPerformed
 
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+    private void cbCariSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCariSortActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox2ActionPerformed
+    }//GEN-LAST:event_cbCariSortActionPerformed
+
+    private void btnCariMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCariMouseClicked
+        // TODO add your handling code here:
+        removeTable();
+        String urut = null;
+        
+        switch(cbCariSort.getSelectedIndex()) {
+            case 0: urut = "namaObatG"; break;
+            case 1: urut = "golObatG"; break;
+            case 2: urut = "satG"; break;
+            case 3: urut = "jumlahSediaG"; break;
+            case 4: urut = "exdateG"; break;
+            case 5: urut = "jumlahSedia"; break;
+            case 6: urut = "exdate"; break;
+        }
+        
+        try {
+            setConnection koneksi = new setConnection();
+            stmt1 = koneksi.connection.createStatement();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        if(txtCariNama.getText().equals("") || txtCariNama.getText()==null) {
+            if(cbCariGol.getSelectedItem().equals("--Tampilkan Semua--")) {
+                try {
+                    rsObat = stmt1.executeQuery("SELECT * FROM DataGudang LEFT OUTER JOIN DataObat "
+                            + "ON DataGudang.namaObatG=DataObat.namaObat "
+                            + "AND DataGudang.golObatG=DataObat.golObat AND DataGudang.satG=DataObat.sat "
+                            + "UNION "
+                            + "SELECT * FROM DataGudang RIGHT OUTER JOIN DataObat ON DataGudang.namaObatG=DataObat.namaObat "
+                            + "AND DataGudang.golObatG=DataObat.golObat AND DataGudang.satG=DataObat.sat "
+                            + "WHERE DataGudang.namaObatG IS NULL ORDER BY " + urut + "");
+                    while(rsObat.next() == true) {
+                        list.add(new setObat(rsObat.getString("namaObatG"), 
+                                rsObat.getString("golObatG"), 
+                                rsObat.getString("satG"), 
+                                rsObat.getInt("jumlahSediaG"), 
+                                rsObat.getDate("exdateG"), 
+                                rsObat.getInt("jumlahSedia"), 
+                                rsObat.getDate("exdate")));    
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+            } else {
+                try {
+                    rsGudang = stmt1.executeQuery("SELECT * FROM DataGudang LEFT OUTER JOIN DataObat "
+                            + "ON DataGudang.namaObatG=DataObat.namaObat "
+                            + "AND DataGudang.golObatG=DataObat.golObat AND DataGudang.satG=DataObat.sat "
+                            + "WHERE golObatG='" + cbCariGol.getSelectedItem().toString() 
+                            + "' UNION SELECT * FROM DataGudang RIGHT OUTER JOIN DataObat "
+                            + "ON DataGudang.namaObatG=DataObat.namaObat "
+                            + "AND DataGudang.golObatG=DataObat.golObat AND DataGudang.satG=DataObat.sat "
+                            + "WHERE DataGudang.namaObatG IS NULL AND golObatG='" + cbCariGol.getSelectedItem().toString() 
+                            + "' ORDER BY " + urut + "");
+                    while(rsGudang.next() == true) {
+                        list.add(new setObat(rsObat.getString("namaObatG"), 
+                                rsObat.getString("golObatG"), 
+                                rsObat.getString("satG"), 
+                                rsObat.getInt("jumlahSediaG"), 
+                                rsObat.getDate("exdateG"), 
+                                rsObat.getInt("jumlahSedia"), 
+                                rsObat.getDate("exdate")));    
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+            }
+        } else {
+            if(cbCariGol.getSelectedItem().equals("--Tampilkan Semua--")) {
+                try {
+                    rsGudang = stmt1.executeQuery("SELECT * FROM DataGudang LEFT OUTER JOIN DataObat "
+                            + "ON DataGudang.namaObatG=DataObat.namaObat "
+                            + "AND DataGudang.golObatG=DataObat.golObat AND DataGudang.satG=DataObat.sat "
+                            + "WHERE namaObatG='" + txtCariNama.getText() 
+                            + "' UNION "
+                            + "SELECT * FROM DataGudang RIGHT OUTER JOIN DataObat ON DataGudang.namaObatG=DataObat.namaObat "
+                            + "AND DataGudang.golObatG=DataObat.golObat AND DataGudang.satG=DataObat.sat "
+                            + "WHERE DataGudang.namaObatG IS NULL AND namaObatG='" + txtCariNama.getText()
+                            + "' ORDER BY " + urut + "");
+                    while(rsGudang.next() == true) {
+                        list.add(new setObat(rsObat.getString("namaObatG"), 
+                                rsObat.getString("golObatG"), 
+                                rsObat.getString("satG"), 
+                                rsObat.getInt("jumlahSediaG"), 
+                                rsObat.getDate("exdateG"), 
+                                rsObat.getInt("jumlahSedia"), 
+                                rsObat.getDate("exdate")));    
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+            } else {
+                try {
+                    rsGudang = stmt1.executeQuery("SELECT * FROM DataGudang LEFT OUTER JOIN DataObat "
+                            + "ON DataGudang.namaObatG=DataObat.namaObat "
+                            + "AND DataGudang.golObatG=DataObat.golObat AND DataGudang.satG=DataObat.sat "
+                            + "WHERE namaObatG='" + txtCariNama.getText() 
+                            + "' AND golObatG='" + cbCariGol.getSelectedItem().toString()
+                            + "' UNION "
+                            + "SELECT * FROM DataGudang RIGHT OUTER JOIN DataObat ON DataGudang.namaObatG=DataObat.namaObat "
+                            + "AND DataGudang.golObatG=DataObat.golObat AND DataGudang.satG=DataObat.sat "
+                            + "WHERE DataGudang.namaObatG IS NULL AND namaObatG='" + txtCariNama.getText() 
+                            + "' AND golObatG='" + cbCariGol.getSelectedItem().toString()
+                            + "' ORDER BY " + urut + "");
+                    while(rsGudang.next() == true) {
+                        list.add(new setObat(rsObat.getString("namaObatG"), 
+                                rsObat.getString("golObatG"), 
+                                rsObat.getString("satG"), 
+                                rsObat.getInt("jumlahSediaG"), 
+                                rsObat.getDate("exdateG"), 
+                                rsObat.getInt("jumlahSedia"), 
+                                rsObat.getDate("exdate")));     
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+            }
+        }
+        removeTable();
+        updateTable();
+    }//GEN-LAST:event_btnCariMouseClicked
 
     /**
      * @param args the command line arguments
@@ -371,15 +507,15 @@ public class DataObat extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel btnCari;
     private javax.swing.JLabel btnKeluar;
     private javax.swing.JComboBox<String> cbCariGol;
+    private javax.swing.JComboBox<String> cbCariSort;
     private PanelTransparan.ClPanelTransparan clPanelTransparan1;
     private PanelTransparan.ClPanelTransparan clPanelTransparan3;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
