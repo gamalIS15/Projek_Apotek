@@ -14,6 +14,7 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
@@ -51,7 +52,6 @@ public class Resep extends javax.swing.JFrame {
             stmt = koneksi.connection.createStatement();
             rsResep = stmt.executeQuery("SELECT * FROM DataResep");
             
-            rsObat = stmt.executeQuery("SELECT * FROM DataObat");
             
             while(rsResep.next() == true){
                 list.add(new setResep(rsResep.getDate("Tanggal"),
@@ -60,41 +60,44 @@ public class Resep extends javax.swing.JFrame {
                         rsResep.getString("Alamat"),
                         rsResep.getString("JenisLayanan"),
                         rsResep.getString("BpjsNonBpjs"),
-                        rsResep.getString("NamaObat"),
-                        rsResep.getInt("Jumlah")));
+                        rsResep.getString("namaObat"),
+                        rsResep.getString("jmlObat")));
             }
         } catch (SQLException ex) {
             Logger.getLogger(Resep.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         try {
-            // updateTable();
+            
             Suggestion();
         } catch (SQLException ex) {
             Logger.getLogger(Resep.class.getName()).log(Level.SEVERE, null, ex);
         }
+        updateTable();
     }
     
     
     private void updateTable(){
-        Object[][] data = new Object[this.list.size()][6];
+        Object[][] data = new Object[this.list.size()][8];
         int x = 0;
         for (setResep sr : this.list){
             data[x][0] = sr.getTanggal();
             data[x][1] = sr.getNamaPasien();
-            data[x][2] = sr.getUsia();
+            data[x][2] = sr.getUsia();            
             data[x][3] = sr.getAlamat();
-            data[x][4] = sr.getBpjs_nonBpjs();
-            data[x][5] = sr.getNamaObat();
-            data[x][6] = sr.getJumlahObat();
+            data[x][4] = sr.getJenisLayanan();
+            data[x][5] = sr.getBpjs_nonBpjs();
+            data[x][6] = sr.getNamaObat();
+            data[x][7] = sr.getJumlahObat();
             ++x;
         }
         tblEx.setModel(new DefaultTableModel(data,title));
     }
     
     private void Suggestion() throws SQLException{
-        
-        while(rsObat.next()==true){
+        rsObat = stmt.executeQuery("SELECT * FROM DataObat");
+        ls.add("<Pilih Obat>");
+        while(rsObat.next()==true){           
             ls.add(rsObat.getString("namaObat"));
         }
         //Autocomplete
@@ -103,25 +106,34 @@ public class Resep extends javax.swing.JFrame {
         namaObat = ls.toArray(namaObat);
         
         DefaultComboBoxModel<String> dcm = new DefaultComboBoxModel<String>(namaObat);
+        DefaultComboBoxModel<String> cm = new DefaultComboBoxModel<String>(namaObat);
+        DefaultComboBoxModel<String> cm1 = new DefaultComboBoxModel<String>(namaObat);
+        DefaultComboBoxModel<String> cm2 = new DefaultComboBoxModel<String>(namaObat);
+        DefaultComboBoxModel<String> cm3 = new DefaultComboBoxModel<String>(namaObat);
+        DefaultComboBoxModel<String> cm4 = new DefaultComboBoxModel<String>(namaObat);
+        DefaultComboBoxModel<String> cm5 = new DefaultComboBoxModel<String>(namaObat);
+        DefaultComboBoxModel<String> cm6 = new DefaultComboBoxModel<String>(namaObat);
+        DefaultComboBoxModel<String> cm7 = new DefaultComboBoxModel<String>(namaObat);
+        DefaultComboBoxModel<String> cm8 = new DefaultComboBoxModel<String>(namaObat);
             cbNamaObat1.setModel( dcm );
             AutoCompleteDecorator.decorate(this.cbNamaObat1);
-            cbNamaObat2.setModel( dcm );
+            cbNamaObat2.setModel( cm );
             AutoCompleteDecorator.decorate(this.cbNamaObat2);
-            cbNamaObat3.setModel( dcm );
+            cbNamaObat3.setModel( cm1 );
             AutoCompleteDecorator.decorate(this.cbNamaObat3);
-            cbNamaObat4.setModel( dcm );
+            cbNamaObat4.setModel( cm2 );
             AutoCompleteDecorator.decorate(this.cbNamaObat4);
-            cbNamaObat5.setModel( dcm );
+            cbNamaObat5.setModel( cm3 );
             AutoCompleteDecorator.decorate(this.cbNamaObat5);
-            cbNamaObat6.setModel( dcm );
+            cbNamaObat6.setModel( cm4 );
             AutoCompleteDecorator.decorate(this.cbNamaObat6);
-            cbNamaObat7.setModel( dcm );
+            cbNamaObat7.setModel( cm5 );
             AutoCompleteDecorator.decorate(this.cbNamaObat7);
-            cbNamaObat8.setModel( dcm );
+            cbNamaObat8.setModel( cm6 );
             AutoCompleteDecorator.decorate(this.cbNamaObat8);
-            cbNamaObat9.setModel( dcm );
+            cbNamaObat9.setModel( cm7 );
             AutoCompleteDecorator.decorate(this.cbNamaObat9);
-            cbNamaObat10.setModel( dcm );
+            cbNamaObat10.setModel( cm8 );
             AutoCompleteDecorator.decorate(this.cbNamaObat10);
     }
     
@@ -202,7 +214,6 @@ public class Resep extends javax.swing.JFrame {
         jLabel37 = new javax.swing.JLabel();
         jLabel38 = new javax.swing.JLabel();
         spnJumlah10 = new javax.swing.JSpinner();
-        cbNamaObat1 = new javax.swing.JComboBox<>();
         cbNamaObat2 = new javax.swing.JComboBox<>();
         cbNamaObat3 = new javax.swing.JComboBox<>();
         cbNamaObat4 = new javax.swing.JComboBox<>();
@@ -212,6 +223,7 @@ public class Resep extends javax.swing.JFrame {
         cbNamaObat8 = new javax.swing.JComboBox<>();
         cbNamaObat9 = new javax.swing.JComboBox<>();
         cbNamaObat10 = new javax.swing.JComboBox<>();
+        cbNamaObat1 = new javax.swing.JComboBox<>();
         clPanelTransparan5 = new PanelTransparan.ClPanelTransparan();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblObatApotek = new javax.swing.JTable();
@@ -466,13 +478,6 @@ public class Resep extends javax.swing.JFrame {
 
         jLabel38.setText("Jumlah");
 
-        cbNamaObat1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbNamaObat1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                cbNamaObat1KeyTyped(evt);
-            }
-        });
-
         cbNamaObat2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         cbNamaObat3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -490,6 +495,8 @@ public class Resep extends javax.swing.JFrame {
         cbNamaObat9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         cbNamaObat10.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        cbNamaObat1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout clPanelTransparan4Layout = new javax.swing.GroupLayout(clPanelTransparan4);
         clPanelTransparan4.setLayout(clPanelTransparan4Layout);
@@ -575,15 +582,11 @@ public class Resep extends javax.swing.JFrame {
                                 .addComponent(cbNamaObat4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(clPanelTransparan4Layout.createSequentialGroup()
                                 .addComponent(jLabel12)
+                                .addGap(18, 18, 18)
                                 .addGroup(clPanelTransparan4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(clPanelTransparan4Layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addComponent(cbNamaObat1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, clPanelTransparan4Layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addGroup(clPanelTransparan4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(cbNamaObat2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(cbNamaObat3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(cbNamaObat2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cbNamaObat3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cbNamaObat1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(clPanelTransparan4Layout.createSequentialGroup()
                 .addGroup(clPanelTransparan4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -898,30 +901,74 @@ public class Resep extends javax.swing.JFrame {
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         // TODO add your handling code here:
         String cekBpjs = rbBPJS.isSelected() ? "BPJS" : "non BPJS";
-        String usia = spnBln.getValue().toString() + spnThn.getValue().toString();
+        String sql;        
+               
+       
+        
         setResep rs = new setResep();
         rs.setTanggal(txtTanggalResep.getDate());
         rs.setNamaPasien(txtNamaPasien.getText());
-        rs.setUsia(usia);
+        rs.setUsia(spnThn.getValue().toString());
         rs.setAlamat(txtAlamat.getText());
         rs.setJenisLayanan(cbJenisLayanan.getSelectedItem().toString());
         rs.setBpjs_nonBpjs(cekBpjs);  
         ArrayList<String> ar = new ArrayList<String>();
-            //ar.add(txtNamaObat1.getText());
-//            ar.add(txtNamaObat2.getText());
-//            ar.add(txtNamaObat3.getText());
-//            ar.add(txtNamaObat4.getText());
-//            ar.add(txtNamaObat5.getText());
-//            ar.add(txtNamaObat6.getText());
-//            ar.add(txtNamaObat7.getText());
-//            ar.add(txtNamaObat8.getText());
-//            ar.add(txtNamaObat9.getText());
-//            ar.add(txtNamaObat10.getText());
-            
-        String[] stockArr = new String[ar.size()];
-        stockArr = ar.toArray(stockArr);
-       // rs.setNamaObat(stockArr);
-        
+          ar.add(cbNamaObat1.getSelectedItem().toString());          
+          ar.add(cbNamaObat2.getSelectedItem().toString());
+          ar.add(cbNamaObat3.getSelectedItem().toString());
+          ar.add(cbNamaObat4.getSelectedItem().toString());
+          ar.add(cbNamaObat5.getSelectedItem().toString());
+          ar.add(cbNamaObat6.getSelectedItem().toString());
+          ar.add(cbNamaObat7.getSelectedItem().toString());
+          ar.add(cbNamaObat8.getSelectedItem().toString());
+          ar.add(cbNamaObat9.getSelectedItem().toString());
+          ar.add(cbNamaObat10.getSelectedItem().toString());
+       
+       String [] namaObat = new String[ar.size()];
+       for (int i = 0; i < ar.size(); i++) {
+             namaObat[i] = ar.get(i);
+         }
+       
+       
+       rs.setNamaObat(Arrays.toString(namaObat));
+       
+       ArrayList<String> an = new ArrayList<String>();
+        an.add(spnJumlah1.getValue().toString());
+        an.add(spnJumlah2.getValue().toString());
+        an.add(spnJumlah3.getValue().toString());
+        an.add(spnJumlah4.getValue().toString());
+        an.add(spnJumlah5.getValue().toString());
+        an.add(spnJumlah6.getValue().toString());
+        an.add(spnJumlah7.getValue().toString());
+        an.add(spnJumlah8.getValue().toString());
+        an.add(spnJumlah9.getValue().toString());
+        an.add(spnJumlah10.getValue().toString());
+       String [] jmlObat = new String[an.size()];
+       for (int i = 0; i < an.size(); i++) {
+             jmlObat[i] = an.get(i);
+         }
+       rs.setJumlahObat(Arrays.toString(jmlObat));
+       this.list.add(rs);
+       updateTable();
+       
+       sql = "INSERT INTO DataResep (Tanggal,NamaPasien,Usia,Alamat,JenisLayanan,BpjsNonBpjs,namaObat,jmlObat) "
+                + "VALUES ('"+txtTanggalResep.getDate() +  "',"
+                + "'" + txtNamaPasien.getText() + "',"
+                + "'" + spnThn.getValue() + "',"
+                + "'" + txtAlamat.getText() + "',"
+                + "'" + cbJenisLayanan.getSelectedItem() + "',"
+                + "'" + cekBpjs + "',"
+                + "'" + Arrays.toString(namaObat) + "',"
+                + "'" + Arrays.toString(jmlObat) + "'"                 
+                + ");";
+        setConnection koneksi;
+        try{
+        koneksi = new setConnection();
+        stmt = koneksi.connection.createStatement();
+        int berhasil = stmt.executeUpdate(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(Gudang.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnSimpanActionPerformed
 
     private void txtNamaObatApotekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNamaObatApotekActionPerformed
@@ -931,10 +978,6 @@ public class Resep extends javax.swing.JFrame {
     private void rbNBPJSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbNBPJSActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_rbNBPJSActionPerformed
-
-    private void cbNamaObat1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cbNamaObat1KeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbNamaObat1KeyTyped
 
     /**
      * @param args the command line arguments
