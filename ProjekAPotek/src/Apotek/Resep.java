@@ -949,7 +949,8 @@ public class Resep extends javax.swing.JFrame {
          }
        rs.setJumlahObat(Arrays.toString(jmlObat));
        this.list.add(rs);
-       updateTable();
+       
+      
        
        sql = "INSERT INTO DataResep (Tanggal,NamaPasien,Usia,Alamat,JenisLayanan,BpjsNonBpjs,namaObat,jmlObat) "
                 + "VALUES ('"+txtTanggalResep.getDate() +  "',"
@@ -969,6 +970,7 @@ public class Resep extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Gudang.class.getName()).log(Level.SEVERE, null, ex);
         }
+        updateTable();
     }//GEN-LAST:event_btnSimpanActionPerformed
 
     private void txtNamaObatApotekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNamaObatApotekActionPerformed
