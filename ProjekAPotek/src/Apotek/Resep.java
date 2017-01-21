@@ -410,7 +410,7 @@ public class Resep extends javax.swing.JFrame {
 
         jLabel7.setText("Jenis Layanan");
 
-        txtTanggalResep.setDateFormatString("dd-MM-yyyy");
+        txtTanggalResep.setDateFormatString("yyyy-MM-dd");
 
         txtAlamat.setColumns(20);
         txtAlamat.setRows(5);
@@ -903,10 +903,12 @@ public class Resep extends javax.swing.JFrame {
         String cekBpjs = rbBPJS.isSelected() ? "BPJS" : "non BPJS";
         String sql;        
                
-       
+        String tanggal = (txtTanggalResep.getDate().getYear()+1900) + "-" + 
+                (txtTanggalResep.getDate().getMonth()+1) + "-" + 
+                txtTanggalResep.getDate().getDate();
         
         setResep rs = new setResep();
-        rs.setTanggal(txtTanggalResep.getDate());
+        rs.setTanggal(Date.valueOf(tanggal));
         rs.setNamaPasien(txtNamaPasien.getText());
         rs.setUsia(spnThn.getValue().toString());
         rs.setAlamat(txtAlamat.getText());
@@ -950,10 +952,10 @@ public class Resep extends javax.swing.JFrame {
        rs.setJumlahObat(Arrays.toString(jmlObat));
        this.list.add(rs);
        
-      
+     
        
        sql = "INSERT INTO DataResep (Tanggal,NamaPasien,Usia,Alamat,JenisLayanan,BpjsNonBpjs,namaObat,jmlObat) "
-                + "VALUES ('"+txtTanggalResep.getDate() +  "',"
+                + "VALUES ('"+Date.valueOf(tanggal) +  "',"
                 + "'" + txtNamaPasien.getText() + "',"
                 + "'" + spnThn.getValue() + "',"
                 + "'" + txtAlamat.getText() + "',"
