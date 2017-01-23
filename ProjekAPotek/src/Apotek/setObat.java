@@ -10,6 +10,10 @@ public class setObat {
     private String sat;
     private int sisaApotek;
     private int sisaGudang;
+    
+    public setObat() {
+        
+    }
 
     public setObat(String namaObat, String golObat, String sat, int sisaGudang, Date exGudang, int sisaApotek, Date exApotek) {
         this.namaObat = namaObat;
@@ -27,6 +31,14 @@ public class setObat {
         this.golObat = golObat;
         this.sat = sat;
         this.sisaGudang = sisaGudang;
+        this.sisaApotek = sisaApotek;
+    }
+    
+    public setObat(Date tanggal, String namaObat, String golObat, String sat, int sisaApotek) {
+        this.exGudang = tanggal;
+        this.namaObat = namaObat;
+        this.golObat = golObat;
+        this.sat = sat;
         this.sisaApotek = sisaApotek;
     }
 

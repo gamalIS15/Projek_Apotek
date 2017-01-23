@@ -32,11 +32,14 @@ public class Resep extends javax.swing.JFrame {
     /**
      * Creates new form Resep
      */
-    Statement stmt;
-    ResultSet rsResep,rsObat;
+    Statement stmt, stmt1, stmt2;
+    ResultSet rsResep,rsObat,rsJual;
     int index = 0;
-    String title [] = {"Tanggal", "Nama Pasien", "Usia", "Alamat", "Jenis Layanan", "BPJS/Non BPJS", "Nama Obat", "Jumlah Pengambilan"};
+    String title [] = {"Tanggal", "Nama Pasien", "Usia", "Alamat", "Jenis Layanan", 
+        "BPJS/Non BPJS", "Nama Obat", "Jumlah Pengambilan"};
+    String [] judul= {"Tanggal", "Nama Obat", "Golongan", "Satuan", "Jumlah Obat (dalam satuan)"};
     ArrayList<setResep> list = new ArrayList<setResep>();
+    ArrayList<setObat> list1 = new ArrayList<setObat>();
     private final ArrayList<String> ls = new ArrayList<>();
     
     
@@ -45,13 +48,11 @@ public class Resep extends javax.swing.JFrame {
             this.setWaktu();
             initComponents();
             this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-            
-            txtWelcome.setText(MainMenu.txtWelcome.getText());
+//            txtWelcome.setText(MainMenu.txtWelcome.getText());
             
             setConnection koneksi = new setConnection();
             stmt = koneksi.connection.createStatement();
             rsResep = stmt.executeQuery("SELECT * FROM DataResep");
-            
             
             while(rsResep.next() == true){
                 list.add(new setResep(rsResep.getDate("Tanggal"),
@@ -63,17 +64,29 @@ public class Resep extends javax.swing.JFrame {
                         rsResep.getString("namaObat"),
                         rsResep.getString("jmlObat")));
             }
+            
+            stmt1 = koneksi.connection.createStatement();
+            rsJual = stmt1.executeQuery("SELECT * FROM DataJual");
+            while(rsJual.next() == true) {
+                list1.add(new setObat(rsJual.getDate("exdateJ"), 
+                        rsJual.getString("namaObatJ"), 
+                        rsJual.getString("golObatJ"), 
+                        rsJual.getString("satJ"), 
+                        rsJual.getInt("jumlahSediaJ"))); 
+            }
+            
         } catch (SQLException ex) {
-            Logger.getLogger(Resep.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex);;
         }
         
         try {
             
             Suggestion();
         } catch (SQLException ex) {
-            Logger.getLogger(Resep.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex);
         }
         updateTable();
+        updateTableJual();
     }
     
     
@@ -92,6 +105,20 @@ public class Resep extends javax.swing.JFrame {
             ++x;
         }
         tblEx.setModel(new DefaultTableModel(data,title));
+    }
+    
+    private void updateTableJual() {
+        Object[][] data1 = new Object[this.list1.size()][5];
+        int x = 0;
+        for(setObat o: this.list1) {
+            data1[x][0] = o.getExGudang();
+            data1[x][1] = o.getNamaObat();
+            data1[x][2] = o.getGolObat();
+            data1[x][3] = o.getSat();
+            data1[x][4] = o.getSisaGudang();
+            ++x;
+        }
+        tblJual.setModel(new DefaultTableModel(data1, judul));
     }
     
     private void Suggestion() throws SQLException{
@@ -226,7 +253,7 @@ public class Resep extends javax.swing.JFrame {
         cbNamaObat1 = new javax.swing.JComboBox<>();
         clPanelTransparan5 = new PanelTransparan.ClPanelTransparan();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tblObatApotek = new javax.swing.JTable();
+        tblJual = new javax.swing.JTable();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         txtNamaObatApotek = new javax.swing.JTextField();
@@ -364,7 +391,7 @@ public class Resep extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, clPanelTransparan3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(25, 25, 25)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(clPanelTransparan3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(clPanelTransparan3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel2)
@@ -374,9 +401,9 @@ public class Resep extends javax.swing.JFrame {
                         .addComponent(jLabel5)
                         .addComponent(cbUrutkanLogPasien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel4))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         clPanelTransparan4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -440,43 +467,63 @@ public class Resep extends javax.swing.JFrame {
 
         jLabel10.setText("Nama Obat 1");
 
+        spnJumlah1.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+
         jLabel11.setText("Jumlah");
 
         jLabel12.setText("Nama Obat 2");
 
         jLabel13.setText("Jumlah");
 
+        spnJumlah2.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+
         jLabel14.setText("Nama Obat 3");
 
         jLabel15.setText("Jumlah");
+
+        spnJumlah3.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
         jLabel16.setText("Nama Obat 4");
 
         jLabel17.setText("Jumlah");
 
+        spnJumlah4.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+
         jLabel18.setText("Nama Obat 5");
 
         jLabel28.setText("Jumlah");
+
+        spnJumlah5.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
         jLabel29.setText("Nama Obat 6");
 
         jLabel30.setText("Jumlah");
 
+        spnJumlah6.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+
         jLabel31.setText("Nama Obat 7");
 
         jLabel32.setText("Jumlah");
+
+        spnJumlah7.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
         jLabel33.setText("Nama Obat 8");
 
         jLabel34.setText("Jumlah");
 
+        spnJumlah8.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+
         jLabel35.setText("Nama Obat 9");
 
         jLabel36.setText("Jumlah");
 
+        spnJumlah9.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+
         jLabel37.setText("Nama Obat 10");
 
         jLabel38.setText("Jumlah");
+
+        spnJumlah10.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
         cbNamaObat2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -503,56 +550,51 @@ public class Resep extends javax.swing.JFrame {
         clPanelTransparan4Layout.setHorizontalGroup(
             clPanelTransparan4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(clPanelTransparan4Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(clPanelTransparan4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(clPanelTransparan4Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(clPanelTransparan4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(clPanelTransparan4Layout.createSequentialGroup()
                                 .addGroup(clPanelTransparan4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel25)
-                                    .addComponent(jLabel24)
-                                    .addComponent(jLabel26))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(clPanelTransparan4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
-                                    .addComponent(txtTanggalResep, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtNamaPasien)
-                                    .addComponent(cbJenisLayanan, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel14))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(clPanelTransparan4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(clPanelTransparan4Layout.createSequentialGroup()
-                                .addComponent(jLabel27)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(spnThn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(clPanelTransparan4Layout.createSequentialGroup()
+                                        .addGroup(clPanelTransparan4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel7)
+                                            .addComponent(jLabel25)
+                                            .addComponent(jLabel24)
+                                            .addComponent(jLabel26))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(clPanelTransparan4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
+                                            .addComponent(txtTanggalResep, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(txtNamaPasien)
+                                            .addComponent(cbJenisLayanan, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel14))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(spnBln, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel9))
-                            .addGroup(clPanelTransparan4Layout.createSequentialGroup()
                                 .addGroup(clPanelTransparan4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(clPanelTransparan4Layout.createSequentialGroup()
-                                        .addGap(16, 16, 16)
-                                        .addComponent(rbBPJS))
-                                    .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel28, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel30, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel32, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel34, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel36, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel38, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addGroup(clPanelTransparan4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, clPanelTransparan4Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                                        .addComponent(rbNBPJS))
+                                        .addComponent(jLabel27)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(spnThn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel8)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(spnBln, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel9))
                                     .addGroup(clPanelTransparan4Layout.createSequentialGroup()
+                                        .addGap(32, 32, 32)
+                                        .addGroup(clPanelTransparan4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel28, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel30, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel32, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel34, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel36, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel38, javax.swing.GroupLayout.Alignment.TRAILING))
                                         .addGroup(clPanelTransparan4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addGroup(clPanelTransparan4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addGroup(clPanelTransparan4Layout.createSequentialGroup()
@@ -572,10 +614,11 @@ public class Resep extends javax.swing.JFrame {
                                                     .addComponent(spnJumlah7, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addComponent(spnJumlah8, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addComponent(spnJumlah9, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(spnJumlah10, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                        .addGap(0, 0, Short.MAX_VALUE))))))
-                    .addGroup(clPanelTransparan4Layout.createSequentialGroup()
-                        .addGroup(clPanelTransparan4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(spnJumlah10, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addGroup(clPanelTransparan4Layout.createSequentialGroup()
+                                        .addComponent(rbBPJS)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(rbNBPJS))))
                             .addGroup(clPanelTransparan4Layout.createSequentialGroup()
                                 .addComponent(jLabel16)
                                 .addGap(18, 18, 18)
@@ -586,18 +629,10 @@ public class Resep extends javax.swing.JFrame {
                                 .addGroup(clPanelTransparan4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(cbNamaObat2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(cbNamaObat3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cbNamaObat1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(clPanelTransparan4Layout.createSequentialGroup()
-                .addGroup(clPanelTransparan4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cbNamaObat1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(clPanelTransparan4Layout.createSequentialGroup()
                         .addGap(174, 174, 174)
                         .addComponent(jLabel6))
-                    .addGroup(clPanelTransparan4Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(btnSimpan)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnHapus))
                     .addGroup(clPanelTransparan4Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(clPanelTransparan4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -629,7 +664,12 @@ public class Resep extends javax.swing.JFrame {
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, clPanelTransparan4Layout.createSequentialGroup()
                                         .addComponent(jLabel18)
                                         .addGap(18, 18, 18)
-                                        .addComponent(cbNamaObat5, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                        .addComponent(cbNamaObat5, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                    .addGroup(clPanelTransparan4Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(btnSimpan)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnHapus)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         clPanelTransparan4Layout.setVerticalGroup(
@@ -735,36 +775,36 @@ public class Resep extends javax.swing.JFrame {
                     .addGroup(clPanelTransparan4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel38)
                         .addComponent(spnJumlah10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(clPanelTransparan4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSimpan)
                     .addComponent(btnHapus))
-                .addGap(63, 63, 63))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         clPanelTransparan5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        tblObatApotek.setModel(new javax.swing.table.DefaultTableModel(
+        tblJual.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Tanggal Masuk", "Nama Obat", "Golongan Obat", "Satuan", "Persediaan Awal", "Persediaan Masuk", "Total Persediaan", "Tanggal Kadaluarsa"
+                "Tanggal Masuk", "Nama Obat", "Golongan Obat", "Satuan", "Jumlah Obat"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        tblObatApotek.setEnabled(false);
-        jScrollPane2.setViewportView(tblObatApotek);
+        tblJual.setEnabled(false);
+        jScrollPane2.setViewportView(tblJual);
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel19.setText("Obat Apotek");
@@ -824,7 +864,7 @@ public class Resep extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, clPanelTransparan5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel19)
-                .addGap(25, 25, 25)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(clPanelTransparan5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(clPanelTransparan5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel20)
@@ -834,9 +874,9 @@ public class Resep extends javax.swing.JFrame {
                         .addComponent(jLabel23)
                         .addComponent(cbUrutkanObatApotek, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel22))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -847,7 +887,7 @@ public class Resep extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(clPanelTransparan4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(clPanelTransparan3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -860,18 +900,18 @@ public class Resep extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(clPanelTransparan1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(clPanelTransparan4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(clPanelTransparan3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(60, 60, 60)
+                    .addGap(50, 50, 50)
                     .addComponent(clPanelTransparan5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(317, Short.MAX_VALUE)))
+                    .addContainerGap(331, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -882,7 +922,7 @@ public class Resep extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -902,10 +942,14 @@ public class Resep extends javax.swing.JFrame {
         // TODO add your handling code here:
         String cekBpjs = rbBPJS.isSelected() ? "BPJS" : "non BPJS";
         String sql;        
-               
+        String sqlInsert, sqlUpdate, sqlDelete;
+        String obat = null, gol = null, sat = null, Ag = null, As = null, Aobat = null;
+        int jumlahSkr = 0, AjumlahSkr=0;
+        Date exp = null, masuk = null, Amgd = null, Aexp = null;
         String tanggal = (txtTanggalResep.getDate().getYear()+1900) + "-" + 
                 (txtTanggalResep.getDate().getMonth()+1) + "-" + 
                 txtTanggalResep.getDate().getDate();
+        setConnection koneksi;
         
         setResep rs = new setResep();
         rs.setTanggal(Date.valueOf(tanggal));
@@ -925,13 +969,10 @@ public class Resep extends javax.swing.JFrame {
           ar.add(cbNamaObat8.getSelectedItem().toString());
           ar.add(cbNamaObat9.getSelectedItem().toString());
           ar.add(cbNamaObat10.getSelectedItem().toString());
-       
        String [] namaObat = new String[ar.size()];
        for (int i = 0; i < ar.size(); i++) {
              namaObat[i] = ar.get(i);
          }
-       
-       
        rs.setNamaObat(Arrays.toString(namaObat));
        
        ArrayList<String> an = new ArrayList<String>();
@@ -950,9 +991,224 @@ public class Resep extends javax.swing.JFrame {
              jmlObat[i] = an.get(i);
          }
        rs.setJumlahObat(Arrays.toString(jmlObat));
-       this.list.add(rs);
-       
-     
+        
+        try {
+            koneksi = new setConnection();
+            stmt = koneksi.connection.createStatement();
+            stmt1 = koneksi.connection.createStatement();
+            stmt2 = koneksi.connection.createStatement();
+        } catch (SQLException ex) {
+            Logger.getLogger(Gudang.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        if(cbNamaObat1.getSelectedItem().toString() != null || !(cbNamaObat1.getSelectedItem().toString().equals("")) || 
+                !(cbNamaObat1.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat1.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah1.getValue() && cbNamaObat1.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat1.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah1.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat1.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat1.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                   
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah1.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }              
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaGudang((int)spnJumlah1.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+            
+        if(!(cbNamaObat2.getSelectedItem().toString().equals(null) && cbNamaObat2.getSelectedItem().toString().equals("") 
+                && cbNamaObat2.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat2.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah2.getValue() && cbNamaObat2.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat2.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah1.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat2.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat2.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + jumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah2.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaGudang((int)spnJumlah2.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+            
+            if(!(cbNamaObat3.getSelectedItem().toString().equals(null) && cbNamaObat3.getSelectedItem().toString().equals("") 
+                && cbNamaObat3.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat3.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr < (int) spnJumlah3.getValue() && cbNamaObat3.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat3.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + spnJumlah3.getValue() + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat3.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + jumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah3.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObatG='" + gol + "' AND satG='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaGudang((int)spnJumlah3.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+        }
+        }
+        }
        
        sql = "INSERT INTO DataResep (Tanggal,NamaPasien,Usia,Alamat,JenisLayanan,BpjsNonBpjs,namaObat,jmlObat) "
                 + "VALUES ('"+Date.valueOf(tanggal) +  "',"
@@ -964,13 +1220,13 @@ public class Resep extends javax.swing.JFrame {
                 + "'" + Arrays.toString(namaObat) + "',"
                 + "'" + Arrays.toString(jmlObat) + "'"                 
                 + ");";
-        setConnection koneksi;
         try{
-        koneksi = new setConnection();
-        stmt = koneksi.connection.createStatement();
-        int berhasil = stmt.executeUpdate(sql);
+            koneksi = new setConnection();
+            stmt = koneksi.connection.createStatement();
+            int berhasil = stmt.executeUpdate(sql);
+            this.list.add(rs);
         } catch (SQLException ex) {
-            Logger.getLogger(Gudang.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex);
         }
         updateTable();
     }//GEN-LAST:event_btnSimpanActionPerformed
@@ -1028,6 +1284,7 @@ public class Resep extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                new Resep().setVisible(true);
             }
         });
     }
@@ -1139,7 +1396,7 @@ public class Resep extends javax.swing.JFrame {
     private javax.swing.JSpinner spnJumlah9;
     private javax.swing.JSpinner spnThn;
     private javax.swing.JTable tblEx;
-    private javax.swing.JTable tblObatApotek;
+    private javax.swing.JTable tblJual;
     private javax.swing.JTextArea txtAlamat;
     private javax.swing.JTextField txtNamaLogObat;
     private javax.swing.JTextField txtNamaObatApotek;
