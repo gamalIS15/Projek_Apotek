@@ -16,9 +16,11 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 /**
  *
@@ -26,7 +28,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Gudang extends javax.swing.JFrame {
     Statement stmt1, stmt2;
-    ResultSet rsGudang, rsApotek;
+    ResultSet rsGudang, rsApotek, rsCari;
     String[] title = {"Tanggal Masuk", "Nama Obat", "Golongan Obat", "Satuan", "Jumlah Obat Masuk", "Tanggal Kadaluarsa"};
     ArrayList<setGudang> list = new ArrayList<setGudang>();
 
@@ -58,6 +60,11 @@ public class Gudang extends javax.swing.JFrame {
         txtWelcome.setText(MainMenu.txtWelcome.getText());
         this.tambah();
         updateTable();
+        try {
+            SearchSugges();
+        } catch (SQLException ex) {
+            Logger.getLogger(Gudang.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private void updateTable() {
@@ -83,7 +90,20 @@ public class Gudang extends javax.swing.JFrame {
             }
         }
     }
-
+    private void SearchSugges() throws SQLException{
+        ArrayList<String> li = new ArrayList<String>();
+        rsCari = stmt1.executeQuery("SELECT * FROM DataGudang");
+        
+        while(rsCari.next()==true){
+            li.add(rsCari.getString("namaObatG"));
+        }
+        String [] cariObat = new String[li.size()];
+        cariObat = li.toArray(cariObat);
+        
+        DefaultComboBoxModel<String> cO = new DefaultComboBoxModel<String>(cariObat);
+        cbCariNama.setModel(cO);
+        AutoCompleteDecorator.decorate(this.cbCariNama);
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -104,12 +124,12 @@ public class Gudang extends javax.swing.JFrame {
         tblEx = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txtCariNama = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         cbCariGol = new javax.swing.JComboBox<>();
         btnCari = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         cbCariSort = new javax.swing.JComboBox<>();
+        cbCariNama = new javax.swing.JComboBox<>();
         clPanelTransparan4 = new PanelTransparan.ClPanelTransparan();
         btnSimpan = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
@@ -221,12 +241,6 @@ public class Gudang extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel2.setText("Nama : ");
 
-        txtCariNama.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCariNamaActionPerformed(evt);
-            }
-        });
-
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel3.setText("Golongan :");
 
@@ -250,6 +264,8 @@ public class Gudang extends javax.swing.JFrame {
             }
         });
 
+        cbCariNama.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout clPanelTransparan3Layout = new javax.swing.GroupLayout(clPanelTransparan3);
         clPanelTransparan3.setLayout(clPanelTransparan3Layout);
         clPanelTransparan3Layout.setHorizontalGroup(
@@ -265,13 +281,12 @@ public class Gudang extends javax.swing.JFrame {
                             .addComponent(jScrollPane1)
                             .addGroup(clPanelTransparan3Layout.createSequentialGroup()
                                 .addGroup(clPanelTransparan3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addGroup(clPanelTransparan3Layout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(clPanelTransparan3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(cbCariGol, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtCariNama))))
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel2))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(clPanelTransparan3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(cbCariGol, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cbCariNama, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -291,9 +306,9 @@ public class Gudang extends javax.swing.JFrame {
                     .addGroup(clPanelTransparan3Layout.createSequentialGroup()
                         .addGroup(clPanelTransparan3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(txtCariNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5)
-                            .addComponent(cbCariSort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cbCariSort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbCariNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(clPanelTransparan3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
@@ -633,10 +648,6 @@ public class Gudang extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnKeluarMouseClicked
 
-    private void txtCariNamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCariNamaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCariNamaActionPerformed
-
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         // TODO add your handling code here:
         String sqlSimpan, sqlDelete, obat = null, g = null, s = null;
@@ -951,7 +962,7 @@ public class Gudang extends javax.swing.JFrame {
         } catch (SQLException ex) {
             System.out.println(ex);
         }
-        if(txtCariNama.getText().equals("") || txtCariNama.getText()==null) {
+        if(cbCariNama.getSelectedItem().toString().equals("") || cbCariNama.getSelectedItem().toString()==null) {
             if(cbCariGol.getSelectedItem().equals("--Tampilkan Semua--")) {
                 try {
                     rsGudang = stmt1.executeQuery("SELECT * FROM DataGudang ORDER BY " + urut + "");
@@ -987,7 +998,7 @@ public class Gudang extends javax.swing.JFrame {
             if(cbCariGol.getSelectedItem().equals("--Tampilkan Semua--")) {
                 try {
                     rsGudang = stmt1.executeQuery("SELECT * FROM DataGudang "
-                            + "WHERE namaObatG='" + txtCariNama.getText() 
+                            + "WHERE namaObatG='" + cbCariNama.getSelectedItem().toString()
                             + "' ORDER BY " + urut + "");
                     while(rsGudang.next() == true) {
                         list.add(new setGudang(rsGudang.getDate("tglMasukG"), 
@@ -1003,7 +1014,7 @@ public class Gudang extends javax.swing.JFrame {
             } else {
                 try {
                     rsGudang = stmt1.executeQuery("SELECT * FROM DataGudang "
-                            + "WHERE namaObatG='" + txtCariNama.getText() 
+                            + "WHERE namaObatG='" + cbCariNama.getSelectedItem().toString() 
                             + "' AND golObatG='" + cbCariGol.getSelectedItem().toString() 
                             + "' ORDER BY " + urut + "");
                     while(rsGudang.next() == true) {
@@ -1135,6 +1146,7 @@ public class Gudang extends javax.swing.JFrame {
     private javax.swing.JButton btnSimpanA;
     private javax.swing.JButton btnTambah;
     private javax.swing.JComboBox<String> cbCariGol;
+    private javax.swing.JComboBox<String> cbCariNama;
     private javax.swing.JComboBox<String> cbCariSort;
     private javax.swing.JComboBox<String> cbDariA;
     private javax.swing.JComboBox<String> cbGolObat;
@@ -1170,7 +1182,6 @@ public class Gudang extends javax.swing.JFrame {
     private javax.swing.JSpinner spJumlah;
     private javax.swing.JSpinner spJumlahA;
     private javax.swing.JTable tblEx;
-    private javax.swing.JTextField txtCariNama;
     private com.toedter.calendar.JDateChooser txtEx;
     private javax.swing.JTextField txtNamaObat;
     private javax.swing.JTextField txtNamaObatA;
