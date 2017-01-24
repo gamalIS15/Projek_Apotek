@@ -41,7 +41,7 @@ public class Gudang extends javax.swing.JFrame {
         try {
             setConnection koneksi = new setConnection();
             stmt1 = koneksi.connection.createStatement();
-            rsGudang = stmt1.executeQuery("SELECT * FROM DataGudang");
+            rsGudang = stmt1.executeQuery("SELECT * FROM DataGudang ORDER BY namaObatG");
             while(rsGudang.next() == true) {
                 list.add(new setGudang(rsGudang.getDate("tglMasukG"), 
                         rsGudang.getString("namaObatG"), 

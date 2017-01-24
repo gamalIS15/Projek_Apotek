@@ -34,7 +34,7 @@ public class DataObat extends javax.swing.JFrame {
             + "UNION "
             + "SELECT * FROM DataGudang RIGHT OUTER JOIN DataObat ON DataGudang.namaObatG=DataObat.namaObat "
             + "AND DataGudang.golObatG=DataObat.golObat AND DataGudang.satG=DataObat.sat "
-            + "WHERE DataGudang.namaObatG IS NULL";
+            + "WHERE DataGudang.namaObatG IS NULL ORDER BY namaObatG";
     /**
      * Creates new form MainMenu
      */
