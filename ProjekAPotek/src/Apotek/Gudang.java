@@ -93,7 +93,7 @@ public class Gudang extends javax.swing.JFrame {
     private void SearchSugges() throws SQLException{
         ArrayList<String> li = new ArrayList<String>();
         rsCari = stmt1.executeQuery("SELECT * FROM DataGudang ORDER BY namaObatG");
-        li.add(null);
+        li.add("");
         while(rsCari.next()==true){
             li.add(rsCari.getString("namaObatG"));
         }

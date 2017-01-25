@@ -109,7 +109,7 @@ public class DataObat extends javax.swing.JFrame {
         stmt = koneksi.connection.createStatement();
         ArrayList<String> li = new ArrayList<String>();
         rsCari = stmt.executeQuery("SELECT * FROM DataGudang ORDER BY namaObatG");
-        li.add(null);
+        li.add("");
         while(rsCari.next()==true){
             li.add(rsCari.getString("namaObatG"));
         }
