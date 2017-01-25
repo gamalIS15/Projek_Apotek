@@ -27,7 +27,7 @@ import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
  * @author user
  */
 public class DataObat extends javax.swing.JFrame {
-    Statement stmt1, stmt2, stmt3;
+    Statement stmt1, stmt2;
     ResultSet rsGudang, rsObat, rsCari;
     String x;
     String[] title = {"Nama Obat", "Golongan", "Satuan", 
@@ -71,17 +71,13 @@ public class DataObat extends javax.swing.JFrame {
                         rsObat.getDate("exdate")));
                 }
             }
-            
+            SearchSugges();
         } catch (SQLException ex) {
             System.out.println("Kesalahan: " + ex);;
         }
 //        txtWelcome.setText(MainMenu.txtWelcome.getText());
         updateTable();
-        try {
-            SearchSugges();
-        } catch (SQLException ex) {
-            Logger.getLogger(DataObat.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
     }
     
     private void updateTable() {
@@ -110,10 +106,10 @@ public class DataObat extends javax.swing.JFrame {
     }
     private void SearchSugges() throws SQLException{
         ArrayList<String> li = new ArrayList<String>();
-        rsCari = stmt3.executeQuery("SELECT * FROM DataObat");
+        rsCari = stmt1.executeQuery("SELECT * FROM DataGudang");
         
         while(rsCari.next()==true){
-            li.add(rsCari.getString("namaObat"));
+            li.add(rsCari.getString("namaObatG"));
         }
         String [] cariObat = new String[li.size()];
         cariObat = li.toArray(cariObat);
