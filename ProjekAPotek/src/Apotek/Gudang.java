@@ -94,7 +94,7 @@ public class Gudang extends javax.swing.JFrame {
         ArrayList<String> li = new ArrayList<String>();
         ArrayList<String> ki = new ArrayList<String>();
         rsCari = stmt1.executeQuery("SELECT * FROM DataGudang ORDER BY namaObatG");
-        
+        li.add("");
         while(rsCari.next()==true){
             li.add(rsCari.getString("namaObatG"));
             ki.add(rsCari.getString("namaObatG"));
