@@ -27,7 +27,7 @@ import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
  * @author user
  */
 public class DataObat extends javax.swing.JFrame {
-    Statement stmt1, stmt2;
+    Statement stmt, stmt1, stmt2;
     ResultSet rsGudang, rsObat, rsCari;
     String x;
     String[] title = {"Nama Obat", "Golongan", "Satuan", 
@@ -105,8 +105,10 @@ public class DataObat extends javax.swing.JFrame {
         }
     }
     private void SearchSugges() throws SQLException{
+        setConnection koneksi = new setConnection();
+        stmt = koneksi.connection.createStatement();
         ArrayList<String> li = new ArrayList<String>();
-        rsCari = stmt1.executeQuery("SELECT * FROM DataGudang");
+        rsCari = stmt.executeQuery("SELECT * FROM DataGudang ORDER BY namaObatG");
         
         while(rsCari.next()==true){
             li.add(rsCari.getString("namaObatG"));

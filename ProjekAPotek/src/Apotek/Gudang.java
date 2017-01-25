@@ -57,7 +57,7 @@ public class Gudang extends javax.swing.JFrame {
         }
         
         
-        txtWelcome.setText(MainMenu.txtWelcome.getText());
+//        txtWelcome.setText(MainMenu.txtWelcome.getText());
         this.tambah();
         updateTable();
         try {
@@ -92,7 +92,7 @@ public class Gudang extends javax.swing.JFrame {
     }
     private void SearchSugges() throws SQLException{
         ArrayList<String> li = new ArrayList<String>();
-        rsCari = stmt1.executeQuery("SELECT * FROM DataGudang");
+        rsCari = stmt1.executeQuery("SELECT * FROM DataGudang ORDER BY namaObatG");
         
         while(rsCari.next()==true){
             li.add(rsCari.getString("namaObatG"));

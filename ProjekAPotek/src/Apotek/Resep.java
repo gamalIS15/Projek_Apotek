@@ -173,7 +173,7 @@ public class Resep extends javax.swing.JFrame {
     }
     
     private void Suggestion() throws SQLException{        
-        rsObat = stmt.executeQuery("SELECT * FROM DataObat");
+        rsObat = stmt.executeQuery("SELECT * FROM DataObat ORDER BY namaObat");
         ls.add("<Pilih Obat>");
         while(rsObat.next()==true){           
             ls.add(rsObat.getString("namaObat"));
