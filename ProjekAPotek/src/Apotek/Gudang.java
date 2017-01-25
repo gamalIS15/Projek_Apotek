@@ -92,17 +92,28 @@ public class Gudang extends javax.swing.JFrame {
     }
     private void SearchSugges() throws SQLException{
         ArrayList<String> li = new ArrayList<String>();
+        ArrayList<String> ki = new ArrayList<String>();
         rsCari = stmt1.executeQuery("SELECT * FROM DataGudang ORDER BY namaObatG");
         
         while(rsCari.next()==true){
             li.add(rsCari.getString("namaObatG"));
+            ki.add(rsCari.getString("namaObatG"));
         }
+        
         String [] cariObat = new String[li.size()];
         cariObat = li.toArray(cariObat);
         
+         String [] namaObat = new String[ki.size()];
+        cariObat = ki.toArray(namaObat);
+        
         DefaultComboBoxModel<String> cO = new DefaultComboBoxModel<String>(cariObat);
+        DefaultComboBoxModel<String> nO = new DefaultComboBoxModel<String>(namaObat);
+        
         cbCariNama.setModel(cO);
         AutoCompleteDecorator.decorate(this.cbCariNama);
+        
+        cbNamaObatA.setModel(nO);
+        AutoCompleteDecorator.decorate(this.cbNamaObatA);
     }
     
     /**
@@ -156,7 +167,6 @@ public class Gudang extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         txtTglMasukA = new com.toedter.calendar.JDateChooser();
         jLabel15 = new javax.swing.JLabel();
-        txtNamaObatA = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         cbGolObatA = new javax.swing.JComboBox<>();
         jLabel17 = new javax.swing.JLabel();
@@ -164,6 +174,7 @@ public class Gudang extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         spJumlahA = new javax.swing.JSpinner();
         btnSimpanA = new javax.swing.JButton();
+        cbNamaObatA = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gudang");
@@ -498,6 +509,8 @@ public class Gudang extends javax.swing.JFrame {
             }
         });
 
+        cbNamaObatA.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout clPanelTransparan2Layout = new javax.swing.GroupLayout(clPanelTransparan2);
         clPanelTransparan2.setLayout(clPanelTransparan2Layout);
         clPanelTransparan2Layout.setHorizontalGroup(
@@ -529,10 +542,10 @@ public class Gudang extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(clPanelTransparan2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(cbGolObatA, javax.swing.GroupLayout.Alignment.LEADING, 0, 340, Short.MAX_VALUE)
-                                    .addComponent(txtNamaObatA, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtTglMasukA, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(cbSatA, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(spJumlahA, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(spJumlahA, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cbNamaObatA, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(0, 15, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, clPanelTransparan2Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -556,8 +569,8 @@ public class Gudang extends javax.swing.JFrame {
                     .addComponent(jLabel14))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(clPanelTransparan2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNamaObatA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel15))
+                    .addComponent(jLabel15)
+                    .addComponent(cbNamaObatA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(clPanelTransparan2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
@@ -745,7 +758,7 @@ public class Gudang extends javax.swing.JFrame {
         
         if(cbDariA.getSelectedItem().equals("Gudang") && cbKeA.getSelectedItem().equals("Apotek")) {
             try {
-                rsGudang = stmt2.executeQuery("SELECT * FROM DataGudang WHERE namaObatG='" + txtNamaObatA.getText() +
+                rsGudang = stmt2.executeQuery("SELECT * FROM DataGudang WHERE namaObatG='" + cbNamaObatA.getSelectedItem().toString() +
                      "' AND satG='" + cbSatA.getSelectedItem().toString() + 
                     "' AND golObatG='" + cbGolObatA.getSelectedItem().toString() + "'");
                 while(rsGudang.next() == true) {
@@ -760,10 +773,10 @@ public class Gudang extends javax.swing.JFrame {
                 System.out.println(ex);
             }
 
-            if (txtNamaObatA.getText().equalsIgnoreCase(obat) && cbGolObatA.getSelectedItem().toString().equals(gol) &&
+            if ( cbNamaObatA.getSelectedItem().toString().equalsIgnoreCase(obat) && cbGolObatA.getSelectedItem().toString().equals(gol) &&
                     cbSatA.getSelectedItem().toString().equals(sat)) {
                 try {
-                    rsApotek = stmt1.executeQuery("SELECT * FROM DataObat WHERE namaObat='" + txtNamaObatA.getText() +
+                    rsApotek = stmt1.executeQuery("SELECT * FROM DataObat WHERE namaObat='" +  cbNamaObatA.getSelectedItem().toString() +
                             "' AND exdate='" + exp + "' AND sat='" + cbSatA.getSelectedItem().toString() + 
                             "' AND golObat='" + cbGolObatA.getSelectedItem().toString() + "'");
                     while(rsApotek.next() == true) {
@@ -783,7 +796,7 @@ public class Gudang extends javax.swing.JFrame {
                 if (isiJumlah <= jumlahSkr) {
                     sqlPindah = "INSERT INTO DataObat (tglMasuk,namaObat,golObat,sat,jumlahSedia,exdate) "
                         + "VALUES ('" + simMasA + "',"
-                        + "'" + txtNamaObatA.getText() + "',"
+                        + "'" +  cbNamaObatA.getSelectedItem().toString() + "',"
                         + "'" + cbGolObatA.getSelectedItem().toString() + "',"
                         + "'" + cbSatA.getSelectedItem().toString() + "',"
                         + "'" + totalA + "',"
@@ -796,7 +809,7 @@ public class Gudang extends javax.swing.JFrame {
                     }
                     
                     sqlDelete = "DELETE FROM DataObat "
-                            + "WHERE namaObat='" + txtNamaObatA.getText() + 
+                            + "WHERE namaObat='" +  cbNamaObatA.getSelectedItem().toString() + 
                             "' AND exdate='" + Aexp + 
                             "' AND jumlahSedia=" + AjumlahSkr + 
                             " AND sat='" + cbSatA.getSelectedItem().toString() + 
@@ -832,7 +845,7 @@ public class Gudang extends javax.swing.JFrame {
             }
         } else if (cbDariA.getSelectedItem().equals("Apotek") && cbKeA.getSelectedItem().equals("Gudang")) {
             try {
-                rsApotek = stmt1.executeQuery("SELECT * FROM DataObat WHERE namaObat='" + txtNamaObatA.getText() +
+                rsApotek = stmt1.executeQuery("SELECT * FROM DataObat WHERE namaObat='" +  cbNamaObatA.getSelectedItem().toString() +
                      "' AND sat='" + cbSatA.getSelectedItem().toString() + 
                     "' AND golObat='" + cbGolObatA.getSelectedItem().toString() + "'");
                 while(rsApotek.next() == true) {
@@ -847,10 +860,10 @@ public class Gudang extends javax.swing.JFrame {
                 System.out.println(ex);
             }
 
-            if (txtNamaObatA.getText().equalsIgnoreCase(obat) && cbGolObatA.getSelectedItem().toString().equals(gol) &&
+            if ( cbNamaObatA.getSelectedItem().toString().equalsIgnoreCase(obat) && cbGolObatA.getSelectedItem().toString().equals(gol) &&
                     cbSatA.getSelectedItem().toString().equals(sat)) {
                 try {
-                    rsApotek = stmt1.executeQuery("SELECT * FROM DataGudang WHERE namaObatG='" + txtNamaObatA.getText() +
+                    rsApotek = stmt1.executeQuery("SELECT * FROM DataGudang WHERE namaObatG='" +  cbNamaObatA.getSelectedItem().toString() +
                             "' AND exdateG='" + exp + "' AND satG='" + cbSatA.getSelectedItem().toString() + 
                             "' AND golObatG='" + cbGolObatA.getSelectedItem().toString() + "'");
                     while(rsApotek.next() == true) {
@@ -870,7 +883,7 @@ public class Gudang extends javax.swing.JFrame {
                 if (isiJumlah <= jumlahSkr) {
                     sqlPindah = "INSERT INTO DataGudang (tglMasukG,namaObatG,golObatG,satG,jumlahSediaG,exdateG) "
                         + "VALUES ('" + simMasA + "',"
-                        + "'" + txtNamaObatA.getText() + "',"
+                        + "'" +  cbNamaObatA.getSelectedItem().toString() + "',"
                         + "'" + cbGolObatA.getSelectedItem().toString() + "',"
                         + "'" + cbSatA.getSelectedItem().toString() + "',"
                         + "'" + totalA + "',"
@@ -883,7 +896,7 @@ public class Gudang extends javax.swing.JFrame {
                     }
 
                     sqlDelete = "DELETE FROM DataGudang "
-                            + "WHERE namaObatG='" + txtNamaObatA.getText() + 
+                            + "WHERE namaObatG='" +  cbNamaObatA.getSelectedItem().toString() + 
                             "' AND exdateG='" + Aexp + 
                             "' AND jumlahSediaG=" + AjumlahSkr + 
                             " AND satG='" + cbSatA.getSelectedItem().toString() + 
@@ -1110,7 +1123,7 @@ public class Gudang extends javax.swing.JFrame {
             cbGolObat.setEnabled(true);
             cbSatuan.setEnabled(true);
             btnSimpan.setEnabled(true);
-            txtNamaObatA.setEnabled(false);
+            cbNamaObatA.setEnabled(false);
             txtTglMasukA.setEnabled(false);
             spJumlahA.setEnabled(false);
             cbGolObatA.setEnabled(false);
@@ -1128,7 +1141,7 @@ public class Gudang extends javax.swing.JFrame {
             cbGolObat.setEnabled(false);
             cbSatuan.setEnabled(false);
             btnSimpan.setEnabled(false);
-            txtNamaObatA.setEnabled(true);
+            cbNamaObatA.setEnabled(true);
             txtTglMasukA.setEnabled(true);
             spJumlahA.setEnabled(true);
             cbGolObatA.setEnabled(true);
@@ -1152,6 +1165,7 @@ public class Gudang extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbGolObat;
     private javax.swing.JComboBox<String> cbGolObatA;
     private javax.swing.JComboBox<String> cbKeA;
+    private javax.swing.JComboBox<String> cbNamaObatA;
     private javax.swing.JComboBox<String> cbSatA;
     private javax.swing.JComboBox<String> cbSatuan;
     private PanelTransparan.ClPanelTransparan clPanelTransparan1;
@@ -1184,7 +1198,6 @@ public class Gudang extends javax.swing.JFrame {
     private javax.swing.JTable tblEx;
     private com.toedter.calendar.JDateChooser txtEx;
     private javax.swing.JTextField txtNamaObat;
-    private javax.swing.JTextField txtNamaObatA;
     private javax.swing.JLabel txtTanggal;
     private com.toedter.calendar.JDateChooser txtTglMasukA;
     private javax.swing.JLabel txtWelcome;
