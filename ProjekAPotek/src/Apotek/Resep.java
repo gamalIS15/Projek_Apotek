@@ -896,26 +896,27 @@ public class Resep extends javax.swing.JFrame {
                 .addGroup(clPanelTransparan5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 861, Short.MAX_VALUE)
                     .addGroup(clPanelTransparan5Layout.createSequentialGroup()
+                        .addGap(342, 342, 342)
+                        .addComponent(jLabel19)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(clPanelTransparan5Layout.createSequentialGroup()
                         .addGroup(clPanelTransparan5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(clPanelTransparan5Layout.createSequentialGroup()
-                                .addGap(342, 342, 342)
-                                .addComponent(jLabel19))
+                                .addComponent(jLabel20)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 441, Short.MAX_VALUE))
                             .addGroup(clPanelTransparan5Layout.createSequentialGroup()
+                                .addComponent(jLabel21)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(clPanelTransparan5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel20)
-                                    .addGroup(clPanelTransparan5Layout.createSequentialGroup()
-                                        .addComponent(jLabel21)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(clPanelTransparan5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(cbCariGol1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(cbCariObat, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLabel23)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(cbCariSort1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(18, 18, 18)
-                                .addComponent(btnCari1)))
-                        .addGap(0, 173, Short.MAX_VALUE)))
+                                    .addComponent(cbCariObat, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cbCariGol1, 0, 1, Short.MAX_VALUE))
+                                .addGap(28, 28, 28)))
+                        .addComponent(jLabel23)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cbCariSort1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnCari1)
+                        .addGap(75, 75, 75)))
                 .addContainerGap())
         );
         clPanelTransparan5Layout.setVerticalGroup(
@@ -1046,25 +1047,25 @@ public class Resep extends javax.swing.JFrame {
        rs.setNamaObat(Arrays.toString(namaObat));
        
        ArrayList<String> an = new ArrayList<String>();
-       if(!(spnJumlah1.getValue().toString().equalsIgnoreCase("0"))) {
+       if(!(spnJumlah1.getValue().toString().equals("0"))) {
            an.add(spnJumlah1.getValue().toString());
-       if(!(spnJumlah2.getValue().toString().equalsIgnoreCase("0"))) {
+       if(!(spnJumlah2.getValue().toString().equals("0"))) {
            an.add(spnJumlah2.getValue().toString());
-       if(!(spnJumlah3.getValue().toString().equalsIgnoreCase("0"))) {
+       if(!(spnJumlah3.getValue().toString().equals("0"))) {
            an.add(spnJumlah3.getValue().toString());
-       if(!(spnJumlah4.getValue().toString().equalsIgnoreCase("0"))) {
+       if(!(spnJumlah4.getValue().toString().equals("0"))) {
            an.add(spnJumlah4.getValue().toString());
-       if(!(spnJumlah5.getValue().toString().equalsIgnoreCase("0"))) {
+       if(!(spnJumlah5.getValue().toString().equals("0"))) {
            an.add(spnJumlah5.getValue().toString());
-       if(!(spnJumlah6.getValue().toString().equalsIgnoreCase("0"))) {
+       if(!(spnJumlah6.getValue().toString().equals("0"))) {
            an.add(spnJumlah6.getValue().toString());
-       if(!(spnJumlah7.getValue().toString().equalsIgnoreCase("0"))) {
+       if(!(spnJumlah7.getValue().toString().equals("0"))) {
            an.add(spnJumlah7.getValue().toString());
-       if(!(spnJumlah8.getValue().toString().equalsIgnoreCase("0"))) {
+       if(!(spnJumlah8.getValue().toString().equals("0"))) {
            an.add(spnJumlah8.getValue().toString());
-       if(!(spnJumlah9.getValue().toString().equalsIgnoreCase("0"))) {
+       if(!(spnJumlah9.getValue().toString().equals("0"))) {
            an.add(spnJumlah9.getValue().toString());
-       if(!(spnJumlah10.getValue().toString().equalsIgnoreCase("0"))) {
+       if(!(spnJumlah10.getValue().toString().equals("0"))) {
            an.add(spnJumlah10.getValue().toString());
        }}}}}}}}}}
        
@@ -1199,7 +1200,7 @@ public class Resep extends javax.swing.JFrame {
                  
                  sqlDelete = "DELETE FROM DataJual "
                             + "WHERE namaObatJ='" + cbNamaObat2.getSelectedItem().toString() + 
-                            "' AND jumlahSediaJ=" + jumlahSkr + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
                             " AND satJ='" + sat + 
                             "' AND golObatJ='" + gol + "'";
                     
@@ -1274,7 +1275,7 @@ public class Resep extends javax.swing.JFrame {
                  
                  sqlDelete = "DELETE FROM DataJual "
                             + "WHERE namaObatJ='" + cbNamaObat3.getSelectedItem().toString() + 
-                            "' AND jumlahSediaJ=" + jumlahSkr + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
                             " AND satJ='" + sat + 
                             "' AND golObatJ='" + gol + "'";
                     
@@ -1349,7 +1350,7 @@ public class Resep extends javax.swing.JFrame {
                  
                  sqlDelete = "DELETE FROM DataJual "
                             + "WHERE namaObatJ='" + cbNamaObat4.getSelectedItem().toString() + 
-                            "' AND jumlahSediaJ=" + jumlahSkr + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
                             " AND satJ='" + sat + 
                             "' AND golObatJ='" + gol + "'";
                     
@@ -1424,7 +1425,7 @@ public class Resep extends javax.swing.JFrame {
                  
                  sqlDelete = "DELETE FROM DataJual "
                             + "WHERE namaObatJ='" + cbNamaObat5.getSelectedItem().toString() + 
-                            "' AND jumlahSediaJ=" + jumlahSkr + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
                             " AND satJ='" + sat + 
                             "' AND golObatJ='" + gol + "'";
                     
@@ -1499,7 +1500,7 @@ public class Resep extends javax.swing.JFrame {
                  
                  sqlDelete = "DELETE FROM DataJual "
                             + "WHERE namaObatJ='" + cbNamaObat6.getSelectedItem().toString() + 
-                            "' AND jumlahSediaJ=" + jumlahSkr + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
                             " AND satJ='" + sat + 
                             "' AND golObatJ='" + gol + "'";
                     
@@ -1574,7 +1575,7 @@ public class Resep extends javax.swing.JFrame {
                  
                  sqlDelete = "DELETE FROM DataJual "
                             + "WHERE namaObatJ='" + cbNamaObat7.getSelectedItem().toString() + 
-                            "' AND jumlahSediaJ=" + jumlahSkr + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
                             " AND satJ='" + sat + 
                             "' AND golObatJ='" + gol + "'";
                     
@@ -1649,7 +1650,7 @@ public class Resep extends javax.swing.JFrame {
                  
                  sqlDelete = "DELETE FROM DataJual "
                             + "WHERE namaObatJ='" + cbNamaObat8.getSelectedItem().toString() + 
-                            "' AND jumlahSediaJ=" + jumlahSkr + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
                             " AND satJ='" + sat + 
                             "' AND golObatJ='" + gol + "'";
                     
@@ -1724,7 +1725,7 @@ public class Resep extends javax.swing.JFrame {
                  
                  sqlDelete = "DELETE FROM DataJual "
                             + "WHERE namaObatJ='" + cbNamaObat9.getSelectedItem().toString() + 
-                            "' AND jumlahSediaJ=" + jumlahSkr + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
                             " AND satJ='" + sat + 
                             "' AND golObatJ='" + gol + "'";
                     
@@ -1799,7 +1800,7 @@ public class Resep extends javax.swing.JFrame {
                  
                  sqlDelete = "DELETE FROM DataJual "
                             + "WHERE namaObatJ='" + cbNamaObat10.getSelectedItem().toString() + 
-                            "' AND jumlahSediaJ=" + jumlahSkr + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
                             " AND satJ='" + sat + 
                             "' AND golObatJ='" + gol + "'";
                     
