@@ -260,70 +260,71 @@
             <Component class="javax.swing.JComboBox" name="cbCariGol">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="63">
+                  <StringArray count="64">
                     <StringItem index="0" value="--Tampilkan Semua--"/>
-                    <StringItem index="1" value="Umum"/>
-                    <StringItem index="2" value="(1a) ANALG,ANTIP,AN.INFL NON NARKOTIK"/>
-                    <StringItem index="3" value="(1b) ANALGETIK NARKOTIK"/>
-                    <StringItem index="4" value="(1c) ANTIPIRAI "/>
-                    <StringItem index="5" value="(2) ANASTESI LOKAL"/>
-                    <StringItem index="6" value="(3) AN.EPILEPSI, AN.KONV, AN.ASIETAS, SEDATIV, HIPNOTIK, AN.PSIKOTIK"/>
-                    <StringItem index="7" value="(4) ANTI PARKINSON "/>
-                    <StringItem index="8" value="(5) ANTI DEPRESI"/>
-                    <StringItem index="9" value="(6) ANTI MIGREN"/>
-                    <StringItem index="10" value="(7) ANTI ANGINA-ANTI ARITMIA"/>
-                    <StringItem index="11" value="(8) ANTI HIPERTENSI-DIURETIKA"/>
-                    <StringItem index="12" value="(9) GLUKOSIDA JANTUNG"/>
-                    <StringItem index="13" value="(10) OBAT PD SHOK-ANTI ASMA KORTIKOS"/>
-                    <StringItem index="14" value="(11) ANTI TUSIF"/>
-                    <StringItem index="15" value="(12) EKSPEKTORAN"/>
-                    <StringItem index="16" value="(13) ANTI INFLUENZA"/>
-                    <StringItem index="17" value="(14) ANTASIDA"/>
-                    <StringItem index="18" value="(15) OBAT DIARE-KESEIMBANGAN CAIRAN"/>
-                    <StringItem index="19" value="(16) LAKSAN"/>
-                    <StringItem index="20" value="(17) ANTI SPASMODIK"/>
-                    <StringItem index="21" value="(18) ANTI HISTAMIN"/>
-                    <StringItem index="22" value="(19) LARUTAN NUTRISI"/>
-                    <StringItem index="23" value="(20) TIROID ANTAGONIS"/>
-                    <StringItem index="24" value="(21) ANTI DIABETIK ORAL"/>
-                    <StringItem index="25" value="(22) ANTI DIABETIK PARENTERAL"/>
-                    <StringItem index="26" value="(23) VITAMIN DAN MINERAL"/>
-                    <StringItem index="27" value="(24) ANTI BAKTERI SISTEMIK, ANTISEPTIK"/>
-                    <StringItem index="28" value="(25) ANTI VIRUS"/>
-                    <StringItem index="29" value="(26) ANTI FUNGSI"/>
-                    <StringItem index="30" value="(27) ANTI TUBERKULOSIS"/>
-                    <StringItem index="31" value="(28) ANTI SEPTIK, DESINFEKTAN"/>
-                    <StringItem index="32" value="(29) ANTELMENTIK"/>
-                    <StringItem index="33" value="(30) ANTI AMUBIASIS"/>
-                    <StringItem index="34" value="(31) OBAT YG MEMPENGARUHI DARAH, ANTI ANEMIA"/>
-                    <StringItem index="35" value="(32) HEMOSTATIK"/>
-                    <StringItem index="36" value="(33) PRODUK DAN SUBTITUEN PLASMA"/>
-                    <StringItem index="37" value="(34) SERUM"/>
-                    <StringItem index="38" value="(35) AKSITOSIK"/>
-                    <StringItem index="39" value="(36) RELAKSAN UTERUS"/>
-                    <StringItem index="40" value="(37) ANTI INFLAMASI SALEP"/>
-                    <StringItem index="41" value="(38) PERANGSANG JARINGAN GRANULASI"/>
-                    <StringItem index="42" value="(39) ANTI BAKTERI"/>
-                    <StringItem index="43" value="(40) ANTI FUNGSI SALEP"/>
-                    <StringItem index="44" value="(41) ANTI SCABIES"/>
-                    <StringItem index="45" value="(42) ANTI SEPTIK"/>
-                    <StringItem index="46" value="(43) LAIN-LAIN OBAT KULIT"/>
-                    <StringItem index="47" value="(44) ANTI SISTEMIK MATA"/>
-                    <StringItem index="48" value="(45) ANASTESI LOKAL MATA "/>
-                    <StringItem index="49" value="(46) ANTI INFEKSI MATA"/>
-                    <StringItem index="50" value="(47) LAIN-LAIN OBAT MATA"/>
-                    <StringItem index="51" value="(48) ANTI INFEKSI THT"/>
-                    <StringItem index="52" value="(49) LAIN-LAIN INFEKSI THT "/>
-                    <StringItem index="53" value="(50) ANTI FILARIASIS"/>
-                    <StringItem index="54" value="(51) ANTI HEMOROID"/>
-                    <StringItem index="55" value="(52) ANTI EMETIK"/>
-                    <StringItem index="56" value="(53) ANTI HIPERKOLESTEROLEMIA"/>
-                    <StringItem index="57" value="(54) NOOTROPIK"/>
-                    <StringItem index="58" value="(55) IMMUNDILATOR"/>
-                    <StringItem index="59" value="(56) OBAT GIGI"/>
-                    <StringItem index="60" value="(57) OBAT TOPIKAL MULUT "/>
-                    <StringItem index="61" value="(58) ALAT KESEHATAN HABIS PAKAI"/>
-                    <StringItem index="62" value="(59) REAGENSIA &amp; LAIN-LAIN"/>
+                    <StringItem index="1" value="NARKOTIKA"/>
+                    <StringItem index="2" value="PSIKOTROPIKA"/>
+                    <StringItem index="3" value="(1a) ANALG,ANTIP,AN.INFL NON NARKOTIK"/>
+                    <StringItem index="4" value="(1b) ANALGETIK NARKOTIK"/>
+                    <StringItem index="5" value="(1c) ANTIPIRAI "/>
+                    <StringItem index="6" value="(2) ANASTESI LOKAL"/>
+                    <StringItem index="7" value="(3) AN.EPILEPSI, AN.KONV, AN.ASIETAS, SEDATIV, HIPNOTIK, AN.PSIKOTIK"/>
+                    <StringItem index="8" value="(4) ANTI PARKINSON "/>
+                    <StringItem index="9" value="(5) ANTI DEPRESI"/>
+                    <StringItem index="10" value="(6) ANTI MIGREN"/>
+                    <StringItem index="11" value="(7) ANTI ANGINA-ANTI ARITMIA"/>
+                    <StringItem index="12" value="(8) ANTI HIPERTENSI-DIURETIKA"/>
+                    <StringItem index="13" value="(9) GLUKOSIDA JANTUNG"/>
+                    <StringItem index="14" value="(10) OBAT PD SHOK-ANTI ASMA KORTIKOS"/>
+                    <StringItem index="15" value="(11) ANTI TUSIF"/>
+                    <StringItem index="16" value="(12) EKSPEKTORAN"/>
+                    <StringItem index="17" value="(13) ANTI INFLUENZA"/>
+                    <StringItem index="18" value="(14) ANTASIDA"/>
+                    <StringItem index="19" value="(15) OBAT DIARE-KESEIMBANGAN CAIRAN"/>
+                    <StringItem index="20" value="(16) LAKSAN"/>
+                    <StringItem index="21" value="(17) ANTI SPASMODIK"/>
+                    <StringItem index="22" value="(18) ANTI HISTAMIN"/>
+                    <StringItem index="23" value="(19) LARUTAN NUTRISI"/>
+                    <StringItem index="24" value="(20) TIROID ANTAGONIS"/>
+                    <StringItem index="25" value="(21) ANTI DIABETIK ORAL"/>
+                    <StringItem index="26" value="(22) ANTI DIABETIK PARENTERAL"/>
+                    <StringItem index="27" value="(23) VITAMIN DAN MINERAL"/>
+                    <StringItem index="28" value="(24) ANTI BAKTERI SISTEMIK, ANTISEPTIK"/>
+                    <StringItem index="29" value="(25) ANTI VIRUS"/>
+                    <StringItem index="30" value="(26) ANTI FUNGSI"/>
+                    <StringItem index="31" value="(27) ANTI TUBERKULOSIS"/>
+                    <StringItem index="32" value="(28) ANTI SEPTIK, DESINFEKTAN"/>
+                    <StringItem index="33" value="(29) ANTELMENTIK"/>
+                    <StringItem index="34" value="(30) ANTI AMUBIASIS"/>
+                    <StringItem index="35" value="(31) OBAT YG MEMPENGARUHI DARAH, ANTI ANEMIA"/>
+                    <StringItem index="36" value="(32) HEMOSTATIK"/>
+                    <StringItem index="37" value="(33) PRODUK DAN SUBTITUEN PLASMA"/>
+                    <StringItem index="38" value="(34) SERUM"/>
+                    <StringItem index="39" value="(35) AKSITOSIK"/>
+                    <StringItem index="40" value="(36) RELAKSAN UTERUS"/>
+                    <StringItem index="41" value="(37) ANTI INFLAMASI SALEP"/>
+                    <StringItem index="42" value="(38) PERANGSANG JARINGAN GRANULASI"/>
+                    <StringItem index="43" value="(39) ANTI BAKTERI"/>
+                    <StringItem index="44" value="(40) ANTI FUNGSI SALEP"/>
+                    <StringItem index="45" value="(41) ANTI SCABIES"/>
+                    <StringItem index="46" value="(42) ANTI SEPTIK"/>
+                    <StringItem index="47" value="(43) LAIN-LAIN OBAT KULIT"/>
+                    <StringItem index="48" value="(44) ANTI SISTEMIK MATA"/>
+                    <StringItem index="49" value="(45) ANASTESI LOKAL MATA "/>
+                    <StringItem index="50" value="(46) ANTI INFEKSI MATA"/>
+                    <StringItem index="51" value="(47) LAIN-LAIN OBAT MATA"/>
+                    <StringItem index="52" value="(48) ANTI INFEKSI THT"/>
+                    <StringItem index="53" value="(49) LAIN-LAIN INFEKSI THT "/>
+                    <StringItem index="54" value="(50) ANTI FILARIASIS"/>
+                    <StringItem index="55" value="(51) ANTI HEMOROID"/>
+                    <StringItem index="56" value="(52) ANTI EMETIK"/>
+                    <StringItem index="57" value="(53) ANTI HIPERKOLESTEROLEMIA"/>
+                    <StringItem index="58" value="(54) NOOTROPIK"/>
+                    <StringItem index="59" value="(55) IMMUNDILATOR"/>
+                    <StringItem index="60" value="(56) OBAT GIGI"/>
+                    <StringItem index="61" value="(57) OBAT TOPIKAL MULUT "/>
+                    <StringItem index="62" value="(58) ALAT KESEHATAN HABIS PAKAI"/>
+                    <StringItem index="63" value="(59) REAGENSIA &amp; LAIN-LAIN"/>
                   </StringArray>
                 </Property>
               </Properties>

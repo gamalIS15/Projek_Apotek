@@ -175,7 +175,7 @@ public class Resep extends javax.swing.JFrame {
     }
     
     private void Suggestion() throws SQLException{        
-        rsObat = stmt.executeQuery("SELECT * FROM DataObat ORDER BY namaObat");
+        rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE jumlahSedia>0 ORDER BY namaObat");
         ls.add("<Pilih Obat>");
         while(rsObat.next()==true){           
             ls.add(rsObat.getString("namaObat"));
@@ -865,7 +865,7 @@ public class Resep extends javax.swing.JFrame {
         jLabel21.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel21.setText("Golongan :");
 
-        cbCariGol1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Tampilkan Semua--", "Umum", "Narkotika", "Psikotropika" }));
+        cbCariGol1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Tampilkan Semua--", "NARKOTIKA", "PSIKOTROPIKA", "(1a) ANALG,ANTIP,AN.INFL NON NARKOTIK", "(1b) ANALGETIK NARKOTIK", "(1c) ANTIPIRAI ", "(2) ANASTESI LOKAL", "(3) AN.EPILEPSI, AN.KONV, AN.ASIETAS, SEDATIV, HIPNOTIK, AN.PSIKOTIK", "(4) ANTI PARKINSON ", "(5) ANTI DEPRESI", "(6) ANTI MIGREN", "(7) ANTI ANGINA-ANTI ARITMIA", "(8) ANTI HIPERTENSI-DIURETIKA", "(9) GLUKOSIDA JANTUNG", "(10) OBAT PD SHOK-ANTI ASMA KORTIKOS", "(11) ANTI TUSIF", "(12) EKSPEKTORAN", "(13) ANTI INFLUENZA", "(14) ANTASIDA", "(15) OBAT DIARE-KESEIMBANGAN CAIRAN", "(16) LAKSAN", "(17) ANTI SPASMODIK", "(18) ANTI HISTAMIN", "(19) LARUTAN NUTRISI", "(20) TIROID ANTAGONIS", "(21) ANTI DIABETIK ORAL", "(22) ANTI DIABETIK PARENTERAL", "(23) VITAMIN DAN MINERAL", "(24) ANTI BAKTERI SISTEMIK, ANTISEPTIK", "(25) ANTI VIRUS", "(26) ANTI FUNGSI", "(27) ANTI TUBERKULOSIS", "(28) ANTI SEPTIK, DESINFEKTAN", "(29) ANTELMENTIK", "(30) ANTI AMUBIASIS", "(31) OBAT YG MEMPENGARUHI DARAH, ANTI ANEMIA", "(32) HEMOSTATIK", "(33) PRODUK DAN SUBTITUEN PLASMA", "(34) SERUM", "(35) AKSITOSIK", "(36) RELAKSAN UTERUS", "(37) ANTI INFLAMASI SALEP", "(38) PERANGSANG JARINGAN GRANULASI", "(39) ANTI BAKTERI", "(40) ANTI FUNGSI SALEP", "(41) ANTI SCABIES", "(42) ANTI SEPTIK", "(43) LAIN-LAIN OBAT KULIT", "(44) ANTI SISTEMIK MATA", "(45) ANASTESI LOKAL MATA ", "(46) ANTI INFEKSI MATA", "(47) LAIN-LAIN OBAT MATA", "(48) ANTI INFEKSI THT", "(49) LAIN-LAIN INFEKSI THT ", "(50) ANTI FILARIASIS", "(51) ANTI HEMOROID", "(52) ANTI EMETIK", "(53) ANTI HIPERKOLESTEROLEMIA", "(54) NOOTROPIK", "(55) IMMUNDILATOR", "(56) OBAT GIGI", "(57) OBAT TOPIKAL MULUT ", "(58) ALAT KESEHATAN HABIS PAKAI", "(59) REAGENSIA & LAIN-LAIN" }));
 
         btnCari1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/cari.png"))); // NOI18N
         btnCari1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -896,24 +896,27 @@ public class Resep extends javax.swing.JFrame {
                 .addGroup(clPanelTransparan5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 861, Short.MAX_VALUE)
                     .addGroup(clPanelTransparan5Layout.createSequentialGroup()
-                        .addComponent(jLabel20)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbCariObat, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel21)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbCariGol1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel23)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cbCariSort1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnCari1)))
+                        .addGroup(clPanelTransparan5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(clPanelTransparan5Layout.createSequentialGroup()
+                                .addGap(342, 342, 342)
+                                .addComponent(jLabel19))
+                            .addGroup(clPanelTransparan5Layout.createSequentialGroup()
+                                .addGroup(clPanelTransparan5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel20)
+                                    .addGroup(clPanelTransparan5Layout.createSequentialGroup()
+                                        .addComponent(jLabel21)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(clPanelTransparan5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(cbCariGol1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(cbCariObat, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel23)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(cbCariSort1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
+                                .addComponent(btnCari1)))
+                        .addGap(0, 173, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(clPanelTransparan5Layout.createSequentialGroup()
-                .addGap(352, 352, 352)
-                .addComponent(jLabel19)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         clPanelTransparan5Layout.setVerticalGroup(
             clPanelTransparan5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -924,14 +927,16 @@ public class Resep extends javax.swing.JFrame {
                 .addGroup(clPanelTransparan5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(clPanelTransparan5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel20)
-                        .addComponent(jLabel21)
-                        .addComponent(cbCariGol1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel23)
                         .addComponent(cbCariSort1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(cbCariObat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnCari1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(clPanelTransparan5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel21)
+                    .addComponent(cbCariGol1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1013,16 +1018,27 @@ public class Resep extends javax.swing.JFrame {
         rs.setJenisLayanan(cbJenisLayanan.getSelectedItem().toString());
         rs.setBpjs_nonBpjs(cekBpjs);  
         ArrayList<String> ar = new ArrayList<String>();
-          ar.add(cbNamaObat1.getSelectedItem().toString());          
-          ar.add(cbNamaObat2.getSelectedItem().toString());
-          ar.add(cbNamaObat3.getSelectedItem().toString());
-          ar.add(cbNamaObat4.getSelectedItem().toString());
-          ar.add(cbNamaObat5.getSelectedItem().toString());
-          ar.add(cbNamaObat6.getSelectedItem().toString());
-          ar.add(cbNamaObat7.getSelectedItem().toString());
-          ar.add(cbNamaObat8.getSelectedItem().toString());
-          ar.add(cbNamaObat9.getSelectedItem().toString());
-          ar.add(cbNamaObat10.getSelectedItem().toString());
+       if(!(cbNamaObat1.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+           ar.add(cbNamaObat1.getSelectedItem().toString());
+       if(!(cbNamaObat2.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+           ar.add(cbNamaObat2.getSelectedItem().toString());
+       if(!(cbNamaObat3.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+           ar.add(cbNamaObat3.getSelectedItem().toString());
+       if(!(cbNamaObat4.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+           ar.add(cbNamaObat4.getSelectedItem().toString());
+       if(!(cbNamaObat5.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+           ar.add(cbNamaObat5.getSelectedItem().toString());
+       if(!(cbNamaObat6.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+           ar.add(cbNamaObat6.getSelectedItem().toString());
+       if(!(cbNamaObat7.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+           ar.add(cbNamaObat7.getSelectedItem().toString());
+       if(!(cbNamaObat8.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+           ar.add(cbNamaObat8.getSelectedItem().toString());
+       if(!(cbNamaObat9.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+           ar.add(cbNamaObat9.getSelectedItem().toString());
+       if(!(cbNamaObat10.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+           ar.add(cbNamaObat10.getSelectedItem().toString());
+       }}}}}}}}}}
        String [] namaObat = new String[ar.size()];
        for (int i = 0; i < ar.size(); i++) {
              namaObat[i] = ar.get(i);
@@ -1030,16 +1046,28 @@ public class Resep extends javax.swing.JFrame {
        rs.setNamaObat(Arrays.toString(namaObat));
        
        ArrayList<String> an = new ArrayList<String>();
-        an.add(spnJumlah1.getValue().toString());
-        an.add(spnJumlah2.getValue().toString());
-        an.add(spnJumlah3.getValue().toString());
-        an.add(spnJumlah4.getValue().toString());
-        an.add(spnJumlah5.getValue().toString());
-        an.add(spnJumlah6.getValue().toString());
-        an.add(spnJumlah7.getValue().toString());
-        an.add(spnJumlah8.getValue().toString());
-        an.add(spnJumlah9.getValue().toString());
-        an.add(spnJumlah10.getValue().toString());
+       if(!(spnJumlah1.getValue().toString().equalsIgnoreCase("0"))) {
+           an.add(spnJumlah1.getValue().toString());
+       if(!(spnJumlah2.getValue().toString().equalsIgnoreCase("0"))) {
+           an.add(spnJumlah2.getValue().toString());
+       if(!(spnJumlah3.getValue().toString().equalsIgnoreCase("0"))) {
+           an.add(spnJumlah3.getValue().toString());
+       if(!(spnJumlah4.getValue().toString().equalsIgnoreCase("0"))) {
+           an.add(spnJumlah4.getValue().toString());
+       if(!(spnJumlah5.getValue().toString().equalsIgnoreCase("0"))) {
+           an.add(spnJumlah5.getValue().toString());
+       if(!(spnJumlah6.getValue().toString().equalsIgnoreCase("0"))) {
+           an.add(spnJumlah6.getValue().toString());
+       if(!(spnJumlah7.getValue().toString().equalsIgnoreCase("0"))) {
+           an.add(spnJumlah7.getValue().toString());
+       if(!(spnJumlah8.getValue().toString().equalsIgnoreCase("0"))) {
+           an.add(spnJumlah8.getValue().toString());
+       if(!(spnJumlah9.getValue().toString().equalsIgnoreCase("0"))) {
+           an.add(spnJumlah9.getValue().toString());
+       if(!(spnJumlah10.getValue().toString().equalsIgnoreCase("0"))) {
+           an.add(spnJumlah10.getValue().toString());
+       }}}}}}}}}}
+       
        String [] jmlObat = new String[an.size()];
        for (int i = 0; i < an.size(); i++) {
              jmlObat[i] = an.get(i);
