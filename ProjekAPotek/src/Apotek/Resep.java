@@ -881,6 +881,11 @@ public class Resep extends javax.swing.JFrame {
         cbCariSort1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tanggal Masuk", "Nama Obat", "Golongan Obat", "Satuan", "Jumlah Obat" }));
 
         cbCariObat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbCariObat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbCariObatActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout clPanelTransparan5Layout = new javax.swing.GroupLayout(clPanelTransparan5);
         clPanelTransparan5.setLayout(clPanelTransparan5Layout);
@@ -2012,6 +2017,10 @@ public class Resep extends javax.swing.JFrame {
         removeTableJual();
         updateTableJual();
     }//GEN-LAST:event_btnCari1MouseClicked
+
+    private void cbCariObatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCariObatActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbCariObatActionPerformed
 
     /**
      * @param args the command line arguments
