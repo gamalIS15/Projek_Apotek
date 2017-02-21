@@ -650,7 +650,7 @@ public class Laporan extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        lplpoG.addTab("LPLPO GUdang", jPanel6);
+        lplpoG.addTab("LPLPO Gudang", jPanel6);
 
         javax.swing.GroupLayout clPanelTransparan19Layout = new javax.swing.GroupLayout(clPanelTransparan19);
         clPanelTransparan19.setLayout(clPanelTransparan19Layout);
