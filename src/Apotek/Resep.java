@@ -48,7 +48,7 @@ public class Resep extends javax.swing.JFrame {
             this.setWaktu();
             initComponents();
             this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-//            txtWelcome.setText(MainMenu.txtWelcome.getText());
+            txtWelcome.setText(MainMenu.txtWelcome.getText());
             
             setConnection koneksi = new setConnection();
             stmt = koneksi.connection.createStatement();
@@ -856,7 +856,7 @@ public class Resep extends javax.swing.JFrame {
         jScrollPane2.setViewportView(tblJual);
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel19.setText("Obat Terjual");
+        jLabel19.setText("Obat Keluar");
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel20.setText("Nama : ");
