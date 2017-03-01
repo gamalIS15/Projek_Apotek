@@ -67,7 +67,7 @@ public class MainMenu extends javax.swing.JFrame {
         } catch (SQLException ex) {
             System.out.println("Kesalahan: " + ex);;
         }
-//        txtWelcome.setText("Selamat datang, " + nama);
+        txtWelcome.setText("Selamat datang, " + nama);
         updateTable();
     }
     
