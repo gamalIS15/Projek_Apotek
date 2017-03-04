@@ -12,6 +12,7 @@ import java.util.Date;
  * @author user
  */
 public class setResep {
+    private String NoResep;
     private Date tanggal;
     private String namaPasien;
     private String usia;
@@ -24,7 +25,8 @@ public class setResep {
     public setResep() {
     }
 
-    public setResep(Date tanggal, String namaPasien, String usia, String alamat, String jenisLayanan, String bpjs_nonBpjs, String namaObat, String  jumlahObat) {
+    public setResep(String NoResep, Date tanggal, String namaPasien, String usia, String alamat, String jenisLayanan, String bpjs_nonBpjs, String namaObat, String  jumlahObat) {
+        this.NoResep = NoResep;
         this.tanggal = tanggal;
         this.namaPasien = namaPasien;
         this.usia = usia;
@@ -34,7 +36,6 @@ public class setResep {
         this.namaObat = namaObat;
         this.jumlahObat = jumlahObat;
     }
-    
     
 
     public Date getTanggal() {
@@ -99,6 +100,10 @@ public class setResep {
 
     public void setJumlahObat(String jumlahObat) {
         this.jumlahObat = jumlahObat;
+    }
+
+    Object getNoResep() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     

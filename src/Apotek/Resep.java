@@ -35,7 +35,7 @@ public class Resep extends javax.swing.JFrame {
     Statement stmt, stmt1, stmt2;
     ResultSet rsResep,rsObat,rsJual,rsCariResep,rscariObat;
     int index = 0;
-    String title [] = {"Tanggal", "Nama Pasien", "Usia", "Alamat", "Jenis Layanan", 
+    String title [] = {"No. Resep", "Tanggal", "Nama Pasien", "Usia", "Alamat", "Jenis Layanan", 
         "BPJS/Non BPJS", "Nama Obat", "Jumlah Pengambilan"};
     String [] judul= {"Tanggal", "Nama Obat", "Golongan", "Satuan", "Jumlah Obat (dalam satuan)"};
     ArrayList<setResep> list = new ArrayList<setResep>();
@@ -55,7 +55,8 @@ public class Resep extends javax.swing.JFrame {
             rsResep = stmt.executeQuery("SELECT * FROM DataResep ORDER BY Tanggal");
             
             while(rsResep.next() == true){
-                list.add(new setResep(rsResep.getDate("Tanggal"),
+                list.add(new setResep(rsResep.getString("NoResep"),
+                        rsResep.getDate("Tanggal"),
                         rsResep.getString("NamaPasien"),
                         rsResep.getString("Usia"),
                         rsResep.getString("Alamat"),
@@ -96,17 +97,18 @@ public class Resep extends javax.swing.JFrame {
     
     
     private void updateTable(){
-        Object[][] data = new Object[this.list.size()][8];
+        Object[][] data = new Object[this.list.size()][9];
         int x = 0;
         for (setResep sr : this.list){
-            data[x][0] = sr.getTanggal();
-            data[x][1] = sr.getNamaPasien();
-            data[x][2] = sr.getUsia();            
-            data[x][3] = sr.getAlamat();
-            data[x][4] = sr.getJenisLayanan();
-            data[x][5] = sr.getBpjs_nonBpjs();
-            data[x][6] = sr.getNamaObat();
-            data[x][7] = sr.getJumlahObat();
+            data[x][0] = sr.getNoResep();
+            data[x][1] = sr.getTanggal();
+            data[x][2] = sr.getNamaPasien();
+            data[x][3] = sr.getUsia();            
+            data[x][4] = sr.getAlamat();
+            data[x][5] = sr.getJenisLayanan();
+            data[x][6] = sr.getBpjs_nonBpjs();
+            data[x][7] = sr.getNamaObat();
+            data[x][8] = sr.getJumlahObat();
             ++x;
         }
         tblEx.setModel(new DefaultTableModel(data,title));
@@ -234,8 +236,6 @@ public class Resep extends javax.swing.JFrame {
         txtTanggal = new javax.swing.JLabel();
         btnKeluar = new javax.swing.JLabel();
         clPanelTransparan3 = new PanelTransparan.ClPanelTransparan();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblEx = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -313,6 +313,8 @@ public class Resep extends javax.swing.JFrame {
         jLabel23 = new javax.swing.JLabel();
         cbCariSort1 = new javax.swing.JComboBox<String>();
         cbCariObat = new javax.swing.JComboBox<String>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblEx = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gudang");
@@ -364,28 +366,6 @@ public class Resep extends javax.swing.JFrame {
         clPanelTransparan3.setBackground(new java.awt.Color(255, 255, 255));
         clPanelTransparan3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        tblEx.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Tanggal", "Nama Pasien", "Usia", "Alamat", "Jenis Layanan", "BPJS / Non BPJS", "Nama Obat", "Jumlah Pengambilan"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tblEx.setEnabled(false);
-        jScrollPane1.setViewportView(tblEx);
-
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Log Pasien");
 
@@ -418,23 +398,20 @@ public class Resep extends javax.swing.JFrame {
             clPanelTransparan3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(clPanelTransparan3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(clPanelTransparan3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 851, Short.MAX_VALUE)
-                    .addGroup(clPanelTransparan3Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbCariNama, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbCariGol, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cbCariSort, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnCari)))
-                .addContainerGap())
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbCariNama, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbCariGol, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cbCariSort, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnCari)
+                .addContainerGap(79, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, clPanelTransparan3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
@@ -455,9 +432,7 @@ public class Resep extends javax.swing.JFrame {
                         .addComponent(cbCariSort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(cbCariNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnCari))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(242, Short.MAX_VALUE))
         );
 
         clPanelTransparan4.setBackground(new java.awt.Color(255, 255, 255));
@@ -939,16 +914,40 @@ public class Resep extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        tblEx.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "No. Resep", "Tanggal", "Nama Pasien", "Usia", "Alamat", "Jenis Layanan", "BPJS / Non BPJS", "Nama Obat", "Jumlah Pengambilan"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblEx.setEnabled(false);
+        jScrollPane1.setViewportView(tblEx);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(clPanelTransparan1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(clPanelTransparan1, javax.swing.GroupLayout.DEFAULT_SIZE, 1375, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(clPanelTransparan4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(clPanelTransparan3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addGap(24, 24, 24))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -965,7 +964,9 @@ public class Resep extends javax.swing.JFrame {
                     .addComponent(clPanelTransparan4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(clPanelTransparan3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(clPanelTransparan3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(46, 46, 46)))
                 .addGap(37, 37, 37))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1880,7 +1881,8 @@ public class Resep extends javax.swing.JFrame {
                 try {
                     rsResep = stmt1.executeQuery("SELECT * FROM DataResep ORDER BY " + urut + "");
                     while(rsResep.next() == true) {
-                        list.add(new setResep(rsResep.getDate("Tanggal"),
+                        list.add(new setResep(rsResep.getString("NoResep"),
+                                rsResep.getDate("Tanggal"),
                                 rsResep.getString("NamaPasien"),
                                 rsResep.getString("Usia"),
                                 rsResep.getString("Alamat"),
@@ -1899,7 +1901,8 @@ public class Resep extends javax.swing.JFrame {
                             + "' OR JenisLayanan='" + cbCariGol.getSelectedItem().toString()
                             + "' ORDER BY " + urut + "");
                     while(rsResep.next() == true) {
-                        list.add(new setResep(rsResep.getDate("Tanggal"),
+                        list.add(new setResep(rsResep.getString("NoResep"),
+                                rsResep.getDate("Tanggal"),
                                 rsResep.getString("NamaPasien"),
                                 rsResep.getString("Usia"),
                                 rsResep.getString("Alamat"),
@@ -1919,7 +1922,8 @@ public class Resep extends javax.swing.JFrame {
                             + "WHERE NamaPasien='" + cbCariNama.getSelectedItem().toString() 
                             + "' ORDER BY " + urut + "");
                     while(rsResep.next() == true) {
-                        list.add(new setResep(rsResep.getDate("Tanggal"),
+                        list.add(new setResep(rsResep.getString("NoResep"),
+                                rsResep.getDate("Tanggal"),
                                 rsResep.getString("NamaPasien"),
                                 rsResep.getString("Usia"),
                                 rsResep.getString("Alamat"),
@@ -1939,7 +1943,8 @@ public class Resep extends javax.swing.JFrame {
                             + "' OR JenisLayanan ='" + cbCariGol.getSelectedItem().toString()
                             + "') ORDER BY " + urut + "");
                     while(rsResep.next() == true) {
-                        list.add(new setResep(rsResep.getDate("Tanggal"),
+                        list.add(new setResep(rsResep.getString("NoResep"),
+                                rsResep.getDate("Tanggal"),
                                 rsResep.getString("NamaPasien"),
                                 rsResep.getString("Usia"),
                                 rsResep.getString("Alamat"),
