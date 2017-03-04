@@ -19,6 +19,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
+import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
@@ -94,6 +95,7 @@ public class Resep extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Resep.class.getName()).log(Level.SEVERE, null, ex);
         }
+        tableFilter();
     }
     
     private void filter(String query){
@@ -106,7 +108,18 @@ public class Resep extends javax.swing.JFrame {
         tr.setRowFilter(RowFilter.regexFilter(query));
         td.setRowFilter(RowFilter.regexFilter(query));
     }
-    
+    private void tableFilter(){
+        // TableRowSorter<updateTable> sorter;
+        tblEx.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); 
+        tblJual.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); 
+        tblEx.setAutoCreateRowSorter(true);
+        tblJual.setAutoCreateRowSorter(true);
+        TableRowSorter<DefaultTableModel> sorter  = new TableRowSorter<DefaultTableModel>((DefaultTableModel) tblEx.getModel());
+        TableRowSorter<DefaultTableModel> sorter1  = new TableRowSorter<DefaultTableModel>((DefaultTableModel) tblJual.getModel());
+        tblJual.setRowSorter(sorter);
+        tblEx.setRowSorter(sorter);
+       
+    }
     private void updateTable(){
         Object[][] data = new Object[this.list.size()][8];
         int x = 0;

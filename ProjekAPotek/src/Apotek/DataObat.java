@@ -18,6 +18,7 @@ import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
@@ -80,14 +81,23 @@ public class DataObat extends javax.swing.JFrame {
         }
 //        txtWelcome.setText(MainMenu.txtWelcome.getText());
         updateTable();
-        
+        tableFilter();
     }
+    
     private void filter(String query){
         dm = (DefaultTableModel) tblEx.getModel();        
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(dm);        
         tblEx.setRowSorter(tr);       
         tr.setRowFilter(RowFilter.regexFilter(query));
         
+    }
+    private void tableFilter(){
+        // TableRowSorter<updateTable> sorter;
+        tblEx.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); 
+        tblEx.setAutoCreateRowSorter(true);
+        TableRowSorter<DefaultTableModel> sorter  = new TableRowSorter<DefaultTableModel>((DefaultTableModel) tblEx.getModel());
+        tblEx.setRowSorter(sorter);
+       
     }
     private void updateTable() {
         Object[][] data = new Object[this.list.size()][7];

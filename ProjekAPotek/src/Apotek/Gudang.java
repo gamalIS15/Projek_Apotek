@@ -18,6 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
+import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
@@ -67,6 +68,7 @@ public class Gudang extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Gudang.class.getName()).log(Level.SEVERE, null, ex);
         }
+        tableFilter();
     }
     
     private void filter(String query){
@@ -76,7 +78,16 @@ public class Gudang extends javax.swing.JFrame {
         tr.setRowFilter(RowFilter.regexFilter(query));
        
     }
-
+    
+    private void tableFilter(){
+        // TableRowSorter<updateTable> sorter;
+        tblEx.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); 
+        tblEx.setAutoCreateRowSorter(true);
+        TableRowSorter<DefaultTableModel> sorter  = new TableRowSorter<DefaultTableModel>((DefaultTableModel) tblEx.getModel());
+        tblEx.setRowSorter(sorter);
+       
+    }
+    
     private void updateTable() {
         Object[][] data = new Object[this.list.size()][6];
         int x = 0;
