@@ -844,7 +844,7 @@ public class Gudang extends javax.swing.JFrame {
                     gd.setExdate(exp);
                     this.list.add(gd);
                     updateTable();
-                    clearAllA();
+                    clearAllA(); //tess
                 }
             }
         } else if (cbDariA.getSelectedItem().equals("Apotek") && cbKeA.getSelectedItem().equals("Gudang")) {
