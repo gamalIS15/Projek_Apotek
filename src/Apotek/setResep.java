@@ -25,8 +25,7 @@ public class setResep {
     public setResep() {
     }
 
-    public setResep(String NoResep, Date tanggal, String namaPasien, String usia, String alamat, String jenisLayanan, String bpjs_nonBpjs, String namaObat, String  jumlahObat) {
-        this.NoResep = NoResep;
+    public setResep(Date tanggal, String namaPasien, String usia, String alamat, String jenisLayanan, String bpjs_nonBpjs, String namaObat, String  jumlahObat) {
         this.tanggal = tanggal;
         this.namaPasien = namaPasien;
         this.usia = usia;
