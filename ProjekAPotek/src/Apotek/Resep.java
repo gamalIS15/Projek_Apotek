@@ -589,39 +589,6 @@ public class Resep extends javax.swing.JFrame {
         jLabel161 = new javax.swing.JLabel();
         spnJumlah72 = new javax.swing.JSpinner();
         jLabel162 = new javax.swing.JLabel();
-        jPanel11 = new javax.swing.JPanel();
-        jLabel163 = new javax.swing.JLabel();
-        cbNamaObat73 = new javax.swing.JComboBox<>();
-        jLabel164 = new javax.swing.JLabel();
-        spnJumlah73 = new javax.swing.JSpinner();
-        jLabel165 = new javax.swing.JLabel();
-        jLabel166 = new javax.swing.JLabel();
-        cbNamaObat74 = new javax.swing.JComboBox<>();
-        spnJumlah74 = new javax.swing.JSpinner();
-        jLabel167 = new javax.swing.JLabel();
-        cbNamaObat75 = new javax.swing.JComboBox<>();
-        jLabel168 = new javax.swing.JLabel();
-        spnJumlah75 = new javax.swing.JSpinner();
-        jLabel169 = new javax.swing.JLabel();
-        jLabel170 = new javax.swing.JLabel();
-        cbNamaObat76 = new javax.swing.JComboBox<>();
-        spnJumlah76 = new javax.swing.JSpinner();
-        jLabel171 = new javax.swing.JLabel();
-        spnJumlah77 = new javax.swing.JSpinner();
-        jLabel172 = new javax.swing.JLabel();
-        cbNamaObat77 = new javax.swing.JComboBox<>();
-        cbNamaObat78 = new javax.swing.JComboBox<>();
-        jLabel173 = new javax.swing.JLabel();
-        spnJumlah78 = new javax.swing.JSpinner();
-        jLabel174 = new javax.swing.JLabel();
-        spnJumlah79 = new javax.swing.JSpinner();
-        jLabel175 = new javax.swing.JLabel();
-        jLabel176 = new javax.swing.JLabel();
-        cbNamaObat79 = new javax.swing.JComboBox<>();
-        cbNamaObat80 = new javax.swing.JComboBox<>();
-        jLabel177 = new javax.swing.JLabel();
-        spnJumlah80 = new javax.swing.JSpinner();
-        jLabel178 = new javax.swing.JLabel();
         clPanelTransparan5 = new PanelTransparan.ClPanelTransparan();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblJual = new javax.swing.JTable();
@@ -2333,173 +2300,6 @@ public class Resep extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("64-72", jPanel10);
 
-        jLabel163.setText("Nama Obat 74");
-
-        cbNamaObat73.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel164.setText("Jumlah");
-
-        spnJumlah73.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
-
-        jLabel165.setText("Jumlah");
-
-        jLabel166.setText("Nama Obat 73");
-
-        cbNamaObat74.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        spnJumlah74.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
-
-        jLabel167.setText("Nama Obat 75");
-
-        cbNamaObat75.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel168.setText("Jumlah");
-
-        spnJumlah75.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
-
-        jLabel169.setText("Jumlah");
-
-        jLabel170.setText("Nama Obat 76");
-
-        cbNamaObat76.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        spnJumlah76.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
-
-        jLabel171.setText("Jumlah");
-
-        spnJumlah77.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
-
-        jLabel172.setText("Nama Obat 77");
-
-        cbNamaObat77.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cbNamaObat78.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel173.setText("Jumlah");
-
-        spnJumlah78.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
-
-        jLabel174.setText("Nama Obat 78");
-
-        spnJumlah79.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
-
-        jLabel175.setText("Nama Obat 79");
-
-        jLabel176.setText("Jumlah");
-
-        cbNamaObat79.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cbNamaObat80.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel177.setText("Jumlah");
-
-        spnJumlah80.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
-
-        jLabel178.setText("Nama Obat 80");
-
-        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
-        jPanel11.setLayout(jPanel11Layout);
-        jPanel11Layout.setHorizontalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel11Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel166)
-                    .addComponent(jLabel163)
-                    .addComponent(jLabel167)
-                    .addComponent(jLabel170)
-                    .addComponent(jLabel172)
-                    .addComponent(jLabel174)
-                    .addComponent(jLabel175)
-                    .addComponent(jLabel178))
-                .addGap(12, 12, 12)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cbNamaObat73, 0, 200, Short.MAX_VALUE)
-                    .addComponent(cbNamaObat74, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cbNamaObat75, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cbNamaObat76, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cbNamaObat77, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cbNamaObat78, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cbNamaObat79, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cbNamaObat80, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel164)
-                    .addComponent(jLabel165)
-                    .addComponent(jLabel168)
-                    .addComponent(jLabel169)
-                    .addComponent(jLabel171)
-                    .addComponent(jLabel173)
-                    .addComponent(jLabel176)
-                    .addComponent(jLabel177))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(spnJumlah74, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spnJumlah73, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spnJumlah75, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spnJumlah76, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spnJumlah77, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spnJumlah78, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spnJumlah79, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spnJumlah80, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
-        jPanel11Layout.setVerticalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel11Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbNamaObat73, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spnJumlah74, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel164)
-                    .addComponent(jLabel166))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbNamaObat74, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spnJumlah73, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel165)
-                    .addComponent(jLabel163))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbNamaObat75, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spnJumlah75, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel168)
-                    .addComponent(jLabel167))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbNamaObat76, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spnJumlah76, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel169)
-                    .addComponent(jLabel170))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbNamaObat77, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spnJumlah77, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel171)
-                    .addComponent(jLabel172))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbNamaObat78, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spnJumlah78, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel173)
-                    .addComponent(jLabel174))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbNamaObat79, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spnJumlah79, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel176)
-                    .addComponent(jLabel175))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbNamaObat80, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spnJumlah80, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel177)
-                    .addComponent(jLabel178))
-                .addContainerGap(80, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("73-80", jPanel11);
-
         javax.swing.GroupLayout clPanelTransparan4Layout = new javax.swing.GroupLayout(clPanelTransparan4);
         clPanelTransparan4.setLayout(clPanelTransparan4Layout);
         clPanelTransparan4Layout.setHorizontalGroup(
@@ -3746,15 +3546,7 @@ public class Resep extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbNamaObat70;
     private javax.swing.JComboBox<String> cbNamaObat71;
     private javax.swing.JComboBox<String> cbNamaObat72;
-    private javax.swing.JComboBox<String> cbNamaObat73;
-    private javax.swing.JComboBox<String> cbNamaObat74;
-    private javax.swing.JComboBox<String> cbNamaObat75;
-    private javax.swing.JComboBox<String> cbNamaObat76;
-    private javax.swing.JComboBox<String> cbNamaObat77;
-    private javax.swing.JComboBox<String> cbNamaObat78;
-    private javax.swing.JComboBox<String> cbNamaObat79;
     private javax.swing.JComboBox<String> cbNamaObat8;
-    private javax.swing.JComboBox<String> cbNamaObat80;
     private javax.swing.JComboBox<String> cbNamaObat9;
     private PanelTransparan.ClPanelTransparan clPanelTransparan1;
     private PanelTransparan.ClPanelTransparan clPanelTransparan3;
@@ -3831,23 +3623,7 @@ public class Resep extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel160;
     private javax.swing.JLabel jLabel161;
     private javax.swing.JLabel jLabel162;
-    private javax.swing.JLabel jLabel163;
-    private javax.swing.JLabel jLabel164;
-    private javax.swing.JLabel jLabel165;
-    private javax.swing.JLabel jLabel166;
-    private javax.swing.JLabel jLabel167;
-    private javax.swing.JLabel jLabel168;
-    private javax.swing.JLabel jLabel169;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel170;
-    private javax.swing.JLabel jLabel171;
-    private javax.swing.JLabel jLabel172;
-    private javax.swing.JLabel jLabel173;
-    private javax.swing.JLabel jLabel174;
-    private javax.swing.JLabel jLabel175;
-    private javax.swing.JLabel jLabel176;
-    private javax.swing.JLabel jLabel177;
-    private javax.swing.JLabel jLabel178;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
@@ -3933,7 +3709,6 @@ public class Resep extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel99;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -4018,15 +3793,7 @@ public class Resep extends javax.swing.JFrame {
     private javax.swing.JSpinner spnJumlah70;
     private javax.swing.JSpinner spnJumlah71;
     private javax.swing.JSpinner spnJumlah72;
-    private javax.swing.JSpinner spnJumlah73;
-    private javax.swing.JSpinner spnJumlah74;
-    private javax.swing.JSpinner spnJumlah75;
-    private javax.swing.JSpinner spnJumlah76;
-    private javax.swing.JSpinner spnJumlah77;
-    private javax.swing.JSpinner spnJumlah78;
-    private javax.swing.JSpinner spnJumlah79;
     private javax.swing.JSpinner spnJumlah8;
-    private javax.swing.JSpinner spnJumlah80;
     private javax.swing.JSpinner spnJumlah9;
     private javax.swing.JSpinner spnThn;
     private javax.swing.JTable tblEx;
