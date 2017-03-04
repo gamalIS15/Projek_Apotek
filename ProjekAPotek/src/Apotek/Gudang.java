@@ -103,6 +103,23 @@ public class Gudang extends javax.swing.JFrame {
         tblEx.setModel(new DefaultTableModel(data, title));
     }
     
+    private void clearAll(){
+//    txttglMasuk.setCalendar(clndr);
+        txtNamaObat.setText("");
+        cbGolObat.setSelectedItem(0);
+        cbSatuan.setSelectedItem(0);
+        spJumlah.setValue(0);
+//    txtEx.setCalendar(clndr);
+    }
+    
+    private void clearAllA(){
+        cbNamaObatA.setSelectedIndex(0);
+        cbGolObatA.setSelectedIndex(0);
+        cbSatA.setSelectedIndex(0);
+        spJumlahA.setValue(0);
+    
+    }
+    
     private void removeTable() {
         DefaultTableModel model = (DefaultTableModel)tblEx.getModel();
         while (model.getRowCount() > 0){
@@ -701,6 +718,7 @@ public class Gudang extends javax.swing.JFrame {
         gd.setExdate(Date.valueOf(simEx));
         this.list.add(gd);
         updateTable();
+        clearAll();
         
         sqlDelete = "DELETE FROM DataGudang "
                 + "WHERE namaObatG='" + txtNamaObat.getText() + 
@@ -826,6 +844,7 @@ public class Gudang extends javax.swing.JFrame {
                     gd.setExdate(exp);
                     this.list.add(gd);
                     updateTable();
+                    clearAllA();
                 }
             }
         } else if (cbDariA.getSelectedItem().equals("Apotek") && cbKeA.getSelectedItem().equals("Gudang")) {
