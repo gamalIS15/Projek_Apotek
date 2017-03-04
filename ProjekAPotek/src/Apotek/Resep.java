@@ -113,8 +113,10 @@ public class Resep extends javax.swing.JFrame {
         // TableRowSorter<updateTable> sorter;
         tblEx.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); 
         tblJual.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); 
+        
         tblEx.setAutoCreateRowSorter(true);
         tblJual.setAutoCreateRowSorter(true);
+        
         TableRowSorter<DefaultTableModel> sorter  = new TableRowSorter<DefaultTableModel>((DefaultTableModel) tblEx.getModel());
         TableRowSorter<DefaultTableModel> sorter1  = new TableRowSorter<DefaultTableModel>((DefaultTableModel) tblJual.getModel());
         tblJual.setRowSorter(sorter1);
