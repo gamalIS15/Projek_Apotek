@@ -18,8 +18,10 @@ import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.RowFilter;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 /**
@@ -39,6 +41,7 @@ public class DataObat extends javax.swing.JFrame {
             + "SELECT * FROM DataGudang RIGHT OUTER JOIN DataObat ON DataGudang.namaObatG=DataObat.namaObat "
             + "AND DataGudang.golObatG=DataObat.golObat AND DataGudang.satG=DataObat.sat "
             + "WHERE DataGudang.namaObatG IS NULL ORDER BY namaObatG";
+    DefaultTableModel dm;
     /**
      * Creates new form MainMenu
      */
@@ -71,7 +74,7 @@ public class DataObat extends javax.swing.JFrame {
                         rsObat.getDate("exdate")));
                 }
             }
-            SearchSugges();
+//            SearchSugges();
         } catch (SQLException ex) {
             System.out.println("Kesalahan: " + ex);;
         }
@@ -79,7 +82,13 @@ public class DataObat extends javax.swing.JFrame {
         updateTable();
         
     }
-    
+    private void filter(String query){
+        dm = (DefaultTableModel) tblEx.getModel();        
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(dm);        
+        tblEx.setRowSorter(tr);       
+        tr.setRowFilter(RowFilter.regexFilter(query));
+        
+    }
     private void updateTable() {
         Object[][] data = new Object[this.list.size()][7];
         int x = 0;
@@ -104,22 +113,22 @@ public class DataObat extends javax.swing.JFrame {
             }
         }
     }
-    private void SearchSugges() throws SQLException{
-        setConnection koneksi = new setConnection();
-        stmt = koneksi.connection.createStatement();
-        ArrayList<String> li = new ArrayList<String>();
-        rsCari = stmt.executeQuery("SELECT * FROM DataGudang ORDER BY namaObatG");
-        li.add("");
-        while(rsCari.next()==true){
-            li.add(rsCari.getString("namaObatG"));
-        }
-        String [] cariObat = new String[li.size()];
-        cariObat = li.toArray(cariObat);
-        
-        DefaultComboBoxModel<String> cO = new DefaultComboBoxModel<String>(cariObat);
-        cbCariNama.setModel(cO);
-        AutoCompleteDecorator.decorate(this.cbCariNama);
-    }
+//    private void SearchSugges() throws SQLException{
+//        setConnection koneksi = new setConnection();
+//        stmt = koneksi.connection.createStatement();
+//        ArrayList<String> li = new ArrayList<String>();
+//        rsCari = stmt.executeQuery("SELECT * FROM DataGudang ORDER BY namaObatG");
+//        li.add("");
+//        while(rsCari.next()==true){
+//            li.add(rsCari.getString("namaObatG"));
+//        }
+//        String [] cariObat = new String[li.size()];
+//        cariObat = li.toArray(cariObat);
+//        
+//        DefaultComboBoxModel<String> cO = new DefaultComboBoxModel<String>(cariObat);
+//        cbCariNama.setModel(cO);
+//        AutoCompleteDecorator.decorate(this.cbCariNama);
+//    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -140,12 +149,7 @@ public class DataObat extends javax.swing.JFrame {
         tblEx = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        cbCariGol = new javax.swing.JComboBox<>();
-        btnCari = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        cbCariSort = new javax.swing.JComboBox<>();
-        cbCariNama = new javax.swing.JComboBox<>();
+        cbCariNama = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistem Informasi Apotek Taman");
@@ -229,30 +233,11 @@ public class DataObat extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel2.setText("Nama : ");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel3.setText("Golongan :");
-
-        cbCariGol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Tampilkan Semua--", "NARKOTIKA", "PSIKOTROPIKA", "(1a) ANALG,ANTIP,AN.INFL NON NARKOTIK", "(1b) ANALGETIK NARKOTIK", "(1c) ANTIPIRAI ", "(2) ANASTESI LOKAL", "(3) AN.EPILEPSI, AN.KONV, AN.ASIETAS, SEDATIV, HIPNOTIK, AN.PSIKOTIK", "(4) ANTI PARKINSON ", "(5) ANTI DEPRESI", "(6) ANTI MIGREN", "(7) ANTI ANGINA-ANTI ARITMIA", "(8) ANTI HIPERTENSI-DIURETIKA", "(9) GLUKOSIDA JANTUNG", "(10) OBAT PD SHOK-ANTI ASMA KORTIKOS", "(11) ANTI TUSIF", "(12) EKSPEKTORAN", "(13) ANTI INFLUENZA", "(14) ANTASIDA", "(15) OBAT DIARE-KESEIMBANGAN CAIRAN", "(16) LAKSAN", "(17) ANTI SPASMODIK", "(18) ANTI HISTAMIN", "(19) LARUTAN NUTRISI", "(20) TIROID ANTAGONIS", "(21) ANTI DIABETIK ORAL", "(22) ANTI DIABETIK PARENTERAL", "(23) VITAMIN DAN MINERAL", "(24) ANTI BAKTERI SISTEMIK, ANTISEPTIK", "(25) ANTI VIRUS", "(26) ANTI FUNGSI", "(27) ANTI TUBERKULOSIS", "(28) ANTI SEPTIK, DESINFEKTAN", "(29) ANTELMENTIK", "(30) ANTI AMUBIASIS", "(31) OBAT YG MEMPENGARUHI DARAH, ANTI ANEMIA", "(32) HEMOSTATIK", "(33) PRODUK DAN SUBTITUEN PLASMA", "(34) SERUM", "(35) AKSITOSIK", "(36) RELAKSAN UTERUS", "(37) ANTI INFLAMASI SALEP", "(38) PERANGSANG JARINGAN GRANULASI", "(39) ANTI BAKTERI", "(40) ANTI FUNGSI SALEP", "(41) ANTI SCABIES", "(42) ANTI SEPTIK", "(43) LAIN-LAIN OBAT KULIT", "(44) ANTI SISTEMIK MATA", "(45) ANASTESI LOKAL MATA ", "(46) ANTI INFEKSI MATA", "(47) LAIN-LAIN OBAT MATA", "(48) ANTI INFEKSI THT", "(49) LAIN-LAIN INFEKSI THT ", "(50) ANTI FILARIASIS", "(51) ANTI HEMOROID", "(52) ANTI EMETIK", "(53) ANTI HIPERKOLESTEROLEMIA", "(54) NOOTROPIK", "(55) IMMUNDILATOR", "(56) OBAT GIGI", "(57) OBAT TOPIKAL MULUT ", "(58) ALAT KESEHATAN HABIS PAKAI", "(59) REAGENSIA & LAIN-LAIN" }));
-
-        btnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/cari.png"))); // NOI18N
-        btnCari.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnCari.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnCariMouseClicked(evt);
+        cbCariNama.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cbCariNamaKeyReleased(evt);
             }
         });
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel5.setText("Urutkan Berdasar :");
-
-        cbCariSort.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nama Obat", "Golongan Obat", "Satuan", "Jumlah Gudang", "Tanggal Kadaluarsa Gudang", "Jumlah Apotek", "Tanggal Kadaluarsa Apotek" }));
-        cbCariSort.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbCariSortActionPerformed(evt);
-            }
-        });
-
-        cbCariNama.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout clPanelTransparan3Layout = new javax.swing.GroupLayout(clPanelTransparan3);
         clPanelTransparan3.setLayout(clPanelTransparan3Layout);
@@ -266,22 +251,12 @@ public class DataObat extends javax.swing.JFrame {
                         .addGroup(clPanelTransparan3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(clPanelTransparan3Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(cbCariNama, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel3)
-                                .addGap(18, 18, 18)
-                                .addComponent(cbCariGol, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(cbCariSort, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnCari))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cbCariNama, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(clPanelTransparan3Layout.createSequentialGroup()
                                 .addGap(604, 604, 604)
                                 .addComponent(jLabel1)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 611, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         clPanelTransparan3Layout.setVerticalGroup(
@@ -290,18 +265,11 @@ public class DataObat extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(26, 26, 26)
-                .addGroup(clPanelTransparan3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(clPanelTransparan3Layout.createSequentialGroup()
-                        .addGroup(clPanelTransparan3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel5)
-                            .addComponent(cbCariSort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3)
-                            .addComponent(cbCariGol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbCariNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE))
-                    .addComponent(btnCari))
+                .addGroup(clPanelTransparan3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(cbCariNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -328,131 +296,11 @@ public class DataObat extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnKeluarMouseClicked
 
-    private void cbCariSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCariSortActionPerformed
+    private void cbCariNamaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cbCariNamaKeyReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_cbCariSortActionPerformed
-
-    private void btnCariMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCariMouseClicked
-        // TODO add your handling code here:
-        removeTable();
-        String urut = null;
-        
-        switch(cbCariSort.getSelectedIndex()) {
-            case 0: urut = "namaObatG"; break;
-            case 1: urut = "golObatG"; break;
-            case 2: urut = "satG"; break;
-            case 3: urut = "jumlahSediaG"; break;
-            case 4: urut = "exdateG"; break;
-            case 5: urut = "jumlahSedia"; break;
-            case 6: urut = "exdate"; break;
-        }
-        
-        try {
-            setConnection koneksi = new setConnection();
-            stmt1 = koneksi.connection.createStatement();
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-        if(cbCariNama.getSelectedItem().toString().equals("") || cbCariNama.getSelectedItem().toString()==null) {
-            if(cbCariGol.getSelectedItem().equals("--Tampilkan Semua--")) {
-                try {
-                    rsObat = stmt1.executeQuery("SELECT * FROM DataGudang LEFT OUTER JOIN DataObat "
-                            + "ON DataGudang.namaObatG=DataObat.namaObat "
-                            + "AND DataGudang.golObatG=DataObat.golObat AND DataGudang.satG=DataObat.sat "
-                            + "UNION "
-                            + "SELECT * FROM DataGudang RIGHT OUTER JOIN DataObat ON DataGudang.namaObatG=DataObat.namaObat "
-                            + "AND DataGudang.golObatG=DataObat.golObat AND DataGudang.satG=DataObat.sat "
-                            + "WHERE DataGudang.namaObatG IS NULL ORDER BY " + urut + "");
-                    while(rsObat.next() == true) {
-                        list.add(new setObat(rsObat.getString("namaObatG"), 
-                                rsObat.getString("golObatG"), 
-                                rsObat.getString("satG"), 
-                                rsObat.getInt("jumlahSediaG"), 
-                                rsObat.getDate("exdateG"), 
-                                rsObat.getInt("jumlahSedia"), 
-                                rsObat.getDate("exdate")));    
-                    }
-                } catch (SQLException ex) {
-                    System.out.println(ex);
-                }
-            } else {
-                try {
-                    rsGudang = stmt1.executeQuery("SELECT * FROM DataGudang LEFT OUTER JOIN DataObat "
-                            + "ON DataGudang.namaObatG=DataObat.namaObat "
-                            + "AND DataGudang.golObatG=DataObat.golObat AND DataGudang.satG=DataObat.sat "
-                            + "WHERE golObatG='" + cbCariGol.getSelectedItem().toString() 
-                            + "' UNION SELECT * FROM DataGudang RIGHT OUTER JOIN DataObat "
-                            + "ON DataGudang.namaObatG=DataObat.namaObat "
-                            + "AND DataGudang.golObatG=DataObat.golObat AND DataGudang.satG=DataObat.sat "
-                            + "WHERE DataGudang.namaObatG IS NULL AND golObatG='" + cbCariGol.getSelectedItem().toString() 
-                            + "' ORDER BY " + urut + "");
-                    while(rsGudang.next() == true) {
-                        list.add(new setObat(rsObat.getString("namaObatG"), 
-                                rsObat.getString("golObatG"), 
-                                rsObat.getString("satG"), 
-                                rsObat.getInt("jumlahSediaG"), 
-                                rsObat.getDate("exdateG"), 
-                                rsObat.getInt("jumlahSedia"), 
-                                rsObat.getDate("exdate")));    
-                    }
-                } catch (SQLException ex) {
-                    System.out.println(ex);
-                }
-            }
-        } else {
-            if(cbCariGol.getSelectedItem().equals("--Tampilkan Semua--")) {
-                try {
-                    rsGudang = stmt1.executeQuery("SELECT * FROM DataGudang LEFT OUTER JOIN DataObat "
-                            + "ON DataGudang.namaObatG=DataObat.namaObat "
-                            + "AND DataGudang.golObatG=DataObat.golObat AND DataGudang.satG=DataObat.sat "
-                            + "WHERE namaObatG='" + cbCariNama.getSelectedItem().toString()
-                            + "' UNION "
-                            + "SELECT * FROM DataGudang RIGHT OUTER JOIN DataObat ON DataGudang.namaObatG=DataObat.namaObat "
-                            + "AND DataGudang.golObatG=DataObat.golObat AND DataGudang.satG=DataObat.sat "
-                            + "WHERE DataGudang.namaObatG IS NULL AND namaObatG='" + cbCariNama.getSelectedItem().toString()
-                            + "' ORDER BY " + urut + "");
-                    while(rsGudang.next() == true) {
-                        list.add(new setObat(rsObat.getString("namaObatG"), 
-                                rsObat.getString("golObatG"), 
-                                rsObat.getString("satG"), 
-                                rsObat.getInt("jumlahSediaG"), 
-                                rsObat.getDate("exdateG"), 
-                                rsObat.getInt("jumlahSedia"), 
-                                rsObat.getDate("exdate")));    
-                    }
-                } catch (SQLException ex) {
-                    System.out.println(ex);
-                }
-            } else {
-                try {
-                    rsGudang = stmt1.executeQuery("SELECT * FROM DataGudang LEFT OUTER JOIN DataObat "
-                            + "ON DataGudang.namaObatG=DataObat.namaObat "
-                            + "AND DataGudang.golObatG=DataObat.golObat AND DataGudang.satG=DataObat.sat "
-                            + "WHERE namaObatG='" + cbCariNama.getSelectedItem().toString()
-                            + "' AND golObatG='" + cbCariGol.getSelectedItem().toString()
-                            + "' UNION "
-                            + "SELECT * FROM DataGudang RIGHT OUTER JOIN DataObat ON DataGudang.namaObatG=DataObat.namaObat "
-                            + "AND DataGudang.golObatG=DataObat.golObat AND DataGudang.satG=DataObat.sat "
-                            + "WHERE DataGudang.namaObatG IS NULL AND namaObatG='" + cbCariNama.getSelectedItem().toString()
-                            + "' AND golObatG='" + cbCariGol.getSelectedItem().toString()
-                            + "' ORDER BY " + urut + "");
-                    while(rsGudang.next() == true) {
-                        list.add(new setObat(rsObat.getString("namaObatG"), 
-                                rsObat.getString("golObatG"), 
-                                rsObat.getString("satG"), 
-                                rsObat.getInt("jumlahSediaG"), 
-                                rsObat.getDate("exdateG"), 
-                                rsObat.getInt("jumlahSedia"), 
-                                rsObat.getDate("exdate")));     
-                    }
-                } catch (SQLException ex) {
-                    System.out.println(ex);
-                }
-            }
-        }
-        removeTable();
-        updateTable();
-    }//GEN-LAST:event_btnCariMouseClicked
+        String query = cbCariNama.getText();
+        filter(query);
+    }//GEN-LAST:event_cbCariNamaKeyReleased
 
     /**
      * @param args the command line arguments
@@ -517,17 +365,12 @@ public class DataObat extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel btnCari;
     private javax.swing.JLabel btnKeluar;
-    private javax.swing.JComboBox<String> cbCariGol;
-    private javax.swing.JComboBox<String> cbCariNama;
-    private javax.swing.JComboBox<String> cbCariSort;
+    private javax.swing.JTextField cbCariNama;
     private PanelTransparan.ClPanelTransparan clPanelTransparan1;
     private PanelTransparan.ClPanelTransparan clPanelTransparan3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblEx;

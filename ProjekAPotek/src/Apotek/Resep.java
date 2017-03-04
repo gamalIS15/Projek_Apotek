@@ -19,8 +19,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
+import javax.swing.RowFilter;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import org.jdesktop.swingx.autocomplete.*;
 
 /**
@@ -41,7 +43,7 @@ public class Resep extends javax.swing.JFrame {
     ArrayList<setResep> list = new ArrayList<setResep>();
     ArrayList<setObat> list1 = new ArrayList<setObat>();
     private final ArrayList<String> ls = new ArrayList<>();
-    
+    DefaultTableModel dm, dm1;
     
     public Resep() {
         try {
@@ -94,6 +96,16 @@ public class Resep extends javax.swing.JFrame {
         }
     }
     
+    private void filter(String query){
+        dm = (DefaultTableModel) tblEx.getModel();
+        dm1 = (DefaultTableModel) tblJual.getModel();
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(dm);
+         TableRowSorter<DefaultTableModel> td = new TableRowSorter<DefaultTableModel>(dm1);
+        tblEx.setRowSorter(tr);
+        tblJual.setRowSorter(td);
+        tr.setRowFilter(RowFilter.regexFilter(query));
+        td.setRowFilter(RowFilter.regexFilter(query));
+    }
     
     private void updateTable(){
         Object[][] data = new Object[this.list.size()][8];
@@ -167,8 +179,8 @@ public class Resep extends javax.swing.JFrame {
         DefaultComboBoxModel<String> cR = new DefaultComboBoxModel<String>(cariResep);
         DefaultComboBoxModel<String> cO = new DefaultComboBoxModel<String>(cariObat);
         
-        cbCariNama.setModel(cR);
-        AutoCompleteDecorator.decorate(this.cbCariNama);
+//        cbCariNama.setModel(cR);
+//        AutoCompleteDecorator.decorate(this.cbCariNama);
         
         cbCariObat.setModel(cO);
         AutoCompleteDecorator.decorate(this.cbCariObat);
@@ -238,12 +250,7 @@ public class Resep extends javax.swing.JFrame {
         tblEx = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        cbCariGol = new javax.swing.JComboBox<>();
-        btnCari = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        cbCariSort = new javax.swing.JComboBox<>();
-        cbCariNama = new javax.swing.JComboBox<>();
+        cbCariNama = new javax.swing.JTextField();
         clPanelTransparan4 = new PanelTransparan.ClPanelTransparan();
         btnSimpan = new javax.swing.JButton();
         btnHapus = new javax.swing.JButton();
@@ -307,11 +314,6 @@ public class Resep extends javax.swing.JFrame {
         tblJual = new javax.swing.JTable();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
-        cbCariGol1 = new javax.swing.JComboBox<>();
-        btnCari1 = new javax.swing.JLabel();
-        jLabel23 = new javax.swing.JLabel();
-        cbCariSort1 = new javax.swing.JComboBox<>();
         cbCariObat = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -390,25 +392,11 @@ public class Resep extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel2.setText("Nama : ");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel3.setText("Golongan :");
-
-        cbCariGol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Tampilkan Semua--", "Rawat Jalan", "Rawat Inap", "BPJS", "Non BPJS" }));
-
-        btnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/cari.png"))); // NOI18N
-        btnCari.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnCari.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnCariMouseClicked(evt);
+        cbCariNama.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cbCariNamaKeyReleased(evt);
             }
         });
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel5.setText("Urutkan Berdasar :");
-
-        cbCariSort.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tanggal", "Nama Pasien", "Usia Pasien", "Jenis Layanan", "BPJS / Non BPJS" }));
-
-        cbCariNama.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout clPanelTransparan3Layout = new javax.swing.GroupLayout(clPanelTransparan3);
         clPanelTransparan3.setLayout(clPanelTransparan3Layout);
@@ -421,17 +409,7 @@ public class Resep extends javax.swing.JFrame {
                     .addGroup(clPanelTransparan3Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbCariNama, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbCariGol, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cbCariSort, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnCari)))
+                        .addComponent(cbCariNama)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, clPanelTransparan3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -443,16 +421,10 @@ public class Resep extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, clPanelTransparan3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(clPanelTransparan3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(clPanelTransparan3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel2)
-                        .addComponent(jLabel3)
-                        .addComponent(cbCariGol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel5)
-                        .addComponent(cbCariSort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(cbCariNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnCari))
+                .addGap(15, 15, 15)
+                .addGroup(clPanelTransparan3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(cbCariNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -863,28 +835,15 @@ public class Resep extends javax.swing.JFrame {
         jLabel20.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel20.setText("Nama : ");
 
-        jLabel21.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel21.setText("Golongan :");
-
-        cbCariGol1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Tampilkan Semua--", "NARKOTIKA", "PSIKOTROPIKA", "(1a) ANALG,ANTIP,AN.INFL NON NARKOTIK", "(1b) ANALGETIK NARKOTIK", "(1c) ANTIPIRAI ", "(2) ANASTESI LOKAL", "(3) AN.EPILEPSI, AN.KONV, AN.ASIETAS, SEDATIV, HIPNOTIK, AN.PSIKOTIK", "(4) ANTI PARKINSON ", "(5) ANTI DEPRESI", "(6) ANTI MIGREN", "(7) ANTI ANGINA-ANTI ARITMIA", "(8) ANTI HIPERTENSI-DIURETIKA", "(9) GLUKOSIDA JANTUNG", "(10) OBAT PD SHOK-ANTI ASMA KORTIKOS", "(11) ANTI TUSIF", "(12) EKSPEKTORAN", "(13) ANTI INFLUENZA", "(14) ANTASIDA", "(15) OBAT DIARE-KESEIMBANGAN CAIRAN", "(16) LAKSAN", "(17) ANTI SPASMODIK", "(18) ANTI HISTAMIN", "(19) LARUTAN NUTRISI", "(20) TIROID ANTAGONIS", "(21) ANTI DIABETIK ORAL", "(22) ANTI DIABETIK PARENTERAL", "(23) VITAMIN DAN MINERAL", "(24) ANTI BAKTERI SISTEMIK, ANTISEPTIK", "(25) ANTI VIRUS", "(26) ANTI FUNGSI", "(27) ANTI TUBERKULOSIS", "(28) ANTI SEPTIK, DESINFEKTAN", "(29) ANTELMENTIK", "(30) ANTI AMUBIASIS", "(31) OBAT YG MEMPENGARUHI DARAH, ANTI ANEMIA", "(32) HEMOSTATIK", "(33) PRODUK DAN SUBTITUEN PLASMA", "(34) SERUM", "(35) AKSITOSIK", "(36) RELAKSAN UTERUS", "(37) ANTI INFLAMASI SALEP", "(38) PERANGSANG JARINGAN GRANULASI", "(39) ANTI BAKTERI", "(40) ANTI FUNGSI SALEP", "(41) ANTI SCABIES", "(42) ANTI SEPTIK", "(43) LAIN-LAIN OBAT KULIT", "(44) ANTI SISTEMIK MATA", "(45) ANASTESI LOKAL MATA ", "(46) ANTI INFEKSI MATA", "(47) LAIN-LAIN OBAT MATA", "(48) ANTI INFEKSI THT", "(49) LAIN-LAIN INFEKSI THT ", "(50) ANTI FILARIASIS", "(51) ANTI HEMOROID", "(52) ANTI EMETIK", "(53) ANTI HIPERKOLESTEROLEMIA", "(54) NOOTROPIK", "(55) IMMUNDILATOR", "(56) OBAT GIGI", "(57) OBAT TOPIKAL MULUT ", "(58) ALAT KESEHATAN HABIS PAKAI", "(59) REAGENSIA & LAIN-LAIN" }));
-
-        btnCari1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/cari.png"))); // NOI18N
-        btnCari1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnCari1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnCari1MouseClicked(evt);
-            }
-        });
-
-        jLabel23.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel23.setText("Urutkan Berdasar :");
-
-        cbCariSort1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tanggal Masuk", "Nama Obat", "Golongan Obat", "Satuan", "Jumlah Obat" }));
-
         cbCariObat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbCariObat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbCariObatActionPerformed(evt);
+            }
+        });
+        cbCariObat.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cbCariObatKeyReleased(evt);
             }
         });
 
@@ -895,49 +854,31 @@ public class Resep extends javax.swing.JFrame {
             .addGroup(clPanelTransparan5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(clPanelTransparan5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 861, Short.MAX_VALUE)
                     .addGroup(clPanelTransparan5Layout.createSequentialGroup()
                         .addGap(342, 342, 342)
                         .addComponent(jLabel19)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(clPanelTransparan5Layout.createSequentialGroup()
                         .addGroup(clPanelTransparan5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(clPanelTransparan5Layout.createSequentialGroup()
                                 .addComponent(jLabel20)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 441, Short.MAX_VALUE))
+                                .addGap(0, 819, Short.MAX_VALUE))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 861, Short.MAX_VALUE)
                             .addGroup(clPanelTransparan5Layout.createSequentialGroup()
-                                .addComponent(jLabel21)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(clPanelTransparan5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cbCariObat, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cbCariGol1, 0, 1, Short.MAX_VALUE))
-                                .addGap(28, 28, 28)))
-                        .addComponent(jLabel23)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cbCariSort1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnCari1)
-                        .addGap(75, 75, 75)))
-                .addContainerGap())
+                                .addGap(69, 69, 69)
+                                .addComponent(cbCariObat, 0, 782, Short.MAX_VALUE)))
+                        .addContainerGap())))
         );
         clPanelTransparan5Layout.setVerticalGroup(
             clPanelTransparan5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, clPanelTransparan5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel19)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(clPanelTransparan5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(clPanelTransparan5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel20)
-                        .addComponent(jLabel23)
-                        .addComponent(cbCariSort1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(cbCariObat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnCari1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(15, 15, 15)
                 .addGroup(clPanelTransparan5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel21)
-                    .addComponent(cbCariGol1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
+                    .addComponent(jLabel20)
+                    .addComponent(cbCariObat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(48, 48, 48)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -1860,197 +1801,21 @@ public class Resep extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_rbNBPJSActionPerformed
 
-    private void btnCariMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCariMouseClicked
-        // TODO add your handling code here:
-        removeTable();
-        String urut = null;
-        
-        switch(cbCariSort.getSelectedIndex()) {
-            case 0: urut = "Tanggal"; break;
-            case 1: urut = "NamaPasien"; break;
-            case 2: urut = "Usia"; break;
-            case 3: urut = "JenisLayanan"; break;
-            case 4: urut = "BpjsNonBpjs"; break;
-        }
-        
-        try {
-            setConnection koneksi = new setConnection();
-            stmt1 = koneksi.connection.createStatement();
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-        if(cbCariNama.getSelectedItem().toString().equals("") || cbCariNama.getSelectedItem().toString()==null) {
-            if(cbCariGol.getSelectedItem().equals("--Tampilkan Semua--")) {
-                try {
-                    rsResep = stmt1.executeQuery("SELECT * FROM DataResep ORDER BY " + urut + "");
-                    while(rsResep.next() == true) {
-                        list.add(new setResep(rsResep.getDate("Tanggal"),
-                                rsResep.getString("NamaPasien"),
-                                rsResep.getString("Usia"),
-                                rsResep.getString("Alamat"),
-                                rsResep.getString("JenisLayanan"),
-                                rsResep.getString("BpjsNonBpjs"),
-                                rsResep.getString("namaObat"),
-                                rsResep.getString("jmlObat")));   
-                    }
-                } catch (SQLException ex) {
-                    System.out.println(ex);
-                }
-            } else {
-                try {
-                    rsResep = stmt1.executeQuery("SELECT * FROM DataResep "
-                            + "WHERE BpjsNonBpjs='" + cbCariGol.getSelectedItem().toString()
-                            + "' OR JenisLayanan='" + cbCariGol.getSelectedItem().toString()
-                            + "' ORDER BY " + urut + "");
-                    while(rsResep.next() == true) {
-                        list.add(new setResep(rsResep.getDate("Tanggal"),
-                                rsResep.getString("NamaPasien"),
-                                rsResep.getString("Usia"),
-                                rsResep.getString("Alamat"),
-                                rsResep.getString("JenisLayanan"),
-                                rsResep.getString("BpjsNonBpjs"),
-                                rsResep.getString("namaObat"),
-                                rsResep.getString("jmlObat")));  
-                    }
-                } catch (SQLException ex) {
-                    System.out.println(ex);
-                }
-            }
-        } else {
-            if(cbCariGol.getSelectedItem().equals("--Tampilkan Semua--")) {
-                try {
-                    rsResep = stmt1.executeQuery("SELECT * FROM DataResep "
-                            + "WHERE NamaPasien='" + cbCariNama.getSelectedItem().toString() 
-                            + "' ORDER BY " + urut + "");
-                    while(rsResep.next() == true) {
-                        list.add(new setResep(rsResep.getDate("Tanggal"),
-                                rsResep.getString("NamaPasien"),
-                                rsResep.getString("Usia"),
-                                rsResep.getString("Alamat"),
-                                rsResep.getString("JenisLayanan"),
-                                rsResep.getString("BpjsNonBpjs"),
-                                rsResep.getString("namaObat"),
-                                rsResep.getString("jmlObat")));    
-                    }
-                } catch (SQLException ex) {
-                    System.out.println(ex);
-                }
-            } else {
-                try {
-                    rsResep = stmt1.executeQuery("SELECT * FROM DataResep "
-                            + "WHERE NamaPasien='" + cbCariNama.getSelectedItem().toString() 
-                            + "' AND (BpjsNonBpjs='" + cbCariGol.getSelectedItem().toString() 
-                            + "' OR JenisLayanan ='" + cbCariGol.getSelectedItem().toString()
-                            + "') ORDER BY " + urut + "");
-                    while(rsResep.next() == true) {
-                        list.add(new setResep(rsResep.getDate("Tanggal"),
-                                rsResep.getString("NamaPasien"),
-                                rsResep.getString("Usia"),
-                                rsResep.getString("Alamat"),
-                                rsResep.getString("JenisLayanan"),
-                                rsResep.getString("BpjsNonBpjs"),
-                                rsResep.getString("namaObat"),
-                                rsResep.getString("jmlObat")));  
-                    }
-                } catch (SQLException ex) {
-                    System.out.println(ex);
-                }
-            }
-        }
-        removeTable();
-        updateTable();
-    }//GEN-LAST:event_btnCariMouseClicked
-
-    private void btnCari1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCari1MouseClicked
-        // TODO add your handling code here:
-        removeTableJual();
-        String urut = null;
-        
-        switch(cbCariSort1.getSelectedIndex()) {
-            case 0: urut = "tglMasukJ"; break;
-            case 1: urut = "namaObatJ"; break;
-            case 2: urut = "golObatJ"; break;
-            case 3: urut = "satJ"; break;
-            case 4: urut = "jumlahSediaJ"; break;
-        }
-        
-        try {
-            setConnection koneksi = new setConnection();
-            stmt1 = koneksi.connection.createStatement();
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-        if(cbCariObat.getSelectedItem().toString().equals("") || cbCariObat.getSelectedItem().toString()==null) {
-            if(cbCariGol1.getSelectedItem().equals("--Tampilkan Semua--")) {
-                try {
-                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual ORDER BY " + urut + "");
-                    while(rsJual.next() == true) {
-                        list1.add(new setObat(rsJual.getDate("tglMasukJ"), 
-                                rsJual.getString("namaObatJ"), 
-                                rsJual.getString("golObatJ"), 
-                                rsJual.getString("satJ"), 
-                                rsJual.getInt("jumlahSediaJ")));    
-                    }
-                } catch (SQLException ex) {
-                    System.out.println(ex);
-                }
-            } else {
-                try {
-                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual "
-                            + "WHERE golObatJ='" + cbCariGol1.getSelectedItem().toString() 
-                            + "' ORDER BY " + urut + "");
-                    while(rsJual.next() == true) {
-                        list1.add(new setObat(rsJual.getDate("tglMasukJ"), 
-                                rsJual.getString("namaObatJ"), 
-                                rsJual.getString("golObatJ"), 
-                                rsJual.getString("satJ"), 
-                                rsJual.getInt("jumlahSediaJ")));    
-                    }
-                } catch (SQLException ex) {
-                    System.out.println(ex);
-                }
-            }
-        } else {
-            if(cbCariGol1.getSelectedItem().equals("--Tampilkan Semua--")) {
-                try {
-                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual "
-                            + "WHERE namaObatJ='" + cbCariObat.getSelectedItem().toString()
-                            + "' ORDER BY " + urut + "");
-                    while(rsJual.next() == true) {
-                        list1.add(new setObat(rsJual.getDate("tglMasukJ"), 
-                                rsJual.getString("namaObatJ"), 
-                                rsJual.getString("golObatJ"), 
-                                rsJual.getString("satJ"), 
-                                rsJual.getInt("jumlahSediaJ")));     
-                    }
-                } catch (SQLException ex) {
-                    System.out.println(ex);
-                }
-            } else {
-                try {
-                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual "
-                            + "WHERE namaObatJ='" + cbCariObat.getSelectedItem().toString()
-                            + "' AND golObatJ='" + cbCariGol1.getSelectedItem().toString() 
-                            + "' ORDER BY " + urut + "");
-                    while(rsJual.next() == true) {
-                        list1.add(new setObat(rsJual.getDate("tglMasukJ"), 
-                                rsJual.getString("namaObatJ"), 
-                                rsJual.getString("golObatJ"), 
-                                rsJual.getString("satJ"), 
-                                rsJual.getInt("jumlahSediaJ")));    
-                    }
-                } catch (SQLException ex) {
-                    System.out.println(ex);
-                }
-            }
-        }
-        removeTableJual();
-        updateTableJual();
-    }//GEN-LAST:event_btnCari1MouseClicked
-
     private void cbCariObatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCariObatActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbCariObatActionPerformed
+
+    private void cbCariNamaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cbCariNamaKeyReleased
+        // TODO add your handling code here:
+        String query = cbCariNama.getText();
+        filter(query);
+    }//GEN-LAST:event_cbCariNamaKeyReleased
+
+    private void cbCariObatKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cbCariObatKeyReleased
+        // TODO add your handling code here:
+        String query = cbCariObat.getSelectedItem().toString();
+        filter(query);
+    }//GEN-LAST:event_cbCariObatKeyReleased
 
     /**
      * @param args the command line arguments
@@ -2130,17 +1895,11 @@ public class Resep extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgbpjs;
-    private javax.swing.JLabel btnCari;
-    private javax.swing.JLabel btnCari1;
     private javax.swing.JButton btnHapus;
     private javax.swing.JLabel btnKeluar;
     private javax.swing.JButton btnSimpan;
-    private javax.swing.JComboBox<String> cbCariGol;
-    private javax.swing.JComboBox<String> cbCariGol1;
-    private javax.swing.JComboBox<String> cbCariNama;
+    private javax.swing.JTextField cbCariNama;
     private javax.swing.JComboBox<String> cbCariObat;
-    private javax.swing.JComboBox<String> cbCariSort;
-    private javax.swing.JComboBox<String> cbCariSort1;
     private javax.swing.JComboBox<String> cbJenisLayanan;
     private javax.swing.JComboBox<String> cbNamaObat1;
     private javax.swing.JComboBox<String> cbNamaObat10;
@@ -2169,15 +1928,12 @@ public class Resep extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
@@ -2187,7 +1943,6 @@ public class Resep extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
