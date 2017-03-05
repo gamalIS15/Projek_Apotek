@@ -20,12 +20,14 @@ public class setResep {
     private String bpjs_nonBpjs;
     private String namaObat;
     private String jumlahObat;
+    private String resep;
 
     public setResep() {
     }
 
-    public setResep(Date tanggal, String namaPasien, String usia, String alamat, String jenisLayanan, String bpjs_nonBpjs, String namaObat, String  jumlahObat) {
+    public setResep(String resep, Date tanggal, String namaPasien, String usia, String alamat, String jenisLayanan, String bpjs_nonBpjs, String namaObat, String  jumlahObat) {
         this.tanggal = tanggal;
+        this.resep = resep;
         this.namaPasien = namaPasien;
         this.usia = usia;
         this.alamat = alamat;
@@ -43,6 +45,14 @@ public class setResep {
 
     public void setTanggal(Date tanggal) {
         this.tanggal = tanggal;
+    }
+    
+    public String getResep() {
+        return resep;
+    }
+
+    public void setResep(String resep) {
+        this.resep = resep;
     }
 
     public String getNamaPasien() {
