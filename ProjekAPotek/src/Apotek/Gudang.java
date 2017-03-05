@@ -718,7 +718,6 @@ public class Gudang extends javax.swing.JFrame {
         gd.setExdate(Date.valueOf(simEx));
         this.list.add(gd);
         updateTable();
-        clearAll();
         
         sqlDelete = "DELETE FROM DataGudang "
                 + "WHERE namaObatG='" + txtNamaObat.getText() + 
@@ -736,6 +735,7 @@ public class Gudang extends javax.swing.JFrame {
         }
         this.list.remove(new setGudang(tgl, txtNamaObat.getText(), g, s, jumlahSkr, exp));
         updateTable();
+        clearAll();
     }//GEN-LAST:event_btnSimpanActionPerformed
 
     private void btnSimpanAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanAActionPerformed

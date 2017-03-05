@@ -55,7 +55,7 @@ public class Resep extends javax.swing.JFrame {
             
             setConnection koneksi = new setConnection();
             stmt = koneksi.connection.createStatement();
-            rsResep = stmt.executeQuery("SELECT * FROM DataResep ORDER BY Tanggal");
+            rsResep = stmt.executeQuery("SELECT * FROM DataResep WHERE datediff(Tanggal, current_date())=0 ORDER BY Tanggal");
             
             while(rsResep.next() == true){
                 list.add(new setResep(rsResep.getDate("Tanggal"),
@@ -69,7 +69,7 @@ public class Resep extends javax.swing.JFrame {
             }
             
             stmt1 = koneksi.connection.createStatement();
-            rsJual = stmt1.executeQuery("SELECT * FROM DataJual ORDER BY namaObatJ");
+            rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE datediff(tglMasukJ, current_date())=0 ORDER BY namaObatJ");
             while(rsJual.next() == true) {
                 list1.add(new setObat(rsJual.getDate("tglMasukJ"), 
                         rsJual.getString("namaObatJ"), 
@@ -3528,7 +3528,4595 @@ public class Resep extends javax.swing.JFrame {
                     this.list1.add(so);
                     updateTableJual();
             }
-        }}}}}}}}}}
+// INPUT OBAT KE 11                
+        if(!(cbNamaObat11.getSelectedItem().toString().equals(null) && cbNamaObat11.getSelectedItem().toString().equals("") 
+                && cbNamaObat11.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat11.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah11.getValue() && cbNamaObat11.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat11.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah11.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat11.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat11.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah11.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah11.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+            // INPUT OBAT KE 12                
+        if(!(cbNamaObat12.getSelectedItem().toString().equals(null) && cbNamaObat12.getSelectedItem().toString().equals("") 
+                && cbNamaObat12.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat12.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah12.getValue() && cbNamaObat12.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat12.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah12.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat12.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat12.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah12.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah12.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 13                
+        if(!(cbNamaObat13.getSelectedItem().toString().equals(null) && cbNamaObat13.getSelectedItem().toString().equals("") 
+                && cbNamaObat13.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat13.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah13.getValue() && cbNamaObat13.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat13.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah13.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat13.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat13.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah13.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah13.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 14                
+        if(!(cbNamaObat14.getSelectedItem().toString().equals(null) && cbNamaObat14.getSelectedItem().toString().equals("") 
+                && cbNamaObat14.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat14.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah14.getValue() && cbNamaObat14.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat14.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah14.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat14.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat14.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah14.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah14.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 15                
+        if(!(cbNamaObat15.getSelectedItem().toString().equals(null) && cbNamaObat15.getSelectedItem().toString().equals("") 
+                && cbNamaObat15.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat15.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah15.getValue() && cbNamaObat15.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat15.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah15.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat15.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat15.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah15.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah15.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 16                
+        if(!(cbNamaObat16.getSelectedItem().toString().equals(null) && cbNamaObat16.getSelectedItem().toString().equals("") 
+                && cbNamaObat16.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat16.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah16.getValue() && cbNamaObat16.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat16.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah16.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat16.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat16.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah16.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah16.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 17                
+        if(!(cbNamaObat17.getSelectedItem().toString().equals(null) && cbNamaObat17.getSelectedItem().toString().equals("") 
+                && cbNamaObat17.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat17.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah17.getValue() && cbNamaObat17.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat17.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah17.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat17.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat17.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah17.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah17.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 18                
+        if(!(cbNamaObat18.getSelectedItem().toString().equals(null) && cbNamaObat18.getSelectedItem().toString().equals("") 
+                && cbNamaObat18.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat18.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah18.getValue() && cbNamaObat18.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat18.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah18.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat18.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat18.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah18.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah18.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 19                
+        if(!(cbNamaObat19.getSelectedItem().toString().equals(null) && cbNamaObat19.getSelectedItem().toString().equals("") 
+                && cbNamaObat19.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat19.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah19.getValue() && cbNamaObat19.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat19.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah19.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat19.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat19.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah19.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah19.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 20                
+        if(!(cbNamaObat20.getSelectedItem().toString().equals(null) && cbNamaObat20.getSelectedItem().toString().equals("") 
+                && cbNamaObat20.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat20.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah20.getValue() && cbNamaObat20.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat20.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah20.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat20.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat20.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah20.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah20.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 21                
+        if(!(cbNamaObat21.getSelectedItem().toString().equals(null) && cbNamaObat21.getSelectedItem().toString().equals("") 
+                && cbNamaObat21.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat21.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah21.getValue() && cbNamaObat21.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat21.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah21.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat21.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat21.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah21.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah21.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 22                
+        if(!(cbNamaObat22.getSelectedItem().toString().equals(null) && cbNamaObat22.getSelectedItem().toString().equals("") 
+                && cbNamaObat22.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat22.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah22.getValue() && cbNamaObat22.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat22.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah22.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat22.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat22.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah22.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah22.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 23                
+        if(!(cbNamaObat23.getSelectedItem().toString().equals(null) && cbNamaObat23.getSelectedItem().toString().equals("") 
+                && cbNamaObat23.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat23.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah23.getValue() && cbNamaObat23.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat23.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah23.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat23.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat23.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah23.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah23.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 24                
+        if(!(cbNamaObat24.getSelectedItem().toString().equals(null) && cbNamaObat24.getSelectedItem().toString().equals("") 
+                && cbNamaObat24.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat24.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah24.getValue() && cbNamaObat24.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat24.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah24.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat24.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat24.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah24.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah24.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 25                
+        if(!(cbNamaObat25.getSelectedItem().toString().equals(null) && cbNamaObat25.getSelectedItem().toString().equals("") 
+                && cbNamaObat25.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat25.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah25.getValue() && cbNamaObat25.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat25.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah25.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat25.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat25.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah25.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah25.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 26                
+        if(!(cbNamaObat26.getSelectedItem().toString().equals(null) && cbNamaObat26.getSelectedItem().toString().equals("") 
+                && cbNamaObat26.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat26.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah26.getValue() && cbNamaObat26.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat26.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah26.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat26.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat26.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah26.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah26.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 27                
+        if(!(cbNamaObat27.getSelectedItem().toString().equals(null) && cbNamaObat27.getSelectedItem().toString().equals("") 
+                && cbNamaObat27.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat27.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah27.getValue() && cbNamaObat27.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat27.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah27.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat27.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat27.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah27.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah27.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 28                
+        if(!(cbNamaObat28.getSelectedItem().toString().equals(null) && cbNamaObat28.getSelectedItem().toString().equals("") 
+                && cbNamaObat28.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat28.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah28.getValue() && cbNamaObat28.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat28.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah28.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat28.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat28.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah28.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah28.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 29                
+        if(!(cbNamaObat29.getSelectedItem().toString().equals(null) && cbNamaObat29.getSelectedItem().toString().equals("") 
+                && cbNamaObat29.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat29.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah29.getValue() && cbNamaObat29.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat29.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah29.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat29.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat29.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah29.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah29.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 30                
+        if(!(cbNamaObat30.getSelectedItem().toString().equals(null) && cbNamaObat30.getSelectedItem().toString().equals("") 
+                && cbNamaObat30.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat30.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah30.getValue() && cbNamaObat30.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat30.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah30.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat30.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat30.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah30.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah30.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 31                
+        if(!(cbNamaObat31.getSelectedItem().toString().equals(null) && cbNamaObat31.getSelectedItem().toString().equals("") 
+                && cbNamaObat31.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat31.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah31.getValue() && cbNamaObat31.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat31.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah31.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat31.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat31.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah31.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah31.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 32                
+        if(!(cbNamaObat32.getSelectedItem().toString().equals(null) && cbNamaObat32.getSelectedItem().toString().equals("") 
+                && cbNamaObat32.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat32.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah32.getValue() && cbNamaObat32.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat32.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah32.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat32.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat32.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah32.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah32.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 33                
+        if(!(cbNamaObat33.getSelectedItem().toString().equals(null) && cbNamaObat33.getSelectedItem().toString().equals("") 
+                && cbNamaObat33.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat33.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah33.getValue() && cbNamaObat33.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat33.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah33.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat33.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat33.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah33.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah33.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 34                
+        if(!(cbNamaObat34.getSelectedItem().toString().equals(null) && cbNamaObat34.getSelectedItem().toString().equals("") 
+                && cbNamaObat34.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat34.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah34.getValue() && cbNamaObat34.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat34.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah34.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat34.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat34.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah34.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah34.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 35                
+        if(!(cbNamaObat35.getSelectedItem().toString().equals(null) && cbNamaObat35.getSelectedItem().toString().equals("") 
+                && cbNamaObat35.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat35.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah35.getValue() && cbNamaObat35.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat35.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah35.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat35.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat35.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah35.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah35.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 36                
+        if(!(cbNamaObat36.getSelectedItem().toString().equals(null) && cbNamaObat36.getSelectedItem().toString().equals("") 
+                && cbNamaObat36.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat36.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah36.getValue() && cbNamaObat36.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat36.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah36.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat36.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat36.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah36.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah36.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 37                
+        if(!(cbNamaObat37.getSelectedItem().toString().equals(null) && cbNamaObat37.getSelectedItem().toString().equals("") 
+                && cbNamaObat37.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat37.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah37.getValue() && cbNamaObat37.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat37.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah37.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat37.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat37.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah37.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah37.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 38                
+        if(!(cbNamaObat38.getSelectedItem().toString().equals(null) && cbNamaObat38.getSelectedItem().toString().equals("") 
+                && cbNamaObat38.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat38.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah38.getValue() && cbNamaObat38.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat38.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah38.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat38.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat38.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah38.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah38.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 39                
+        if(!(cbNamaObat39.getSelectedItem().toString().equals(null) && cbNamaObat39.getSelectedItem().toString().equals("") 
+                && cbNamaObat39.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat39.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah39.getValue() && cbNamaObat39.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat39.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah39.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat39.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat39.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah39.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah39.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 40                
+        if(!(cbNamaObat40.getSelectedItem().toString().equals(null) && cbNamaObat40.getSelectedItem().toString().equals("") 
+                && cbNamaObat40.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat40.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah40.getValue() && cbNamaObat40.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat40.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah40.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat40.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat40.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah40.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah40.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 41                
+        if(!(cbNamaObat41.getSelectedItem().toString().equals(null) && cbNamaObat41.getSelectedItem().toString().equals("") 
+                && cbNamaObat41.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat41.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah41.getValue() && cbNamaObat41.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat41.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah41.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat41.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat41.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah41.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah41.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 42                
+        if(!(cbNamaObat42.getSelectedItem().toString().equals(null) && cbNamaObat42.getSelectedItem().toString().equals("") 
+                && cbNamaObat42.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat42.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah42.getValue() && cbNamaObat42.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat42.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah42.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat42.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat42.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah42.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah42.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 43                
+        if(!(cbNamaObat43.getSelectedItem().toString().equals(null) && cbNamaObat43.getSelectedItem().toString().equals("") 
+                && cbNamaObat43.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat43.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah43.getValue() && cbNamaObat43.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat43.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah43.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat43.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat43.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah43.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah43.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 44                
+        if(!(cbNamaObat44.getSelectedItem().toString().equals(null) && cbNamaObat44.getSelectedItem().toString().equals("") 
+                && cbNamaObat44.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat44.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah44.getValue() && cbNamaObat44.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat44.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah44.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat44.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat44.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah44.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah44.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 45                
+        if(!(cbNamaObat45.getSelectedItem().toString().equals(null) && cbNamaObat45.getSelectedItem().toString().equals("") 
+                && cbNamaObat45.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat45.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah45.getValue() && cbNamaObat45.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat45.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah45.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat45.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat45.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah45.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah45.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 46                
+        if(!(cbNamaObat46.getSelectedItem().toString().equals(null) && cbNamaObat46.getSelectedItem().toString().equals("") 
+                && cbNamaObat46.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat46.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah46.getValue() && cbNamaObat46.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat46.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah46.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat46.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat46.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah46.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah46.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 47                
+        if(!(cbNamaObat47.getSelectedItem().toString().equals(null) && cbNamaObat47.getSelectedItem().toString().equals("") 
+                && cbNamaObat47.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat47.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah47.getValue() && cbNamaObat47.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat47.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah47.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat47.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat47.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah47.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah47.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 48                
+        if(!(cbNamaObat48.getSelectedItem().toString().equals(null) && cbNamaObat48.getSelectedItem().toString().equals("") 
+                && cbNamaObat48.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat48.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah48.getValue() && cbNamaObat48.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat48.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah48.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat48.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat48.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah48.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah48.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 49                
+        if(!(cbNamaObat49.getSelectedItem().toString().equals(null) && cbNamaObat49.getSelectedItem().toString().equals("") 
+                && cbNamaObat49.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat49.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah49.getValue() && cbNamaObat49.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat49.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah49.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat49.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat49.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah49.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah49.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 50                
+        if(!(cbNamaObat50.getSelectedItem().toString().equals(null) && cbNamaObat50.getSelectedItem().toString().equals("") 
+                && cbNamaObat50.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat50.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah50.getValue() && cbNamaObat50.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat50.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah50.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat50.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat50.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah50.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah50.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 51                
+        if(!(cbNamaObat51.getSelectedItem().toString().equals(null) && cbNamaObat51.getSelectedItem().toString().equals("") 
+                && cbNamaObat51.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat51.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah51.getValue() && cbNamaObat51.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat51.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah51.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat51.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat51.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah51.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah51.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 52                
+        if(!(cbNamaObat52.getSelectedItem().toString().equals(null) && cbNamaObat52.getSelectedItem().toString().equals("") 
+                && cbNamaObat52.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat52.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah52.getValue() && cbNamaObat52.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat52.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah52.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat52.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat52.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah52.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah52.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 53                
+        if(!(cbNamaObat53.getSelectedItem().toString().equals(null) && cbNamaObat53.getSelectedItem().toString().equals("") 
+                && cbNamaObat53.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat53.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah53.getValue() && cbNamaObat53.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat53.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah53.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat53.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat53.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah53.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah53.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 54                
+        if(!(cbNamaObat54.getSelectedItem().toString().equals(null) && cbNamaObat54.getSelectedItem().toString().equals("") 
+                && cbNamaObat54.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat54.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah54.getValue() && cbNamaObat54.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat54.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah54.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat54.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat54.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah54.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah54.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 55                
+        if(!(cbNamaObat55.getSelectedItem().toString().equals(null) && cbNamaObat55.getSelectedItem().toString().equals("") 
+                && cbNamaObat55.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat55.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah55.getValue() && cbNamaObat55.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat55.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah55.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat55.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat55.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah55.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah55.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 56                
+        if(!(cbNamaObat56.getSelectedItem().toString().equals(null) && cbNamaObat56.getSelectedItem().toString().equals("") 
+                && cbNamaObat56.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat56.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah56.getValue() && cbNamaObat56.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat56.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah56.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat56.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat56.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah56.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah56.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 57                
+        if(!(cbNamaObat57.getSelectedItem().toString().equals(null) && cbNamaObat57.getSelectedItem().toString().equals("") 
+                && cbNamaObat57.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat57.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah57.getValue() && cbNamaObat57.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat57.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah57.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat57.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat57.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah57.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah57.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 58                
+        if(!(cbNamaObat58.getSelectedItem().toString().equals(null) && cbNamaObat58.getSelectedItem().toString().equals("") 
+                && cbNamaObat58.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat58.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah58.getValue() && cbNamaObat58.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat58.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah58.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat58.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat58.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah58.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah58.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 59                
+        if(!(cbNamaObat59.getSelectedItem().toString().equals(null) && cbNamaObat59.getSelectedItem().toString().equals("") 
+                && cbNamaObat59.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat59.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah59.getValue() && cbNamaObat59.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat59.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah59.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat59.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat59.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah59.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah59.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 60                
+        if(!(cbNamaObat60.getSelectedItem().toString().equals(null) && cbNamaObat60.getSelectedItem().toString().equals("") 
+                && cbNamaObat60.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat60.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah60.getValue() && cbNamaObat60.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat60.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah60.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat60.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat60.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah60.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah60.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 61                
+        if(!(cbNamaObat61.getSelectedItem().toString().equals(null) && cbNamaObat61.getSelectedItem().toString().equals("") 
+                && cbNamaObat61.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat61.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah61.getValue() && cbNamaObat61.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat61.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah61.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat61.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat61.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah61.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah61.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 62                
+        if(!(cbNamaObat62.getSelectedItem().toString().equals(null) && cbNamaObat62.getSelectedItem().toString().equals("") 
+                && cbNamaObat62.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat62.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah62.getValue() && cbNamaObat62.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat62.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah62.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat62.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat62.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah62.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah62.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 63                
+        if(!(cbNamaObat63.getSelectedItem().toString().equals(null) && cbNamaObat63.getSelectedItem().toString().equals("") 
+                && cbNamaObat63.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat63.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah63.getValue() && cbNamaObat63.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat63.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah63.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat63.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat63.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah63.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah63.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 64                
+        if(!(cbNamaObat64.getSelectedItem().toString().equals(null) && cbNamaObat64.getSelectedItem().toString().equals("") 
+                && cbNamaObat64.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat64.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah64.getValue() && cbNamaObat64.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat64.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah64.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat64.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat64.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah64.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah64.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 65                
+        if(!(cbNamaObat65.getSelectedItem().toString().equals(null) && cbNamaObat65.getSelectedItem().toString().equals("") 
+                && cbNamaObat65.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat65.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah65.getValue() && cbNamaObat65.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat65.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah65.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat65.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat65.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah65.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah65.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 66                
+        if(!(cbNamaObat66.getSelectedItem().toString().equals(null) && cbNamaObat66.getSelectedItem().toString().equals("") 
+                && cbNamaObat66.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat66.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah66.getValue() && cbNamaObat66.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat66.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah66.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat66.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat66.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah66.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah66.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 67                
+        if(!(cbNamaObat67.getSelectedItem().toString().equals(null) && cbNamaObat67.getSelectedItem().toString().equals("") 
+                && cbNamaObat67.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat67.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah67.getValue() && cbNamaObat67.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat67.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah67.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat67.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat67.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah67.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah67.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 68                
+        if(!(cbNamaObat68.getSelectedItem().toString().equals(null) && cbNamaObat68.getSelectedItem().toString().equals("") 
+                && cbNamaObat68.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat68.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah68.getValue() && cbNamaObat68.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat68.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah68.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat68.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat68.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah68.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah68.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 69                
+        if(!(cbNamaObat69.getSelectedItem().toString().equals(null) && cbNamaObat69.getSelectedItem().toString().equals("") 
+                && cbNamaObat69.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat69.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah69.getValue() && cbNamaObat69.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat69.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah69.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat69.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat69.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah69.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah69.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 70                
+        if(!(cbNamaObat70.getSelectedItem().toString().equals(null) && cbNamaObat70.getSelectedItem().toString().equals("") 
+                && cbNamaObat70.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat70.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah70.getValue() && cbNamaObat70.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat70.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah70.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat70.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat70.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah70.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah70.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 71                
+        if(!(cbNamaObat71.getSelectedItem().toString().equals(null) && cbNamaObat71.getSelectedItem().toString().equals("") 
+                && cbNamaObat71.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat71.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah71.getValue() && cbNamaObat71.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat71.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah71.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat71.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat71.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah71.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah71.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+			// INPUT OBAT KE 72                
+        if(!(cbNamaObat72.getSelectedItem().toString().equals(null) && cbNamaObat72.getSelectedItem().toString().equals("") 
+                && cbNamaObat72.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
+            try {
+                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
+                        + cbNamaObat72.getSelectedItem().toString() + "'");
+                while(rsObat.next() == true) {
+                    masuk = rsObat.getDate("tglMasuk");
+                    obat = rsObat.getString("namaObat");
+                    gol = rsObat.getString("golObat");
+                    sat = rsObat.getString("sat");
+                    jumlahSkr = rsObat.getInt("jumlahSedia");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            
+            if(jumlahSkr >= (int) spnJumlah72.getValue() && cbNamaObat72.getSelectedItem().toString().equalsIgnoreCase(obat)) {
+                try {
+                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat72.getSelectedItem().toString() +
+                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
+                    while(rsJual.next() == true) {;
+                        Aobat = rsJual.getString("namaObatJ");
+                        Ag = rsJual.getString("golObatJ");
+                        As = rsJual.getString("satJ");
+                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+                
+                int totalA = AjumlahSkr + (int) spnJumlah72.getValue();
+                
+                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat72.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
+                        + "'" + sat + "',"
+                        + "'" + totalA + "');";
+                 
+                 sqlDelete = "DELETE FROM DataJual "
+                            + "WHERE namaObatJ='" + cbNamaObat72.getSelectedItem().toString() + 
+                            "' AND jumlahSediaJ=" + AjumlahSkr + 
+                            " AND satJ='" + sat + 
+                            "' AND golObatJ='" + gol + "'";
+                    
+                try {
+                   int berhasil = stmt1.executeUpdate(sqlInsert);
+                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+
+                int sisaObat = jumlahSkr - (int) spnJumlah72.getValue();
+
+                sqlUpdate = "UPDATE DataObat SET "
+                    + "jumlahSedia='" + sisaObat + "' "
+                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
+
+                try {
+                   int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                setObat so = new setObat();
+                    so.setExGudang(Date.valueOf(tanggal));
+                    so.setNamaObat(obat);
+                    so.setGolObat(gol);
+                    so.setSat(sat);
+                    so.setSisaApotek((int)spnJumlah72.getValue());
+                    this.list1.add(so);
+                    updateTableJual();
+            }
+        }}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
        
        sql = "INSERT INTO DataResep (Tanggal,NamaPasien,Usia,Alamat,JenisLayanan,BpjsNonBpjs,namaObat,jmlObat) "
                 + "VALUES ('"+Date.valueOf(tanggal) +  "',"
