@@ -9,7 +9,7 @@ public class setConnection {
     
     public setConnection() throws SQLException {
             connection = DriverManager.getConnection("jdbc:"
-                    + "mysql://sql6.freemysqlhosting.net:3306/sql6152717","sql6152717","S5ISjzaFKC");
+                    + "mysql://31.220.110.131/u573612604_008","u573612604_008","timagent008");
             System.out.println("Berhasil Konek");
     }
 }

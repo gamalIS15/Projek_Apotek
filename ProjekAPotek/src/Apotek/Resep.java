@@ -8102,7 +8102,7 @@ public class Resep extends javax.swing.JFrame {
         }}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
        
        sql = "INSERT INTO DataResep (NoResep,Tanggal,NamaPasien,Usia,Alamat,JenisLayanan,BpjsNonBpjs,namaObat,jmlObat) "
-                + "VALUES ('"+ txtNamaPasien.getText() +  "',"
+                + "VALUES ('"+ txtResep.getText() +  "',"
                 + "'" + Date.valueOf(tanggal) + "',"
                 + "'" + txtNamaPasien.getText() + "',"
                 + "'" + spnThn.getValue() + "',"
