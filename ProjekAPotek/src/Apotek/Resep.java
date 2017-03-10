@@ -38,7 +38,7 @@ public class Resep extends javax.swing.JFrame {
      * Creates new form Resep
      */
     Statement stmt, stmt1, stmt2;
-    ResultSet rsResep,rsObat,rsJual,rsCariResep,rscariObat,rsResep1;
+    ResultSet rsResep,rsObat,rsJual,rsCariResep,rscariObat,rsResep1,rsResep2;
     int index = 0;
     String title [] = {"No Resep","Tanggal", "Nama Pasien", "Usia", "Alamat", "Jenis Layanan", 
         "BPJS/Non BPJS", "Nama Obat", "Jumlah Pengambilan"};
@@ -8173,18 +8173,23 @@ public class Resep extends javax.swing.JFrame {
              noResep = list2.toArray(noResep);
             System.out.println(noResep);
             JFrame frame = new JFrame("Input Dialog Example 3");
-            String favoritePizza = (String) JOptionPane.showInputDialog(frame,
+            String pilihan = (String) JOptionPane.showInputDialog(frame,
                     "Pilih Nomor Resep",
                     "Edit",
                     JOptionPane.QUESTION_MESSAGE,
                     null,
                     noResep,
                     noResep[0]);
+            //System.out.println(pilihan);
         } catch (SQLException ex) {
             Logger.getLogger(Resep.class.getName()).log(Level.SEVERE, null, ex);
         }
+       
     }//GEN-LAST:event_btnEditActionPerformed
-
+    private void editTable(String s) throws Exception{
+        rsResep1 = stmt.executeQuery("SELECT * FROM DataResep WHERE NoResep = " + s);
+        
+    }
     /**
      * @param args the command line arguments
      */
