@@ -758,6 +758,7 @@ public class Resep extends javax.swing.JFrame {
         jLabel162 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtResep = new javax.swing.JTextField();
+        btnUpdate = new javax.swing.JButton();
         clPanelTransparan5 = new PanelTransparan.ClPanelTransparan();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblJual = new javax.swing.JTable();
@@ -855,7 +856,7 @@ public class Resep extends javax.swing.JFrame {
             .addGroup(clPanelTransparan3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(clPanelTransparan3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 852, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addGroup(clPanelTransparan3Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -2459,6 +2460,16 @@ public class Resep extends javax.swing.JFrame {
 
         jLabel3.setText("No Resep");
 
+        btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Save1.png"))); // NOI18N
+        btnUpdate.setText("Update");
+        btnUpdate.setFocusable(false);
+        btnUpdate.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout clPanelTransparan4Layout = new javax.swing.GroupLayout(clPanelTransparan4);
         clPanelTransparan4.setLayout(clPanelTransparan4Layout);
         clPanelTransparan4Layout.setHorizontalGroup(
@@ -2466,15 +2477,20 @@ public class Resep extends javax.swing.JFrame {
             .addGroup(clPanelTransparan4Layout.createSequentialGroup()
                 .addGroup(clPanelTransparan4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(clPanelTransparan4Layout.createSequentialGroup()
-                        .addGap(174, 174, 174)
-                        .addComponent(jLabel6))
-                    .addGroup(clPanelTransparan4Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(btnSimpan))
+                        .addComponent(btnSimpan)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnUpdate))
                     .addGroup(clPanelTransparan4Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel3)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addGroup(clPanelTransparan4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(clPanelTransparan4Layout.createSequentialGroup()
+                                .addGap(174, 174, 174)
+                                .addComponent(jLabel6))
+                            .addGroup(clPanelTransparan4Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel3)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
             .addGroup(clPanelTransparan4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(clPanelTransparan4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2538,11 +2554,13 @@ public class Resep extends javax.swing.JFrame {
                     .addComponent(cbJenisLayanan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(rbBPJS)
                     .addComponent(rbNBPJS))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnSimpan)
-                .addContainerGap())
+                .addGroup(clPanelTransparan4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSimpan)
+                    .addComponent(btnUpdate))
+                .addGap(48, 48, 48))
         );
 
         clPanelTransparan5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -2638,37 +2656,28 @@ public class Resep extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(clPanelTransparan4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(clPanelTransparan3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(805, 805, 805)
-                        .addComponent(btnEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(31, 31, 31))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                    .addContainerGap(459, Short.MAX_VALUE)
-                    .addComponent(clPanelTransparan5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(26, 26, 26)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(clPanelTransparan5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(clPanelTransparan3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnEdit))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(clPanelTransparan1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(308, 308, 308)
+                        .addComponent(clPanelTransparan5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(13, 13, 13)
                         .addComponent(clPanelTransparan3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(clPanelTransparan4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(btnEdit)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(clPanelTransparan4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(50, 50, 50)
-                    .addComponent(clPanelTransparan5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(356, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -8216,6 +8225,43 @@ public class Resep extends javax.swing.JFrame {
             Logger.getLogger(Resep.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnEditActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+        String tanggal = (txtTanggalResep.getDate().getYear()+1900) + "-" + 
+                (txtTanggalResep.getDate().getMonth()+1) + "-" + 
+                txtTanggalResep.getDate().getDate();
+        String cekBpjs = rbBPJS.isSelected() ? "BPJS" : "non BPJS";
+        String sql;
+        sql="UPDATE DataResep SET "
+                + "NamaPasien='" + txtNamaPasien.getText() + "', "
+                + "Alamat='" + txtAlamat.getText() + "', "
+                + "Usia='" + spnThn.getValue() + "', "
+                + "Tanggal='" + tanggal + "', "
+                + "BpjsNonBpjs='" + cekBpjs + "', "
+                + "JenisLayanan='" + cbJenisLayanan.getSelectedItem() + "' "
+                + "WHERE NomorResep='" + txtResep.getText() + "';";
+        System.out.println(sql);
+        
+        try {
+            int update = stmt.executeUpdate(sql);
+        } catch (SQLException errMsg) {
+            System.out.println("Ada Kesalahan: " + errMsg.getMessage());
+        }
+        
+        setResep resep = new setResep();
+        resep.setResep(txtResep.getText());
+        resep.setNamaPasien(txtNamaPasien.getText());
+        resep.setAlamat(txtAlamat.getText());
+        resep.setBpjs_nonBpjs(cekBpjs);
+        resep.setJenisLayanan(String.valueOf(cbJenisLayanan.getSelectedItem()));
+        resep.setTanggal(Date.valueOf(tanggal));
+        resep.setUsia(String.valueOf(spnThn.getValue()));
+        this.list.set(this.index, resep);
+        updateTable();
+        
+        btnSimpan.setEnabled(true);
+    }//GEN-LAST:event_btnUpdateActionPerformed
     private void editTable(String s) throws Exception{
         rsResep1 = stmt.executeQuery("SELECT * FROM DataResep WHERE NoResep = " + s);
         
@@ -8301,6 +8347,7 @@ public class Resep extends javax.swing.JFrame {
     private javax.swing.JButton btnEdit;
     private javax.swing.JLabel btnKeluar;
     private javax.swing.JButton btnSimpan;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JTextField cbCariNama;
     private javax.swing.JComboBox<String> cbCariObat;
     private javax.swing.JComboBox<String> cbJenisLayanan;
