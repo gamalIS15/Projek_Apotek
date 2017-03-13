@@ -8180,7 +8180,7 @@ public class Resep extends javax.swing.JFrame {
                     null,
                     noResep,
                     noResep[0]);
-            //System.out.println(pilihan);
+            System.out.println(pilihan);
         } catch (SQLException ex) {
             Logger.getLogger(Resep.class.getName()).log(Level.SEVERE, null, ex);
         }
