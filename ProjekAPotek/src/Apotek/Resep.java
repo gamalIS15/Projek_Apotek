@@ -2623,7 +2623,6 @@ public class Resep extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/abiword.png"))); // NOI18N
         btnEdit.setText("Edit");
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -8160,8 +8159,8 @@ public class Resep extends javax.swing.JFrame {
     }//GEN-LAST:event_cbCariObatKeyReleased
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+        String pilihan = null;
         try {
-           
             setResep rs = new setResep();
             ArrayList<String> list2 = new ArrayList<String>();
             rsResep1 = stmt.executeQuery("SELECT * FROM DataResep");
@@ -8173,7 +8172,7 @@ public class Resep extends javax.swing.JFrame {
              noResep = list2.toArray(noResep);
             System.out.println(noResep);
             JFrame frame = new JFrame("Input Dialog Example 3");
-            String pilihan = (String) JOptionPane.showInputDialog(frame,
+            pilihan = (String) JOptionPane.showInputDialog(frame,
                     "Pilih Nomor Resep",
                     "Edit",
                     JOptionPane.QUESTION_MESSAGE,
@@ -8185,6 +8184,37 @@ public class Resep extends javax.swing.JFrame {
             Logger.getLogger(Resep.class.getName()).log(Level.SEVERE, null, ex);
         }
        
+        String no = null, nama = null, umur = null, alamat = null, jnsLay = null, bpjs = null;
+        Date tgl = null;
+        try {
+            rsResep2 = stmt1.executeQuery("SELECT * FROM DataResep WHERE NoResep='" + pilihan + "'");
+            
+            while(rsResep2.next()==true){
+                no = rsResep2.getString("NoResep");
+                tgl = rsResep2.getDate("Tanggal");
+                nama = rsResep2.getString("NamaPasien");
+                umur = rsResep2.getString("Usia");
+                alamat = rsResep2.getString("Alamat");
+                jnsLay = rsResep2.getString("JenisLayanan");
+                bpjs = rsResep2.getString("BpjsNonBpjs");
+            }
+            
+            txtTanggalResep.setDate(tgl);
+            txtNamaPasien.setText(nama);
+            txtResep.setText(no);
+            txtAlamat.setText(alamat);
+            spnThn.setValue(Integer.parseInt(umur));
+            cbJenisLayanan.setSelectedItem(jnsLay);
+            if(bpjs.equalsIgnoreCase("BPJS")) {
+                rbBPJS.setSelected(true);
+            } else if(bpjs.equalsIgnoreCase("non BPJS")) {
+                rbNBPJS.setSelected(true);
+            }
+            btnSimpan.setEnabled(false);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Resep.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnEditActionPerformed
     private void editTable(String s) throws Exception{
         rsResep1 = stmt.executeQuery("SELECT * FROM DataResep WHERE NoResep = " + s);
