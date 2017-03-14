@@ -15,6 +15,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
@@ -199,7 +200,7 @@ public class Resep extends javax.swing.JFrame {
         String [] namaObat = new String[ls.size()];
         namaObat = ls.toArray(namaObat);
         
-                DefaultComboBoxModel<String> dcm = new DefaultComboBoxModel<String>(namaObat);
+        DefaultComboBoxModel<String> dcm = new DefaultComboBoxModel<String>(namaObat);
         DefaultComboBoxModel<String> cm = new DefaultComboBoxModel<String>(namaObat);
         DefaultComboBoxModel<String> cm1 = new DefaultComboBoxModel<String>(namaObat);
         DefaultComboBoxModel<String> cm2 = new DefaultComboBoxModel<String>(namaObat);
@@ -913,7 +914,7 @@ public class Resep extends javax.swing.JFrame {
         txtAlamat.setRows(5);
         jScrollPane3.setViewportView(txtAlamat);
 
-        cbJenisLayanan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Rawat Jalan", "Rawat Inap" }));
+        cbJenisLayanan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Rawat Jalan", "Rawat Inap", "Pustu Kletek", "Pustu Sadang", "Pustu Wage", "Polindes Bohar", "Polindes Jemundo", "Polindes Kedungturi", "Polindes Sepanjang", "Polindes Tawangsari ", "UGD", "LABORAT", "BKIA", "PERAWATAN", "IMUNISASI", "PROGRAM GIZI", "POLI GIGI" }));
 
         spnThn.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
@@ -8220,10 +8221,10 @@ public class Resep extends javax.swing.JFrame {
                 rbNBPJS.setSelected(true);
             }
             btnSimpan.setEnabled(false);
-            
+            clearAll();
         } catch (SQLException ex) {
             Logger.getLogger(Resep.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }   
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
@@ -8240,11 +8241,12 @@ public class Resep extends javax.swing.JFrame {
                 + "Tanggal='" + tanggal + "', "
                 + "BpjsNonBpjs='" + cekBpjs + "', "
                 + "JenisLayanan='" + cbJenisLayanan.getSelectedItem() + "' "
-                + "WHERE NomorResep='" + txtResep.getText() + "';";
-        System.out.println(sql);
+                + "WHERE NoResep='" + txtResep.getText() + "';";
         
         try {
-            int update = stmt.executeUpdate(sql);
+            setConnection koneksi = new setConnection();
+            stmt2 = koneksi.connection.createStatement();
+            int update = stmt2.executeUpdate(sql);
         } catch (SQLException errMsg) {
             System.out.println("Ada Kesalahan: " + errMsg.getMessage());
         }
@@ -8261,6 +8263,7 @@ public class Resep extends javax.swing.JFrame {
         updateTable();
         
         btnSimpan.setEnabled(true);
+        clearAll();
     }//GEN-LAST:event_btnUpdateActionPerformed
     private void editTable(String s) throws Exception{
         rsResep1 = stmt.executeQuery("SELECT * FROM DataResep WHERE NoResep = " + s);
@@ -8314,6 +8317,160 @@ public class Resep extends javax.swing.JFrame {
                 new Resep().setVisible(true);
             }
         });
+    }
+    
+    private void clearAll(){
+        txtTanggalResep.setCalendar(Calendar.getInstance());
+        txtNamaPasien.setText("");
+        txtAlamat.setText("");
+        txtResep.setText("");
+        spnThn.setValue(0);
+        cbJenisLayanan.setSelectedIndex(0);
+        cbNamaObat1.setSelectedIndex(0);
+        cbNamaObat2.setSelectedIndex(0);
+        cbNamaObat3.setSelectedIndex(0);
+        cbNamaObat4.setSelectedIndex(0);
+        cbNamaObat5.setSelectedIndex(0);
+        cbNamaObat6.setSelectedIndex(0);
+        cbNamaObat7.setSelectedIndex(0);
+        cbNamaObat8.setSelectedIndex(0);
+        cbNamaObat9.setSelectedIndex(0);
+        cbNamaObat10.setSelectedIndex(0);
+        cbNamaObat11.setSelectedIndex(0);
+        cbNamaObat12.setSelectedIndex(0);
+        cbNamaObat13.setSelectedIndex(0);
+        cbNamaObat14.setSelectedIndex(0);
+        cbNamaObat15.setSelectedIndex(0);
+        cbNamaObat16.setSelectedIndex(0);
+        cbNamaObat17.setSelectedIndex(0);
+        cbNamaObat18.setSelectedIndex(0);
+        cbNamaObat19.setSelectedIndex(0);
+        cbNamaObat20.setSelectedIndex(0);
+        cbNamaObat21.setSelectedIndex(0);
+        cbNamaObat22.setSelectedIndex(0);
+        cbNamaObat23.setSelectedIndex(0);
+        cbNamaObat24.setSelectedIndex(0);
+        cbNamaObat25.setSelectedIndex(0);
+        cbNamaObat26.setSelectedIndex(0);
+        cbNamaObat27.setSelectedIndex(0);
+        cbNamaObat28.setSelectedIndex(0);
+        cbNamaObat29.setSelectedIndex(0);
+        cbNamaObat30.setSelectedIndex(0);
+        cbNamaObat31.setSelectedIndex(0);
+        cbNamaObat32.setSelectedIndex(0);
+        cbNamaObat33.setSelectedIndex(0);
+        cbNamaObat34.setSelectedIndex(0);
+        cbNamaObat35.setSelectedIndex(0);
+        cbNamaObat36.setSelectedIndex(0);
+        cbNamaObat37.setSelectedIndex(0);
+        cbNamaObat38.setSelectedIndex(0);
+        cbNamaObat39.setSelectedIndex(0);
+        cbNamaObat40.setSelectedIndex(0);
+        cbNamaObat41.setSelectedIndex(0);
+        cbNamaObat42.setSelectedIndex(0);
+        cbNamaObat43.setSelectedIndex(0);
+        cbNamaObat44.setSelectedIndex(0);
+        cbNamaObat45.setSelectedIndex(0);
+        cbNamaObat46.setSelectedIndex(0);
+        cbNamaObat47.setSelectedIndex(0);
+        cbNamaObat48.setSelectedIndex(0);
+        cbNamaObat49.setSelectedIndex(0);
+        cbNamaObat50.setSelectedIndex(0);
+        cbNamaObat51.setSelectedIndex(0);
+        cbNamaObat52.setSelectedIndex(0);
+        cbNamaObat53.setSelectedIndex(0);
+        cbNamaObat54.setSelectedIndex(0);
+        cbNamaObat55.setSelectedIndex(0);
+        cbNamaObat56.setSelectedIndex(0);
+        cbNamaObat57.setSelectedIndex(0);
+        cbNamaObat58.setSelectedIndex(0);
+        cbNamaObat59.setSelectedIndex(0);
+        cbNamaObat60.setSelectedIndex(0);
+        cbNamaObat61.setSelectedIndex(0);
+        cbNamaObat62.setSelectedIndex(0);
+        cbNamaObat63.setSelectedIndex(0);
+        cbNamaObat64.setSelectedIndex(0);
+        cbNamaObat65.setSelectedIndex(0);
+        cbNamaObat66.setSelectedIndex(0);
+        cbNamaObat67.setSelectedIndex(0);
+        cbNamaObat68.setSelectedIndex(0);
+        cbNamaObat69.setSelectedIndex(0);
+        cbNamaObat70.setSelectedIndex(0);
+        cbNamaObat71.setSelectedIndex(0);
+        cbNamaObat72.setSelectedIndex(0);
+        
+        spnJumlah1.setValue(0);
+        spnJumlah2.setValue(0);
+        spnJumlah3.setValue(0);
+        spnJumlah4.setValue(0);
+        spnJumlah5.setValue(0);
+        spnJumlah6.setValue(0);
+        spnJumlah7.setValue(0);
+        spnJumlah8.setValue(0);
+        spnJumlah9.setValue(0);
+        spnJumlah10.setValue(0);
+        spnJumlah11.setValue(0);
+        spnJumlah12.setValue(0);
+        spnJumlah13.setValue(0);
+        spnJumlah14.setValue(0);
+        spnJumlah15.setValue(0);
+        spnJumlah16.setValue(0);
+        spnJumlah17.setValue(0);
+        spnJumlah18.setValue(0);
+        spnJumlah19.setValue(0);
+        spnJumlah20.setValue(0);
+        spnJumlah21.setValue(0);
+        spnJumlah22.setValue(0);
+        spnJumlah23.setValue(0);
+        spnJumlah24.setValue(0);
+        spnJumlah25.setValue(0);
+        spnJumlah26.setValue(0);
+        spnJumlah27.setValue(0);
+        spnJumlah28.setValue(0);
+        spnJumlah29.setValue(0);
+        spnJumlah30.setValue(0);
+        spnJumlah31.setValue(0);
+        spnJumlah32.setValue(0);
+        spnJumlah33.setValue(0);
+        spnJumlah34.setValue(0);
+        spnJumlah35.setValue(0);
+        spnJumlah36.setValue(0);
+        spnJumlah37.setValue(0);
+        spnJumlah38.setValue(0);
+        spnJumlah39.setValue(0);
+        spnJumlah40.setValue(0);
+        spnJumlah41.setValue(0);
+        spnJumlah42.setValue(0);
+        spnJumlah43.setValue(0);
+        spnJumlah44.setValue(0);
+        spnJumlah45.setValue(0);
+        spnJumlah46.setValue(0);
+        spnJumlah47.setValue(0);
+        spnJumlah48.setValue(0);
+        spnJumlah49.setValue(0);
+        spnJumlah50.setValue(0);
+        spnJumlah51.setValue(0);
+        spnJumlah52.setValue(0);
+        spnJumlah53.setValue(0);
+        spnJumlah54.setValue(0);
+        spnJumlah55.setValue(0);
+        spnJumlah56.setValue(0);
+        spnJumlah57.setValue(0);
+        spnJumlah58.setValue(0);
+        spnJumlah59.setValue(0);
+        spnJumlah60.setValue(0);
+        spnJumlah61.setValue(0);
+        spnJumlah62.setValue(0);
+        spnJumlah63.setValue(0);
+        spnJumlah64.setValue(0);
+        spnJumlah65.setValue(0);
+        spnJumlah66.setValue(0);
+        spnJumlah67.setValue(0);
+        spnJumlah68.setValue(0);
+        spnJumlah69.setValue(0);
+        spnJumlah70.setValue(0);
+        spnJumlah71.setValue(0);
+        spnJumlah72.setValue(0);
     }
     
         public final void setWaktu() {

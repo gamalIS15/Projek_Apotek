@@ -483,7 +483,7 @@ public class Gudang extends javax.swing.JFrame {
 
         jLabel13.setText("Ke :");
 
-        cbKeA.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Apotek", "Gudang" }));
+        cbKeA.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Apotek", "Gudang", "Pustu Kletek", "Pustu Sadang", "Pustu Wage", "Polindes Bohar", "Polindes Jemundo", "Polindes Kedungturi", "Polindes Sepanjang", "Polindes Tawangsari ", "UGD", "LABORAT", "BKIA", "PERAWATAN", "IMUNISASI", "PROGRAM GIZI", "POLI GIGI" }));
 
         jLabel14.setText("Tanggal :");
 
