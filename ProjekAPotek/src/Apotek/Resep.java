@@ -394,27 +394,7 @@ public class Resep extends javax.swing.JFrame {
             cbNamaObat59.setModel( cm57 );
             AutoCompleteDecorator.decorate(this.cbNamaObat59);
             cbNamaObat60.setModel( cm58 );
-            AutoCompleteDecorator.decorate(this.cbNamaObat60);
-            cbNamaObat61.setModel( cm59 );
-            AutoCompleteDecorator.decorate(this.cbNamaObat61);
-            cbNamaObat62.setModel( cm60 );
-            AutoCompleteDecorator.decorate(this.cbNamaObat62);
-            cbNamaObat63.setModel( cm61 );
-            AutoCompleteDecorator.decorate(this.cbNamaObat63);
-            cbNamaObat64.setModel( cm62 );
-            AutoCompleteDecorator.decorate(this.cbNamaObat64);
-            cbNamaObat65.setModel( cm63 );
-            AutoCompleteDecorator.decorate(this.cbNamaObat65);
-            cbNamaObat66.setModel( cm64 );
-            AutoCompleteDecorator.decorate(this.cbNamaObat66);
-            cbNamaObat67.setModel( cm65 );
-            AutoCompleteDecorator.decorate(this.cbNamaObat67);      
-            cbNamaObat68.setModel( cm66 );
-            AutoCompleteDecorator.decorate(this.cbNamaObat68);
-            cbNamaObat69.setModel( cm67 );
-            AutoCompleteDecorator.decorate(this.cbNamaObat69);
-            cbNamaObat70.setModel( cm68 );
-            AutoCompleteDecorator.decorate(this.cbNamaObat70);           
+            AutoCompleteDecorator.decorate(this.cbNamaObat60);                  
     }
     
     
@@ -705,47 +685,6 @@ public class Resep extends javax.swing.JFrame {
         jLabel138 = new javax.swing.JLabel();
         cbNamaObat60 = new javax.swing.JComboBox<>();
         spnJumlah60 = new javax.swing.JSpinner();
-        jLabel139 = new javax.swing.JLabel();
-        spnJumlah61 = new javax.swing.JSpinner();
-        jLabel140 = new javax.swing.JLabel();
-        cbNamaObat61 = new javax.swing.JComboBox<>();
-        cbNamaObat62 = new javax.swing.JComboBox<>();
-        jLabel141 = new javax.swing.JLabel();
-        spnJumlah62 = new javax.swing.JSpinner();
-        jLabel142 = new javax.swing.JLabel();
-        spnJumlah63 = new javax.swing.JSpinner();
-        jLabel143 = new javax.swing.JLabel();
-        jLabel144 = new javax.swing.JLabel();
-        cbNamaObat63 = new javax.swing.JComboBox<>();
-        cbNamaObat64 = new javax.swing.JComboBox<>();
-        jLabel145 = new javax.swing.JLabel();
-        spnJumlah64 = new javax.swing.JSpinner();
-        jLabel146 = new javax.swing.JLabel();
-        jPanel10 = new javax.swing.JPanel();
-        jLabel147 = new javax.swing.JLabel();
-        cbNamaObat65 = new javax.swing.JComboBox<>();
-        jLabel148 = new javax.swing.JLabel();
-        spnJumlah65 = new javax.swing.JSpinner();
-        jLabel149 = new javax.swing.JLabel();
-        jLabel150 = new javax.swing.JLabel();
-        cbNamaObat66 = new javax.swing.JComboBox<>();
-        spnJumlah66 = new javax.swing.JSpinner();
-        jLabel151 = new javax.swing.JLabel();
-        cbNamaObat67 = new javax.swing.JComboBox<>();
-        jLabel152 = new javax.swing.JLabel();
-        spnJumlah67 = new javax.swing.JSpinner();
-        jLabel153 = new javax.swing.JLabel();
-        jLabel154 = new javax.swing.JLabel();
-        cbNamaObat68 = new javax.swing.JComboBox<>();
-        spnJumlah68 = new javax.swing.JSpinner();
-        jLabel155 = new javax.swing.JLabel();
-        spnJumlah69 = new javax.swing.JSpinner();
-        jLabel156 = new javax.swing.JLabel();
-        cbNamaObat69 = new javax.swing.JComboBox<>();
-        cbNamaObat70 = new javax.swing.JComboBox<>();
-        jLabel157 = new javax.swing.JLabel();
-        spnJumlah70 = new javax.swing.JSpinner();
-        jLabel158 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtResep = new javax.swing.JTextField();
         btnUpdate = new javax.swing.JButton();
@@ -2146,38 +2085,6 @@ public class Resep extends javax.swing.JFrame {
 
         spnJumlah60.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
-        jLabel139.setText("Jumlah");
-
-        spnJumlah61.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
-
-        jLabel140.setText("Nama Obat 61");
-
-        cbNamaObat61.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cbNamaObat62.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel141.setText("Jumlah");
-
-        spnJumlah62.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
-
-        jLabel142.setText("Nama Obat 62");
-
-        spnJumlah63.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
-
-        jLabel143.setText("Nama Obat 63");
-
-        jLabel144.setText("Jumlah");
-
-        cbNamaObat63.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cbNamaObat64.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel145.setText("Jumlah");
-
-        spnJumlah64.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
-
-        jLabel146.setText("Nama Obat 64");
-
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
@@ -2188,41 +2095,25 @@ public class Resep extends javax.swing.JFrame {
                     .addComponent(jLabel134)
                     .addComponent(jLabel131)
                     .addComponent(jLabel135)
-                    .addComponent(jLabel138)
-                    .addComponent(jLabel140)
-                    .addComponent(jLabel142)
-                    .addComponent(jLabel143)
-                    .addComponent(jLabel146))
+                    .addComponent(jLabel138))
                 .addGap(12, 12, 12)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(cbNamaObat57, 0, 200, Short.MAX_VALUE)
                     .addComponent(cbNamaObat58, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cbNamaObat59, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cbNamaObat60, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cbNamaObat61, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cbNamaObat62, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cbNamaObat63, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cbNamaObat64, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(cbNamaObat60, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel132)
                     .addComponent(jLabel133)
                     .addComponent(jLabel136)
-                    .addComponent(jLabel137)
-                    .addComponent(jLabel139)
-                    .addComponent(jLabel141)
-                    .addComponent(jLabel144)
-                    .addComponent(jLabel145))
+                    .addComponent(jLabel137))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(spnJumlah58, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(spnJumlah57, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(spnJumlah59, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spnJumlah60, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spnJumlah61, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spnJumlah62, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spnJumlah63, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spnJumlah64, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(spnJumlah60, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
@@ -2252,165 +2143,10 @@ public class Resep extends javax.swing.JFrame {
                     .addComponent(spnJumlah60, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel137)
                     .addComponent(jLabel138))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbNamaObat61, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spnJumlah61, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel139)
-                    .addComponent(jLabel140))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbNamaObat62, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spnJumlah62, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel141)
-                    .addComponent(jLabel142))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbNamaObat63, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spnJumlah63, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel144)
-                    .addComponent(jLabel143))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbNamaObat64, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spnJumlah64, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel145)
-                    .addComponent(jLabel146))
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addContainerGap(204, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("57-64", jPanel9);
-
-        jLabel147.setText("Nama Obat 66");
-
-        cbNamaObat65.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel148.setText("Jumlah");
-
-        spnJumlah65.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
-
-        jLabel149.setText("Jumlah");
-
-        jLabel150.setText("Nama Obat 65");
-
-        cbNamaObat66.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        spnJumlah66.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
-
-        jLabel151.setText("Nama Obat 67");
-
-        cbNamaObat67.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel152.setText("Jumlah");
-
-        spnJumlah67.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
-
-        jLabel153.setText("Jumlah");
-
-        jLabel154.setText("Nama Obat 68");
-
-        cbNamaObat68.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        spnJumlah68.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
-
-        jLabel155.setText("Jumlah");
-
-        spnJumlah69.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
-
-        jLabel156.setText("Nama Obat 69");
-
-        cbNamaObat69.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cbNamaObat70.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel157.setText("Jumlah");
-
-        spnJumlah70.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
-
-        jLabel158.setText("Nama Obat 70");
-
-        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
-        jPanel10.setLayout(jPanel10Layout);
-        jPanel10Layout.setHorizontalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel150)
-                    .addComponent(jLabel147)
-                    .addComponent(jLabel151)
-                    .addComponent(jLabel154)
-                    .addComponent(jLabel156)
-                    .addComponent(jLabel158))
-                .addGap(12, 12, 12)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cbNamaObat65, 0, 200, Short.MAX_VALUE)
-                    .addComponent(cbNamaObat66, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cbNamaObat67, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cbNamaObat68, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cbNamaObat69, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cbNamaObat70, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel148)
-                    .addComponent(jLabel149)
-                    .addComponent(jLabel152)
-                    .addComponent(jLabel153)
-                    .addComponent(jLabel155)
-                    .addComponent(jLabel157))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(spnJumlah66, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spnJumlah65, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spnJumlah67, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spnJumlah68, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spnJumlah69, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spnJumlah70, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
-        jPanel10Layout.setVerticalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbNamaObat65, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spnJumlah66, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel148)
-                    .addComponent(jLabel150))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbNamaObat66, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spnJumlah65, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel149)
-                    .addComponent(jLabel147))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbNamaObat67, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spnJumlah67, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel152)
-                    .addComponent(jLabel151))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbNamaObat68, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spnJumlah68, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel153)
-                    .addComponent(jLabel154))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbNamaObat69, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spnJumlah69, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel155)
-                    .addComponent(jLabel156))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbNamaObat70, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spnJumlah70, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel157)
-                    .addComponent(jLabel158))
-                .addContainerGap(142, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("64-72", jPanel10);
+        jTabbedPane1.addTab("57-60", jPanel9);
 
         jLabel3.setText("No Resep");
 
@@ -5814,6 +5550,17 @@ public class Resep extends javax.swing.JFrame {
                 } catch (SQLException errMsg) {
                     System.out.println(errMsg);
                 }
+                String sqlInsertTrans = "INSERT INTO Transaksi (tanggal,namaObat,penggunaanUntuk,jumlahKeluar) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat36.getSelectedItem().toString() + "',"
+                        + "'Resep',"
+                        + "'" + (int) spnJumlah36.getValue() + "');";
+                
+                try {
+                   int trans = stmt2.executeUpdate(sqlInsertTrans);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
                 
                 setObat so = new setObat();
                     so.setExGudang(Date.valueOf(tanggal));
@@ -5888,7 +5635,17 @@ public class Resep extends javax.swing.JFrame {
                 } catch (SQLException errMsg) {
                     System.out.println(errMsg);
                 }
+                String sqlInsertTrans = "INSERT INTO Transaksi (tanggal,namaObat,penggunaanUntuk,jumlahKeluar) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat37.getSelectedItem().toString() + "',"
+                        + "'Resep',"
+                        + "'" + (int) spnJumlah37.getValue() + "');";
                 
+                try {
+                   int trans = stmt2.executeUpdate(sqlInsertTrans);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
                 setObat so = new setObat();
                     so.setExGudang(Date.valueOf(tanggal));
                     so.setNamaObat(obat);
@@ -5962,7 +5719,17 @@ public class Resep extends javax.swing.JFrame {
                 } catch (SQLException errMsg) {
                     System.out.println(errMsg);
                 }
+                String sqlInsertTrans = "INSERT INTO Transaksi (tanggal,namaObat,penggunaanUntuk,jumlahKeluar) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat38.getSelectedItem().toString() + "',"
+                        + "'Resep',"
+                        + "'" + (int) spnJumlah38.getValue() + "');";
                 
+                try {
+                   int trans = stmt2.executeUpdate(sqlInsertTrans);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
                 setObat so = new setObat();
                     so.setExGudang(Date.valueOf(tanggal));
                     so.setNamaObat(obat);
@@ -6036,7 +5803,17 @@ public class Resep extends javax.swing.JFrame {
                 } catch (SQLException errMsg) {
                     System.out.println(errMsg);
                 }
+                String sqlInsertTrans = "INSERT INTO Transaksi (tanggal,namaObat,penggunaanUntuk,jumlahKeluar) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat39.getSelectedItem().toString() + "',"
+                        + "'Resep',"
+                        + "'" + (int) spnJumlah39.getValue() + "');";
                 
+                try {
+                   int trans = stmt2.executeUpdate(sqlInsertTrans);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
                 setObat so = new setObat();
                     so.setExGudang(Date.valueOf(tanggal));
                     so.setNamaObat(obat);
@@ -6110,7 +5887,17 @@ public class Resep extends javax.swing.JFrame {
                 } catch (SQLException errMsg) {
                     System.out.println(errMsg);
                 }
+                String sqlInsertTrans = "INSERT INTO Transaksi (tanggal,namaObat,penggunaanUntuk,jumlahKeluar) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat40.getSelectedItem().toString() + "',"
+                        + "'Resep',"
+                        + "'" + (int) spnJumlah40.getValue() + "');";
                 
+                try {
+                   int trans = stmt2.executeUpdate(sqlInsertTrans);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
                 setObat so = new setObat();
                     so.setExGudang(Date.valueOf(tanggal));
                     so.setNamaObat(obat);
@@ -6184,7 +5971,17 @@ public class Resep extends javax.swing.JFrame {
                 } catch (SQLException errMsg) {
                     System.out.println(errMsg);
                 }
+                String sqlInsertTrans = "INSERT INTO Transaksi (tanggal,namaObat,penggunaanUntuk,jumlahKeluar) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat41.getSelectedItem().toString() + "',"
+                        + "'Resep',"
+                        + "'" + (int) spnJumlah41.getValue() + "');";
                 
+                try {
+                   int trans = stmt2.executeUpdate(sqlInsertTrans);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
                 setObat so = new setObat();
                     so.setExGudang(Date.valueOf(tanggal));
                     so.setNamaObat(obat);
@@ -6258,7 +6055,17 @@ public class Resep extends javax.swing.JFrame {
                 } catch (SQLException errMsg) {
                     System.out.println(errMsg);
                 }
+                String sqlInsertTrans = "INSERT INTO Transaksi (tanggal,namaObat,penggunaanUntuk,jumlahKeluar) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat42.getSelectedItem().toString() + "',"
+                        + "'Resep',"
+                        + "'" + (int) spnJumlah42.getValue() + "');";
                 
+                try {
+                   int trans = stmt2.executeUpdate(sqlInsertTrans);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
                 setObat so = new setObat();
                     so.setExGudang(Date.valueOf(tanggal));
                     so.setNamaObat(obat);
@@ -6332,7 +6139,17 @@ public class Resep extends javax.swing.JFrame {
                 } catch (SQLException errMsg) {
                     System.out.println(errMsg);
                 }
+                String sqlInsertTrans = "INSERT INTO Transaksi (tanggal,namaObat,penggunaanUntuk,jumlahKeluar) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat43.getSelectedItem().toString() + "',"
+                        + "'Resep',"
+                        + "'" + (int) spnJumlah43.getValue() + "');";
                 
+                try {
+                   int trans = stmt2.executeUpdate(sqlInsertTrans);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
                 setObat so = new setObat();
                     so.setExGudang(Date.valueOf(tanggal));
                     so.setNamaObat(obat);
@@ -6406,7 +6223,17 @@ public class Resep extends javax.swing.JFrame {
                 } catch (SQLException errMsg) {
                     System.out.println(errMsg);
                 }
+                String sqlInsertTrans = "INSERT INTO Transaksi (tanggal,namaObat,penggunaanUntuk,jumlahKeluar) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat44.getSelectedItem().toString() + "',"
+                        + "'Resep',"
+                        + "'" + (int) spnJumlah44.getValue() + "');";
                 
+                try {
+                   int trans = stmt2.executeUpdate(sqlInsertTrans);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
                 setObat so = new setObat();
                     so.setExGudang(Date.valueOf(tanggal));
                     so.setNamaObat(obat);
@@ -6480,7 +6307,17 @@ public class Resep extends javax.swing.JFrame {
                 } catch (SQLException errMsg) {
                     System.out.println(errMsg);
                 }
+                String sqlInsertTrans = "INSERT INTO Transaksi (tanggal,namaObat,penggunaanUntuk,jumlahKeluar) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat45.getSelectedItem().toString() + "',"
+                        + "'Resep',"
+                        + "'" + (int) spnJumlah45.getValue() + "');";
                 
+                try {
+                   int trans = stmt2.executeUpdate(sqlInsertTrans);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
                 setObat so = new setObat();
                     so.setExGudang(Date.valueOf(tanggal));
                     so.setNamaObat(obat);
@@ -6554,7 +6391,17 @@ public class Resep extends javax.swing.JFrame {
                 } catch (SQLException errMsg) {
                     System.out.println(errMsg);
                 }
+                String sqlInsertTrans = "INSERT INTO Transaksi (tanggal,namaObat,penggunaanUntuk,jumlahKeluar) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat46.getSelectedItem().toString() + "',"
+                        + "'Resep',"
+                        + "'" + (int) spnJumlah46.getValue() + "');";
                 
+                try {
+                   int trans = stmt2.executeUpdate(sqlInsertTrans);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
                 setObat so = new setObat();
                     so.setExGudang(Date.valueOf(tanggal));
                     so.setNamaObat(obat);
@@ -6628,7 +6475,17 @@ public class Resep extends javax.swing.JFrame {
                 } catch (SQLException errMsg) {
                     System.out.println(errMsg);
                 }
+                String sqlInsertTrans = "INSERT INTO Transaksi (tanggal,namaObat,penggunaanUntuk,jumlahKeluar) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat47.getSelectedItem().toString() + "',"
+                        + "'Resep',"
+                        + "'" + (int) spnJumlah47.getValue() + "');";
                 
+                try {
+                   int trans = stmt2.executeUpdate(sqlInsertTrans);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
                 setObat so = new setObat();
                     so.setExGudang(Date.valueOf(tanggal));
                     so.setNamaObat(obat);
@@ -6702,7 +6559,17 @@ public class Resep extends javax.swing.JFrame {
                 } catch (SQLException errMsg) {
                     System.out.println(errMsg);
                 }
+                String sqlInsertTrans = "INSERT INTO Transaksi (tanggal,namaObat,penggunaanUntuk,jumlahKeluar) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat48.getSelectedItem().toString() + "',"
+                        + "'Resep',"
+                        + "'" + (int) spnJumlah48.getValue() + "');";
                 
+                try {
+                   int trans = stmt2.executeUpdate(sqlInsertTrans);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
                 setObat so = new setObat();
                     so.setExGudang(Date.valueOf(tanggal));
                     so.setNamaObat(obat);
@@ -6776,7 +6643,17 @@ public class Resep extends javax.swing.JFrame {
                 } catch (SQLException errMsg) {
                     System.out.println(errMsg);
                 }
+                String sqlInsertTrans = "INSERT INTO Transaksi (tanggal,namaObat,penggunaanUntuk,jumlahKeluar) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat49.getSelectedItem().toString() + "',"
+                        + "'Resep',"
+                        + "'" + (int) spnJumlah49.getValue() + "');";
                 
+                try {
+                   int trans = stmt2.executeUpdate(sqlInsertTrans);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
                 setObat so = new setObat();
                     so.setExGudang(Date.valueOf(tanggal));
                     so.setNamaObat(obat);
@@ -6850,7 +6727,17 @@ public class Resep extends javax.swing.JFrame {
                 } catch (SQLException errMsg) {
                     System.out.println(errMsg);
                 }
+                String sqlInsertTrans = "INSERT INTO Transaksi (tanggal,namaObat,penggunaanUntuk,jumlahKeluar) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat50.getSelectedItem().toString() + "',"
+                        + "'Resep',"
+                        + "'" + (int) spnJumlah50.getValue() + "');";
                 
+                try {
+                   int trans = stmt2.executeUpdate(sqlInsertTrans);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
                 setObat so = new setObat();
                     so.setExGudang(Date.valueOf(tanggal));
                     so.setNamaObat(obat);
@@ -7599,748 +7486,8 @@ public class Resep extends javax.swing.JFrame {
                     so.setSisaApotek((int)spnJumlah60.getValue());
                     this.list1.add(so);
                     updateTableJual();
-            }
-			// INPUT OBAT KE 61                
-        if(!(cbNamaObat61.getSelectedItem().toString().equals(null) && cbNamaObat61.getSelectedItem().toString().equals("") 
-                && cbNamaObat61.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
-            try {
-                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
-                        + cbNamaObat61.getSelectedItem().toString() + "'");
-                while(rsObat.next() == true) {
-                    masuk = rsObat.getDate("tglMasuk");
-                    obat = rsObat.getString("namaObat");
-                    gol = rsObat.getString("golObat");
-                    sat = rsObat.getString("sat");
-                    jumlahSkr = rsObat.getInt("jumlahSedia");
-                }
-            } catch (SQLException ex) {
-                System.out.println(ex);
-            }
-            
-            if(jumlahSkr >= (int) spnJumlah61.getValue() && cbNamaObat61.getSelectedItem().toString().equalsIgnoreCase(obat)) {
-                try {
-                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat61.getSelectedItem().toString() +
-                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
-                    while(rsJual.next() == true) {;
-                        Aobat = rsJual.getString("namaObatJ");
-                        Ag = rsJual.getString("golObatJ");
-                        As = rsJual.getString("satJ");
-                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
-                    }
-                } catch (SQLException ex) {
-                    System.out.println(ex);
-                }
-                
-                int totalA = AjumlahSkr + (int) spnJumlah61.getValue();
-                
-                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
-                        + "VALUES ('" + tanggal + "',"
-                        + "'" + cbNamaObat61.getSelectedItem().toString() + "',"
-                        + "'" + gol + "',"
-                        + "'" + sat + "',"
-                        + "'" + totalA + "');";
-                 
-                 sqlDelete = "DELETE FROM DataJual "
-                            + "WHERE namaObatJ='" + cbNamaObat61.getSelectedItem().toString() + 
-                            "' AND jumlahSediaJ=" + AjumlahSkr + 
-                            " AND satJ='" + sat + 
-                            "' AND golObatJ='" + gol + "'";
-                    
-                try {
-                   int berhasil = stmt1.executeUpdate(sqlInsert);
-                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
-                } catch (SQLException errMsg) {
-                    System.out.println(errMsg);
-                }
-
-                int sisaObat = jumlahSkr - (int) spnJumlah61.getValue();
-
-                sqlUpdate = "UPDATE DataObat SET "
-                    + "jumlahSedia='" + sisaObat + "' "
-                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
-
-                try {
-                   int berhasil = stmt2.executeUpdate(sqlUpdate);
-                } catch (SQLException errMsg) {
-                    System.out.println(errMsg);
-                }
-                
-                setObat so = new setObat();
-                    so.setExGudang(Date.valueOf(tanggal));
-                    so.setNamaObat(obat);
-                    so.setGolObat(gol);
-                    so.setSat(sat);
-                    so.setSisaApotek((int)spnJumlah61.getValue());
-                    this.list1.add(so);
-                    updateTableJual();
-            }
-			// INPUT OBAT KE 62                
-        if(!(cbNamaObat62.getSelectedItem().toString().equals(null) && cbNamaObat62.getSelectedItem().toString().equals("") 
-                && cbNamaObat62.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
-            try {
-                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
-                        + cbNamaObat62.getSelectedItem().toString() + "'");
-                while(rsObat.next() == true) {
-                    masuk = rsObat.getDate("tglMasuk");
-                    obat = rsObat.getString("namaObat");
-                    gol = rsObat.getString("golObat");
-                    sat = rsObat.getString("sat");
-                    jumlahSkr = rsObat.getInt("jumlahSedia");
-                }
-            } catch (SQLException ex) {
-                System.out.println(ex);
-            }
-            
-            if(jumlahSkr >= (int) spnJumlah62.getValue() && cbNamaObat62.getSelectedItem().toString().equalsIgnoreCase(obat)) {
-                try {
-                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat62.getSelectedItem().toString() +
-                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
-                    while(rsJual.next() == true) {;
-                        Aobat = rsJual.getString("namaObatJ");
-                        Ag = rsJual.getString("golObatJ");
-                        As = rsJual.getString("satJ");
-                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
-                    }
-                } catch (SQLException ex) {
-                    System.out.println(ex);
-                }
-                
-                int totalA = AjumlahSkr + (int) spnJumlah62.getValue();
-                
-                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
-                        + "VALUES ('" + tanggal + "',"
-                        + "'" + cbNamaObat62.getSelectedItem().toString() + "',"
-                        + "'" + gol + "',"
-                        + "'" + sat + "',"
-                        + "'" + totalA + "');";
-                 
-                 sqlDelete = "DELETE FROM DataJual "
-                            + "WHERE namaObatJ='" + cbNamaObat62.getSelectedItem().toString() + 
-                            "' AND jumlahSediaJ=" + AjumlahSkr + 
-                            " AND satJ='" + sat + 
-                            "' AND golObatJ='" + gol + "'";
-                    
-                try {
-                   int berhasil = stmt1.executeUpdate(sqlInsert);
-                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
-                } catch (SQLException errMsg) {
-                    System.out.println(errMsg);
-                }
-
-                int sisaObat = jumlahSkr - (int) spnJumlah62.getValue();
-
-                sqlUpdate = "UPDATE DataObat SET "
-                    + "jumlahSedia='" + sisaObat + "' "
-                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
-
-                try {
-                   int berhasil = stmt2.executeUpdate(sqlUpdate);
-                } catch (SQLException errMsg) {
-                    System.out.println(errMsg);
-                }
-                
-                setObat so = new setObat();
-                    so.setExGudang(Date.valueOf(tanggal));
-                    so.setNamaObat(obat);
-                    so.setGolObat(gol);
-                    so.setSat(sat);
-                    so.setSisaApotek((int)spnJumlah62.getValue());
-                    this.list1.add(so);
-                    updateTableJual();
-            }
-			// INPUT OBAT KE 63                
-        if(!(cbNamaObat63.getSelectedItem().toString().equals(null) && cbNamaObat63.getSelectedItem().toString().equals("") 
-                && cbNamaObat63.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
-            try {
-                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
-                        + cbNamaObat63.getSelectedItem().toString() + "'");
-                while(rsObat.next() == true) {
-                    masuk = rsObat.getDate("tglMasuk");
-                    obat = rsObat.getString("namaObat");
-                    gol = rsObat.getString("golObat");
-                    sat = rsObat.getString("sat");
-                    jumlahSkr = rsObat.getInt("jumlahSedia");
-                }
-            } catch (SQLException ex) {
-                System.out.println(ex);
-            }
-            
-            if(jumlahSkr >= (int) spnJumlah63.getValue() && cbNamaObat63.getSelectedItem().toString().equalsIgnoreCase(obat)) {
-                try {
-                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat63.getSelectedItem().toString() +
-                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
-                    while(rsJual.next() == true) {;
-                        Aobat = rsJual.getString("namaObatJ");
-                        Ag = rsJual.getString("golObatJ");
-                        As = rsJual.getString("satJ");
-                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
-                    }
-                } catch (SQLException ex) {
-                    System.out.println(ex);
-                }
-                
-                int totalA = AjumlahSkr + (int) spnJumlah63.getValue();
-                
-                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
-                        + "VALUES ('" + tanggal + "',"
-                        + "'" + cbNamaObat63.getSelectedItem().toString() + "',"
-                        + "'" + gol + "',"
-                        + "'" + sat + "',"
-                        + "'" + totalA + "');";
-                 
-                 sqlDelete = "DELETE FROM DataJual "
-                            + "WHERE namaObatJ='" + cbNamaObat63.getSelectedItem().toString() + 
-                            "' AND jumlahSediaJ=" + AjumlahSkr + 
-                            " AND satJ='" + sat + 
-                            "' AND golObatJ='" + gol + "'";
-                    
-                try {
-                   int berhasil = stmt1.executeUpdate(sqlInsert);
-                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
-                } catch (SQLException errMsg) {
-                    System.out.println(errMsg);
-                }
-
-                int sisaObat = jumlahSkr - (int) spnJumlah63.getValue();
-
-                sqlUpdate = "UPDATE DataObat SET "
-                    + "jumlahSedia='" + sisaObat + "' "
-                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
-
-                try {
-                   int berhasil = stmt2.executeUpdate(sqlUpdate);
-                } catch (SQLException errMsg) {
-                    System.out.println(errMsg);
-                }
-                
-                setObat so = new setObat();
-                    so.setExGudang(Date.valueOf(tanggal));
-                    so.setNamaObat(obat);
-                    so.setGolObat(gol);
-                    so.setSat(sat);
-                    so.setSisaApotek((int)spnJumlah63.getValue());
-                    this.list1.add(so);
-                    updateTableJual();
-            }
-			// INPUT OBAT KE 64                
-        if(!(cbNamaObat64.getSelectedItem().toString().equals(null) && cbNamaObat64.getSelectedItem().toString().equals("") 
-                && cbNamaObat64.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
-            try {
-                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
-                        + cbNamaObat64.getSelectedItem().toString() + "'");
-                while(rsObat.next() == true) {
-                    masuk = rsObat.getDate("tglMasuk");
-                    obat = rsObat.getString("namaObat");
-                    gol = rsObat.getString("golObat");
-                    sat = rsObat.getString("sat");
-                    jumlahSkr = rsObat.getInt("jumlahSedia");
-                }
-            } catch (SQLException ex) {
-                System.out.println(ex);
-            }
-            
-            if(jumlahSkr >= (int) spnJumlah64.getValue() && cbNamaObat64.getSelectedItem().toString().equalsIgnoreCase(obat)) {
-                try {
-                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat64.getSelectedItem().toString() +
-                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
-                    while(rsJual.next() == true) {;
-                        Aobat = rsJual.getString("namaObatJ");
-                        Ag = rsJual.getString("golObatJ");
-                        As = rsJual.getString("satJ");
-                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
-                    }
-                } catch (SQLException ex) {
-                    System.out.println(ex);
-                }
-                
-                int totalA = AjumlahSkr + (int) spnJumlah64.getValue();
-                
-                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
-                        + "VALUES ('" + tanggal + "',"
-                        + "'" + cbNamaObat64.getSelectedItem().toString() + "',"
-                        + "'" + gol + "',"
-                        + "'" + sat + "',"
-                        + "'" + totalA + "');";
-                 
-                 sqlDelete = "DELETE FROM DataJual "
-                            + "WHERE namaObatJ='" + cbNamaObat64.getSelectedItem().toString() + 
-                            "' AND jumlahSediaJ=" + AjumlahSkr + 
-                            " AND satJ='" + sat + 
-                            "' AND golObatJ='" + gol + "'";
-                    
-                try {
-                   int berhasil = stmt1.executeUpdate(sqlInsert);
-                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
-                } catch (SQLException errMsg) {
-                    System.out.println(errMsg);
-                }
-
-                int sisaObat = jumlahSkr - (int) spnJumlah64.getValue();
-
-                sqlUpdate = "UPDATE DataObat SET "
-                    + "jumlahSedia='" + sisaObat + "' "
-                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
-
-                try {
-                   int berhasil = stmt2.executeUpdate(sqlUpdate);
-                } catch (SQLException errMsg) {
-                    System.out.println(errMsg);
-                }
-                
-                setObat so = new setObat();
-                    so.setExGudang(Date.valueOf(tanggal));
-                    so.setNamaObat(obat);
-                    so.setGolObat(gol);
-                    so.setSat(sat);
-                    so.setSisaApotek((int)spnJumlah64.getValue());
-                    this.list1.add(so);
-                    updateTableJual();
-            }
-			// INPUT OBAT KE 65                
-        if(!(cbNamaObat65.getSelectedItem().toString().equals(null) && cbNamaObat65.getSelectedItem().toString().equals("") 
-                && cbNamaObat65.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
-            try {
-                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
-                        + cbNamaObat65.getSelectedItem().toString() + "'");
-                while(rsObat.next() == true) {
-                    masuk = rsObat.getDate("tglMasuk");
-                    obat = rsObat.getString("namaObat");
-                    gol = rsObat.getString("golObat");
-                    sat = rsObat.getString("sat");
-                    jumlahSkr = rsObat.getInt("jumlahSedia");
-                }
-            } catch (SQLException ex) {
-                System.out.println(ex);
-            }
-            
-            if(jumlahSkr >= (int) spnJumlah65.getValue() && cbNamaObat65.getSelectedItem().toString().equalsIgnoreCase(obat)) {
-                try {
-                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat65.getSelectedItem().toString() +
-                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
-                    while(rsJual.next() == true) {;
-                        Aobat = rsJual.getString("namaObatJ");
-                        Ag = rsJual.getString("golObatJ");
-                        As = rsJual.getString("satJ");
-                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
-                    }
-                } catch (SQLException ex) {
-                    System.out.println(ex);
-                }
-                
-                int totalA = AjumlahSkr + (int) spnJumlah65.getValue();
-                
-                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
-                        + "VALUES ('" + tanggal + "',"
-                        + "'" + cbNamaObat65.getSelectedItem().toString() + "',"
-                        + "'" + gol + "',"
-                        + "'" + sat + "',"
-                        + "'" + totalA + "');";
-                 
-                 sqlDelete = "DELETE FROM DataJual "
-                            + "WHERE namaObatJ='" + cbNamaObat65.getSelectedItem().toString() + 
-                            "' AND jumlahSediaJ=" + AjumlahSkr + 
-                            " AND satJ='" + sat + 
-                            "' AND golObatJ='" + gol + "'";
-                    
-                try {
-                   int berhasil = stmt1.executeUpdate(sqlInsert);
-                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
-                } catch (SQLException errMsg) {
-                    System.out.println(errMsg);
-                }
-
-                int sisaObat = jumlahSkr - (int) spnJumlah65.getValue();
-
-                sqlUpdate = "UPDATE DataObat SET "
-                    + "jumlahSedia='" + sisaObat + "' "
-                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
-
-                try {
-                   int berhasil = stmt2.executeUpdate(sqlUpdate);
-                } catch (SQLException errMsg) {
-                    System.out.println(errMsg);
-                }
-                
-                setObat so = new setObat();
-                    so.setExGudang(Date.valueOf(tanggal));
-                    so.setNamaObat(obat);
-                    so.setGolObat(gol);
-                    so.setSat(sat);
-                    so.setSisaApotek((int)spnJumlah65.getValue());
-                    this.list1.add(so);
-                    updateTableJual();
-            }
-			// INPUT OBAT KE 66                
-        if(!(cbNamaObat66.getSelectedItem().toString().equals(null) && cbNamaObat66.getSelectedItem().toString().equals("") 
-                && cbNamaObat66.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
-            try {
-                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
-                        + cbNamaObat66.getSelectedItem().toString() + "'");
-                while(rsObat.next() == true) {
-                    masuk = rsObat.getDate("tglMasuk");
-                    obat = rsObat.getString("namaObat");
-                    gol = rsObat.getString("golObat");
-                    sat = rsObat.getString("sat");
-                    jumlahSkr = rsObat.getInt("jumlahSedia");
-                }
-            } catch (SQLException ex) {
-                System.out.println(ex);
-            }
-            
-            if(jumlahSkr >= (int) spnJumlah66.getValue() && cbNamaObat66.getSelectedItem().toString().equalsIgnoreCase(obat)) {
-                try {
-                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat66.getSelectedItem().toString() +
-                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
-                    while(rsJual.next() == true) {;
-                        Aobat = rsJual.getString("namaObatJ");
-                        Ag = rsJual.getString("golObatJ");
-                        As = rsJual.getString("satJ");
-                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
-                    }
-                } catch (SQLException ex) {
-                    System.out.println(ex);
-                }
-                
-                int totalA = AjumlahSkr + (int) spnJumlah66.getValue();
-                
-                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
-                        + "VALUES ('" + tanggal + "',"
-                        + "'" + cbNamaObat66.getSelectedItem().toString() + "',"
-                        + "'" + gol + "',"
-                        + "'" + sat + "',"
-                        + "'" + totalA + "');";
-                 
-                 sqlDelete = "DELETE FROM DataJual "
-                            + "WHERE namaObatJ='" + cbNamaObat66.getSelectedItem().toString() + 
-                            "' AND jumlahSediaJ=" + AjumlahSkr + 
-                            " AND satJ='" + sat + 
-                            "' AND golObatJ='" + gol + "'";
-                    
-                try {
-                   int berhasil = stmt1.executeUpdate(sqlInsert);
-                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
-                } catch (SQLException errMsg) {
-                    System.out.println(errMsg);
-                }
-
-                int sisaObat = jumlahSkr - (int) spnJumlah66.getValue();
-
-                sqlUpdate = "UPDATE DataObat SET "
-                    + "jumlahSedia='" + sisaObat + "' "
-                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
-
-                try {
-                   int berhasil = stmt2.executeUpdate(sqlUpdate);
-                } catch (SQLException errMsg) {
-                    System.out.println(errMsg);
-                }
-                
-                setObat so = new setObat();
-                    so.setExGudang(Date.valueOf(tanggal));
-                    so.setNamaObat(obat);
-                    so.setGolObat(gol);
-                    so.setSat(sat);
-                    so.setSisaApotek((int)spnJumlah66.getValue());
-                    this.list1.add(so);
-                    updateTableJual();
-            }
-			// INPUT OBAT KE 67                
-        if(!(cbNamaObat67.getSelectedItem().toString().equals(null) && cbNamaObat67.getSelectedItem().toString().equals("") 
-                && cbNamaObat67.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
-            try {
-                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
-                        + cbNamaObat67.getSelectedItem().toString() + "'");
-                while(rsObat.next() == true) {
-                    masuk = rsObat.getDate("tglMasuk");
-                    obat = rsObat.getString("namaObat");
-                    gol = rsObat.getString("golObat");
-                    sat = rsObat.getString("sat");
-                    jumlahSkr = rsObat.getInt("jumlahSedia");
-                }
-            } catch (SQLException ex) {
-                System.out.println(ex);
-            }
-            
-            if(jumlahSkr >= (int) spnJumlah67.getValue() && cbNamaObat67.getSelectedItem().toString().equalsIgnoreCase(obat)) {
-                try {
-                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat67.getSelectedItem().toString() +
-                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
-                    while(rsJual.next() == true) {;
-                        Aobat = rsJual.getString("namaObatJ");
-                        Ag = rsJual.getString("golObatJ");
-                        As = rsJual.getString("satJ");
-                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
-                    }
-                } catch (SQLException ex) {
-                    System.out.println(ex);
-                }
-                
-                int totalA = AjumlahSkr + (int) spnJumlah67.getValue();
-                
-                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
-                        + "VALUES ('" + tanggal + "',"
-                        + "'" + cbNamaObat67.getSelectedItem().toString() + "',"
-                        + "'" + gol + "',"
-                        + "'" + sat + "',"
-                        + "'" + totalA + "');";
-                 
-                 sqlDelete = "DELETE FROM DataJual "
-                            + "WHERE namaObatJ='" + cbNamaObat67.getSelectedItem().toString() + 
-                            "' AND jumlahSediaJ=" + AjumlahSkr + 
-                            " AND satJ='" + sat + 
-                            "' AND golObatJ='" + gol + "'";
-                    
-                try {
-                   int berhasil = stmt1.executeUpdate(sqlInsert);
-                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
-                } catch (SQLException errMsg) {
-                    System.out.println(errMsg);
-                }
-
-                int sisaObat = jumlahSkr - (int) spnJumlah67.getValue();
-
-                sqlUpdate = "UPDATE DataObat SET "
-                    + "jumlahSedia='" + sisaObat + "' "
-                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
-
-                try {
-                   int berhasil = stmt2.executeUpdate(sqlUpdate);
-                } catch (SQLException errMsg) {
-                    System.out.println(errMsg);
-                }
-                
-                setObat so = new setObat();
-                    so.setExGudang(Date.valueOf(tanggal));
-                    so.setNamaObat(obat);
-                    so.setGolObat(gol);
-                    so.setSat(sat);
-                    so.setSisaApotek((int)spnJumlah67.getValue());
-                    this.list1.add(so);
-                    updateTableJual();
-            }
-			// INPUT OBAT KE 68                
-        if(!(cbNamaObat68.getSelectedItem().toString().equals(null) && cbNamaObat68.getSelectedItem().toString().equals("") 
-                && cbNamaObat68.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
-            try {
-                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
-                        + cbNamaObat68.getSelectedItem().toString() + "'");
-                while(rsObat.next() == true) {
-                    masuk = rsObat.getDate("tglMasuk");
-                    obat = rsObat.getString("namaObat");
-                    gol = rsObat.getString("golObat");
-                    sat = rsObat.getString("sat");
-                    jumlahSkr = rsObat.getInt("jumlahSedia");
-                }
-            } catch (SQLException ex) {
-                System.out.println(ex);
-            }
-            
-            if(jumlahSkr >= (int) spnJumlah68.getValue() && cbNamaObat68.getSelectedItem().toString().equalsIgnoreCase(obat)) {
-                try {
-                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat68.getSelectedItem().toString() +
-                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
-                    while(rsJual.next() == true) {;
-                        Aobat = rsJual.getString("namaObatJ");
-                        Ag = rsJual.getString("golObatJ");
-                        As = rsJual.getString("satJ");
-                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
-                    }
-                } catch (SQLException ex) {
-                    System.out.println(ex);
-                }
-                
-                int totalA = AjumlahSkr + (int) spnJumlah68.getValue();
-                
-                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
-                        + "VALUES ('" + tanggal + "',"
-                        + "'" + cbNamaObat68.getSelectedItem().toString() + "',"
-                        + "'" + gol + "',"
-                        + "'" + sat + "',"
-                        + "'" + totalA + "');";
-                 
-                 sqlDelete = "DELETE FROM DataJual "
-                            + "WHERE namaObatJ='" + cbNamaObat68.getSelectedItem().toString() + 
-                            "' AND jumlahSediaJ=" + AjumlahSkr + 
-                            " AND satJ='" + sat + 
-                            "' AND golObatJ='" + gol + "'";
-                    
-                try {
-                   int berhasil = stmt1.executeUpdate(sqlInsert);
-                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
-                } catch (SQLException errMsg) {
-                    System.out.println(errMsg);
-                }
-
-                int sisaObat = jumlahSkr - (int) spnJumlah68.getValue();
-
-                sqlUpdate = "UPDATE DataObat SET "
-                    + "jumlahSedia='" + sisaObat + "' "
-                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
-
-                try {
-                   int berhasil = stmt2.executeUpdate(sqlUpdate);
-                } catch (SQLException errMsg) {
-                    System.out.println(errMsg);
-                }
-                
-                setObat so = new setObat();
-                    so.setExGudang(Date.valueOf(tanggal));
-                    so.setNamaObat(obat);
-                    so.setGolObat(gol);
-                    so.setSat(sat);
-                    so.setSisaApotek((int)spnJumlah68.getValue());
-                    this.list1.add(so);
-                    updateTableJual();
-            }
-			// INPUT OBAT KE 69                
-        if(!(cbNamaObat69.getSelectedItem().toString().equals(null) && cbNamaObat69.getSelectedItem().toString().equals("") 
-                && cbNamaObat69.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
-            try {
-                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
-                        + cbNamaObat69.getSelectedItem().toString() + "'");
-                while(rsObat.next() == true) {
-                    masuk = rsObat.getDate("tglMasuk");
-                    obat = rsObat.getString("namaObat");
-                    gol = rsObat.getString("golObat");
-                    sat = rsObat.getString("sat");
-                    jumlahSkr = rsObat.getInt("jumlahSedia");
-                }
-            } catch (SQLException ex) {
-                System.out.println(ex);
-            }
-            
-            if(jumlahSkr >= (int) spnJumlah69.getValue() && cbNamaObat69.getSelectedItem().toString().equalsIgnoreCase(obat)) {
-                try {
-                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat69.getSelectedItem().toString() +
-                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
-                    while(rsJual.next() == true) {;
-                        Aobat = rsJual.getString("namaObatJ");
-                        Ag = rsJual.getString("golObatJ");
-                        As = rsJual.getString("satJ");
-                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
-                    }
-                } catch (SQLException ex) {
-                    System.out.println(ex);
-                }
-                
-                int totalA = AjumlahSkr + (int) spnJumlah69.getValue();
-                
-                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
-                        + "VALUES ('" + tanggal + "',"
-                        + "'" + cbNamaObat69.getSelectedItem().toString() + "',"
-                        + "'" + gol + "',"
-                        + "'" + sat + "',"
-                        + "'" + totalA + "');";
-                 
-                 sqlDelete = "DELETE FROM DataJual "
-                            + "WHERE namaObatJ='" + cbNamaObat69.getSelectedItem().toString() + 
-                            "' AND jumlahSediaJ=" + AjumlahSkr + 
-                            " AND satJ='" + sat + 
-                            "' AND golObatJ='" + gol + "'";
-                    
-                try {
-                   int berhasil = stmt1.executeUpdate(sqlInsert);
-                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
-                } catch (SQLException errMsg) {
-                    System.out.println(errMsg);
-                }
-
-                int sisaObat = jumlahSkr - (int) spnJumlah69.getValue();
-
-                sqlUpdate = "UPDATE DataObat SET "
-                    + "jumlahSedia='" + sisaObat + "' "
-                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
-
-                try {
-                   int berhasil = stmt2.executeUpdate(sqlUpdate);
-                } catch (SQLException errMsg) {
-                    System.out.println(errMsg);
-                }
-                
-                setObat so = new setObat();
-                    so.setExGudang(Date.valueOf(tanggal));
-                    so.setNamaObat(obat);
-                    so.setGolObat(gol);
-                    so.setSat(sat);
-                    so.setSisaApotek((int)spnJumlah69.getValue());
-                    this.list1.add(so);
-                    updateTableJual();
-            }
-			// INPUT OBAT KE 70                
-        if(!(cbNamaObat70.getSelectedItem().toString().equals(null) && cbNamaObat70.getSelectedItem().toString().equals("") 
-                && cbNamaObat70.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
-            try {
-                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
-                        + cbNamaObat70.getSelectedItem().toString() + "'");
-                while(rsObat.next() == true) {
-                    masuk = rsObat.getDate("tglMasuk");
-                    obat = rsObat.getString("namaObat");
-                    gol = rsObat.getString("golObat");
-                    sat = rsObat.getString("sat");
-                    jumlahSkr = rsObat.getInt("jumlahSedia");
-                }
-            } catch (SQLException ex) {
-                System.out.println(ex);
-            }
-            
-            if(jumlahSkr >= (int) spnJumlah70.getValue() && cbNamaObat70.getSelectedItem().toString().equalsIgnoreCase(obat)) {
-                try {
-                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat70.getSelectedItem().toString() +
-                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
-                    while(rsJual.next() == true) {;
-                        Aobat = rsJual.getString("namaObatJ");
-                        Ag = rsJual.getString("golObatJ");
-                        As = rsJual.getString("satJ");
-                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
-                    }
-                } catch (SQLException ex) {
-                    System.out.println(ex);
-                }
-                
-                int totalA = AjumlahSkr + (int) spnJumlah70.getValue();
-                
-                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
-                        + "VALUES ('" + tanggal + "',"
-                        + "'" + cbNamaObat70.getSelectedItem().toString() + "',"
-                        + "'" + gol + "',"
-                        + "'" + sat + "',"
-                        + "'" + totalA + "');";
-                 
-                 sqlDelete = "DELETE FROM DataJual "
-                            + "WHERE namaObatJ='" + cbNamaObat70.getSelectedItem().toString() + 
-                            "' AND jumlahSediaJ=" + AjumlahSkr + 
-                            " AND satJ='" + sat + 
-                            "' AND golObatJ='" + gol + "'";
-                    
-                try {
-                   int berhasil = stmt1.executeUpdate(sqlInsert);
-                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
-                } catch (SQLException errMsg) {
-                    System.out.println(errMsg);
-                }
-
-                int sisaObat = jumlahSkr - (int) spnJumlah70.getValue();
-
-                sqlUpdate = "UPDATE DataObat SET "
-                    + "jumlahSedia='" + sisaObat + "' "
-                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
-
-                try {
-                   int berhasil = stmt2.executeUpdate(sqlUpdate);
-                } catch (SQLException errMsg) {
-                    System.out.println(errMsg);
-                }
-                
-                setObat so = new setObat();
-                    so.setExGudang(Date.valueOf(tanggal));
-                    so.setNamaObat(obat);
-                    so.setGolObat(gol);
-                    so.setSat(sat);
-                    so.setSisaApotek((int)spnJumlah70.getValue());
-                    this.list1.add(so);
-                    updateTableJual();
-            }		
-        }}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+            }	
+        }}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
        
        sql = "INSERT INTO DataResep (NoResep,Tanggal,NamaPasien,Usia,Alamat,JenisLayanan,BpjsNonBpjs,namaObat,jmlObat) "
                 + "VALUES ('"+ txtResep.getText() +  "',"
@@ -8601,17 +7748,8 @@ public class Resep extends javax.swing.JFrame {
         cbNamaObat57.setSelectedIndex(0);
         cbNamaObat58.setSelectedIndex(0);
         cbNamaObat59.setSelectedIndex(0);
-        cbNamaObat60.setSelectedIndex(0);
-        cbNamaObat61.setSelectedIndex(0);
-        cbNamaObat62.setSelectedIndex(0);
-        cbNamaObat63.setSelectedIndex(0);
-        cbNamaObat64.setSelectedIndex(0);
-        cbNamaObat65.setSelectedIndex(0);
-        cbNamaObat66.setSelectedIndex(0);
-        cbNamaObat67.setSelectedIndex(0);
-        cbNamaObat68.setSelectedIndex(0);
-        cbNamaObat69.setSelectedIndex(0);
-        cbNamaObat70.setSelectedIndex(0);
+        cbNamaObat60.setSelectedIndex(0);        
+       
        
         
         spnJumlah1.setValue(0);
@@ -8673,17 +7811,7 @@ public class Resep extends javax.swing.JFrame {
         spnJumlah57.setValue(0);
         spnJumlah58.setValue(0);
         spnJumlah59.setValue(0);
-        spnJumlah60.setValue(0);
-        spnJumlah61.setValue(0);
-        spnJumlah62.setValue(0);
-        spnJumlah63.setValue(0);
-        spnJumlah64.setValue(0);
-        spnJumlah65.setValue(0);
-        spnJumlah66.setValue(0);
-        spnJumlah67.setValue(0);
-        spnJumlah68.setValue(0);
-        spnJumlah69.setValue(0);
-        spnJumlah70.setValue(0);        
+        spnJumlah60.setValue(0);           
     }
     
         public final void setWaktu() {
@@ -8778,17 +7906,7 @@ public class Resep extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbNamaObat59;
     private javax.swing.JComboBox<String> cbNamaObat6;
     private javax.swing.JComboBox<String> cbNamaObat60;
-    private javax.swing.JComboBox<String> cbNamaObat61;
-    private javax.swing.JComboBox<String> cbNamaObat62;
-    private javax.swing.JComboBox<String> cbNamaObat63;
-    private javax.swing.JComboBox<String> cbNamaObat64;
-    private javax.swing.JComboBox<String> cbNamaObat65;
-    private javax.swing.JComboBox<String> cbNamaObat66;
-    private javax.swing.JComboBox<String> cbNamaObat67;
-    private javax.swing.JComboBox<String> cbNamaObat68;
-    private javax.swing.JComboBox<String> cbNamaObat69;
     private javax.swing.JComboBox<String> cbNamaObat7;
-    private javax.swing.JComboBox<String> cbNamaObat70;
     private javax.swing.JComboBox<String> cbNamaObat8;
     private javax.swing.JComboBox<String> cbNamaObat9;
     private PanelTransparan.ClPanelTransparan clPanelTransparan1;
@@ -8839,28 +7957,8 @@ public class Resep extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel136;
     private javax.swing.JLabel jLabel137;
     private javax.swing.JLabel jLabel138;
-    private javax.swing.JLabel jLabel139;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel140;
-    private javax.swing.JLabel jLabel141;
-    private javax.swing.JLabel jLabel142;
-    private javax.swing.JLabel jLabel143;
-    private javax.swing.JLabel jLabel144;
-    private javax.swing.JLabel jLabel145;
-    private javax.swing.JLabel jLabel146;
-    private javax.swing.JLabel jLabel147;
-    private javax.swing.JLabel jLabel148;
-    private javax.swing.JLabel jLabel149;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel150;
-    private javax.swing.JLabel jLabel151;
-    private javax.swing.JLabel jLabel152;
-    private javax.swing.JLabel jLabel153;
-    private javax.swing.JLabel jLabel154;
-    private javax.swing.JLabel jLabel155;
-    private javax.swing.JLabel jLabel156;
-    private javax.swing.JLabel jLabel157;
-    private javax.swing.JLabel jLabel158;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
@@ -8948,7 +8046,6 @@ public class Resep extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel98;
     private javax.swing.JLabel jLabel99;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -9020,17 +8117,7 @@ public class Resep extends javax.swing.JFrame {
     private javax.swing.JSpinner spnJumlah59;
     private javax.swing.JSpinner spnJumlah6;
     private javax.swing.JSpinner spnJumlah60;
-    private javax.swing.JSpinner spnJumlah61;
-    private javax.swing.JSpinner spnJumlah62;
-    private javax.swing.JSpinner spnJumlah63;
-    private javax.swing.JSpinner spnJumlah64;
-    private javax.swing.JSpinner spnJumlah65;
-    private javax.swing.JSpinner spnJumlah66;
-    private javax.swing.JSpinner spnJumlah67;
-    private javax.swing.JSpinner spnJumlah68;
-    private javax.swing.JSpinner spnJumlah69;
     private javax.swing.JSpinner spnJumlah7;
-    private javax.swing.JSpinner spnJumlah70;
     private javax.swing.JSpinner spnJumlah8;
     private javax.swing.JSpinner spnJumlah9;
     private javax.swing.JSpinner spnThn;
