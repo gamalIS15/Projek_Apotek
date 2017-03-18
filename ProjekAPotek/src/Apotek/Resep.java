@@ -49,6 +49,7 @@ public class Resep extends javax.swing.JFrame {
     private final ArrayList<String> ls = new ArrayList<>();
     DefaultTableModel dm, dm1;
     
+    
     public Resep() {
         try {
             this.setWaktu();
@@ -413,11 +414,7 @@ public class Resep extends javax.swing.JFrame {
             cbNamaObat69.setModel( cm67 );
             AutoCompleteDecorator.decorate(this.cbNamaObat69);
             cbNamaObat70.setModel( cm68 );
-            AutoCompleteDecorator.decorate(this.cbNamaObat70);
-            cbNamaObat71.setModel( cm69 );
-            AutoCompleteDecorator.decorate(this.cbNamaObat71);
-            cbNamaObat72.setModel( cm70 );
-            AutoCompleteDecorator.decorate(this.cbNamaObat72);
+            AutoCompleteDecorator.decorate(this.cbNamaObat70);           
     }
     
     
@@ -749,14 +746,6 @@ public class Resep extends javax.swing.JFrame {
         jLabel157 = new javax.swing.JLabel();
         spnJumlah70 = new javax.swing.JSpinner();
         jLabel158 = new javax.swing.JLabel();
-        spnJumlah71 = new javax.swing.JSpinner();
-        jLabel159 = new javax.swing.JLabel();
-        jLabel160 = new javax.swing.JLabel();
-        cbNamaObat71 = new javax.swing.JComboBox<>();
-        cbNamaObat72 = new javax.swing.JComboBox<>();
-        jLabel161 = new javax.swing.JLabel();
-        spnJumlah72 = new javax.swing.JSpinner();
-        jLabel162 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtResep = new javax.swing.JTextField();
         btnUpdate = new javax.swing.JButton();
@@ -2340,22 +2329,6 @@ public class Resep extends javax.swing.JFrame {
 
         jLabel158.setText("Nama Obat 70");
 
-        spnJumlah71.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
-
-        jLabel159.setText("Nama Obat 71");
-
-        jLabel160.setText("Jumlah");
-
-        cbNamaObat71.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cbNamaObat72.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel161.setText("Jumlah");
-
-        spnJumlah72.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
-
-        jLabel162.setText("Nama Obat 72");
-
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
@@ -2368,9 +2341,7 @@ public class Resep extends javax.swing.JFrame {
                     .addComponent(jLabel151)
                     .addComponent(jLabel154)
                     .addComponent(jLabel156)
-                    .addComponent(jLabel158)
-                    .addComponent(jLabel159)
-                    .addComponent(jLabel162))
+                    .addComponent(jLabel158))
                 .addGap(12, 12, 12)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(cbNamaObat65, 0, 200, Short.MAX_VALUE)
@@ -2378,9 +2349,7 @@ public class Resep extends javax.swing.JFrame {
                     .addComponent(cbNamaObat67, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cbNamaObat68, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cbNamaObat69, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cbNamaObat70, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cbNamaObat71, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cbNamaObat72, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(cbNamaObat70, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel148)
@@ -2388,9 +2357,7 @@ public class Resep extends javax.swing.JFrame {
                     .addComponent(jLabel152)
                     .addComponent(jLabel153)
                     .addComponent(jLabel155)
-                    .addComponent(jLabel157)
-                    .addComponent(jLabel160)
-                    .addComponent(jLabel161))
+                    .addComponent(jLabel157))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(spnJumlah66, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2398,9 +2365,7 @@ public class Resep extends javax.swing.JFrame {
                     .addComponent(spnJumlah67, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(spnJumlah68, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(spnJumlah69, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spnJumlah70, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spnJumlah71, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spnJumlah72, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(spnJumlah70, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         jPanel10Layout.setVerticalGroup(
@@ -2442,19 +2407,7 @@ public class Resep extends javax.swing.JFrame {
                     .addComponent(spnJumlah70, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel157)
                     .addComponent(jLabel158))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbNamaObat71, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spnJumlah71, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel160)
-                    .addComponent(jLabel159))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbNamaObat72, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spnJumlah72, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel161)
-                    .addComponent(jLabel162))
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addContainerGap(142, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("64-72", jPanel10);
@@ -2700,7 +2653,7 @@ public class Resep extends javax.swing.JFrame {
         new MainMenu(setApoteker.tmpID, setApoteker.tmpPass).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnKeluarMouseClicked
-
+    
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         // TODO add your handling code here:
         String cekBpjs = rbBPJS.isSelected() ? "BPJS" : "non BPJS";
@@ -8386,156 +8339,8 @@ public class Resep extends javax.swing.JFrame {
                     so.setSisaApotek((int)spnJumlah70.getValue());
                     this.list1.add(so);
                     updateTableJual();
-            }
-			// INPUT OBAT KE 71                
-        if(!(cbNamaObat71.getSelectedItem().toString().equals(null) && cbNamaObat71.getSelectedItem().toString().equals("") 
-                && cbNamaObat71.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
-            try {
-                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
-                        + cbNamaObat71.getSelectedItem().toString() + "'");
-                while(rsObat.next() == true) {
-                    masuk = rsObat.getDate("tglMasuk");
-                    obat = rsObat.getString("namaObat");
-                    gol = rsObat.getString("golObat");
-                    sat = rsObat.getString("sat");
-                    jumlahSkr = rsObat.getInt("jumlahSedia");
-                }
-            } catch (SQLException ex) {
-                System.out.println(ex);
-            }
-            
-            if(jumlahSkr >= (int) spnJumlah71.getValue() && cbNamaObat71.getSelectedItem().toString().equalsIgnoreCase(obat)) {
-                try {
-                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat71.getSelectedItem().toString() +
-                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
-                    while(rsJual.next() == true) {;
-                        Aobat = rsJual.getString("namaObatJ");
-                        Ag = rsJual.getString("golObatJ");
-                        As = rsJual.getString("satJ");
-                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
-                    }
-                } catch (SQLException ex) {
-                    System.out.println(ex);
-                }
-                
-                int totalA = AjumlahSkr + (int) spnJumlah71.getValue();
-                
-                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
-                        + "VALUES ('" + tanggal + "',"
-                        + "'" + cbNamaObat71.getSelectedItem().toString() + "',"
-                        + "'" + gol + "',"
-                        + "'" + sat + "',"
-                        + "'" + totalA + "');";
-                 
-                 sqlDelete = "DELETE FROM DataJual "
-                            + "WHERE namaObatJ='" + cbNamaObat71.getSelectedItem().toString() + 
-                            "' AND jumlahSediaJ=" + AjumlahSkr + 
-                            " AND satJ='" + sat + 
-                            "' AND golObatJ='" + gol + "'";
-                    
-                try {
-                   int berhasil = stmt1.executeUpdate(sqlInsert);
-                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
-                } catch (SQLException errMsg) {
-                    System.out.println(errMsg);
-                }
-
-                int sisaObat = jumlahSkr - (int) spnJumlah71.getValue();
-
-                sqlUpdate = "UPDATE DataObat SET "
-                    + "jumlahSedia='" + sisaObat + "' "
-                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
-
-                try {
-                   int berhasil = stmt2.executeUpdate(sqlUpdate);
-                } catch (SQLException errMsg) {
-                    System.out.println(errMsg);
-                }
-                
-                setObat so = new setObat();
-                    so.setExGudang(Date.valueOf(tanggal));
-                    so.setNamaObat(obat);
-                    so.setGolObat(gol);
-                    so.setSat(sat);
-                    so.setSisaApotek((int)spnJumlah71.getValue());
-                    this.list1.add(so);
-                    updateTableJual();
-            }
-			// INPUT OBAT KE 72                
-        if(!(cbNamaObat72.getSelectedItem().toString().equals(null) && cbNamaObat72.getSelectedItem().toString().equals("") 
-                && cbNamaObat72.getSelectedItem().toString().equalsIgnoreCase("<Pilih Obat>"))) {
-            try {
-                rsObat = stmt.executeQuery("SELECT * FROM DataObat WHERE namaObat='" 
-                        + cbNamaObat72.getSelectedItem().toString() + "'");
-                while(rsObat.next() == true) {
-                    masuk = rsObat.getDate("tglMasuk");
-                    obat = rsObat.getString("namaObat");
-                    gol = rsObat.getString("golObat");
-                    sat = rsObat.getString("sat");
-                    jumlahSkr = rsObat.getInt("jumlahSedia");
-                }
-            } catch (SQLException ex) {
-                System.out.println(ex);
-            }
-            
-            if(jumlahSkr >= (int) spnJumlah72.getValue() && cbNamaObat72.getSelectedItem().toString().equalsIgnoreCase(obat)) {
-                try {
-                    rsJual = stmt1.executeQuery("SELECT * FROM DataJual WHERE namaObatJ='" + cbNamaObat72.getSelectedItem().toString() +
-                            "' AND satJ='" + sat + "' AND golObatJ='" + gol + "'");
-                    while(rsJual.next() == true) {;
-                        Aobat = rsJual.getString("namaObatJ");
-                        Ag = rsJual.getString("golObatJ");
-                        As = rsJual.getString("satJ");
-                        AjumlahSkr = rsJual.getInt("jumlahSediaJ");
-                    }
-                } catch (SQLException ex) {
-                    System.out.println(ex);
-                }
-                
-                int totalA = AjumlahSkr + (int) spnJumlah72.getValue();
-                
-                 sqlInsert = "INSERT INTO DataJual (tglMasukJ,namaObatJ,golObatJ,satJ,jumlahSediaJ) "
-                        + "VALUES ('" + tanggal + "',"
-                        + "'" + cbNamaObat72.getSelectedItem().toString() + "',"
-                        + "'" + gol + "',"
-                        + "'" + sat + "',"
-                        + "'" + totalA + "');";
-                 
-                 sqlDelete = "DELETE FROM DataJual "
-                            + "WHERE namaObatJ='" + cbNamaObat72.getSelectedItem().toString() + 
-                            "' AND jumlahSediaJ=" + AjumlahSkr + 
-                            " AND satJ='" + sat + 
-                            "' AND golObatJ='" + gol + "'";
-                    
-                try {
-                   int berhasil = stmt1.executeUpdate(sqlInsert);
-                   int berhasil1 = stmt2.executeUpdate(sqlDelete);
-                } catch (SQLException errMsg) {
-                    System.out.println(errMsg);
-                }
-
-                int sisaObat = jumlahSkr - (int) spnJumlah72.getValue();
-
-                sqlUpdate = "UPDATE DataObat SET "
-                    + "jumlahSedia='" + sisaObat + "' "
-                    + "WHERE namaObat='" + obat + "' AND golObat='" + gol + "' AND sat='" + sat + "'";
-
-                try {
-                   int berhasil = stmt2.executeUpdate(sqlUpdate);
-                } catch (SQLException errMsg) {
-                    System.out.println(errMsg);
-                }
-                
-                setObat so = new setObat();
-                    so.setExGudang(Date.valueOf(tanggal));
-                    so.setNamaObat(obat);
-                    so.setGolObat(gol);
-                    so.setSat(sat);
-                    so.setSisaApotek((int)spnJumlah72.getValue());
-                    this.list1.add(so);
-                    updateTableJual();
-            }
-        }}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+            }		
+        }}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
        
        sql = "INSERT INTO DataResep (NoResep,Tanggal,NamaPasien,Usia,Alamat,JenisLayanan,BpjsNonBpjs,namaObat,jmlObat) "
                 + "VALUES ('"+ txtResep.getText() +  "',"
@@ -8807,8 +8612,7 @@ public class Resep extends javax.swing.JFrame {
         cbNamaObat68.setSelectedIndex(0);
         cbNamaObat69.setSelectedIndex(0);
         cbNamaObat70.setSelectedIndex(0);
-        cbNamaObat71.setSelectedIndex(0);
-        cbNamaObat72.setSelectedIndex(0);
+       
         
         spnJumlah1.setValue(0);
         spnJumlah2.setValue(0);
@@ -8879,9 +8683,7 @@ public class Resep extends javax.swing.JFrame {
         spnJumlah67.setValue(0);
         spnJumlah68.setValue(0);
         spnJumlah69.setValue(0);
-        spnJumlah70.setValue(0);
-        spnJumlah71.setValue(0);
-        spnJumlah72.setValue(0);
+        spnJumlah70.setValue(0);        
     }
     
         public final void setWaktu() {
@@ -8987,8 +8789,6 @@ public class Resep extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbNamaObat69;
     private javax.swing.JComboBox<String> cbNamaObat7;
     private javax.swing.JComboBox<String> cbNamaObat70;
-    private javax.swing.JComboBox<String> cbNamaObat71;
-    private javax.swing.JComboBox<String> cbNamaObat72;
     private javax.swing.JComboBox<String> cbNamaObat8;
     private javax.swing.JComboBox<String> cbNamaObat9;
     private PanelTransparan.ClPanelTransparan clPanelTransparan1;
@@ -9061,11 +8861,7 @@ public class Resep extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel156;
     private javax.swing.JLabel jLabel157;
     private javax.swing.JLabel jLabel158;
-    private javax.swing.JLabel jLabel159;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel160;
-    private javax.swing.JLabel jLabel161;
-    private javax.swing.JLabel jLabel162;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
@@ -9235,8 +9031,6 @@ public class Resep extends javax.swing.JFrame {
     private javax.swing.JSpinner spnJumlah69;
     private javax.swing.JSpinner spnJumlah7;
     private javax.swing.JSpinner spnJumlah70;
-    private javax.swing.JSpinner spnJumlah71;
-    private javax.swing.JSpinner spnJumlah72;
     private javax.swing.JSpinner spnJumlah8;
     private javax.swing.JSpinner spnJumlah9;
     private javax.swing.JSpinner spnThn;

@@ -3652,8 +3652,6 @@
                                   <Component id="jLabel154" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel156" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel158" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel159" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel162" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -3663,8 +3661,6 @@
                                   <Component id="cbNamaObat68" alignment="0" max="32767" attributes="0"/>
                                   <Component id="cbNamaObat69" alignment="0" max="32767" attributes="0"/>
                                   <Component id="cbNamaObat70" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="cbNamaObat71" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="cbNamaObat72" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -3674,8 +3670,6 @@
                                   <Component id="jLabel153" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel155" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel157" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel160" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel161" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace pref="9" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -3685,8 +3679,6 @@
                                   <Component id="spnJumlah68" alignment="1" min="-2" pref="65" max="-2" attributes="0"/>
                                   <Component id="spnJumlah69" alignment="1" min="-2" pref="65" max="-2" attributes="0"/>
                                   <Component id="spnJumlah70" alignment="1" min="-2" pref="65" max="-2" attributes="0"/>
-                                  <Component id="spnJumlah71" alignment="1" min="-2" pref="65" max="-2" attributes="0"/>
-                                  <Component id="spnJumlah72" alignment="1" min="-2" pref="65" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -3737,21 +3729,7 @@
                                   <Component id="jLabel157" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel158" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="cbNamaObat71" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="spnJumlah71" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel160" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel159" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="cbNamaObat72" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="spnJumlah72" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel161" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel162" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace pref="80" max="32767" attributes="0"/>
+                              <EmptySpace pref="142" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -3947,70 +3925,6 @@
                     <Component class="javax.swing.JLabel" name="jLabel158">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Nama Obat 70"/>
-                      </Properties>
-                    </Component>
-                    <Component class="javax.swing.JSpinner" name="spnJumlah71">
-                      <Properties>
-                        <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                          <SpinnerModel initial="0" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
-                        </Property>
-                      </Properties>
-                    </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel159">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="Nama Obat 71"/>
-                      </Properties>
-                    </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel160">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="Jumlah"/>
-                      </Properties>
-                    </Component>
-                    <Component class="javax.swing.JComboBox" name="cbNamaObat71">
-                      <Properties>
-                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                          <StringArray count="4">
-                            <StringItem index="0" value="Item 1"/>
-                            <StringItem index="1" value="Item 2"/>
-                            <StringItem index="2" value="Item 3"/>
-                            <StringItem index="3" value="Item 4"/>
-                          </StringArray>
-                        </Property>
-                      </Properties>
-                      <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-                      </AuxValues>
-                    </Component>
-                    <Component class="javax.swing.JComboBox" name="cbNamaObat72">
-                      <Properties>
-                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                          <StringArray count="4">
-                            <StringItem index="0" value="Item 1"/>
-                            <StringItem index="1" value="Item 2"/>
-                            <StringItem index="2" value="Item 3"/>
-                            <StringItem index="3" value="Item 4"/>
-                          </StringArray>
-                        </Property>
-                      </Properties>
-                      <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-                      </AuxValues>
-                    </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel161">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="Jumlah"/>
-                      </Properties>
-                    </Component>
-                    <Component class="javax.swing.JSpinner" name="spnJumlah72">
-                      <Properties>
-                        <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                          <SpinnerModel initial="0" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
-                        </Property>
-                      </Properties>
-                    </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel162">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="Nama Obat 72"/>
                       </Properties>
                     </Component>
                   </SubComponents>
