@@ -31,8 +31,8 @@ import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
  * @author user
  */
 public class Gudang extends javax.swing.JFrame {
-    Statement stmt1, stmt2;
-    ResultSet rsGudang, rsApotek, rsCari;
+    Statement stmt1, stmt2, stmt3;
+    ResultSet rsGudang, rsApotek, rsCari, rsGudang2;
     String[] title = {"Tanggal Masuk", "Nama Obat", "Golongan Obat", "Satuan", "Jumlah Obat Masuk", "Tanggal Kadaluarsa"};
     ArrayList<setGudang> list = new ArrayList<setGudang>();
     DefaultTableModel dm;
@@ -758,6 +758,8 @@ public class Gudang extends javax.swing.JFrame {
 
     private void btnSimpanAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanAActionPerformed
         // TODO add your handling code here:
+        int transaksi;
+        String sqlPindah_new;
         String sqlPindah, sqlUpdate, sqlDelete;
         String obat = null, gol = null, sat = null, Ag = null, As = null, Aobat = null;
         int jumlahSkr = 0, AjumlahSkr = 0;
@@ -772,10 +774,24 @@ public class Gudang extends javax.swing.JFrame {
             koneksi = new setConnection();
             stmt1 = koneksi.connection.createStatement();
             stmt2 = koneksi.connection.createStatement();
+            stmt3 = koneksi.connection.createStatement();
         } catch (SQLException ex) {
             Logger.getLogger(Gudang.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        //Transaksi -->        
+        sqlPindah_new = "INSERT INTO Transaksi (namaObat,golongan,dari,ke,tanggal,jumlah) "
+                        + "VALUES ('" + cbNamaObatA.getSelectedItem().toString() + "',"
+                        + "'" +  cbGolObatA.getSelectedItem().toString() + "',"
+                        + "'" + cbDariA.getSelectedItem().toString() + "',"
+                        + "'" + cbKeA.getSelectedItem().toString() + "',"
+                        + "'" + simMasA + "',"
+                        + "'" + (int) spJumlahA.getValue() + "');";
+        try {
+            transaksi = stmt3.executeUpdate(sqlPindah_new);
+        } catch (SQLException ex) {
+            Logger.getLogger(Gudang.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         if(cbDariA.getSelectedItem().equals("Gudang") && cbKeA.getSelectedItem().equals("Apotek")) {
             try {
