@@ -6811,7 +6811,17 @@ public class Resep extends javax.swing.JFrame {
                 } catch (SQLException errMsg) {
                     System.out.println(errMsg);
                 }
+                 String sqlInsertTrans = "INSERT INTO Transaksi (tanggal,namaObat,penggunaanUntuk,jumlahKeluar) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat51.getSelectedItem().toString() + "',"
+                        + "'Resep',"
+                        + "'" + (int) spnJumlah51.getValue() + "');";
                 
+                try {
+                   int trans = stmt2.executeUpdate(sqlInsertTrans);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
                 setObat so = new setObat();
                     so.setExGudang(Date.valueOf(tanggal));
                     so.setNamaObat(obat);
@@ -6882,6 +6892,18 @@ public class Resep extends javax.swing.JFrame {
 
                 try {
                    int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
+                 String sqlInsertTrans = "INSERT INTO Transaksi (tanggal,namaObat,penggunaanUntuk,jumlahKeluar) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat52.getSelectedItem().toString() + "',"
+                        + "'Resep',"
+                        + "'" + (int) spnJumlah52.getValue() + "');";
+                
+                try {
+                   int trans = stmt2.executeUpdate(sqlInsertTrans);
                 } catch (SQLException errMsg) {
                     System.out.println(errMsg);
                 }
@@ -6960,6 +6982,18 @@ public class Resep extends javax.swing.JFrame {
                     System.out.println(errMsg);
                 }
                 
+                 String sqlInsertTrans = "INSERT INTO Transaksi (tanggal,namaObat,penggunaanUntuk,jumlahKeluar) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat53.getSelectedItem().toString() + "',"
+                        + "'Resep',"
+                        + "'" + (int) spnJumlah53.getValue() + "');";
+                
+                try {
+                   int trans = stmt2.executeUpdate(sqlInsertTrans);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                
                 setObat so = new setObat();
                     so.setExGudang(Date.valueOf(tanggal));
                     so.setNamaObat(obat);
@@ -7033,7 +7067,17 @@ public class Resep extends javax.swing.JFrame {
                 } catch (SQLException errMsg) {
                     System.out.println(errMsg);
                 }
+                 String sqlInsertTrans = "INSERT INTO Transaksi (tanggal,namaObat,penggunaanUntuk,jumlahKeluar) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat54.getSelectedItem().toString() + "',"
+                        + "'Resep',"
+                        + "'" + (int) spnJumlah54.getValue() + "');";
                 
+                try {
+                   int trans = stmt2.executeUpdate(sqlInsertTrans);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
                 setObat so = new setObat();
                     so.setExGudang(Date.valueOf(tanggal));
                     so.setNamaObat(obat);
@@ -7104,6 +7148,17 @@ public class Resep extends javax.swing.JFrame {
 
                 try {
                    int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                 String sqlInsertTrans = "INSERT INTO Transaksi (tanggal,namaObat,penggunaanUntuk,jumlahKeluar) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat55.getSelectedItem().toString() + "',"
+                        + "'Resep',"
+                        + "'" + (int) spnJumlah55.getValue() + "');";
+                
+                try {
+                   int trans = stmt2.executeUpdate(sqlInsertTrans);
                 } catch (SQLException errMsg) {
                     System.out.println(errMsg);
                 }
@@ -7181,6 +7236,17 @@ public class Resep extends javax.swing.JFrame {
                 } catch (SQLException errMsg) {
                     System.out.println(errMsg);
                 }
+                 String sqlInsertTrans = "INSERT INTO Transaksi (tanggal,namaObat,penggunaanUntuk,jumlahKeluar) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat56.getSelectedItem().toString() + "',"
+                        + "'Resep',"
+                        + "'" + (int) spnJumlah56.getValue() + "');";
+                
+                try {
+                   int trans = stmt2.executeUpdate(sqlInsertTrans);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
                 
                 setObat so = new setObat();
                     so.setExGudang(Date.valueOf(tanggal));
@@ -7252,6 +7318,17 @@ public class Resep extends javax.swing.JFrame {
 
                 try {
                    int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                 String sqlInsertTrans = "INSERT INTO Transaksi (tanggal,namaObat,penggunaanUntuk,jumlahKeluar) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat57.getSelectedItem().toString() + "',"
+                        + "'Resep',"
+                        + "'" + (int) spnJumlah57.getValue() + "');";
+                
+                try {
+                   int trans = stmt2.executeUpdate(sqlInsertTrans);
                 } catch (SQLException errMsg) {
                     System.out.println(errMsg);
                 }
@@ -7329,6 +7406,17 @@ public class Resep extends javax.swing.JFrame {
                 } catch (SQLException errMsg) {
                     System.out.println(errMsg);
                 }
+                 String sqlInsertTrans = "INSERT INTO Transaksi (tanggal,namaObat,penggunaanUntuk,jumlahKeluar) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat58.getSelectedItem().toString() + "',"
+                        + "'Resep',"
+                        + "'" + (int) spnJumlah58.getValue() + "');";
+                
+                try {
+                   int trans = stmt2.executeUpdate(sqlInsertTrans);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
                 
                 setObat so = new setObat();
                     so.setExGudang(Date.valueOf(tanggal));
@@ -7403,6 +7491,17 @@ public class Resep extends javax.swing.JFrame {
                 } catch (SQLException errMsg) {
                     System.out.println(errMsg);
                 }
+                 String sqlInsertTrans = "INSERT INTO Transaksi (tanggal,namaObat,penggunaanUntuk,jumlahKeluar) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat59.getSelectedItem().toString() + "',"
+                        + "'Resep',"
+                        + "'" + (int) spnJumlah59.getValue() + "');";
+                
+                try {
+                   int trans = stmt2.executeUpdate(sqlInsertTrans);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
                 
                 setObat so = new setObat();
                     so.setExGudang(Date.valueOf(tanggal));
@@ -7474,6 +7573,17 @@ public class Resep extends javax.swing.JFrame {
 
                 try {
                    int berhasil = stmt2.executeUpdate(sqlUpdate);
+                } catch (SQLException errMsg) {
+                    System.out.println(errMsg);
+                }
+                 String sqlInsertTrans = "INSERT INTO Transaksi (tanggal,namaObat,penggunaanUntuk,jumlahKeluar) "
+                        + "VALUES ('" + tanggal + "',"
+                        + "'" + cbNamaObat60.getSelectedItem().toString() + "',"
+                        + "'Resep',"
+                        + "'" + (int) spnJumlah60.getValue() + "');";
+                
+                try {
+                   int trans = stmt2.executeUpdate(sqlInsertTrans);
                 } catch (SQLException errMsg) {
                     System.out.println(errMsg);
                 }
