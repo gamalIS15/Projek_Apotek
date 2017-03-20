@@ -582,11 +582,11 @@
                                               <Group type="102" alignment="0" attributes="0">
                                                   <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  <Component id="dariNarkotika" min="-2" pref="165" max="-2" attributes="0"/>
+                                                  <Component id="txtdariNarkotika" min="-2" pref="165" max="-2" attributes="0"/>
                                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                                   <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  <Component id="sampaiNarkotika" min="-2" pref="165" max="-2" attributes="0"/>
+                                                  <Component id="txtsampaiNarkotika" min="-2" pref="165" max="-2" attributes="0"/>
                                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                                   <Component id="btnTampilNarkotika" min="-2" max="-2" attributes="0"/>
                                               </Group>
@@ -606,13 +606,11 @@
                                   <EmptySpace pref="15" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jLabel5" alignment="1" min="-2" max="-2" attributes="0"/>
-                                              <Component id="dariNarkotika" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Component id="sampaiNarkotika" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txtdariNarkotika" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txtsampaiNarkotika" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="jLabel11" alignment="1" min="-2" max="-2" attributes="0"/>
                                       <Component id="btnTampilNarkotika" alignment="1" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -717,14 +715,20 @@
                             <Property name="text" type="java.lang.String" value="Dari Tanggal:"/>
                           </Properties>
                         </Component>
-                        <Component class="com.toedter.calendar.JDateChooser" name="dariNarkotika">
+                        <Component class="com.toedter.calendar.JDateChooser" name="txtdariNarkotika">
+                          <Properties>
+                            <Property name="dateFormatString" type="java.lang.String" value="yyyy-MM-dd"/>
+                          </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel11">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Sampai Tanggal:"/>
                           </Properties>
                         </Component>
-                        <Component class="com.toedter.calendar.JDateChooser" name="sampaiNarkotika">
+                        <Component class="com.toedter.calendar.JDateChooser" name="txtsampaiNarkotika">
+                          <Properties>
+                            <Property name="dateFormatString" type="java.lang.String" value="yyyy-MM-dd"/>
+                          </Properties>
                         </Component>
                         <Component class="javax.swing.JButton" name="btnTampilNarkotika">
                           <Properties>

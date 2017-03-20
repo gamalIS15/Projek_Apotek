@@ -13,9 +13,7 @@ public class setLaporan {
     int Pengjumlah;
     int akhir;
 
-    public setLaporan(Date dari, Date sampai, String nama, int awal, String Pengdari, int Pemasjumlah, String Penguntuk, int Pengjumlah, int akhir) {
-        this.dari = dari;
-        this.sampai = sampai;
+    public setLaporan(String nama, int awal, String Pengdari, int Pemasjumlah, String Penguntuk, int Pengjumlah, int akhir) {
         this.nama = nama;
         this.awal = awal;
         this.Pengdari = Pengdari;
