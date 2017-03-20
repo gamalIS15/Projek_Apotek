@@ -24,8 +24,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Laporan extends javax.swing.JFrame {
 
-    Statement stmt1, stmt2, stmt3;
-    ResultSet rsTransNar;
+    Statement stmt, stmt1, stmt2, stmt3;
+    ResultSet rsTransNar, rsTransNar1;
     String[] title = {"Nama Obat", "Saldo Awal", "Pemasukan Dari", "Pemasukan Jumlah", 
             "Penggunaan Untuk", "Penggunaan Jumlah", "Saldo Akhir"};
     ArrayList<setLaporan> list = new ArrayList<setLaporan>();
@@ -38,7 +38,6 @@ public class Laporan extends javax.swing.JFrame {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         
 //        txtWelcome.setText(MainMenu.txtWelcome.getText());
-        updateTable();
     }
     
     private void updateTable() {
@@ -1008,7 +1007,7 @@ public class Laporan extends javax.swing.JFrame {
 
     private void btnTampilNarkotikaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTampilNarkotikaActionPerformed
         // TODO add your handling code here:
-        removeAll();
+        //removeAll();
         String tanggalDari = (txtdariNarkotika.getDate().getYear()+1900) + "-" + 
                 (txtdariNarkotika.getDate().getMonth()+1) + "-" + 
                 txtdariNarkotika.getDate().getDate();
@@ -1017,20 +1016,31 @@ public class Laporan extends javax.swing.JFrame {
                 txtsampaiNarkotika.getDate().getDate();
         Date tgl = null;
         String obat = null, dari = null, untuk = null;
+        int guna= 0, awal = 0, masuk = 0, akhir = 0;
         
         try {
             setConnection koneksi = new setConnection();
-            stmt1 = koneksi.connection.createStatement();
-            rsTransNar = stmt1.executeQuery("SELECT * FROM Transaksi WHERE tanggal BETWEEN'" + tanggalDari +
-                    "' AND '" + tanggalSampai + "'");
+            stmt = koneksi.connection.createStatement();
+            rsTransNar = stmt.executeQuery("SELECT namaObat, dari, ke, tanggal, sum(jumlah) AS masuk, sum(jumlahKeluar) AS guna "
+                    + "FROM Transaksi WHERE tanggal BETWEEN '" + tanggalDari +
+                    "' AND '" + tanggalSampai + "' GROUP BY namaObat");
             while(rsTransNar.next() == true) {
                 tgl = rsTransNar.getDate("tanggal");
                 obat = rsTransNar.getString("namaObat");
                 dari = rsTransNar.getString("dari");
                 untuk = rsTransNar.getString("ke");
-                
-                list.add(new setLaporan(obat, 100, dari, 10, untuk, 90, 5000));
+                masuk = rsTransNar.getInt("masuk");
+                guna = rsTransNar.getInt("guna");
+                akhir = masuk +guna;
+//                stmt1 = koneksi.connection.createStatement();
+//                rsTransNar1 = stmt1.executeQuery("SELECT sum(jumlahKeluar) AS total FROM Transaksi WHERE namaObat='" + obat +"'");
+//                while(rsTransNar1.next() == true) {
+//                    awal = rsTransNar.getInt("total");
+//                    
+                    list.add(new setLaporan(obat, awal, dari, masuk, untuk, guna, akhir));
+                //}
             }
+            
         } catch (SQLException ex) {
             System.out.println(ex);
         }
