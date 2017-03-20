@@ -71,7 +71,7 @@ public class Laporan extends javax.swing.JFrame {
         clPanelTransparan5 = new PanelTransparan.ClPanelTransparan();
         clPanelTransparan6 = new PanelTransparan.ClPanelTransparan();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tblNarkotika = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         dariNarkotika = new com.toedter.calendar.JDateChooser();
@@ -409,7 +409,7 @@ public class Laporan extends javax.swing.JFrame {
 
         clPanelTransparan6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tblNarkotika.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -428,7 +428,7 @@ public class Laporan extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(tblNarkotika);
 
         javax.swing.GroupLayout clPanelTransparan6Layout = new javax.swing.GroupLayout(clPanelTransparan6);
         clPanelTransparan6.setLayout(clPanelTransparan6Layout);
@@ -1096,7 +1096,6 @@ public class Laporan extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
     private javax.swing.JTable jTable5;
@@ -1106,6 +1105,7 @@ public class Laporan extends javax.swing.JFrame {
     private javax.swing.JTable jTable9;
     private javax.swing.JTabbedPane lplpoG;
     private com.toedter.calendar.JDateChooser sampaiNarkotika;
+    private javax.swing.JTable tblNarkotika;
     private javax.swing.JLabel txtTanggal;
     private javax.swing.JLabel txtWelcome;
     // End of variables declaration//GEN-END:variables
