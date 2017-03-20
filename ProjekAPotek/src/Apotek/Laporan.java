@@ -1021,7 +1021,8 @@ public class Laporan extends javax.swing.JFrame {
         try {
             setConnection koneksi = new setConnection();
             stmt = koneksi.connection.createStatement();
-            rsTransNar = stmt.executeQuery("SELECT namaObat, dari, ke, tanggal, sum(jumlah) AS masuk, sum(jumlahKeluar) AS guna "
+            rsTransNar = stmt.executeQuery("SELECT namaObat, dari, ke, tanggal, sum(jumlah) AS masuk, sum(jumlahKeluar) AS guna, "
+                    + "(SELECT sum(jumlah) FROM Transaksi WHERE tanggal<'" + tanggalDari + "' GROUP BY namaObat) AS awal "
                     + "FROM Transaksi WHERE tanggal BETWEEN '" + tanggalDari +
                     "' AND '" + tanggalSampai + "' GROUP BY namaObat");
             while(rsTransNar.next() == true) {
@@ -1031,14 +1032,10 @@ public class Laporan extends javax.swing.JFrame {
                 untuk = rsTransNar.getString("ke");
                 masuk = rsTransNar.getInt("masuk");
                 guna = rsTransNar.getInt("guna");
-                akhir = masuk +guna;
-//                stmt1 = koneksi.connection.createStatement();
-//                rsTransNar1 = stmt1.executeQuery("SELECT sum(jumlahKeluar) AS total FROM Transaksi WHERE namaObat='" + obat +"'");
-//                while(rsTransNar1.next() == true) {
-//                    awal = rsTransNar.getInt("total");
-//                    
-                    list.add(new setLaporan(obat, awal, dari, masuk, untuk, guna, akhir));
-                //}
+                awal = rsTransNar.getInt("awal");
+                akhir = (awal+masuk-guna);
+                
+            list.add(new setLaporan(obat, awal, dari, masuk, untuk, guna, akhir));
             }
             
         } catch (SQLException ex) {
