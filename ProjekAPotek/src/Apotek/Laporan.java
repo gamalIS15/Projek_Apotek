@@ -1021,13 +1021,13 @@ public class Laporan extends javax.swing.JFrame {
         try {
             setConnection koneksi = new setConnection();
             stmt = koneksi.connection.createStatement();
-            rsTransNar = stmt.executeQuery("SELECT namaObat, dari, ke, tanggal, sum(jumlah) AS masuk, sum(jumlahKeluar) AS guna, "
-                    + "(SELECT sum(jumlah) FROM Transaksi WHERE tanggal<'" + tanggalDari + "' GROUP BY namaObat) AS awal "
+            rsTransNar = stmt.executeQuery("SELECT namaObat as nama, dari, ke, tanggal, sum(jumlah) AS masuk, sum(jumlahKeluar) AS guna, "
+                    + "(SELECT sum(jumlah) FROM Transaksi WHERE tanggal<'" + tanggalDari + "'AND namaObat=nama GROUP BY namaObat) AS awal "
                     + "FROM Transaksi WHERE tanggal BETWEEN '" + tanggalDari +
                     "' AND '" + tanggalSampai + "' GROUP BY namaObat");
             while(rsTransNar.next() == true) {
                 tgl = rsTransNar.getDate("tanggal");
-                obat = rsTransNar.getString("namaObat");
+                obat = rsTransNar.getString("nama");
                 dari = rsTransNar.getString("dari");
                 untuk = rsTransNar.getString("ke");
                 masuk = rsTransNar.getInt("masuk");
