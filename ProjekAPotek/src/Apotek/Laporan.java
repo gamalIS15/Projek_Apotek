@@ -38,6 +38,8 @@ public class Laporan extends javax.swing.JFrame {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         
 //        txtWelcome.setText(MainMenu.txtWelcome.getText());
+        removeTable();
+        updateTable();
     }
     
     private void updateTable() {
@@ -605,8 +607,8 @@ public class Laporan extends javax.swing.JFrame {
             clPanelTransparan4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(clPanelTransparan4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -1052,7 +1054,7 @@ public class Laporan extends javax.swing.JFrame {
 
     private void btnTampilNarkotikaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTampilNarkotikaActionPerformed
         // TODO add your handling code here:
-        removeAll();
+        removeTable();
         String tanggalDari = (txtdariNarkotika.getDate().getYear()+1900) + "-" + 
                 (txtdariNarkotika.getDate().getMonth()+1) + "-" + 
                 txtdariNarkotika.getDate().getDate();
@@ -1091,7 +1093,7 @@ public class Laporan extends javax.swing.JFrame {
 
     private void btnTampilPsikotropikaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTampilPsikotropikaActionPerformed
         // TODO add your handling code here:
-        removeAll();
+        removeTable();
         String tanggalDari = (txtdariPsikotropika.getDate().getYear()+1900) + "-" + 
                 (txtdariPsikotropika.getDate().getMonth()+1) + "-" + 
                 txtdariPsikotropika.getDate().getDate();
@@ -1105,7 +1107,7 @@ public class Laporan extends javax.swing.JFrame {
         try {
             setConnection koneksi = new setConnection();
             stmt1 = koneksi.connection.createStatement();
-            rsTransPsi = stmt.executeQuery("SELECT namaObat as nama, dari, ke, tanggal, sum(jumlah) AS masuk, sum(jumlahKeluar) AS guna, "
+            rsTransPsi = stmt1.executeQuery("SELECT namaObat as nama, dari, ke, tanggal, sum(jumlah) AS masuk, sum(jumlahKeluar) AS guna, "
                     + "(SELECT sum(jumlah) FROM Transaksi WHERE tanggal<'" + tanggalDari + "'AND namaObat=nama GROUP BY namaObat) AS awal "
                     + "FROM Transaksi WHERE tanggal BETWEEN '" + tanggalDari +
                     "' AND '" + tanggalSampai + "' AND golongan='Psikotropika' GROUP BY namaObat");
