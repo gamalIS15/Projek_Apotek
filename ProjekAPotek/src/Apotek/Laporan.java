@@ -1024,7 +1024,7 @@ public class Laporan extends javax.swing.JFrame {
             rsTransNar = stmt.executeQuery("SELECT namaObat as nama, dari, ke, tanggal, sum(jumlah) AS masuk, sum(jumlahKeluar) AS guna, "
                     + "(SELECT sum(jumlah) FROM Transaksi WHERE tanggal<'" + tanggalDari + "'AND namaObat=nama GROUP BY namaObat) AS awal "
                     + "FROM Transaksi WHERE tanggal BETWEEN '" + tanggalDari +
-                    "' AND '" + tanggalSampai + "' GROUP BY namaObat");
+                    "' AND '" + tanggalSampai + "' AND golongan='Narkotika' GROUP BY namaObat");
             while(rsTransNar.next() == true) {
                 tgl = rsTransNar.getDate("tanggal");
                 obat = rsTransNar.getString("nama");

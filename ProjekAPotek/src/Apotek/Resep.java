@@ -2542,9 +2542,10 @@ public class Resep extends javax.swing.JFrame {
                     System.out.println(errMsg);
                 }
                 
-                String sqlInsertTrans = "INSERT INTO Transaksi (tanggal,namaObat,penggunaanUntuk,jumlahKeluar) "
+                String sqlInsertTrans = "INSERT INTO Transaksi (tanggal,namaObat,golongan,penggunaanUntuk,jumlahKeluar) "
                         + "VALUES ('" + tanggal + "',"
                         + "'" + cbNamaObat1.getSelectedItem().toString() + "',"
+                        + "'" + gol + "',"
                         + "'Resep',"
                         + "'" + (int) spnJumlah1.getValue() + "');";
                 
