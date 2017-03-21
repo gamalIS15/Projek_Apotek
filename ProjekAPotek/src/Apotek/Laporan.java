@@ -25,7 +25,7 @@ import javax.swing.table.DefaultTableModel;
 public class Laporan extends javax.swing.JFrame {
 
     Statement stmt, stmt1, stmt2, stmt3;
-    ResultSet rsTransNar, rsTransNar1;
+    ResultSet rsTransNar, rsTransPsi;
     String[] title = {"Nama Obat", "Saldo Awal", "Pemasukan Dari", "Pemasukan Jumlah", 
             "Penggunaan Untuk", "Penggunaan Jumlah", "Saldo Akhir"};
     ArrayList<setLaporan> list = new ArrayList<setLaporan>();
@@ -54,6 +54,7 @@ public class Laporan extends javax.swing.JFrame {
             ++x;
         }
         tblNarkotika.setModel(new DefaultTableModel(data, title));
+        tblPsikotropika.setModel(new DefaultTableModel(data, title));
     }
     
         private void removeTable() {
@@ -117,10 +118,14 @@ public class Laporan extends javax.swing.JFrame {
         Psikotropika = new javax.swing.JPanel();
         clPanelTransparan3 = new PanelTransparan.ClPanelTransparan();
         clPanelTransparan4 = new PanelTransparan.ClPanelTransparan();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jLabel6 = new javax.swing.JLabel();
-        jDateChooser5 = new com.toedter.calendar.JDateChooser();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        tblPsikotropika = new javax.swing.JTable();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        txtdariPsikotropika = new com.toedter.calendar.JDateChooser();
+        jLabel14 = new javax.swing.JLabel();
+        txtsampaiPsikotropika = new com.toedter.calendar.JDateChooser();
+        btnTampilPsikotropika = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         clPanelTransparan13 = new PanelTransparan.ClPanelTransparan();
         clPanelTransparan14 = new PanelTransparan.ClPanelTransparan();
@@ -566,19 +571,26 @@ public class Laporan extends javax.swing.JFrame {
 
         clPanelTransparan4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jTable1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblPsikotropika.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nama Obat", "Saldo Awal", "Pemasukan Dari", "Pemasukan Jumlah", "Penggunaan Untuk", "Penggunaan Jumlah", "Saldo Akhir"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane10.setViewportView(tblPsikotropika);
 
         javax.swing.GroupLayout clPanelTransparan4Layout = new javax.swing.GroupLayout(clPanelTransparan4);
         clPanelTransparan4.setLayout(clPanelTransparan4Layout);
@@ -586,18 +598,34 @@ public class Laporan extends javax.swing.JFrame {
             clPanelTransparan4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(clPanelTransparan4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 984, Short.MAX_VALUE)
+                .addComponent(jScrollPane10)
                 .addContainerGap())
         );
         clPanelTransparan4Layout.setVerticalGroup(
             clPanelTransparan4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(clPanelTransparan4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(72, Short.MAX_VALUE))
         );
 
-        jLabel6.setText("Tanggal :");
+        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel12.setText("LAPORAN PSIKOTROPIKA");
+
+        jLabel13.setText("Dari Tanggal:");
+
+        txtdariPsikotropika.setDateFormatString("yyyy-MM-dd");
+
+        jLabel14.setText("Sampai Tanggal:");
+
+        txtsampaiPsikotropika.setDateFormatString("yyyy-MM-dd");
+
+        btnTampilPsikotropika.setText("Tampilkan");
+        btnTampilPsikotropika.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTampilPsikotropikaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout PsikotropikaLayout = new javax.swing.GroupLayout(Psikotropika);
         Psikotropika.setLayout(PsikotropikaLayout);
@@ -607,23 +635,40 @@ public class Laporan extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(clPanelTransparan3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(clPanelTransparan4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(PsikotropikaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PsikotropikaLayout.createSequentialGroup()
+                        .addGroup(PsikotropikaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PsikotropikaLayout.createSequentialGroup()
+                                .addGap(43, 43, 43)
+                                .addComponent(jLabel12))
+                            .addGroup(PsikotropikaLayout.createSequentialGroup()
+                                .addComponent(jLabel13)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtdariPsikotropika, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel14)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtsampaiPsikotropika, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnTampilPsikotropika)))
+                        .addGap(0, 400, Short.MAX_VALUE))
+                    .addComponent(clPanelTransparan4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            .addGroup(PsikotropikaLayout.createSequentialGroup()
-                .addGap(445, 445, 445)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jDateChooser5, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PsikotropikaLayout.setVerticalGroup(
             PsikotropikaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PsikotropikaLayout.createSequentialGroup()
-                .addGap(43, 43, 43)
+                .addGap(15, 15, 15)
+                .addComponent(jLabel12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addGroup(PsikotropikaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(jDateChooser5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PsikotropikaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(txtdariPsikotropika, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtsampaiPsikotropika, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel13)
+                        .addComponent(jLabel14))
+                    .addComponent(btnTampilPsikotropika, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(PsikotropikaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(clPanelTransparan3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(clPanelTransparan4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -1007,7 +1052,7 @@ public class Laporan extends javax.swing.JFrame {
 
     private void btnTampilNarkotikaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTampilNarkotikaActionPerformed
         // TODO add your handling code here:
-        //removeAll();
+        removeAll();
         String tanggalDari = (txtdariNarkotika.getDate().getYear()+1900) + "-" + 
                 (txtdariNarkotika.getDate().getMonth()+1) + "-" + 
                 txtdariNarkotika.getDate().getDate();
@@ -1043,6 +1088,45 @@ public class Laporan extends javax.swing.JFrame {
         }
         updateTable();
     }//GEN-LAST:event_btnTampilNarkotikaActionPerformed
+
+    private void btnTampilPsikotropikaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTampilPsikotropikaActionPerformed
+        // TODO add your handling code here:
+        removeAll();
+        String tanggalDari = (txtdariPsikotropika.getDate().getYear()+1900) + "-" + 
+                (txtdariPsikotropika.getDate().getMonth()+1) + "-" + 
+                txtdariPsikotropika.getDate().getDate();
+        String tanggalSampai = (txtsampaiPsikotropika.getDate().getYear()+1900) + "-" + 
+                (txtsampaiPsikotropika.getDate().getMonth()+1) + "-" + 
+                txtsampaiPsikotropika.getDate().getDate();
+        Date tgl = null;
+        String obat = null, dari = null, untuk = null;
+        int guna= 0, awal = 0, masuk = 0, akhir = 0;
+        
+        try {
+            setConnection koneksi = new setConnection();
+            stmt1 = koneksi.connection.createStatement();
+            rsTransPsi = stmt.executeQuery("SELECT namaObat as nama, dari, ke, tanggal, sum(jumlah) AS masuk, sum(jumlahKeluar) AS guna, "
+                    + "(SELECT sum(jumlah) FROM Transaksi WHERE tanggal<'" + tanggalDari + "'AND namaObat=nama GROUP BY namaObat) AS awal "
+                    + "FROM Transaksi WHERE tanggal BETWEEN '" + tanggalDari +
+                    "' AND '" + tanggalSampai + "' AND golongan='Psikotropika' GROUP BY namaObat");
+            while(rsTransPsi.next() == true) {
+                tgl = rsTransPsi.getDate("tanggal");
+                obat = rsTransPsi.getString("nama");
+                dari = rsTransPsi.getString("dari");
+                untuk = rsTransPsi.getString("ke");
+                masuk = rsTransPsi.getInt("masuk");
+                guna = rsTransPsi.getInt("guna");
+                awal = rsTransPsi.getInt("awal");
+                akhir = (awal+masuk-guna);
+                
+            list.add(new setLaporan(obat, awal, dari, masuk, untuk, guna, akhir));
+            }
+            
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        updateTable();
+    }//GEN-LAST:event_btnTampilPsikotropikaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1114,6 +1198,7 @@ public class Laporan extends javax.swing.JFrame {
     private javax.swing.JPanel Psikotropika;
     private javax.swing.JLabel btnKeluar;
     private javax.swing.JButton btnTampilNarkotika;
+    private javax.swing.JButton btnTampilPsikotropika;
     private PanelTransparan.ClPanelTransparan clPanelTransparan1;
     private PanelTransparan.ClPanelTransparan clPanelTransparan10;
     private PanelTransparan.ClPanelTransparan clPanelTransparan11;
@@ -1137,7 +1222,6 @@ public class Laporan extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private com.toedter.calendar.JDateChooser jDateChooser2;
     private com.toedter.calendar.JDateChooser jDateChooser3;
-    private com.toedter.calendar.JDateChooser jDateChooser5;
     private com.toedter.calendar.JDateChooser jDateChooser6;
     private com.toedter.calendar.JDateChooser jDateChooser7;
     private com.toedter.calendar.JDateChooser jDateChooser8;
@@ -1145,11 +1229,13 @@ public class Laporan extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -1159,7 +1245,7 @@ public class Laporan extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -1168,7 +1254,6 @@ public class Laporan extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
     private javax.swing.JTable jTable5;
@@ -1178,9 +1263,12 @@ public class Laporan extends javax.swing.JFrame {
     private javax.swing.JTable jTable9;
     private javax.swing.JTabbedPane lplpoG;
     private javax.swing.JTable tblNarkotika;
+    private javax.swing.JTable tblPsikotropika;
     private javax.swing.JLabel txtTanggal;
     private javax.swing.JLabel txtWelcome;
     private com.toedter.calendar.JDateChooser txtdariNarkotika;
+    private com.toedter.calendar.JDateChooser txtdariPsikotropika;
     private com.toedter.calendar.JDateChooser txtsampaiNarkotika;
+    private com.toedter.calendar.JDateChooser txtsampaiPsikotropika;
     // End of variables declaration//GEN-END:variables
 }
