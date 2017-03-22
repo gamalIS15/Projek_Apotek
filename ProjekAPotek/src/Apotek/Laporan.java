@@ -28,7 +28,8 @@ public class Laporan extends javax.swing.JFrame {
     ResultSet rsTransNar, rsTransPsi;
     String[] title = {"Nama Obat", "Saldo Awal", "Pemasukan Dari", "Pemasukan Jumlah", 
             "Penggunaan Untuk", "Penggunaan Jumlah", "Saldo Akhir"};
-    ArrayList<setLaporan> list = new ArrayList<setLaporan>();
+    ArrayList<setLaporan> listNar = new ArrayList<setLaporan>();
+    ArrayList<setLaporan> listPsi = new ArrayList<setLaporan>();
     /**
      * Creates new form Resep
      */
@@ -38,14 +39,14 @@ public class Laporan extends javax.swing.JFrame {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         
 //        txtWelcome.setText(MainMenu.txtWelcome.getText());
-        removeTable();
-        updateTable();
+        updateTableNar();
+        updateTablePsi();
     }
     
-    private void updateTable() {
-        Object[][] data = new Object[this.list.size()][7];
+    private void updateTableNar() {
+        Object[][] data = new Object[this.listNar.size()][7];
         int x = 0;
-        for(setLaporan o: this.list) {
+        for(setLaporan o: this.listNar) {
             data[x][0] = o.getNama();
             data[x][1] = o.getAwal();
             data[x][2] = o.getPengdari();
@@ -56,16 +57,46 @@ public class Laporan extends javax.swing.JFrame {
             ++x;
         }
         tblNarkotika.setModel(new DefaultTableModel(data, title));
-        tblPsikotropika.setModel(new DefaultTableModel(data, title));
     }
     
-        private void removeTable() {
-        DefaultTableModel model = (DefaultTableModel)tblPsikotropika.getModel();
-        while (model.getRowCount() > 0){
-            for (int i = 0; i < model.getRowCount(); ++i){
-                model.removeRow(i);
-            }
+        private void updateTablePsi() {
+        Object[][] data = new Object[this.listPsi.size()][7];
+        int x = 0;
+        for(setLaporan o: this.listPsi) {
+            data[x][0] = o.getNama();
+            data[x][1] = o.getAwal();
+            data[x][2] = o.getPengdari();
+            data[x][3] = o.getPemasjumlah();
+            data[x][4] = o.getPenguntuk();
+            data[x][5] = o.getPengjumlah();
+            data[x][6] = o.getAkhir();
+            ++x;
         }
+        tblPsikotropika.setModel(new DefaultTableModel(data, title));
+    }
+        
+    private void removeTableNar() {
+        for(int x=0; x < listNar.size(); x++) {
+            listNar.set(x, null);
+        }
+//        DefaultTableModel model = (DefaultTableModel)tblNarkotika.getModel();
+//        while (model.getRowCount() > 0){
+//            for (int i = 0; i < model.getRowCount(); ++i){
+//                model.removeRow(i);
+//            }
+//        }
+    }
+    
+        private void removeTablePsi() {
+            for(int x=0; x < listPsi.size(); x++) {
+                listPsi.set(x, null);
+            }
+//        DefaultTableModel model = (DefaultTableModel)tblPsikotropika.getModel();
+//        while (model.getRowCount() > 0){
+//            for (int i = 0; i < model.getRowCount(); ++i){
+//                model.removeRow(i);
+//            }
+//        }
     }
 
     /**
@@ -1106,7 +1137,7 @@ public class Laporan extends javax.swing.JFrame {
 
     private void btnTampilNarkotikaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTampilNarkotikaActionPerformed
         // TODO add your handling code here:
-        removeTable();
+        removeTableNar();
         String tanggalDari = (txtdariNarkotika.getDate().getYear()+1900) + "-" + 
                 (txtdariNarkotika.getDate().getMonth()+1) + "-" + 
                 txtdariNarkotika.getDate().getDate();
@@ -1134,18 +1165,18 @@ public class Laporan extends javax.swing.JFrame {
                 awal = rsTransNar.getInt("awal");
                 akhir = (awal+masuk-guna);
                 
-            list.add(new setLaporan(obat, awal, dari, masuk, untuk, guna, akhir));
+            listNar.add(new setLaporan(obat, awal, dari, masuk, untuk, guna, akhir));
             }
             
         } catch (SQLException ex) {
             System.out.println(ex);
         }
-        updateTable();
+        updateTableNar();
     }//GEN-LAST:event_btnTampilNarkotikaActionPerformed
 
     private void btnTampilPsikotropikaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTampilPsikotropikaActionPerformed
         // TODO add your handling code here:
-        removeTable();
+        removeTablePsi();
         String tanggalDari = (txtdariPsikotropika.getDate().getYear()+1900) + "-" + 
                 (txtdariPsikotropika.getDate().getMonth()+1) + "-" + 
                 txtdariPsikotropika.getDate().getDate();
@@ -1173,13 +1204,13 @@ public class Laporan extends javax.swing.JFrame {
                 awal = rsTransPsi.getInt("awal");
                 akhir = (awal+masuk-guna);
                 
-            list.add(new setLaporan(obat, awal, dari, masuk, untuk, guna, akhir));
+            listPsi.add(new setLaporan(obat, awal, dari, masuk, untuk, guna, akhir));
             }
             
         } catch (SQLException ex) {
             System.out.println(ex);
         }
-        updateTable();
+        updateTablePsi();
     }//GEN-LAST:event_btnTampilPsikotropikaActionPerformed
 
     private void lplpoGMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lplpoGMouseClicked
@@ -1189,8 +1220,8 @@ public class Laporan extends javax.swing.JFrame {
 
     private void PsikotropikaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PsikotropikaMouseClicked
         // TODO add your handling code here:
-        updateTable();
-        removeTable();
+        updateTablePsi();
+        removeTablePsi();
     }//GEN-LAST:event_PsikotropikaMouseClicked
 
     private void btnTampilKunjungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTampilKunjungActionPerformed
