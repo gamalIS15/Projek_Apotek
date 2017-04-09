@@ -28,8 +28,14 @@ public class Laporan extends javax.swing.JFrame {
     ResultSet rsTransNar, rsTransPsi;
     String[] title = {"Nama Obat", "Saldo Awal", "Pemasukan Dari", "Pemasukan Jumlah", 
             "Penggunaan Untuk", "Penggunaan Jumlah", "Saldo Akhir"};
+    String[] titleKunjungan ={"Tanggal","Paten","Generik","Puyer","Obat Jadi", "Anti biotik", "Injeksi" ,"Umum","","Jamkesmas","Akses","BPJS","Rawat Inap","Rawat Jalan" };
     ArrayList<setLaporan> listNar = new ArrayList<setLaporan>();
     ArrayList<setLaporan> listPsi = new ArrayList<setLaporan>();
+    ArrayList<setLaporan> listPuskesmas = new ArrayList<setLaporan>();
+    ArrayList<setLaporan> listApotek = new ArrayList<setLaporan>();
+    ArrayList<setLaporan> listGudang = new ArrayList<setLaporan>();
+    ArrayList<setLaporan> listKunjungan = new ArrayList<setLaporan>();
+    
     /**
      * Creates new form Resep
      */
@@ -72,8 +78,26 @@ public class Laporan extends javax.swing.JFrame {
             data[x][6] = o.getAkhir();
             ++x;
         }
+        
         tblPsikotropika.setModel(new DefaultTableModel(data, title));
     }
+//        private void removePsi() {
+//        Object[][] data = new Object[this.listPsi.size()][7];
+//        int x = 0;
+//        for(setLaporan o: this.listPsi) {
+//            data[x][0] = o.getNama();
+//            data[x][1] = o.getAwal();
+//            data[x][2] = o.getPengdari();
+//            data[x][3] = o.getPemasjumlah();
+//            data[x][4] = o.getPenguntuk();
+//            data[x][5] = o.getPengjumlah();
+//            data[x][6] = o.getAkhir();
+//            ++x;
+//        }
+//        
+//        tblPsikotropika.setModel(new DefaultTableModel(data, title));
+//    }
+        
         
     private void removeTableNar() {
         for(int x=0; x < listNar.size(); x++) {
@@ -91,12 +115,12 @@ public class Laporan extends javax.swing.JFrame {
             for(int x=0; x < listPsi.size(); x++) {
                 listPsi.set(x, null);
             }
-//        DefaultTableModel model = (DefaultTableModel)tblPsikotropika.getModel();
-//        while (model.getRowCount() > 0){
-//            for (int i = 0; i < model.getRowCount(); ++i){
-//                model.removeRow(i);
-//            }
-//        }
+        DefaultTableModel model = (DefaultTableModel)tblPsikotropika.getModel();
+        while (model.getRowCount() > 0){
+            for (int i = 0; i < model.getRowCount(); ++i){
+                model.removeRow(i);
+            }
+        }
     }
 
     /**
@@ -163,23 +187,32 @@ public class Laporan extends javax.swing.JFrame {
         clPanelTransparan13 = new PanelTransparan.ClPanelTransparan();
         clPanelTransparan14 = new PanelTransparan.ClPanelTransparan();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jTable6 = new javax.swing.JTable();
+        tblPuskesmas = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
-        jDateChooser6 = new com.toedter.calendar.JDateChooser();
+        txtDariPuskesmas = new com.toedter.calendar.JDateChooser();
+        jLabel6 = new javax.swing.JLabel();
+        txtSampaiPuskesmas = new com.toedter.calendar.JDateChooser();
+        btnTampilkanPuskesmas = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         clPanelTransparan15 = new PanelTransparan.ClPanelTransparan();
         clPanelTransparan16 = new PanelTransparan.ClPanelTransparan();
         jScrollPane7 = new javax.swing.JScrollPane();
-        jTable7 = new javax.swing.JTable();
+        tblApotek = new javax.swing.JTable();
         jLabel8 = new javax.swing.JLabel();
-        jDateChooser7 = new com.toedter.calendar.JDateChooser();
+        txtDariApotek = new com.toedter.calendar.JDateChooser();
+        jLabel10 = new javax.swing.JLabel();
+        txtSampaiApotek = new com.toedter.calendar.JDateChooser();
+        btnTampilkanApotek = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         clPanelTransparan17 = new PanelTransparan.ClPanelTransparan();
         clPanelTransparan18 = new PanelTransparan.ClPanelTransparan();
         jScrollPane8 = new javax.swing.JScrollPane();
-        jTable8 = new javax.swing.JTable();
+        tblRekapKunjungan = new javax.swing.JTable();
         jLabel9 = new javax.swing.JLabel();
-        jDateChooser8 = new com.toedter.calendar.JDateChooser();
+        txtDariGudang = new com.toedter.calendar.JDateChooser();
+        jLabel18 = new javax.swing.JLabel();
+        jDateChooser9 = new com.toedter.calendar.JDateChooser();
+        btnTampilkanGudang = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         clPanelTransparan19 = new PanelTransparan.ClPanelTransparan();
         clPanelTransparan20 = new PanelTransparan.ClPanelTransparan();
@@ -269,7 +302,7 @@ public class Laporan extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nomor Resep", "Nama Pasien", "Title 3", "Title 4"
             }
         ));
         jScrollPane5.setViewportView(jTable5);
@@ -280,14 +313,14 @@ public class Laporan extends javax.swing.JFrame {
             clPanelTransparan12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(clPanelTransparan12Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 992, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 1037, Short.MAX_VALUE)
                 .addContainerGap())
         );
         clPanelTransparan12Layout.setVerticalGroup(
             clPanelTransparan12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(clPanelTransparan12Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 495, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -356,14 +389,14 @@ public class Laporan extends javax.swing.JFrame {
             clPanelTransparan10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(clPanelTransparan10Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 932, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 977, Short.MAX_VALUE)
                 .addContainerGap())
         );
         clPanelTransparan10Layout.setVerticalGroup(
             clPanelTransparan10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(clPanelTransparan10Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 524, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -432,14 +465,14 @@ public class Laporan extends javax.swing.JFrame {
             clPanelTransparan8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(clPanelTransparan8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 926, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 971, Short.MAX_VALUE)
                 .addContainerGap())
         );
         clPanelTransparan8Layout.setVerticalGroup(
             clPanelTransparan8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(clPanelTransparan8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 506, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -582,7 +615,7 @@ public class Laporan extends javax.swing.JFrame {
             .addGroup(NarkotikaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addGroup(NarkotikaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, NarkotikaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(txtdariNarkotika, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -654,7 +687,7 @@ public class Laporan extends javax.swing.JFrame {
             clPanelTransparan4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(clPanelTransparan4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE)
+                .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 502, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -709,7 +742,7 @@ public class Laporan extends javax.swing.JFrame {
             .addGroup(PsikotropikaLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(jLabel12)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(PsikotropikaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PsikotropikaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(txtdariPsikotropika, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -737,18 +770,18 @@ public class Laporan extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jTable6.setModel(new javax.swing.table.DefaultTableModel(
+        tblPuskesmas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "No", "Nama Obat", "Satuan", "Stok Awal", "Penerimaan", "Persediaan"
             }
         ));
-        jScrollPane6.setViewportView(jTable6);
+        jScrollPane6.setViewportView(tblPuskesmas);
 
         javax.swing.GroupLayout clPanelTransparan14Layout = new javax.swing.GroupLayout(clPanelTransparan14);
         clPanelTransparan14.setLayout(clPanelTransparan14Layout);
@@ -756,18 +789,27 @@ public class Laporan extends javax.swing.JFrame {
             clPanelTransparan14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(clPanelTransparan14Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 1045, Short.MAX_VALUE)
                 .addContainerGap())
         );
         clPanelTransparan14Layout.setVerticalGroup(
             clPanelTransparan14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(clPanelTransparan14Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 516, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jLabel7.setText("Tanggal :");
+
+        jLabel6.setText("Sampai Tanggal :");
+
+        btnTampilkanPuskesmas.setText("Tampilkan");
+        btnTampilkanPuskesmas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTampilkanPuskesmasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -783,17 +825,30 @@ public class Laporan extends javax.swing.JFrame {
                 .addGap(449, 449, 449)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jDateChooser6, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtDariPuskesmas, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(108, 108, 108)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtSampaiPuskesmas, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52)
+                .addComponent(btnTampilkanPuskesmas)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(54, 54, 54)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addComponent(jDateChooser6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(txtDariPuskesmas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6)
+                            .addComponent(txtSampaiPuskesmas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnTampilkanPuskesmas)))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(clPanelTransparan13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(clPanelTransparan14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -813,18 +868,18 @@ public class Laporan extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jTable7.setModel(new javax.swing.table.DefaultTableModel(
+        tblApotek.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "No", "Nama Obat", "Satuan", "Stok Awal", "Penerimaan", "Persediaan"
             }
         ));
-        jScrollPane7.setViewportView(jTable7);
+        jScrollPane7.setViewportView(tblApotek);
 
         javax.swing.GroupLayout clPanelTransparan16Layout = new javax.swing.GroupLayout(clPanelTransparan16);
         clPanelTransparan16.setLayout(clPanelTransparan16Layout);
@@ -832,18 +887,22 @@ public class Laporan extends javax.swing.JFrame {
             clPanelTransparan16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(clPanelTransparan16Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 1045, Short.MAX_VALUE)
                 .addContainerGap())
         );
         clPanelTransparan16Layout.setVerticalGroup(
             clPanelTransparan16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(clPanelTransparan16Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 518, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jLabel8.setText("Tanggal :");
+
+        jLabel10.setText("Sampai tanggal :");
+
+        btnTampilkanApotek.setText("Tampilkan");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -859,17 +918,30 @@ public class Laporan extends javax.swing.JFrame {
                 .addGap(439, 439, 439)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jDateChooser7, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtDariApotek, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(73, 73, 73)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtSampaiApotek, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(96, 96, 96)
+                .addComponent(btnTampilkanApotek)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(54, 54, 54)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8)
-                    .addComponent(jDateChooser7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(54, 54, 54)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addComponent(txtDariApotek, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10)
+                            .addComponent(txtSampaiApotek, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnTampilkanApotek)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(clPanelTransparan15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(clPanelTransparan16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -889,18 +961,18 @@ public class Laporan extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jTable8.setModel(new javax.swing.table.DefaultTableModel(
+        tblRekapKunjungan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "No", "Nama Obat", "Satuan", "Stok Awal", "Penerimaan", "Persediaan"
             }
         ));
-        jScrollPane8.setViewportView(jTable8);
+        jScrollPane8.setViewportView(tblRekapKunjungan);
 
         javax.swing.GroupLayout clPanelTransparan18Layout = new javax.swing.GroupLayout(clPanelTransparan18);
         clPanelTransparan18.setLayout(clPanelTransparan18Layout);
@@ -908,18 +980,22 @@ public class Laporan extends javax.swing.JFrame {
             clPanelTransparan18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(clPanelTransparan18Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 1045, Short.MAX_VALUE)
                 .addContainerGap())
         );
         clPanelTransparan18Layout.setVerticalGroup(
             clPanelTransparan18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(clPanelTransparan18Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 518, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jLabel9.setText("Tanggal :");
+
+        jLabel18.setText("Sampai Tanggal :");
+
+        btnTampilkanGudang.setText("Tampilkan");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -935,17 +1011,30 @@ public class Laporan extends javax.swing.JFrame {
                 .addGap(431, 431, 431)
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jDateChooser8, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtDariGudang, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56)
+                .addComponent(jLabel18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jDateChooser9, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42)
+                .addComponent(btnTampilkanGudang)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(54, 54, 54)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9)
-                    .addComponent(jDateChooser8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(54, 54, 54)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addComponent(txtDariGudang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel18)
+                            .addComponent(jDateChooser9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnTampilkanGudang)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(clPanelTransparan17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(clPanelTransparan18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -971,13 +1060,14 @@ public class Laporan extends javax.swing.JFrame {
 
         jTable9.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Tanggal", "Paten", "Generik", "Puyer", "Obat Jadi", "Antibiotik", "Injeksi", "Umum", "Jamkesmas", "Akses", "BPJS", "Rawat Inap", "Rawat jalan"
             }
         ));
         jScrollPane9.setViewportView(jTable9);
@@ -988,14 +1078,14 @@ public class Laporan extends javax.swing.JFrame {
             clPanelTransparan20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(clPanelTransparan20Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 992, Short.MAX_VALUE)
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 1037, Short.MAX_VALUE)
                 .addContainerGap())
         );
         clPanelTransparan20Layout.setVerticalGroup(
             clPanelTransparan20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(clPanelTransparan20Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 499, Short.MAX_VALUE)
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 522, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1077,7 +1167,7 @@ public class Laporan extends javax.swing.JFrame {
         );
         clPanelTransparan2Layout.setVerticalGroup(
             clPanelTransparan2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(clPanelTransparan2Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, clPanelTransparan2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lplpoG)
                 .addContainerGap())
@@ -1087,9 +1177,9 @@ public class Laporan extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(clPanelTransparan1, javax.swing.GroupLayout.DEFAULT_SIZE, 1521, Short.MAX_VALUE)
+            .addComponent(clPanelTransparan1, javax.swing.GroupLayout.DEFAULT_SIZE, 1574, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(clPanelTransparan2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39))
         );
@@ -1106,11 +1196,11 @@ public class Laporan extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1521, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1521, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 739, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 739, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -1228,6 +1318,10 @@ public class Laporan extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnTampilKunjungActionPerformed
 
+    private void btnTampilkanPuskesmasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTampilkanPuskesmasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnTampilkanPuskesmasActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1300,6 +1394,9 @@ public class Laporan extends javax.swing.JFrame {
     private javax.swing.JButton btnTampilKunjung;
     private javax.swing.JButton btnTampilNarkotika;
     private javax.swing.JButton btnTampilPsikotropika;
+    private javax.swing.JButton btnTampilkanApotek;
+    private javax.swing.JButton btnTampilkanGudang;
+    private javax.swing.JButton btnTampilkanPuskesmas;
     private PanelTransparan.ClPanelTransparan clPanelTransparan1;
     private PanelTransparan.ClPanelTransparan clPanelTransparan10;
     private PanelTransparan.ClPanelTransparan clPanelTransparan11;
@@ -1323,10 +1420,9 @@ public class Laporan extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private com.toedter.calendar.JDateChooser jDateChooser2;
     private com.toedter.calendar.JDateChooser jDateChooser3;
-    private com.toedter.calendar.JDateChooser jDateChooser6;
-    private com.toedter.calendar.JDateChooser jDateChooser7;
-    private com.toedter.calendar.JDateChooser jDateChooser8;
+    private com.toedter.calendar.JDateChooser jDateChooser9;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -1334,10 +1430,12 @@ public class Laporan extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -1359,13 +1457,18 @@ public class Laporan extends javax.swing.JFrame {
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
     private javax.swing.JTable jTable5;
-    private javax.swing.JTable jTable6;
-    private javax.swing.JTable jTable7;
-    private javax.swing.JTable jTable8;
     private javax.swing.JTable jTable9;
     private javax.swing.JTabbedPane lplpoG;
+    private javax.swing.JTable tblApotek;
     private javax.swing.JTable tblNarkotika;
     private javax.swing.JTable tblPsikotropika;
+    private javax.swing.JTable tblPuskesmas;
+    private javax.swing.JTable tblRekapKunjungan;
+    private com.toedter.calendar.JDateChooser txtDariApotek;
+    private com.toedter.calendar.JDateChooser txtDariGudang;
+    private com.toedter.calendar.JDateChooser txtDariPuskesmas;
+    private com.toedter.calendar.JDateChooser txtSampaiApotek;
+    private com.toedter.calendar.JDateChooser txtSampaiPuskesmas;
     private javax.swing.JLabel txtTanggal;
     private javax.swing.JLabel txtWelcome;
     private com.toedter.calendar.JDateChooser txtdariKunjung;

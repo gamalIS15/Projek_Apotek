@@ -65,9 +65,9 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="clPanelTransparan1" alignment="0" pref="1521" max="32767" attributes="0"/>
+                  <Component id="clPanelTransparan1" alignment="0" pref="1574" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="16" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="clPanelTransparan2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                   </Group>
@@ -177,7 +177,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="lplpoG" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
@@ -276,7 +276,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jScrollPane5" pref="992" max="32767" attributes="0"/>
+                                      <Component id="jScrollPane5" pref="1037" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -285,7 +285,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jScrollPane5" pref="495" max="32767" attributes="0"/>
+                                      <Component id="jScrollPane5" pref="520" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -303,8 +303,8 @@
                                   <Properties>
                                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                                       <Table columnCount="4" rowCount="4">
-                                        <Column editable="true" title="Title 1" type="java.lang.Object"/>
-                                        <Column editable="true" title="Title 2" type="java.lang.Object"/>
+                                        <Column editable="true" title="Nomor Resep" type="java.lang.Object"/>
+                                        <Column editable="true" title="Nama Pasien" type="java.lang.Object"/>
                                         <Column editable="true" title="Title 3" type="java.lang.Object"/>
                                         <Column editable="true" title="Title 4" type="java.lang.Object"/>
                                       </Table>
@@ -393,7 +393,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jScrollPane4" pref="932" max="32767" attributes="0"/>
+                                      <Component id="jScrollPane4" pref="977" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -402,7 +402,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jScrollPane4" pref="500" max="32767" attributes="0"/>
+                                      <Component id="jScrollPane4" pref="524" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -510,7 +510,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jScrollPane3" pref="926" max="32767" attributes="0"/>
+                                      <Component id="jScrollPane3" pref="971" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -519,7 +519,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jScrollPane3" pref="506" max="32767" attributes="0"/>
+                                      <Component id="jScrollPane3" pref="530" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -606,7 +606,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="22" max="32767" attributes="0"/>
+                                  <EmptySpace pref="45" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="103" alignment="1" groupAlignment="0" attributes="0">
                                           <Component id="txtdariNarkotika" min="-2" max="-2" attributes="0"/>
@@ -794,7 +794,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                                   <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="19" max="32767" attributes="0"/>
+                                  <EmptySpace pref="31" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="103" alignment="1" groupAlignment="0" attributes="0">
                                           <Component id="txtdariPsikotropika" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -860,7 +860,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jScrollPane10" pref="491" max="32767" attributes="0"/>
+                                      <Component id="jScrollPane10" pref="502" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -954,7 +954,13 @@
                                   <EmptySpace min="-2" pref="449" max="-2" attributes="0"/>
                                   <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jDateChooser6" min="-2" pref="158" max="-2" attributes="0"/>
+                                  <Component id="txtDariPuskesmas" min="-2" pref="158" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="108" max="-2" attributes="0"/>
+                                  <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="txtSampaiPuskesmas" min="-2" pref="158" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                                  <Component id="btnTampilkanPuskesmas" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                               </Group>
                           </Group>
@@ -962,12 +968,22 @@
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jDateChooser6" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                                              <Component id="txtDariPuskesmas" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                                              <Component id="txtSampaiPuskesmas" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="btnTampilkanPuskesmas" min="-2" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="clPanelTransparan13" alignment="0" max="32767" attributes="0"/>
                                       <Component id="clPanelTransparan14" alignment="0" max="32767" attributes="0"/>
@@ -1000,7 +1016,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jScrollPane6" pref="1000" max="32767" attributes="0"/>
+                                      <Component id="jScrollPane6" pref="1045" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -1009,7 +1025,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jScrollPane6" pref="500" max="32767" attributes="0"/>
+                                      <Component id="jScrollPane6" pref="516" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -1023,14 +1039,16 @@
 
                               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                               <SubComponents>
-                                <Component class="javax.swing.JTable" name="jTable6">
+                                <Component class="javax.swing.JTable" name="tblPuskesmas">
                                   <Properties>
                                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                                      <Table columnCount="4" rowCount="4">
-                                        <Column editable="true" title="Title 1" type="java.lang.Object"/>
-                                        <Column editable="true" title="Title 2" type="java.lang.Object"/>
-                                        <Column editable="true" title="Title 3" type="java.lang.Object"/>
-                                        <Column editable="true" title="Title 4" type="java.lang.Object"/>
+                                      <Table columnCount="6" rowCount="4">
+                                        <Column editable="true" title="No" type="java.lang.Object"/>
+                                        <Column editable="true" title="Nama Obat" type="java.lang.Object"/>
+                                        <Column editable="true" title="Satuan" type="java.lang.Object"/>
+                                        <Column editable="true" title="Stok Awal" type="java.lang.Object"/>
+                                        <Column editable="true" title="Penerimaan" type="java.lang.Object"/>
+                                        <Column editable="true" title="Persediaan" type="java.lang.Object"/>
                                       </Table>
                                     </Property>
                                   </Properties>
@@ -1044,7 +1062,22 @@
                             <Property name="text" type="java.lang.String" value="Tanggal :"/>
                           </Properties>
                         </Component>
-                        <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser6">
+                        <Component class="com.toedter.calendar.JDateChooser" name="txtDariPuskesmas">
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="jLabel6">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Sampai Tanggal :"/>
+                          </Properties>
+                        </Component>
+                        <Component class="com.toedter.calendar.JDateChooser" name="txtSampaiPuskesmas">
+                        </Component>
+                        <Component class="javax.swing.JButton" name="btnTampilkanPuskesmas">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Tampilkan"/>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTampilkanPuskesmasActionPerformed"/>
+                          </Events>
                         </Component>
                       </SubComponents>
                     </Container>
@@ -1071,7 +1104,13 @@
                                   <EmptySpace min="-2" pref="439" max="-2" attributes="0"/>
                                   <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jDateChooser7" min="-2" pref="143" max="-2" attributes="0"/>
+                                  <Component id="txtDariApotek" min="-2" pref="143" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
+                                  <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="txtSampaiApotek" min="-2" pref="168" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
+                                  <Component id="btnTampilkanApotek" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                               </Group>
                           </Group>
@@ -1079,12 +1118,22 @@
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jDateChooser7" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                                              <Component id="txtDariApotek" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                                              <Component id="txtSampaiApotek" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="btnTampilkanApotek" min="-2" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="clPanelTransparan15" alignment="0" max="32767" attributes="0"/>
                                       <Component id="clPanelTransparan16" alignment="0" max="32767" attributes="0"/>
@@ -1117,7 +1166,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jScrollPane7" pref="1000" max="32767" attributes="0"/>
+                                      <Component id="jScrollPane7" pref="1045" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -1126,7 +1175,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jScrollPane7" pref="500" max="32767" attributes="0"/>
+                                      <Component id="jScrollPane7" pref="518" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -1140,14 +1189,16 @@
 
                               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                               <SubComponents>
-                                <Component class="javax.swing.JTable" name="jTable7">
+                                <Component class="javax.swing.JTable" name="tblApotek">
                                   <Properties>
                                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                                      <Table columnCount="4" rowCount="4">
-                                        <Column editable="true" title="Title 1" type="java.lang.Object"/>
-                                        <Column editable="true" title="Title 2" type="java.lang.Object"/>
-                                        <Column editable="true" title="Title 3" type="java.lang.Object"/>
-                                        <Column editable="true" title="Title 4" type="java.lang.Object"/>
+                                      <Table columnCount="6" rowCount="4">
+                                        <Column editable="true" title="No" type="java.lang.Object"/>
+                                        <Column editable="true" title="Nama Obat" type="java.lang.Object"/>
+                                        <Column editable="true" title="Satuan" type="java.lang.Object"/>
+                                        <Column editable="true" title="Stok Awal" type="java.lang.Object"/>
+                                        <Column editable="true" title="Penerimaan" type="java.lang.Object"/>
+                                        <Column editable="true" title="Persediaan" type="java.lang.Object"/>
                                       </Table>
                                     </Property>
                                   </Properties>
@@ -1161,7 +1212,19 @@
                             <Property name="text" type="java.lang.String" value="Tanggal :"/>
                           </Properties>
                         </Component>
-                        <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser7">
+                        <Component class="com.toedter.calendar.JDateChooser" name="txtDariApotek">
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="jLabel10">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Sampai tanggal :"/>
+                          </Properties>
+                        </Component>
+                        <Component class="com.toedter.calendar.JDateChooser" name="txtSampaiApotek">
+                        </Component>
+                        <Component class="javax.swing.JButton" name="btnTampilkanApotek">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Tampilkan"/>
+                          </Properties>
                         </Component>
                       </SubComponents>
                     </Container>
@@ -1188,7 +1251,13 @@
                                   <EmptySpace min="-2" pref="431" max="-2" attributes="0"/>
                                   <Component id="jLabel9" min="-2" pref="73" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jDateChooser8" min="-2" pref="157" max="-2" attributes="0"/>
+                                  <Component id="txtDariGudang" min="-2" pref="157" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+                                  <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jDateChooser9" min="-2" pref="152" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                                  <Component id="btnTampilkanGudang" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                               </Group>
                           </Group>
@@ -1196,12 +1265,22 @@
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jDateChooser8" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                                              <Component id="txtDariGudang" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jDateChooser9" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="btnTampilkanGudang" min="-2" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="clPanelTransparan17" alignment="0" max="32767" attributes="0"/>
                                       <Component id="clPanelTransparan18" alignment="0" max="32767" attributes="0"/>
@@ -1234,7 +1313,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jScrollPane8" pref="1000" max="32767" attributes="0"/>
+                                      <Component id="jScrollPane8" pref="1045" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -1243,7 +1322,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jScrollPane8" pref="500" max="32767" attributes="0"/>
+                                      <Component id="jScrollPane8" pref="518" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -1257,14 +1336,16 @@
 
                               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                               <SubComponents>
-                                <Component class="javax.swing.JTable" name="jTable8">
+                                <Component class="javax.swing.JTable" name="tblRekapKunjungan">
                                   <Properties>
                                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                                      <Table columnCount="4" rowCount="4">
-                                        <Column editable="true" title="Title 1" type="java.lang.Object"/>
-                                        <Column editable="true" title="Title 2" type="java.lang.Object"/>
-                                        <Column editable="true" title="Title 3" type="java.lang.Object"/>
-                                        <Column editable="true" title="Title 4" type="java.lang.Object"/>
+                                      <Table columnCount="6" rowCount="4">
+                                        <Column editable="true" title="No" type="java.lang.Object"/>
+                                        <Column editable="true" title="Nama Obat" type="java.lang.Object"/>
+                                        <Column editable="true" title="Satuan" type="java.lang.Object"/>
+                                        <Column editable="true" title="Stok Awal" type="java.lang.Object"/>
+                                        <Column editable="true" title="Penerimaan" type="java.lang.Object"/>
+                                        <Column editable="true" title="Persediaan" type="java.lang.Object"/>
                                       </Table>
                                     </Property>
                                   </Properties>
@@ -1278,7 +1359,19 @@
                             <Property name="text" type="java.lang.String" value="Tanggal :"/>
                           </Properties>
                         </Component>
-                        <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser8">
+                        <Component class="com.toedter.calendar.JDateChooser" name="txtDariGudang">
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="jLabel18">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Sampai Tanggal :"/>
+                          </Properties>
+                        </Component>
+                        <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser9">
+                        </Component>
+                        <Component class="javax.swing.JButton" name="btnTampilkanGudang">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Tampilkan"/>
+                          </Properties>
                         </Component>
                       </SubComponents>
                     </Container>
@@ -1384,7 +1477,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jScrollPane9" pref="992" max="32767" attributes="0"/>
+                                      <Component id="jScrollPane9" pref="1037" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -1393,7 +1486,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jScrollPane9" pref="499" max="32767" attributes="0"/>
+                                      <Component id="jScrollPane9" pref="522" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -1410,11 +1503,20 @@
                                 <Component class="javax.swing.JTable" name="jTable9">
                                   <Properties>
                                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                                      <Table columnCount="4" rowCount="4">
-                                        <Column editable="true" title="Title 1" type="java.lang.Object"/>
-                                        <Column editable="true" title="Title 2" type="java.lang.Object"/>
-                                        <Column editable="true" title="Title 3" type="java.lang.Object"/>
-                                        <Column editable="true" title="Title 4" type="java.lang.Object"/>
+                                      <Table columnCount="13" rowCount="5">
+                                        <Column editable="true" title="Tanggal" type="java.lang.Object"/>
+                                        <Column editable="true" title="Paten" type="java.lang.Object"/>
+                                        <Column editable="true" title="Generik" type="java.lang.Object"/>
+                                        <Column editable="true" title="Puyer" type="java.lang.Object"/>
+                                        <Column editable="true" title="Obat Jadi" type="java.lang.Object"/>
+                                        <Column editable="true" title="Antibiotik" type="java.lang.Object"/>
+                                        <Column editable="true" title="Injeksi" type="java.lang.Object"/>
+                                        <Column editable="true" title="Umum" type="java.lang.Object"/>
+                                        <Column editable="true" title="Jamkesmas" type="java.lang.Object"/>
+                                        <Column editable="true" title="Akses" type="java.lang.Object"/>
+                                        <Column editable="true" title="BPJS" type="java.lang.Object"/>
+                                        <Column editable="true" title="Rawat Inap" type="java.lang.Object"/>
+                                        <Column editable="true" title="Rawat jalan" type="java.lang.Object"/>
                                       </Table>
                                     </Property>
                                   </Properties>
