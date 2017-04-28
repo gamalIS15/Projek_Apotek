@@ -296,13 +296,14 @@ public class Laporan extends javax.swing.JFrame {
 
         jTable5.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Nomor Resep", "Nama Pasien", "Title 3", "Title 4"
+                "Nomor Resep", "Nama Obat", "Satuan", "Stok Awal", "Penerimaan", "Persediaan"
             }
         ));
         jScrollPane5.setViewportView(jTable5);
@@ -372,13 +373,13 @@ public class Laporan extends javax.swing.JFrame {
 
         jTable4.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "No", "Nama", "Satuan", "Stok Awal", "Penerimaan", "Persediaan"
             }
         ));
         jScrollPane4.setViewportView(jTable4);
@@ -448,13 +449,13 @@ public class Laporan extends javax.swing.JFrame {
 
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "No", "Nama", "Satuan", "Stok Awal", "Penerimaan", "Persediaan"
             }
         ));
         jScrollPane3.setViewportView(jTable3);
@@ -553,7 +554,7 @@ public class Laporan extends javax.swing.JFrame {
             clPanelTransparan6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(clPanelTransparan6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 992, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1037, Short.MAX_VALUE)
                 .addContainerGap())
         );
         clPanelTransparan6Layout.setVerticalGroup(
