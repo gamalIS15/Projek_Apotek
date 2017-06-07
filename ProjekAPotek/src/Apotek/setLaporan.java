@@ -6,6 +6,8 @@ public class setLaporan {
     Date dari;
     Date sampai;
     String nama;
+    String sat;
+    String noresep;
     int awal;
     String Pengdari;
     int Pemasjumlah;
@@ -13,13 +15,23 @@ public class setLaporan {
     int Pengjumlah;
     int akhir;
 
-    public setLaporan(String nama, int awal, String Pengdari, int Pemasjumlah, String Penguntuk, int Pengjumlah, int akhir) {
+    public setLaporan(String nama, String sat, int awal, String Pengdari, int Pemasjumlah, String Penguntuk, int Pengjumlah, int akhir) {
         this.nama = nama;
+        this.sat = sat;
         this.awal = awal;
         this.Pengdari = Pengdari;
         this.Pemasjumlah = Pemasjumlah;
         this.Penguntuk = Penguntuk;
         this.Pengjumlah = Pengjumlah;
+        this.akhir = akhir;
+    }
+    
+    public setLaporan(String noresep, String nama, String sat, int awal, int Pemasjumlah, int akhir) {
+        this.noresep = noresep;
+        this.nama = nama;
+        this.sat = sat;
+        this.awal = awal;
+        this.Pemasjumlah = Pemasjumlah;
         this.akhir = akhir;
     }
 
@@ -33,6 +45,14 @@ public class setLaporan {
 
     public void setNama(String nama) {
         this.nama = nama;
+    }
+
+    public void setSat(String sat) {
+        this.sat = sat;
+    }
+    
+    public void setNoresep(String noresep) {
+        this.noresep = noresep;
     }
 
     public void setAwal(int awal) {
@@ -69,6 +89,14 @@ public class setLaporan {
 
     public String getNama() {
         return nama;
+    }
+    
+    public String getNoresep() {
+        return noresep;
+    }
+    
+    public String getSat() {
+        return sat;
     }
 
     public int getAwal() {
