@@ -25,9 +25,11 @@ import javax.swing.table.DefaultTableModel;
 public class Laporan extends javax.swing.JFrame {
 
     Statement stmt, stmt1, stmt2, stmt3;
-    ResultSet rsTransNar, rsTransPsi, rsHari, rsMinggu, rsTahun;
+    ResultSet rsTransNar, rsTransPsi, rsHari, rsMinggu, rsTahun, rsPuskesmas;
     String[] title = {"Nama Obat", "Satuan", "Saldo Awal", "Pemasukan Dari", "Pemasukan Jumlah", 
             "Penggunaan Untuk", "Penggunaan Jumlah", "Saldo Akhir"};
+    String[] title2 = {"Nama Obat", "Satuan", "Stok Awal", "Penerimaan", 
+            "Persediaan", "Pemakaian", "Sisa Stok"};
     String[] title1 = {"Nomor Resep", "Nama Obat", "Satuan", "Stok Awal", "Penerimaan", "Persediaan"};
     String[] titleKunjungan ={"Tanggal","Paten","Generik","Puyer","Obat Jadi", "Anti biotik", "Injeksi" ,"Umum","","Jamkesmas","Akses","BPJS","Rawat Inap","Rawat Jalan" };
     ArrayList<setLaporan> listNar = new ArrayList<setLaporan>();
@@ -54,6 +56,7 @@ public class Laporan extends javax.swing.JFrame {
         updateTableHarian();
         updateTableBulanan();
         updateTableTahunan();
+        updateTablePuskesmas();
     }
     
     private void updateTableNar() {
@@ -73,7 +76,7 @@ public class Laporan extends javax.swing.JFrame {
         tblNarkotika.setModel(new DefaultTableModel(data, title));
     }
     
-        private void updateTablePsi() {
+    private void updateTablePsi() {
         Object[][] data = new Object[this.listPsi.size()][8];
         int x = 0;
         for(setLaporan o: this.listPsi) {
@@ -88,6 +91,22 @@ public class Laporan extends javax.swing.JFrame {
             ++x;
         }
         tblPsikotropika.setModel(new DefaultTableModel(data, title));
+    }
+    
+    private void updateTablePuskesmas() {
+        Object[][] data = new Object[this.listPuskesmas.size()][7];
+        int x = 0;
+        for(setLaporan o: this.listPuskesmas) {
+            data[x][0] = o.getNama();
+            data[x][1] = o.getSat();
+            data[x][2] = o.getAwal();
+            data[x][3] = o.getPemasjumlah();
+            data[x][4] = o.getSedia();
+            data[x][5] = o.getPengjumlah();
+            data[x][6] = o.getAkhir();
+            ++x;
+        }
+        tblPuskesmas.setModel(new DefaultTableModel(data, title2));
     }
         
     private void updateTableHarian() {
@@ -211,6 +230,7 @@ public class Laporan extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         txtSampaiPuskesmas = new com.toedter.calendar.JDateChooser();
         btnTampilkanPuskesmas = new javax.swing.JButton();
+        jLabel22 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         clPanelTransparan15 = new PanelTransparan.ClPanelTransparan();
         clPanelTransparan16 = new PanelTransparan.ClPanelTransparan();
@@ -276,9 +296,9 @@ public class Laporan extends javax.swing.JFrame {
                 .addComponent(txtWelcome)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(txtTanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(331, 331, 331)
+                .addGap(251, 251, 251)
                 .addComponent(btnKeluar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(216, 216, 216))
+                .addGap(296, 296, 296))
         );
         clPanelTransparan1Layout.setVerticalGroup(
             clPanelTransparan1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -291,6 +311,9 @@ public class Laporan extends javax.swing.JFrame {
             .addComponent(btnKeluar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        clPanelTransparan2.setPreferredSize(new java.awt.Dimension(1429, 690));
+
+        lplpoG.setPreferredSize(new java.awt.Dimension(1419, 690));
         lplpoG.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lplpoGMouseClicked(evt);
@@ -339,7 +362,7 @@ public class Laporan extends javax.swing.JFrame {
             clPanelTransparan12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(clPanelTransparan12Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 556, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 523, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -440,7 +463,7 @@ public class Laporan extends javax.swing.JFrame {
             clPanelTransparan10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(clPanelTransparan10Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 544, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 511, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -543,7 +566,7 @@ public class Laporan extends javax.swing.JFrame {
             clPanelTransparan8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(clPanelTransparan8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -707,7 +730,7 @@ public class Laporan extends javax.swing.JFrame {
             .addGroup(NarkotikaLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(NarkotikaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, NarkotikaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(txtdariNarkotika, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -779,7 +802,7 @@ public class Laporan extends javax.swing.JFrame {
             clPanelTransparan4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(clPanelTransparan4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 517, Short.MAX_VALUE)
+                .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -835,7 +858,7 @@ public class Laporan extends javax.swing.JFrame {
             .addGroup(PsikotropikaLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(jLabel12)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(PsikotropikaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PsikotropikaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(txtdariPsikotropika, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -852,6 +875,8 @@ public class Laporan extends javax.swing.JFrame {
 
         lplpoG.addTab("Psikotropika", Psikotropika);
 
+        clPanelTransparan13.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
         javax.swing.GroupLayout clPanelTransparan13Layout = new javax.swing.GroupLayout(clPanelTransparan13);
         clPanelTransparan13.setLayout(clPanelTransparan13Layout);
         clPanelTransparan13Layout.setHorizontalGroup(
@@ -863,17 +888,27 @@ public class Laporan extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
+        clPanelTransparan14.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
         tblPuskesmas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "No", "Nama Obat", "Satuan", "Stok Awal", "Penerimaan", "Persediaan"
+                "Nama Obat", "Satuan", "Stok Awal", "Penerimaan", "Persediaan", "Pemakaian", "Sisa Stok"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane6.setViewportView(tblPuskesmas);
 
         javax.swing.GroupLayout clPanelTransparan14Layout = new javax.swing.GroupLayout(clPanelTransparan14);
@@ -882,18 +917,18 @@ public class Laporan extends javax.swing.JFrame {
             clPanelTransparan14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(clPanelTransparan14Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 973, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 965, Short.MAX_VALUE)
                 .addContainerGap())
         );
         clPanelTransparan14Layout.setVerticalGroup(
             clPanelTransparan14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(clPanelTransparan14Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 508, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        jLabel7.setText("Tanggal :");
+        jLabel7.setText("Dari Tanggal :");
 
         jLabel6.setText("Sampai Tanggal :");
 
@@ -904,6 +939,9 @@ public class Laporan extends javax.swing.JFrame {
             }
         });
 
+        jLabel22.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel22.setText("LPLPO PUSKESMAS");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -912,35 +950,38 @@ public class Laporan extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(clPanelTransparan13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(clPanelTransparan14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(clPanelTransparan14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtDariPuskesmas, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtSampaiPuskesmas, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnTampilkanPuskesmas))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(22, 22, 22)
+                                .addComponent(jLabel22)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(449, 449, 449)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtDariPuskesmas, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(108, 108, 108)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtSampaiPuskesmas, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52)
-                .addComponent(btnTampilkanPuskesmas)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jLabel22)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(txtDariPuskesmas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6)
-                            .addComponent(txtSampaiPuskesmas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnTampilkanPuskesmas)))
+                    .addComponent(txtDariPuskesmas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSampaiPuskesmas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel7)
+                    .addComponent(btnTampilkanPuskesmas))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(clPanelTransparan13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -987,7 +1028,7 @@ public class Laporan extends javax.swing.JFrame {
             clPanelTransparan16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(clPanelTransparan16Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 555, Short.MAX_VALUE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 522, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1080,7 +1121,7 @@ public class Laporan extends javax.swing.JFrame {
             clPanelTransparan18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(clPanelTransparan18Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 555, Short.MAX_VALUE)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 522, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1178,7 +1219,7 @@ public class Laporan extends javax.swing.JFrame {
             clPanelTransparan20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(clPanelTransparan20Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 559, Short.MAX_VALUE)
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 526, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1255,13 +1296,13 @@ public class Laporan extends javax.swing.JFrame {
             clPanelTransparan2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(clPanelTransparan2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lplpoG))
+                .addComponent(lplpoG, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         clPanelTransparan2Layout.setVerticalGroup(
             clPanelTransparan2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, clPanelTransparan2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lplpoG)
+                .addComponent(lplpoG, javax.swing.GroupLayout.DEFAULT_SIZE, 668, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1375,7 +1416,7 @@ public class Laporan extends javax.swing.JFrame {
                     "' AND '" + tanggalSampai + "' AND golongan='Psikotropika' GROUP BY Transaksi.namaObat");
             while(rsTransPsi.next() == true) {
                 tgl = rsTransPsi.getDate("tanggal");
-                sat = rsTransNar.getString("satuan");
+                sat = rsTransPsi.getString("satuan");
                 obat = rsTransPsi.getString("nama");
                 dari = rsTransPsi.getString("dari");
                 untuk = rsTransPsi.getString("ke");
@@ -1408,6 +1449,38 @@ public class Laporan extends javax.swing.JFrame {
 
     private void btnTampilkanPuskesmasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTampilkanPuskesmasActionPerformed
         // TODO add your handling code here:
+         String tanggalDari = (txtDariPuskesmas.getDate().getYear()+1900) + "-" + 
+                (txtDariPuskesmas.getDate().getMonth()+1) + "-" + 
+                txtDariPuskesmas.getDate().getDate();
+        String tanggalSampai = (txtSampaiPuskesmas.getDate().getYear()+1900) + "-" + 
+                (txtSampaiPuskesmas.getDate().getMonth()+1) + "-" + 
+                txtSampaiPuskesmas.getDate().getDate();
+        Date tgl = null;
+        String obat = null, dari = null, untuk = null, sat=null;
+        int guna= 0, awal = 0, sedia = 0, akhir = 0;
+        
+        try {
+            setConnection koneksi = new setConnection();
+            stmt = koneksi.connection.createStatement();
+            rsPuskesmas = stmt.executeQuery("SELECT DataObat.namaObat as nama, DataObat.satJ as satuan, tanggalMasuk, jumlahSedia, jumlahSediaJ "
+                    + "FROM DataObat JOIN DataJual ON DataObat.namaObat = DataJual.namaObatJ WHERE tanggalMasuk BETWEEN '" + tanggalDari +
+                    "' AND '" + tanggalSampai + "'");
+            while(rsPuskesmas.next() == true) {
+                tgl = rsPuskesmas.getDate("tanggalMasuk");
+                sat = rsPuskesmas.getString("satuan");
+                obat = rsPuskesmas.getString("nama");
+                sedia = rsPuskesmas.getInt("jumlahSedia");
+                guna = rsPuskesmas.getInt("jumlahSediaJ");
+                awal = rsPuskesmas.getInt("jumlahSedia");
+                akhir = (awal-guna);
+                
+            listPuskesmas.add(new setLaporan(obat, sat, awal, 0, sedia, guna, akhir));
+            }
+            
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        updateTablePuskesmas();
     }//GEN-LAST:event_btnTampilkanPuskesmasActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -1621,6 +1694,7 @@ public class Laporan extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
