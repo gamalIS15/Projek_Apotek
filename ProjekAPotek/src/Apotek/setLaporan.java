@@ -9,6 +9,7 @@ public class setLaporan {
     String sat;
     String noresep;
     int awal;
+    int sedia;
     String Pengdari;
     int Pemasjumlah;
     String Penguntuk;
@@ -34,6 +35,16 @@ public class setLaporan {
         this.Pemasjumlah = Pemasjumlah;
         this.akhir = akhir;
     }
+    
+    public setLaporan(String nama, String sat, int awal, int Pemasjumlah, int sedia, int Pengjumlah, int akhir) {
+        this.nama = nama;
+        this.sat = sat;
+        this.awal = awal;
+        this.Pemasjumlah = Pemasjumlah;
+        this.sedia = sedia;
+        this.Pengjumlah = Pengjumlah;
+        this.akhir = akhir;
+    }
 
     public void setDari(Date dari) {
         this.dari = dari;
@@ -57,6 +68,10 @@ public class setLaporan {
 
     public void setAwal(int awal) {
         this.awal = awal;
+    }
+
+    public void setSedia(int sedia) {
+        this.sedia = sedia;
     }
 
     public void setPengdari(String Pengdari) {
@@ -101,6 +116,10 @@ public class setLaporan {
 
     public int getAwal() {
         return awal;
+    }
+    
+    public int getSedia() {
+        return sedia;
     }
 
     public String getPengdari() {
