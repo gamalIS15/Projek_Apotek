@@ -1262,9 +1262,9 @@
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                                   <Component id="clPanelTransparan15" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="clPanelTransparan16" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
@@ -1313,6 +1313,13 @@
                       </Layout>
                       <SubComponents>
                         <Container class="PanelTransparan.ClPanelTransparan" name="clPanelTransparan15">
+                          <Properties>
+                            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                              <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                                <EtchetBorder/>
+                              </Border>
+                            </Property>
+                          </Properties>
 
                           <Layout>
                             <DimensionLayout dim="0">
@@ -1328,13 +1335,20 @@
                           </Layout>
                         </Container>
                         <Container class="PanelTransparan.ClPanelTransparan" name="clPanelTransparan16">
+                          <Properties>
+                            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                              <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                                <EtchetBorder/>
+                              </Border>
+                            </Property>
+                          </Properties>
 
                           <Layout>
                             <DimensionLayout dim="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jScrollPane7" pref="973" max="32767" attributes="0"/>
+                                      <Component id="jScrollPane7" pref="965" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -1343,7 +1357,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jScrollPane7" pref="522" max="32767" attributes="0"/>
+                                      <Component id="jScrollPane7" pref="518" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -1460,6 +1474,13 @@
                       </Layout>
                       <SubComponents>
                         <Container class="PanelTransparan.ClPanelTransparan" name="clPanelTransparan17">
+                          <Properties>
+                            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                              <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                                <EtchetBorder/>
+                              </Border>
+                            </Property>
+                          </Properties>
 
                           <Layout>
                             <DimensionLayout dim="0">
@@ -1475,13 +1496,20 @@
                           </Layout>
                         </Container>
                         <Container class="PanelTransparan.ClPanelTransparan" name="clPanelTransparan18">
+                          <Properties>
+                            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                              <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                                <EtchetBorder/>
+                              </Border>
+                            </Property>
+                          </Properties>
 
                           <Layout>
                             <DimensionLayout dim="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jScrollPane8" pref="973" max="32767" attributes="0"/>
+                                      <Component id="jScrollPane8" pref="965" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -1490,7 +1518,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jScrollPane8" pref="522" max="32767" attributes="0"/>
+                                      <Component id="jScrollPane8" pref="518" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -1557,10 +1585,13 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="clPanelTransparan19" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="clPanelTransparan20" max="32767" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
+                                          <EmptySpace min="-2" pref="415" max="-2" attributes="0"/>
                                           <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Component id="txtdariKunjung" min="-2" pref="165" max="-2" attributes="0"/>
@@ -1570,15 +1601,12 @@
                                           <Component id="txtsampaiKunjung" min="-2" pref="165" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="btnTampilKunjung" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
-                                      <Component id="clPanelTransparan20" max="32767" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="446" max="-2" attributes="0"/>
+                                          <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="446" max="-2" attributes="0"/>
-                                  <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                               </Group>
                           </Group>
@@ -1599,38 +1627,13 @@
                                       <Component id="btnTampilKunjung" alignment="1" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="clPanelTransparan19" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="clPanelTransparan20" alignment="0" max="32767" attributes="0"/>
-                                  </Group>
+                                  <Component id="clPanelTransparan20" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
                       </Layout>
                       <SubComponents>
-                        <Container class="PanelTransparan.ClPanelTransparan" name="clPanelTransparan19">
-                          <Properties>
-                            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                              <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
-                                <EtchetBorder/>
-                              </Border>
-                            </Property>
-                          </Properties>
-
-                          <Layout>
-                            <DimensionLayout dim="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <EmptySpace min="0" pref="383" max="32767" attributes="0"/>
-                              </Group>
-                            </DimensionLayout>
-                            <DimensionLayout dim="1">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              </Group>
-                            </DimensionLayout>
-                          </Layout>
-                        </Container>
                         <Container class="PanelTransparan.ClPanelTransparan" name="clPanelTransparan20">
                           <Properties>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -1645,7 +1648,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jScrollPane9" pref="965" max="32767" attributes="0"/>
+                                      <Component id="jScrollPane9" pref="1370" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -1668,24 +1671,27 @@
 
                               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                               <SubComponents>
-                                <Component class="javax.swing.JTable" name="jTable9">
+                                <Component class="javax.swing.JTable" name="tblKunjung">
                                   <Properties>
                                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                                       <Table columnCount="13" rowCount="5">
-                                        <Column editable="true" title="Tanggal" type="java.lang.Object"/>
-                                        <Column editable="true" title="Paten" type="java.lang.Object"/>
-                                        <Column editable="true" title="Generik" type="java.lang.Object"/>
-                                        <Column editable="true" title="Puyer" type="java.lang.Object"/>
-                                        <Column editable="true" title="Obat Jadi" type="java.lang.Object"/>
-                                        <Column editable="true" title="Antibiotik" type="java.lang.Object"/>
-                                        <Column editable="true" title="Injeksi" type="java.lang.Object"/>
-                                        <Column editable="true" title="Umum" type="java.lang.Object"/>
-                                        <Column editable="true" title="Jamkesmas" type="java.lang.Object"/>
-                                        <Column editable="true" title="Akses" type="java.lang.Object"/>
-                                        <Column editable="true" title="BPJS" type="java.lang.Object"/>
-                                        <Column editable="true" title="Rawat Inap" type="java.lang.Object"/>
-                                        <Column editable="true" title="Rawat jalan" type="java.lang.Object"/>
+                                        <Column editable="false" title="Tanggal" type="java.lang.Object"/>
+                                        <Column editable="false" title="Paten" type="java.lang.Object"/>
+                                        <Column editable="false" title="Generik" type="java.lang.Object"/>
+                                        <Column editable="false" title="Puyer" type="java.lang.Object"/>
+                                        <Column editable="false" title="Obat Jadi" type="java.lang.Object"/>
+                                        <Column editable="false" title="Antibiotik" type="java.lang.Object"/>
+                                        <Column editable="false" title="Injeksi" type="java.lang.Object"/>
+                                        <Column editable="false" title="Umum" type="java.lang.Object"/>
+                                        <Column editable="false" title="Jamkesmas" type="java.lang.Object"/>
+                                        <Column editable="false" title="Akses" type="java.lang.Object"/>
+                                        <Column editable="false" title="BPJS" type="java.lang.Object"/>
+                                        <Column editable="false" title="Rawat Inap" type="java.lang.Object"/>
+                                        <Column editable="false" title="Rawat jalan" type="java.lang.Object"/>
                                       </Table>
+                                    </Property>
+                                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                                      <Dimension value="[195, 80]"/>
                                     </Property>
                                   </Properties>
                                 </Component>

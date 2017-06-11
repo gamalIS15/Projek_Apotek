@@ -25,13 +25,13 @@ import javax.swing.table.DefaultTableModel;
 public class Laporan extends javax.swing.JFrame {
 
     Statement stmt, stmt1, stmt2, stmt3;
-    ResultSet rsTransNar, rsTransPsi, rsHari, rsMinggu, rsTahun, rsPuskesmas;
+    ResultSet rsTransNar, rsTransPsi, rsHari, rsMinggu, rsTahun, rsPuskesmas, rsKunjung;
     String[] title = {"Nama Obat", "Satuan", "Saldo Awal", "Pemasukan Dari", "Pemasukan Jumlah", 
             "Penggunaan Untuk", "Penggunaan Jumlah", "Saldo Akhir"};
     String[] title2 = {"Nama Obat", "Satuan", "Stok Awal", "Penerimaan", 
             "Persediaan", "Pemakaian", "Sisa Stok"};
     String[] title1 = {"Nomor Resep", "Nama Obat", "Satuan", "Stok Awal", "Penerimaan", "Persediaan"};
-    String[] titleKunjungan ={"Tanggal","Paten","Generik","Puyer","Obat Jadi", "Anti biotik", "Injeksi" ,"Umum","","Jamkesmas","Akses","BPJS","Rawat Inap","Rawat Jalan" };
+    String[] titleKunjungan ={"Tanggal","Paten","Generik","Puyer","Obat Jadi", "Anti biotik", "Injeksi" ,"Umum","Jamkesmas","Akses","BPJS","Rawat Inap","Rawat Jalan" };
     ArrayList<setLaporan> listNar = new ArrayList<setLaporan>();
     ArrayList<setLaporan> listPsi = new ArrayList<setLaporan>();
     ArrayList<setLaporan> listHarian = new ArrayList<setLaporan>();
@@ -57,6 +57,7 @@ public class Laporan extends javax.swing.JFrame {
         updateTableBulanan();
         updateTableTahunan();
         updateTablePuskesmas();
+        updateTableKunjungan();
     }
     
     private void updateTableNar() {
@@ -152,6 +153,28 @@ public class Laporan extends javax.swing.JFrame {
             ++x;
         }
         tblTahunan.setModel(new DefaultTableModel(data, title1));
+    }
+    
+    private void updateTableKunjungan() {
+        Object[][] data = new Object[this.listKunjungan.size()][13];
+        int x = 0;
+        for(setLaporan o: this.listKunjungan) {
+            data[x][0] = o.getTanggal();
+            data[x][1] = o.getPaten();
+            data[x][2] = o.getGenerik();
+            data[x][3] = o.getPuyer();
+            data[x][4] = o.getObatjadi();
+            data[x][5] = o.getAntibiotik();
+            data[x][6] = o.getInjeksi();
+            data[x][7] = o.getUmum();
+            data[x][8] = o.getJamkesmas();
+            data[x][9] = o.getAskes();
+            data[x][10] = o.getBpjs();
+            data[x][11] = o.getInap();
+            data[x][12] = o.getJalan();
+            ++x;
+        }
+        tblKunjung.setModel(new DefaultTableModel(data, titleKunjungan));
     }
 
     /**
@@ -252,10 +275,9 @@ public class Laporan extends javax.swing.JFrame {
         jDateChooser9 = new com.toedter.calendar.JDateChooser();
         btnTampilkanGudang = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        clPanelTransparan19 = new PanelTransparan.ClPanelTransparan();
         clPanelTransparan20 = new PanelTransparan.ClPanelTransparan();
         jScrollPane9 = new javax.swing.JScrollPane();
-        jTable9 = new javax.swing.JTable();
+        tblKunjung = new javax.swing.JTable();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         txtdariKunjung = new com.toedter.calendar.JDateChooser();
@@ -991,6 +1013,8 @@ public class Laporan extends javax.swing.JFrame {
 
         lplpoG.addTab("LPLPO Puskesmas", jPanel4);
 
+        clPanelTransparan15.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
         javax.swing.GroupLayout clPanelTransparan15Layout = new javax.swing.GroupLayout(clPanelTransparan15);
         clPanelTransparan15.setLayout(clPanelTransparan15Layout);
         clPanelTransparan15Layout.setHorizontalGroup(
@@ -1001,6 +1025,8 @@ public class Laporan extends javax.swing.JFrame {
             clPanelTransparan15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
+
+        clPanelTransparan16.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         tblApotek.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1021,14 +1047,14 @@ public class Laporan extends javax.swing.JFrame {
             clPanelTransparan16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(clPanelTransparan16Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 973, Short.MAX_VALUE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 965, Short.MAX_VALUE)
                 .addContainerGap())
         );
         clPanelTransparan16Layout.setVerticalGroup(
             clPanelTransparan16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(clPanelTransparan16Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 522, Short.MAX_VALUE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 518, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1043,9 +1069,9 @@ public class Laporan extends javax.swing.JFrame {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(clPanelTransparan15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(clPanelTransparan15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(clPanelTransparan16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanel5Layout.createSequentialGroup()
@@ -1084,6 +1110,8 @@ public class Laporan extends javax.swing.JFrame {
 
         lplpoG.addTab("LPLPO Apotek", jPanel5);
 
+        clPanelTransparan17.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
         javax.swing.GroupLayout clPanelTransparan17Layout = new javax.swing.GroupLayout(clPanelTransparan17);
         clPanelTransparan17.setLayout(clPanelTransparan17Layout);
         clPanelTransparan17Layout.setHorizontalGroup(
@@ -1094,6 +1122,8 @@ public class Laporan extends javax.swing.JFrame {
             clPanelTransparan17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
+
+        clPanelTransparan18.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         tblRekapKunjungan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1114,14 +1144,14 @@ public class Laporan extends javax.swing.JFrame {
             clPanelTransparan18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(clPanelTransparan18Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 973, Short.MAX_VALUE)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 965, Short.MAX_VALUE)
                 .addContainerGap())
         );
         clPanelTransparan18Layout.setVerticalGroup(
             clPanelTransparan18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(clPanelTransparan18Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 522, Short.MAX_VALUE)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 518, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1177,22 +1207,9 @@ public class Laporan extends javax.swing.JFrame {
 
         lplpoG.addTab("LPLPO Gudang", jPanel6);
 
-        clPanelTransparan19.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        javax.swing.GroupLayout clPanelTransparan19Layout = new javax.swing.GroupLayout(clPanelTransparan19);
-        clPanelTransparan19.setLayout(clPanelTransparan19Layout);
-        clPanelTransparan19Layout.setHorizontalGroup(
-            clPanelTransparan19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 383, Short.MAX_VALUE)
-        );
-        clPanelTransparan19Layout.setVerticalGroup(
-            clPanelTransparan19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
         clPanelTransparan20.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jTable9.setModel(new javax.swing.table.DefaultTableModel(
+        tblKunjung.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null, null, null, null},
@@ -1203,8 +1220,17 @@ public class Laporan extends javax.swing.JFrame {
             new String [] {
                 "Tanggal", "Paten", "Generik", "Puyer", "Obat Jadi", "Antibiotik", "Injeksi", "Umum", "Jamkesmas", "Akses", "BPJS", "Rawat Inap", "Rawat jalan"
             }
-        ));
-        jScrollPane9.setViewportView(jTable9);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblKunjung.setPreferredSize(new java.awt.Dimension(195, 80));
+        jScrollPane9.setViewportView(tblKunjung);
 
         javax.swing.GroupLayout clPanelTransparan20Layout = new javax.swing.GroupLayout(clPanelTransparan20);
         clPanelTransparan20.setLayout(clPanelTransparan20Layout);
@@ -1212,7 +1238,7 @@ public class Laporan extends javax.swing.JFrame {
             clPanelTransparan20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(clPanelTransparan20Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 965, Short.MAX_VALUE)
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 1370, Short.MAX_VALUE)
                 .addContainerGap())
         );
         clPanelTransparan20Layout.setVerticalGroup(
@@ -1247,10 +1273,12 @@ public class Laporan extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(clPanelTransparan19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(clPanelTransparan20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(415, 415, 415)
                         .addComponent(jLabel16)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtdariKunjung, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1259,13 +1287,10 @@ public class Laporan extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtsampaiKunjung, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnTampilKunjung)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(clPanelTransparan20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(446, 446, 446)
-                .addComponent(jLabel15)
+                        .addComponent(btnTampilKunjung))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(446, 446, 446)
+                        .addComponent(jLabel15)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -1282,9 +1307,7 @@ public class Laporan extends javax.swing.JFrame {
                         .addComponent(jLabel17))
                     .addComponent(btnTampilKunjung, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(clPanelTransparan19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(clPanelTransparan20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(clPanelTransparan20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1445,6 +1468,38 @@ public class Laporan extends javax.swing.JFrame {
 
     private void btnTampilKunjungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTampilKunjungActionPerformed
         // TODO add your handling code here:
+        String tanggalDari = (txtdariKunjung.getDate().getYear()+1900) + "-" + 
+                (txtdariKunjung.getDate().getMonth()+1) + "-" + 
+                txtdariKunjung.getDate().getDate();
+        String tanggalSampai = (txtsampaiKunjung.getDate().getYear()+1900) + "-" + 
+                (txtsampaiKunjung.getDate().getMonth()+1) + "-" + 
+                txtsampaiKunjung.getDate().getDate();
+        Date tgl = null;
+        int nonbpjs= 0, bpjs = 0, inap = 0, jalan = 0;
+        
+        try {
+            setConnection koneksi = new setConnection();
+            stmt = koneksi.connection.createStatement();
+            rsKunjung = stmt.executeQuery("SELECT Tanggal as tgl, "
+                    + "(SELECT sum(BpjsNonBpjs) FROM DataResep WHERE Tanggal=tgl AND BpjsNonBpjs='non BPJS' GROUP BY Tanggal) AS nonBPJS, "
+                    + "(SELECT sum(BpjsNonBpjs) FROM DataResep WHERE Tanggal=tgl AND BpjsNonBpjs='BPJS' GROUP BY Tanggal) AS BPJS, "
+                    + "(SELECT sum(JenisLayanan) FROM DataResep WHERE Tanggal=tgl AND JenisLayanan='Rawat Inap' GROUP BY Tanggal) AS inap, "
+                    + "(SELECT sum(JenisLayanan) FROM DataResep WHERE Tanggal=tgl AND JenisLayanan='Rawat Jalan' GROUP BY Tanggal) AS jalan, "
+                    + "FROM DataResep WHERE Tanggal BETWEEN '" + tanggalDari + "' AND '" + tanggalSampai + "'");
+            while(rsKunjung.next() == true) {
+                tgl = rsKunjung.getDate("tgl");
+                nonbpjs = rsKunjung.getInt("nonBPJS");
+                bpjs = rsKunjung.getInt("BPJS");
+                inap = rsKunjung.getInt("inap");
+                jalan = rsKunjung.getInt("jalan");
+                
+            listKunjungan.add(new setLaporan(tgl, 0, 0, 0, 0, 0, 0, nonbpjs, 0, 0, bpjs, inap, jalan));
+            }
+            
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        updateTableKunjungan();
     }//GEN-LAST:event_btnTampilKunjungActionPerformed
 
     private void btnTampilkanPuskesmasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTampilkanPuskesmasActionPerformed
@@ -1666,7 +1721,6 @@ public class Laporan extends javax.swing.JFrame {
     private PanelTransparan.ClPanelTransparan clPanelTransparan16;
     private PanelTransparan.ClPanelTransparan clPanelTransparan17;
     private PanelTransparan.ClPanelTransparan clPanelTransparan18;
-    private PanelTransparan.ClPanelTransparan clPanelTransparan19;
     private PanelTransparan.ClPanelTransparan clPanelTransparan2;
     private PanelTransparan.ClPanelTransparan clPanelTransparan20;
     private PanelTransparan.ClPanelTransparan clPanelTransparan3;
@@ -1717,12 +1771,12 @@ public class Laporan extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
-    private javax.swing.JTable jTable9;
     private javax.swing.JTabbedPane lplpoG;
     private javax.swing.JSpinner spnTahun;
     private javax.swing.JTable tblApotek;
     private javax.swing.JTable tblBulanan;
     private javax.swing.JTable tblHarian;
+    private javax.swing.JTable tblKunjung;
     private javax.swing.JTable tblNarkotika;
     private javax.swing.JTable tblPsikotropika;
     private javax.swing.JTable tblPuskesmas;
