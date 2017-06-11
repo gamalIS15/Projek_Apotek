@@ -1484,7 +1484,7 @@ public class Laporan extends javax.swing.JFrame {
                     + "(SELECT sum(BpjsNonBpjs) FROM DataResep WHERE Tanggal=tgl AND BpjsNonBpjs='non BPJS' GROUP BY Tanggal) AS nonBPJS, "
                     + "(SELECT sum(BpjsNonBpjs) FROM DataResep WHERE Tanggal=tgl AND BpjsNonBpjs='BPJS' GROUP BY Tanggal) AS BPJS, "
                     + "(SELECT sum(JenisLayanan) FROM DataResep WHERE Tanggal=tgl AND JenisLayanan='Rawat Inap' GROUP BY Tanggal) AS inap, "
-                    + "(SELECT sum(JenisLayanan) FROM DataResep WHERE Tanggal=tgl AND JenisLayanan='Rawat Jalan' GROUP BY Tanggal) AS jalan, "
+                    + "(SELECT sum(JenisLayanan) FROM DataResep WHERE Tanggal=tgl AND JenisLayanan='Rawat Jalan' GROUP BY Tanggal) AS jalan "
                     + "FROM DataResep WHERE Tanggal BETWEEN '" + tanggalDari + "' AND '" + tanggalSampai + "'");
             while(rsKunjung.next() == true) {
                 tgl = rsKunjung.getDate("tgl");
